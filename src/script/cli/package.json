@@ -12,7 +12,8 @@
   "dependencies": {
     "amdefine": "1.0.0",
     "phantomjs": "1.9.19",
-    "requirejs": "2.1.22"
+    "requirejs": "2.1.22",
+    "mscgenjs": "1.2.4"
   },
   "devDependencies": {
     "chai": "3.4.1",
