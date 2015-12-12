@@ -1,2 +1,3 @@
 instrumentation:
-    excludes: [src/lib/**/* src/script/core/lib/**/*]
+    excludes: [src/cli-phantom*.js]
+    include-all-sources: true
