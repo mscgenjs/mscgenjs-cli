@@ -23,6 +23,7 @@ module.exports = (function() {
     "   along with this program.  If not, see <http://www.gnu.org/licenses/>.\n\n";
 
     function getOutStream(pOutputTo) {
+        /* istanbul ignore if */
         if ("-" === pOutputTo) {
             return process.stdout;
         } else {
@@ -31,6 +32,7 @@ module.exports = (function() {
     }
 
     function getInStream(pInputFrom) {
+        /* istanbul ignore if */
         if ("-" === pInputFrom) {
             return process.stdin;
         } else {
@@ -57,9 +59,11 @@ module.exports = (function() {
         args.push(pInput);
 
         childProcess.execFile(binPath, args, function(pErr, pStdout, pStderr) {
+            /* istanbul ignore if */
             if (pStdout) {
                 process.stdout.write(pStdout);
             }
+            /* istanbul ignore if */
             if (pStderr) {
                 process.stderr.write(pStderr);
             }
