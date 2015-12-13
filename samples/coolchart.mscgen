@@ -1,0 +1,16 @@
+# Alice & Bob classics: public key encryption
+msc {
+  hscale="1.4",
+  wordwraparcs="true";
+
+  Alice [linecolor="#00A1DE", textcolor="white", textbgcolor="#00A1DE", arclinecolor="#00A1DE", arctextcolor="white"],
+  Bob [linecolor="#00A1DE", textcolor="white", textbgcolor="#00A1DE", arclinecolor="#00A1DE", arctextcolor="white"],
+  notes [label=" ", linecolor="transparent"];
+
+  Alice => Alice [label="sign message with own private key", linecolor="#005B82", textcolor="#005B82"];
+  Alice => Bob [label="signed message", linecolor="#005B82", textcolor="#005B82"],
+  notes note notes [label="This is just a sample chart with a (high level) illustration of public key encryption.", linecolor="white", textcolor="white", textbgcolor="#E77B2F"];
+  Bob => Alice [label="get Alice her public key", linecolor="#005B82", textcolor="#005B82"];
+  Alice >> Bob [label="Alices' public key", linecolor="#005B82", textcolor="#005B82"];
+  Bob => Bob [label="verify message with Alices' public key", linecolor="#005B82", textcolor="#005B82"];
+}
