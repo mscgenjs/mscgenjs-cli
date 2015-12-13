@@ -44,7 +44,7 @@ This will generate `coolchart.svg`:
 
 ### More options?
 
-Yes. Run `mscgenjs` with `-h` or `--help` as option to get all its options:
+Yes. Run `mscgenjs` with `-h` or `--help` to get them all:
 
 ```
   Usage: mscgen [options] [infile]
@@ -129,6 +129,7 @@ type:
 ```sh
     mscgenjs parsed.json
 ```
+
 [atom]: https://atom.io
 [codeclimate.mscgenjs]: https://codeclimate.com/github/sverweij/mscgenjs-cli
 [mscgen-preview]: https://atom.io/packages/mscgen-preview
