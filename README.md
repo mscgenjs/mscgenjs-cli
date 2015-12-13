@@ -130,8 +130,14 @@ type:
     mscgenjs parsed.json
 ```
 
-## License
+## What is the license?
 [GPL-3.0](LICENSE.md)
+
+## How does mscgenjs render?
+- It uses the (pure javascript) [mscgen_js][mscgen_js].
+- For graphical formats (svg, png, jpeg) it uses mscgen_js in phantomjs.
+  If you want to know why, or want to know other gory details:
+  [src/README.md](src/README.md) tries to explain that.
 
 
 [atom]: https://atom.io
