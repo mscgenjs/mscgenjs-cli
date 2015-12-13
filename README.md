@@ -20,7 +20,8 @@
 ```sh
    mscgenjs coolchart.mscgen
 ```
-This will generate `coolchart.svg` :
+This will generate `coolchart.svg`:
+
 ![the result from above command. It's a png, but that's because we can't embed svg's in github (yet, probably)](samples/coolchart.png)
 
 ### But I want png's!
@@ -34,7 +35,7 @@ This will generate `coolchart.svg` :
   - Scoot over to [mscgen_js][mscgen_js] for an on line interpreter.
   - If you're using [atom][atom] you'll :heart: the
     [mscgen-preview][mscgen-preview] package.
-- But there's also the **original `mscgen` **. Why should I use this instead?    
+- But there's also the **original** `mscgen`. Why should I use this instead?    
   - Yes there is. It's a lot faster too. And it's the original.
   - The graphics look different though.
   - And it does not understand Xù or MsGenny - so if you'd want
