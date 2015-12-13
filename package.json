@@ -39,8 +39,7 @@
     "codeclimate-cover-submit": "node node_modules/codeclimate-test-reporter/bin/codeclimate.js < coverage/lcov.info",
     "codecov-submit": "node node_modules/codecov.io/bin/codecov.io.js < coverage/lcov.info",
     "npm-check-updates": "ncu --upgrade",
-    "jscs": "jscs src",
-    "start": "node src/mscgen.js"
+    "jscs": "jscs src"
   },
   "repository": {
     "type": "git",
@@ -59,7 +58,7 @@
     "node": ">=4.0"
   },
   "bugs": {
-    "url": "https://github.com/sverweij/mscgenjs-cli/issues"
+    "url": "https://github.com/sverweij/mscgen_js/issues"
   },
-  "homepage": "https://mscgenjs.github.io/"
+  "homepage": "https://github.com/sverweij/mscgenjs-cli"
 }
