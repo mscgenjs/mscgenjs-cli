@@ -21,7 +21,7 @@
    mscgenjs coolchart.mscgen
 ```
 This will generate `coolchart.svg` :
-![the result from above command](samples/coolchart.svg)
+![the result from above command. It's a png, but that's because we can't embed svg's in github (yet, probably)](samples/coolchart.png)
 
 ### But I want png's!
 ```sh
