@@ -13,7 +13,6 @@ script:
   - npm run jscs
  # - npm run nsp
   - npm run cover
-  - make install
 
 branches:
   except:
