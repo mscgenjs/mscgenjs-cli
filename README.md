@@ -61,7 +61,7 @@ Yes. Run `mscgenjs` with `-h` or `--help` to get them all:
     -l --license             Display license and exit
 ```
 
-Writing to stdout works currently only works for non-graphical output formats
+Writing to stdout currently only works for non-graphical output formats
 (mscgen, msgenny, xu, dot, doxygen).
 
 ### Basic use: produce pictures from a script
