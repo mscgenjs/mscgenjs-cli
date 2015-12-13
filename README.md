@@ -105,14 +105,14 @@ To convert an MscGen script to _graphviz dot_:
     mscgenjs -T dot -i intro02_starter.mscgen intro02_starter.dot
 ```
 
-To convert to raster graphics
+To convert to raster graphics ('png' and 'jpeg')
 ```sh
     mscgenjs -T png -i dolores.mscgen -o dolores.png
 ```
 
-You can also send specify standard output as a destination, so you can
-pipe the output to something else. E.g. to graphviz dot to further process
-a dot program:
+For text based formats you can also send specify standard output as a
+destination, so you can pipe the output to something else.
+E.g. to graphviz dot to further process a dot program:
 ```sh
     mscgenjs -T dot -i intro02_starter.mscgen -o - | dot -Tsvg > communicationsdiagram.svg
 ```
@@ -129,6 +129,10 @@ type:
 ```sh
     mscgenjs parsed.json
 ```
+
+## License
+[GPL-3.0](LICENSE.md)
+
 
 [atom]: https://atom.io
 [codeclimate.mscgenjs]: https://codeclimate.com/github/sverweij/mscgenjs-cli
