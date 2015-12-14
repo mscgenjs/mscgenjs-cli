@@ -67,7 +67,7 @@ module.exports = (function() {
                     "\n         instead of '-' all will be hunky-dory\n\n"
                 );
             }
-        },
+        }
     };
 })();
 /*

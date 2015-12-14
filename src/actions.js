@@ -125,7 +125,7 @@ module.exports = (function() {
             function() {
                 process.stdout.write(LICENSE);
                 process.exit(0);
-            },
+            }
     };
 })();
 /*
