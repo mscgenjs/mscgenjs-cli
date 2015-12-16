@@ -143,5 +143,5 @@ type:
 [atom]: https://atom.io
 [codeclimate.mscgenjs]: https://codeclimate.com/github/sverweij/mscgenjs-cli
 [mscgen-preview]: https://atom.io/packages/mscgen-preview
-[mscgen_js]: https://sverweij.github.io/mscgen_js
+[mscgen_js]: https://github.com/sverweij/mscgenjs-core
 [travis.mscgenjs]: https://travis-ci.org/sverweij/mscgenjs-cli
