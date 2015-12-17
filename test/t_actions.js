@@ -13,7 +13,7 @@ var testPairs = [
             options : {
                 inputFrom  : "fixtures/rainbow.mscin",
                 outputTo   : "output/rainbow_mscgen_source.json",
-                parserOutput : true
+                outputType : "json"
             }
         },
         expected : "fixtures/rainbow_mscgen_source.json"

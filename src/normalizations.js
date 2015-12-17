@@ -60,11 +60,26 @@ module.exports = (function() {
         return classifyExtension(pInputFrom);
     }
 
+    function determineOutputType(pOutputType, pParserOutput){
+        if (!!pParserOutput) {
+            return "json";
+        }
+        return !!pOutputType ? pOutputType : "svg";
+    }
+
     return {
         normalize: function normalize(pArgument, pOptions){
             pOptions.inputFrom  = !!pArgument ? pArgument : pOptions.inputFrom;
-            pOptions.inputType  = determineInputType(pOptions.inputType, pOptions.inputFrom);
-            pOptions.outputType = !!pOptions.outputType ? pOptions.outputType : "svg";
+            pOptions.inputType  =
+                determineInputType(
+                    pOptions.inputType,
+                    pOptions.inputFrom
+            );
+            pOptions.outputType =
+                determineOutputType(
+                    pOptions.outputType,
+                    pOptions.parserOutput
+                );
             pOptions.outputTo   =
                 determineOutputTo(
                     pOptions.outputTo,

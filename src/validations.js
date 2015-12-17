@@ -2,7 +2,7 @@
 module.exports = (function() {
     "use strict";
     var fs              = require("fs");
-    const VALID_OUTPUT_TYPE_RE = /^(svg|png|jpeg|mscgen|msgenny|xu|dot|doxygen)$/;
+    const VALID_OUTPUT_TYPE_RE = /^(svg|png|jpeg|mscgen|msgenny|xu|dot|doxygen|json)$/;
     const VALID_INPUT_TYPE_RE = /^(mscgen|xu|msgenny|ast|json)$/;
 
     function isStdout(pFilename) {
@@ -30,7 +30,7 @@ module.exports = (function() {
             throw Error(
                 "\n  error: '" + pType + "' is not a valid output type. mscgen_js can emit:" +
                 "\n         - the grapics formats svg, jpeg and png" +
-                "\n         - the text formats dot, doxygen, mscgen, msgenny and xu.\n\n"
+                "\n         - the text formats dot, doxygen, mscgen, msgenny, xu and json.\n\n"
             );
         },
 

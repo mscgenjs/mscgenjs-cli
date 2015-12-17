@@ -75,10 +75,14 @@ module.exports = (function() {
     }
 
     function renderText(pAST, pOutStream, pOutputType, pCallback){
-        pOutStream.write(
-            mscgenjs.getTextRenderer(pOutputType).render(pAST),
-            pCallback
-        );
+        if ("json" === pOutputType){
+            pOutStream.write(JSON.stringify(pAST, null, "  "), pCallback);
+        } else {
+            pOutStream.write(
+                mscgenjs.getTextRenderer(pOutputType).render(pAST),
+                pCallback
+            );
+        }
     }
 
     function transform(pInStream, pOutStream, pOptions, pCallback){
@@ -93,7 +97,7 @@ module.exports = (function() {
 
         pInStream.on("end", function() {
             pInStream.pause();
-            var lAST = 'json' === pOptions.inputType ?
+            var lAST = "json" === pOptions.inputType ?
                 JSON.parse(lInput) :
                 mscgenjs.getParser(pOptions.inputType).parse(lInput);
             render(lAST, lInput, pOutStream, pOptions, pCallback);
@@ -101,9 +105,7 @@ module.exports = (function() {
     }
 
     function render(pAST, pInput, pOutStream, pOptions, pCallback) {
-        if (pOptions.parserOutput){
-            pOutStream.write(JSON.stringify(pAST, null, "  "), pCallback);
-        } else if (GRAPHICSFORMATS.indexOf(pOptions.outputType) > -1) {
+        if (GRAPHICSFORMATS.indexOf(pOptions.outputType) > -1) {
             renderGraphics (pAST, pInput, pOptions.outputTo, pOptions.outputType, pCallback);
         } else {
             renderText (pAST, pOutStream, pOptions.outputType, pCallback);

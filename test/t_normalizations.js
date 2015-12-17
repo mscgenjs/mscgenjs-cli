@@ -28,7 +28,7 @@ var TESTPAIRS = [
         input: {
             options: {
                 inputFrom: "input.xu",
-                outputTo: "output.svg",
+                outputTo: "output.svg"
             }
         },
         expected: {
@@ -37,6 +37,24 @@ var TESTPAIRS = [
                 inputType: "xu",
                 outputTo: "output.svg",
                 outputType: "svg"
+            }
+        }
+    },
+    {
+        title: "if parser-output is specified take sets outputType to 'json'",
+        input: {
+            options: {
+                inputFrom: "w00tchart.mscin",
+                parserOutput: true
+            }
+        },
+        expected: {
+            options: {
+                inputFrom: "w00tchart.mscin",
+                inputType: "mscgen",
+                outputType: "json",
+                outputTo: "w00tchart.json",
+                parserOutput: true
             }
         }
     },
@@ -61,7 +79,7 @@ var TESTPAIRS = [
         title: "treats .ast as .json",
         input: {
             options: {
-                inputFrom: "achoo.ast",
+                inputFrom: "achoo.ast"
             }
         },
         expected: {
@@ -94,7 +112,7 @@ var TESTPAIRS = [
         title: "can't guess outputTo when inputFrom is stdin",
         input: {
             options: {
-                inputFrom: "-",
+                inputFrom: "-"
             }
         },
         expected: {

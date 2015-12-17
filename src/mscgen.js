@@ -11,11 +11,11 @@ try {
         .version(VERSION)
         .option(
             "-T --output-type <type>",
-            "one of svg|png|jpeg|mscgen|msgenny|xu|dot|doxygen",
+            "svg|png|jpeg|mscgen|msgenny|xu|dot|doxygen|json",
             validations.validOutputType
         ).option(
             "-I --input-type <type>",
-            "one of mscgen|xu|msgenny|ast",
+            "one of mscgen|xu|msgenny|json  ",
             validations.validInputType
         ).option(
             "-i --input-from <file>",
