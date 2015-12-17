@@ -58,7 +58,7 @@
     "node": ">=4.0"
   },
   "bugs": {
-    "url": "https://github.com/sverweij/mscgen_js/issues"
+    "url": "https://github.com/sverweij/mscgenjs-cli/issues"
   },
   "homepage": "https://github.com/sverweij/mscgenjs-cli"
 }
