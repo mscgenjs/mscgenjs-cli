@@ -84,21 +84,6 @@ describe('cli/validations', function() {
             }
         });
 
-        it("'-T png -i - -o -' is not allowed (no graphics streaming to stdout yet ...)", function() {
-            try {
-                val.validateArguments(
-                    {
-                        inputFrom: "-",
-                        outputTo: "-",
-                        outputType: "png"
-                    }
-                );
-                assert.equal("still here", "shouldn't be here");
-            } catch (e){
-                expect(e.message).to.contain("error: mscgen_js cli can't stream png and jpeg to stdout yet.");
-            }
-        });
-
         it("'-T xu -o - input-doesnot-exists' complains about non existing file", function() {
             try {
                 val.validateArguments(

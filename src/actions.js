@@ -40,7 +40,7 @@ module.exports = (function() {
         }
     }
 
-    function renderGraphics(pAST, pInput, pOutputTo, pOutputType, pOutStream, pCallback){
+    function renderGraphics(pAST, pOutStream, pOutputType, pCallback){
         var childProcess = require('child_process');
         var path         = require('path');
         var phantomjs    = require('phantomjs');
@@ -55,25 +55,19 @@ module.exports = (function() {
         args.push(path.join(__dirname, '.', 'cli-phantom.html'));
         args.push(JSON.stringify(pAST, null, ''));
         args.push(pOutputType);
-        args.push(pOutputTo);
-        args.push(pInput);
 
         childProcess.execFile(binPath, args, function(pErr, pStdout, pStderr) {
-            /* istanbul ignore if */
+            /* istanbul ignore else */
             if (pStdout) {
                 if ('svg' === pOutputType) {
                     pOutStream.write(pStdout, pCallback);
                 } else {
-                    process.stdout.write(pStdout);
+                    pOutStream.write(new Buffer(pStdout, 'base64'), pCallback);
                 }
             }
             /* istanbul ignore if */
             if (pStderr) {
                 process.stderr.write(pStderr);
-            }
-            /* istanbul ignore else  */
-            if (!!pCallback && "function" === typeof pCallback && 'svg' !== pOutputType) {
-                pCallback();
             }
         });
     }
@@ -104,13 +98,13 @@ module.exports = (function() {
             var lAST = "json" === pOptions.inputType ?
                 JSON.parse(lInput) :
                 mscgenjs.getParser(pOptions.inputType).parse(lInput);
-            render(lAST, lInput, pOutStream, pOptions, pCallback);
+            render(lAST, pOutStream, pOptions, pCallback);
         });
     }
 
-    function render(pAST, pInput, pOutStream, pOptions, pCallback) {
+    function render(pAST, pOutStream, pOptions, pCallback) {
         if (GRAPHICSFORMATS.indexOf(pOptions.outputType) > -1) {
-            renderGraphics (pAST, pInput, pOptions.outputTo, pOptions.outputType, pOutStream, pCallback);
+            renderGraphics (pAST, pOutStream, pOptions.outputType, pCallback);
         } else {
             renderText (pAST, pOutStream, pOptions.outputType, pCallback);
         }
