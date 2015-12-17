@@ -1,42 +1,64 @@
-/* jshint node:true */
+/* jshint node:true, esnext:true */
 module.exports = (function() {
     "use strict";
     var path = require("path");
+
+    const INPUT_EXTENSIONS = {
+        "msgenny" : "msgenny",
+        "mscgen"  : "mscgen",
+        "msc"     : "mscgen",
+        "seq"     : "mscgen",
+        "mscin"   : "mscgen",
+        "xu"      : "xu",
+        "json"    : "json",
+        "ast"     : "json"
+    };
+    const OUTPUT_EXTENSIONS = {
+        "msgenny" : "msgenny",
+        "mscgen"  : "mscgen",
+        "msc"     : "mscgen",
+        "seq"     : "mscgen",
+        "mscin"   : "mscgen",
+        "xu"      : "xu",
+        "json"    : "json",
+        "ast"     : "json",
+        "svg"     : "svg",
+        "png"     : "png",
+        "jpg"     : "jpeg",
+        "jpeg"    : "jpeg",
+        "dot"     : "dot",
+        "doxygen" : "doxygen"
+    };
 
     /**
      * Given a filename in pString, returns what language is probably
      * contained in that file, judging from the extension (the last dot
      * in the string to end-of-string)
      *
-     * When in doubt returns "mscgen"
+     * When in doubt returns pDefault
      *
      * @param {string} pString
-     * @return  {string} - language. Possible values: "mscgen", "msgenny", "json".
+     * @param {object} pExtensionMap - a dictionary with
+     *        extension : classification pairs
+     * @param {string} pDefault - the default to return when the extension
+     *        does not occur in the extension map
+     * @return  {string} - language. Possible values: LHS of the passed
+     *        extension map.
      */
-    function classifyExtension(pString) {
-        var lExtMap = {
-            "msgenny" : "msgenny",
-            "mscgen"  : "mscgen",
-            "msc"     : "mscgen",
-            "seq"     : "mscgen",
-            "mscin"   : "mscgen",
-            "xu"      : "xu",
-            "json"    : "json",
-            "ast"     : "json"
-        };
+    function classifyExtension(pString, pExtensionMap, pDefault) {
         if (!pString) {
-            return "mscgen";
+            return pDefault;
         }
 
         var lPos = pString.lastIndexOf(".");
         if (lPos > -1) {
             var lExt = pString.slice(lPos + 1);
-            if (lExtMap[lExt]) {
-                return lExtMap[lExt];
+            if (pExtensionMap[lExt]) {
+                return pExtensionMap[lExt];
             }
         }
 
-        return "mscgen";
+        return pDefault;
     }
 
     function deriveOutputFromInput(pInputFrom, pOutputType){
@@ -57,17 +79,35 @@ module.exports = (function() {
         if (pInputType) {
             return pInputType === 'ast' ? 'json': pInputType;
         }
-        return classifyExtension(pInputFrom);
+        return classifyExtension(pInputFrom, INPUT_EXTENSIONS, "mscgen");
     }
 
-    function determineOutputType(pOutputType, pParserOutput){
+    function determineOutputType(pOutputType, pOutputTo, pParserOutput){
         if (!!pParserOutput) {
             return "json";
         }
-        return !!pOutputType ? pOutputType : "svg";
+        if (!!pOutputType) {
+            return pOutputType;
+        }
+        if(!!pOutputTo) {
+            return classifyExtension(pOutputTo, OUTPUT_EXTENSIONS, "svg");
+        }
+        return "svg";
     }
 
     return {
+        /**
+         * transforms the given argument and options to a uniform fashion
+         *
+         * - guesses the input type when not given
+         * - guesses the output type when not given
+         * - gueses the filename to output to when not given
+         * - translates parserOutput to a regular output type
+         *
+         * @param  {string} pArgument
+         * @param  {object} pOptions  a commander options object
+         * @return {}           nothing
+         */
         normalize: function normalize(pArgument, pOptions){
             pOptions.inputFrom  = !!pArgument ? pArgument : pOptions.inputFrom;
             pOptions.inputType  =
@@ -78,6 +118,7 @@ module.exports = (function() {
             pOptions.outputType =
                 determineOutputType(
                     pOptions.outputType,
+                    pOptions.outputTo,
                     pOptions.parserOutput
                 );
             pOptions.outputTo   =

@@ -9,7 +9,8 @@
 [![GPL-3.0](https://img.shields.io/badge/license-GPL--3.0-blue.svg)](LICENSE.md)
 
 ## What's this do?
-- It makes sequence charts (in svg, png or jpeg) from your MscGen scripts. From the command line.
+- It makes sequence charts (in svg, png or jpeg) from your [MscGen][mscgen]
+  scripts. From the command line.
 - It also does so for your Xù and MsGenny scripts.
 - There's a boatload of other things it can do - see below.
 
@@ -35,28 +36,33 @@ mscgenjs -T png coolchart.mscgen
 - But isn't it more practical to have an **interactive interpreter** for this?   
   When you **edit** sequence charts: definitely!
   - Scoot over to [mscgen_js][mscgen_js] for an on line interpreter.
-  - If you're using [atom][atom] you'll :heart: the
+  - If you're using [atom][atom] you'll _**love**_ the
     [mscgen-preview][mscgen-preview] package.
-- But there's also the **original** `mscgen`. Why should I use this instead?    
-  - Yes there is. It's a lot faster too. And it's the original.
-  - The graphics look different though.
-  - And it does not understand Xù or MsGenny - so if you'd want
-    to use things like `alt` or `loop` in your charts you'd have to
-    use _tricks_.
+- But there's also the **original** [`mscgen`][mscgen].     
+  - Yes there is. The original is a _lot_ faster too. And it's the reference
+    implementation for MscGen.
+  - It also provides .eps as an output format, which mscgenjs doesn't.
+- So, why should I use this instead?    
+  - mscgenjs understand Xù or MsGenny - so if you'd want
+    to use things like **alt** or **loop** you can just do that.
+  - It converts to **other formats**, a.o. to graphviz `dot` so you can present
+    your chart as a directed graph.
+  - mscgenjs' graphics look a bit different - you might like em better
+    (but then again, you might not)
 
 ### More options?
 
 Yes. Run `mscgenjs` with `-h` or `--help` to get them all:
 
 ```
-  Usage: mscgen [options] [infile]
+  Usage: mscgenjs [options] [infile]
 
   Options:
 
     -h, --help               output usage information
     -V, --version            output the version number
-    -T --output-type <type>  one of svg|png|jpeg|mscgen|msgenny|xu|dot|doxygen
-    -I --input-type <type>   one of mscgen|xu|msgenny|ast
+    -T --output-type <type>  one of svg|png|jpeg|mscgen|msgenny|xu|dot|doxygen|json
+    -I --input-type <type>   one of mscgen|xu|msgenny|json
     -i --input-from <file>   File to read from. use - for stdin.
     -o --output-to <file>    File to write to. use - for stdout.
     -p --parser-output       Print parsed msc output
@@ -93,8 +99,17 @@ mscgenjs -I mscgen test51_with_alt.xu
 
 
 ### Conversion
-With `-T` (or `--output-type` you can specify the type of output.
-By default `mscgen.js` assumes _svg_. Some other formats:
+When presented with an output file name, `mscgenjs` will try to guess the
+type of output desired from the extension.
+```sh
+mscgenjs w00t.xu -o myoutput.png # writes a chart in png format to myoutput.png
+mscgenjs w00t.xu -o flatter.msc # downconverts w00t.xu to MscGen to flatter.msc
+```
+
+With `-T` (or `--output-type` you can specify the type of output if you want
+to override the output type. By default `mscgen.js` assumes _svg_.
+
+Some other formats:
 
 To convert an Xù or MsGenny script with advanced options back to
 vanilla MscGen (without advanced options):
@@ -141,7 +156,7 @@ mscgenjs parsed.json
   If you want to know why, or want to know other gory details:
   [src/README.md](src/README.md) tries to explain that.
 
-
+[mscgen]: http://www.mcternan.me.uk/mscgen
 [atom]: https://atom.io
 [codeclimate.mscgenjs]: https://codeclimate.com/github/sverweij/mscgenjs-cli
 [mscgen-preview]: https://atom.io/packages/mscgen-preview

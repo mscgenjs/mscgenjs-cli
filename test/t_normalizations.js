@@ -59,6 +59,23 @@ var TESTPAIRS = [
         }
     },
     {
+        title: "guesses the output type from a given filename",
+        input: {
+            options: {
+                inputFrom: "w00tchart.seq",
+                outputTo: "a nice file.notanextension.png"
+            }
+        },
+        expected: {
+            options: {
+                inputFrom: "w00tchart.seq",
+                inputType: "mscgen",
+                outputType: "png",
+                outputTo: "a nice file.notanextension.png"
+            }
+        }
+    },
+    {
         title: "cannot guess the input type when it is stdin, so takes a default",
         input: {
             options: {
