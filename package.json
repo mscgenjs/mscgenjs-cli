@@ -1,6 +1,6 @@
 {
   "name": "mscgenjs-cli",
-  "version": "1.2.6",
+  "version": "1.3.0",
   "description": "Command line interface to mscgenjs",
   "main": "src/mscgen.js",
   "preferGlobal": true,
@@ -12,7 +12,7 @@
   "dependencies": {
     "amdefine": "1.0.0",
     "commander": "2.9.0",
-    "mscgenjs": "1.2.5",
+    "mscgenjs": "1.2.6",
     "phantomjs": "1.9.19",
     "requirejs": "2.1.22"
   },
