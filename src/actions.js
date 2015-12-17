@@ -40,7 +40,7 @@ module.exports = (function() {
         }
     }
 
-    function renderGraphics(pAST, pInput, pOutputTo, pOutputType, pCallback){
+    function renderGraphics(pAST, pInput, pOutputTo, pOutputType, pOutStream, pCallback){
         var childProcess = require('child_process');
         var path         = require('path');
         var phantomjs    = require('phantomjs');
@@ -61,14 +61,18 @@ module.exports = (function() {
         childProcess.execFile(binPath, args, function(pErr, pStdout, pStderr) {
             /* istanbul ignore if */
             if (pStdout) {
-                process.stdout.write(pStdout);
+                if ('svg' === pOutputType) {
+                    pOutStream.write(pStdout, pCallback);
+                } else {
+                    process.stdout.write(pStdout);
+                }
             }
             /* istanbul ignore if */
             if (pStderr) {
                 process.stderr.write(pStderr);
             }
             /* istanbul ignore else  */
-            if (!!pCallback && "function" === typeof pCallback) {
+            if (!!pCallback && "function" === typeof pCallback && 'svg' !== pOutputType) {
                 pCallback();
             }
         });
@@ -106,7 +110,7 @@ module.exports = (function() {
 
     function render(pAST, pInput, pOutStream, pOptions, pCallback) {
         if (GRAPHICSFORMATS.indexOf(pOptions.outputType) > -1) {
-            renderGraphics (pAST, pInput, pOptions.outputTo, pOptions.outputType, pCallback);
+            renderGraphics (pAST, pInput, pOptions.outputTo, pOptions.outputType, pOutStream, pCallback);
         } else {
             renderText (pAST, pOutStream, pOptions.outputType, pCallback);
         }

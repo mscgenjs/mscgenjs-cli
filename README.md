@@ -70,7 +70,7 @@ Yes. Run `mscgenjs` with `-h` or `--help` to get them all:
 ```
 
 Writing to stdout currently only works for non-graphical output formats
-(mscgen, msgenny, xu, dot, doxygen).
+(mscgen, msgenny, xu, dot, doxygen, json) and svg.
 
 ### Basic use: produce pictures from a script
 This will generate a sequence chart called `intro02_starter.svg` in the

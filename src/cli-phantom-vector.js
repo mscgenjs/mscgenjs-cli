@@ -12,7 +12,8 @@ var gOutputTo   = system.args[4];
 var page = require('webpage').create();
 
 page.onCallback = function(pSVG){
-    fs.write(gOutputTo, pSVG, 'w');
+    // fs.write(gOutputTo, pSVG, 'w');
+    console.log(pSVG);
     phantom.exit();
 };
 

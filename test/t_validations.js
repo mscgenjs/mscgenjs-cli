@@ -84,18 +84,18 @@ describe('cli/validations', function() {
             }
         });
 
-        it("'-T svg -i - -o -' is not allowed (no graphics streaming to stdout yet ...)", function() {
+        it("'-T png -i - -o -' is not allowed (no graphics streaming to stdout yet ...)", function() {
             try {
                 val.validateArguments(
                     {
                         inputFrom: "-",
                         outputTo: "-",
-                        outputType: "svg"
+                        outputType: "png"
                     }
                 );
                 assert.equal("still here", "shouldn't be here");
             } catch (e){
-                expect(e.message).to.contain("error: mscgen_js cli can't stream graphics formats to stdout yet.");
+                expect(e.message).to.contain("error: mscgen_js cli can't stream png and jpeg to stdout yet.");
             }
         });
 
