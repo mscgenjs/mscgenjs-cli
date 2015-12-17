@@ -69,9 +69,6 @@ Yes. Run `mscgenjs` with `-h` or `--help` to get them all:
     -l --license             Display license and exit
 ```
 
-Writing to stdout currently only works for non-graphical output formats
-(mscgen, msgenny, xu, dot, doxygen, json) and svg.
-
 ### Basic use: produce pictures from a script
 This will generate a sequence chart called `intro02_starter.svg` in the
 same directory as the `intro02_start.mscgen` script
@@ -103,7 +100,7 @@ When presented with an output file name, `mscgenjs` will try to guess the
 type of output desired from the extension.
 ```sh
 mscgenjs w00t.xu -o myoutput.png # writes a chart in png format to myoutput.png
-mscgenjs w00t.xu -o flatter.msc # downconverts w00t.xu to MscGen to flatter.msc
+mscgenjs w00t.xu -o flatter.msc # converts w00t.xu to MscGen and writes it to flatter.msc
 ```
 
 With `-T` (or `--output-type` you can specify the type of output if you want
@@ -127,7 +124,7 @@ To convert to raster graphics ('png' and 'jpeg')
 mscgenjs -T png -i dolores.mscgen -o dolores.png
 ```
 
-For text based formats you can also send specify standard output as a
+You can also send specify standard output as a
 destination, so you can pipe the output to something else.
 E.g. to graphviz dot to further process a dot program:
 ```sh
@@ -135,10 +132,15 @@ mscgenjs -T dot -i intro02_starter.mscgen -o - | dot -Tsvg > communicationsdiagr
 ```
 
 ### Parser output and input
-To show how the parser interpreted your input into an abstract syntax tree use
-the `-p` option
+To show how the parser interpreted your input into an abstract syntax tree
+you can - just like in the original `mscgen` program - use the `-p` option
 ```sh
 mscgenjs -p -o parsed.json intro02_starter.mscgen
+```
+... but the abstract syntax tree is a full fledged output format, so you can
+also do this:
+```sh
+mscgenjs intro02_starter.mscgen -o parsed.json
 ```
 
 You can in turn render the abstract syntax tree by specifying it as input

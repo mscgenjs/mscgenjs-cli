@@ -4,8 +4,6 @@ var system = require('system');
 
 var gPage       = system.args[1];
 var gASTString  = system.args[2];
-// var gOutputType = system.args[3];
-// var gInputFrom  = system.args[5];
 
 var page = require('webpage').create();
 

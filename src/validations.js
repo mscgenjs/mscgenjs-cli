@@ -56,17 +56,6 @@ module.exports = (function() {
             if (!fileExists(pOptions.inputFrom)) {
                 throw Error("\n  error: Failed to open input file '" + pOptions.inputFrom + "'\n\n");
             }
-
-            if (
-                (['png', 'jpeg'].indexOf(pOptions.outputType) > -1) &&
-                (pOptions.outputTo === '-')
-            ){
-                throw Error(
-                    "\n  error: mscgen_js cli can't stream png and jpeg to stdout yet." +
-                    "\n         It does support output to files, so if you provide a filename" +
-                    "\n         instead of '-' all will be hunky-dory\n\n"
-                );
-            }
         }
     };
 })();
