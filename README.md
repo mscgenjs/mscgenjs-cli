@@ -22,7 +22,7 @@ npm install --global mscgenjs-cli
 ```sh
 mscgenjs coolchart.mscgen
 ```
-This will generate `coolchart.svg`:
+This will generate `coolchart.svg` from [coolchart.mscgen](samples/coolchart.mscgen):
 
 ![the result from above command. It's a png, but that's because we can't embed svg's in github (yet, probably)](samples/coolchart.png)
 
