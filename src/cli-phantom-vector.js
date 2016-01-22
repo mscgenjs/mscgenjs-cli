@@ -4,6 +4,8 @@ var system = require('system');
 
 var gPage       = system.args[1];
 var gASTString  = system.args[2];
+var gModuleBase = system.args[4];
+var gRequirePath = system.args[5];
 
 var page = require('webpage').create();
 
@@ -13,10 +15,12 @@ page.onCallback = function(pSVG){
 };
 
 page.open(gPage, function(/*pStatus*/) {
+    page.injectJs(gRequirePath);
     page.evaluate(
-        function(pASTString){
-            renderVectorInThePage(pASTString);
+        function(pASTString,pModuleBase){
+            renderVectorInThePage(pASTString,pModuleBase);
         },
-        gASTString
+        gASTString,
+        gModuleBase
     );
 });
