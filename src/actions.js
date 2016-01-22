@@ -55,8 +55,8 @@ module.exports = (function() {
         args.push(path.join(__dirname, '.', 'cli-phantom.html'));
         args.push(JSON.stringify(pAST, null, ''));
         args.push(pOutputType);
-        args.push(path.relative('./fake', path.dirname(require.resolve('mscgenjs'))));
-        args.push(path.relative('./fake', require.resolve('requirejs/require.js')));
+        args.push(path.relative(__dirname, path.dirname(require.resolve('mscgenjs'))));
+        args.push(path.relative(__dirname, require.resolve('requirejs/require.js')));
 
         childProcess.execFile(binPath, args, function(pErr, pStdout, pStderr) {
             /* istanbul ignore else */
