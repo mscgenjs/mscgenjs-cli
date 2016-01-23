@@ -33,7 +33,7 @@
   "scripts": {
     "test": "mocha -R dot --timeout 6000 --recursive test",
     "cover": "istanbul cover node_modules/mocha/bin/_mocha -- --timeout 12000 --recursive test",
-    "nsp": "nsp check",
+    "nsp": "nsp check --warnonly",
     "plato": "plato -r -d platoreports -x \"test\" src",
     "lint": "jshint src --verbose --show-non-errors",
     "codeclimate-cover-submit": "node node_modules/codeclimate-test-reporter/bin/codeclimate.js < coverage/lcov.info",
