@@ -19,8 +19,8 @@ page.onCallback = function(pBBox){
 page.open(gPage, function(/*pStatus*/) {
     page.injectJs(gRequirePath);
     page.evaluate(
-        function(pASTString,pModuleBase){
-            renderInThePage(pASTString,pModuleBase);
+        function(pASTString, pModuleBase){
+            renderInThePage(pASTString, pModuleBase);
         },
         gASTString,
         gModuleBase

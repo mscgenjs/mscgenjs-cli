@@ -17,8 +17,8 @@ page.onCallback = function(pSVG){
 page.open(gPage, function(/*pStatus*/) {
     page.injectJs(gRequirePath);
     page.evaluate(
-        function(pASTString,pModuleBase){
-            renderVectorInThePage(pASTString,pModuleBase);
+        function(pASTString, pModuleBase){
+            renderVectorInThePage(pASTString, pModuleBase);
         },
         gASTString,
         gModuleBase
