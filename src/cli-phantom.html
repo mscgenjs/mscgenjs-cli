@@ -19,12 +19,11 @@
             margin: 0;
         }
     </style>
-    <script src="../node_modules/requirejs/require.js"></script>
 </head>
 <body><pre id="__svg">Rendering failed, apparently</pre>
 <script>
-    function renderInThePage(pASTString){
-        require(['../node_modules/mscgenjs/render/graphics/renderast'], function(renderer){
+    function renderInThePage(pASTString, pModuleBase){
+        require([pModuleBase + '/render/graphics/renderast'], function(renderer){
             window.__svg.innerHTML = "";
             renderer.clean('__svg', window);
             renderer.renderAST(JSON.parse(pASTString), '', '__svg', window);
@@ -32,8 +31,8 @@
         });
     }
 
-    function renderVectorInThePage(pASTString){
-        require(['../node_modules/mscgenjs/render/graphics/renderast'], function(renderer){
+    function renderVectorInThePage(pASTString, pModuleBase){
+        require([pModuleBase + '/render/graphics/renderast'], function(renderer){
             window.__svg.innerHTML = "";
             renderer.clean('__svg', window);
             window.callPhantom(renderer.renderAST(JSON.parse(pASTString), '', '__svg', window));
