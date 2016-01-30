@@ -43,7 +43,7 @@ module.exports = (function() {
     function renderGraphics(pAST, pOutStream, pOutputType, pCallback){
         var childProcess = require('child_process');
         var path         = require('path');
-        var phantomjs    = require('phantomjs');
+        var phantomjs    = require('phantomjs-prebuilt');
         var binPath      = phantomjs.path;
         var args         = [];
 
