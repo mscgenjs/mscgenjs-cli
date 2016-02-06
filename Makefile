@@ -82,6 +82,9 @@ outdated:
 	$(NPM) outdated
 
 check: noconsolestatements lint stylecheck test
+	@echo running some simple mscgen_js commands to make sure the binary is working..
+	./bin/mscgen_js --version
+	./bin/mscgen_js --license
 
 fullcheck: check outdated nsp
 
