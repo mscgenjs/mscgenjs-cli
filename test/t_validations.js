@@ -1,14 +1,16 @@
-var path   = require("path");
-var chai   = require("chai");
-var assert = chai.assert;
-var expect = chai.expect;
-var val    = require("../src/validations");
+"use strict";
 
-describe('cli/validations', function() {
+const path   = require("path");
+const chai   = require("chai");
+const assert = chai.assert;
+const expect = chai.expect;
+const val    = require("../src/validations");
 
-    describe('#validOutputType() - ', function() {
-        it("'notavalidOutputType' is not a valid output type", function() {
-            var lFoundError = "";
+describe('cli/validations', () => {
+
+    describe('#validOutputType() - ', () => {
+        it("'notavalidOutputType' is not a valid output type", () => {
+            let lFoundError = "";
             try {
                 val.validOutputType("notavalidOutputType");
             } catch (e) {
@@ -17,14 +19,14 @@ describe('cli/validations', function() {
             expect(lFoundError).to.contain("error: 'notavalidOutputType' is not a valid output type.");
         });
 
-        it("'svg' is a valid type", function() {
+        it("'svg' is a valid type", () => {
             assert.equal(val.validOutputType("svg"), "svg");
         });
     });
 
-    describe('#validInputType() - ', function() {
-        it("'dot' is not a valid input type", function() {
-            var lFoundError = "";
+    describe('#validInputType() - ', () => {
+        it("'dot' is not a valid input type", () => {
+            let lFoundError = "";
             try {
                 val.validInputType("dot");
             } catch (e) {
@@ -33,13 +35,13 @@ describe('cli/validations', function() {
             expect(lFoundError).to.contain("error: 'dot' is not a valid input type");
         });
 
-        it("'ast' is a valid type", function() {
+        it("'ast' is a valid type", () => {
             assert.equal(val.validInputType("ast"), "ast");
         });
     });
 
-    describe('#validateArguments() - ', function() {
-        it("'-T svg -o kaboeki.svg fixtures/rainbow.mscin is oki", function() {
+    describe('#validateArguments() - ', () => {
+        it("'-T svg -o kaboeki.svg fixtures/rainbow.mscin is oki", () => {
             try {
                 val.validateArguments(
                     {
@@ -54,7 +56,7 @@ describe('cli/validations', function() {
             }
         });
 
-        it("'-T mscgen -o - -' is oki", function() {
+        it("'-T mscgen -o - -' is oki", () => {
             try {
                 val.validateArguments(
                     {
@@ -69,7 +71,7 @@ describe('cli/validations', function() {
             }
         });
 
-        it("'-T dot -i - -o -' is oki", function() {
+        it("'-T dot -i - -o -' is oki", () => {
             try {
                 val.validateArguments(
                     {
@@ -84,7 +86,7 @@ describe('cli/validations', function() {
             }
         });
 
-        it("'-T xu -o - input-doesnot-exists' complains about non existing file", function() {
+        it("'-T xu -o - input-doesnot-exists' complains about non existing file", () => {
             try {
                 val.validateArguments(
                     {
@@ -99,7 +101,7 @@ describe('cli/validations', function() {
             }
         });
 
-        it("'-T svg -o - ' complains about non existing file", function() {
+        it("'-T svg -o - ' complains about non existing file", () => {
             try {
                 val.validateArguments(
                     {
@@ -114,7 +116,7 @@ describe('cli/validations', function() {
             }
         });
 
-        it("'-T svg -' complains about non specified input file", function() {
+        it("'-T svg -' complains about non specified input file", () => {
             try {
                 val.validateArguments(
                     {
@@ -128,7 +130,7 @@ describe('cli/validations', function() {
             }
         });
 
-        it("'-i -' complains about non specified output file", function() {
+        it("'-i -' complains about non specified output file", () => {
             try {
                 val.validateArguments(
                     {
@@ -141,7 +143,7 @@ describe('cli/validations', function() {
             }
         });
 
-        it("complains about non specified input file", function() {
+        it("complains about non specified input file", () => {
             try {
                 val.validateArguments({});
                 assert.equal("still here?", "should not be here!");

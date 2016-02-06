@@ -1,9 +1,10 @@
-var expect    = require("chai").expect;
-var norm      = require("../src/normalizations");
-var cloneDeep = require("./clone").cloneDeep;
+"use strict";
 
+const expect    = require("chai").expect;
+const norm      = require("../src/normalizations");
+const cloneDeep = require("./clone").cloneDeep;
 
-var TESTPAIRS = [
+const TESTPAIRS = [
     {
         title: "leaves a fully specified program alone",
         input: {
@@ -190,11 +191,11 @@ var TESTPAIRS = [
     }
 ];
 
-describe('cli/normalizations', function() {
-    describe('#normalize() - ', function() {
-        TESTPAIRS.forEach(function(pPair){
-            it(pPair.title, function(){
-                var lInputcloneDeep = cloneDeep(pPair.input);
+describe('cli/normalizations', () => {
+    describe('#normalize() - ', () => {
+        TESTPAIRS.forEach((pPair) => {
+            it(pPair.title, () => {
+                let lInputcloneDeep = cloneDeep(pPair.input);
                 norm.normalize(lInputcloneDeep.argument, lInputcloneDeep.options);
                 expect(
                     lInputcloneDeep.options

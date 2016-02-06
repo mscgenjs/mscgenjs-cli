@@ -1,7 +1,8 @@
-/* jshint node:true, esnext:true */
-module.exports = (function() {
-    "use strict";
-    var path = require("path");
+/* jshint node:true */
+"use strict";
+
+module.exports = (() => {
+    const path = require("path");
 
     const INPUT_EXTENSIONS = {
         "msgenny" : "msgenny",
@@ -50,9 +51,9 @@ module.exports = (function() {
             return pDefault;
         }
 
-        var lPos = pString.lastIndexOf(".");
+        let lPos = pString.lastIndexOf(".");
         if (lPos > -1) {
-            var lExt = pString.slice(lPos + 1);
+            let lExt = pString.slice(lPos + 1);
             if (pExtensionMap[lExt]) {
                 return pExtensionMap[lExt];
             }
@@ -108,7 +109,7 @@ module.exports = (function() {
          * @param  {object} pOptions  a commander options object
          * @return {}           nothing
          */
-        normalize: function normalize(pArgument, pOptions){
+        normalize (pArgument, pOptions) {
             pOptions.inputFrom  = !!pArgument ? pArgument : pOptions.inputFrom;
             pOptions.inputType  =
                 determineInputType(

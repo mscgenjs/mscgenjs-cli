@@ -1,12 +1,15 @@
-var fs      = require("fs");
-var path    = require("path");
-var actions = require("../src/actions");
-var utl     = require("./testutensils");
-var chai    = require("chai");
-var expect  = chai.expect;
+"use strict";
+
+const fs      = require("fs");
+const path    = require("path");
+const actions = require("../src/actions");
+const utl     = require("./testutensils");
+const chai    = require("chai");
+const expect  = chai.expect;
+
 chai.use(require("chai-xml"));
 
-var testPairs = [
+const testPairs = [
     {
         title : "'-p -i rainbow.mscin tmp_rainbow.json' - produces AST",
         input : {
@@ -86,7 +89,7 @@ var testPairs = [
         },
         expected : "fixtures/rainbow_mscgen_source.png"
     }
-].map(function(pTestPair){
+].map(pTestPair => {
     pTestPair.input.options.inputFrom = path.join(__dirname, pTestPair.input.options.inputFrom);
     pTestPair.input.options.outputTo = path.join(__dirname, pTestPair.input.options.outputTo);
     pTestPair.expected = path.join(__dirname, pTestPair.expected);
@@ -94,7 +97,7 @@ var testPairs = [
 });
 
 function resetOutputDir(){
-    testPairs.forEach(function(pPair){
+    testPairs.forEach(pPair => {
         try {
             // if (!!pPair.input.argument){
             //     fs.unlinkSync(pPair.input.argument);
@@ -109,30 +112,26 @@ function resetOutputDir(){
     });
 }
 
-describe('cli/actions', function() {
-    before("set up", function(){
-        resetOutputDir();
-    });
+describe('cli/actions', () => {
+    before("set up", () => resetOutputDir() );
 
-    after("tear down", function(){
-        resetOutputDir();
-    });
+    after("tear down", () => resetOutputDir() );
 
-    describe('#transform()', function() {
-        var TEXTTYPES = [
+    describe('#transform()', () => {
+        const TEXTTYPES = [
             "dot",
             "doxygen",
             "mscgen",
             "msgenny",
             "xu"
         ];
-        testPairs.forEach(function(pPair){
-            it(pPair.title, function(done) {
+        testPairs.forEach(pPair => {
+            it(pPair.title, done => {
                 actions.transform(
                     pPair.input.options,
-                    function(){
+                    () => {
                         if ("svg" === pPair.input.options.outputType){
-                            var lFound = fs.readFileSync(pPair.input.options.outputTo, {"encoding" : "utf8"});
+                            const lFound = fs.readFileSync(pPair.input.options.outputTo, {"encoding" : "utf8"});
                             expect(lFound).xml.to.be.valid();
                             /* Comparing XML's against a fixture won't work -
                              * on different platforms phantomjs will produce
@@ -142,7 +141,7 @@ describe('cli/actions', function() {
                              */
                             // utl.assertequalFileXML(pPair.input.options.outputTo, pPair.expected);
                         } else if ("png" === pPair.input.options.outputType){
-                            var lFoundPng = fs.readFileSync(pPair.input.options.outputTo, {"encoding" : "utf8"});
+                            const lFoundPng = fs.readFileSync(pPair.input.options.outputTo, {"encoding" : "utf8"});
                             expect(lFoundPng).to.contain("PNG");
                         } else if (TEXTTYPES.indexOf(pPair.input.options.outputType) > -1) {
                             utl.assertequalToFile(
