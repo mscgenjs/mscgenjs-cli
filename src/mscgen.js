@@ -1,14 +1,13 @@
-/* jshint node:true, esnext: true*/
-var program        = require("commander");
-var validations    = require("./validations");
-var actions        = require("./actions");
-var normalizations = require("./normalizations");
+/* jshint node:true */
+"use strict";
 
-const VERSION   = require("../package.json").version;
+const program        = require("commander");
+const validations    = require("./validations");
+const actions        = require("./actions");
 
 try {
     program
-        .version(VERSION)
+        .version(require("../package.json").version)
         .option(
             "-T --output-type <type>",
             "svg|png|jpeg|mscgen|msgenny|xu|dot|doxygen|json",
@@ -35,7 +34,7 @@ try {
         ).parse(
             process.argv
         );
-    normalizations.normalize(program.args[0], program);
+    require("./normalizations").normalize(program.args[0], program);
     validations.validateArguments(program);
     actions.transform(program);
 } catch (e) {

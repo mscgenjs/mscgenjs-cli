@@ -1,7 +1,7 @@
-module.exports = (function(){
-    return {
-        cloneDeep : function cloneDeep(pObject) {
-            return JSON.parse(JSON.stringify(pObject));
-        }
-    };
-})();
+"use strict";
+
+module.exports = (
+    () => ({
+        cloneDeep : pObject => JSON.parse(JSON.stringify(pObject))
+    })
+)();

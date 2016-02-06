@@ -1,26 +1,29 @@
-/* jshint node:true, unused:true, esnext: true */
-module.exports = (function() {
-    "use strict";
-    var fs        = require("fs");
-    var mscgenjs  = require("mscgenjs");
+/* jshint node:true, unused:true */
+"use strict";
+
+module.exports = (() => {
+    const fs        = require("fs");
+    const mscgenjs  = require("mscgenjs");
 
     const GRAPHICSFORMATS = ['svg', 'png', 'jpeg'];
-    const LICENSE = "\n" +
-    "   mscgen_js - turns text into sequence charts\n" +
-    "   Copyright (C) 2015  Sander Verweij\n" +
-    "\n" +
-    "   This program is free software: you can redistribute it and/or modify\n" +
-    "   it under the terms of the GNU General Public License as published by\n" +
-    "   the Free Software Foundation, either version 3 of the License, or\n" +
-    "   (at your option) any later version.\n" +
-    "\n" +
-    "   This program is distributed in the hope that it will be useful,\n" +
-    "   but WITHOUT ANY WARRANTY; without even the implied warranty of\n" +
-    "   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n" +
-    "   GNU General Public License for more details.\n" +
-    "\n" +
-    "   You should have received a copy of the GNU General Public License\n" +
-    "   along with this program.  If not, see <http://www.gnu.org/licenses/>.\n\n";
+    const LICENSE = `
+    mscgen_js - turns text into sequence charts
+    Copyright (C) 2015  Sander Verweij
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+ `;
 
     function getOutStream(pOutputTo) {
         /* istanbul ignore if */
@@ -41,11 +44,12 @@ module.exports = (function() {
     }
 
     function renderGraphics(pAST, pOutStream, pOutputType, pCallback){
-        var childProcess = require('child_process');
-        var path         = require('path');
-        var phantomjs    = require('phantomjs-prebuilt');
-        var binPath      = phantomjs.path;
-        var args         = [];
+        const childProcess = require('child_process');
+        const path         = require('path');
+        const phantomjs    = require('phantomjs-prebuilt');
+        const binPath      = phantomjs.path;
+
+        let args           = [];
 
         if ('svg' === pOutputType){
             args.push(path.join(__dirname, '.', 'cli-phantom-vector.js'));
@@ -58,7 +62,7 @@ module.exports = (function() {
         args.push(path.relative(__dirname, path.dirname(require.resolve('mscgenjs'))));
         args.push(path.relative(__dirname, require.resolve('requirejs/require.js')));
 
-        childProcess.execFile(binPath, args, function(pErr, pStdout, pStderr) {
+        childProcess.execFile(binPath, args, (pErr, pStdout, pStderr) => {
             /* istanbul ignore else */
             if (pStdout) {
                 if ('svg' === pOutputType) {
@@ -86,18 +90,16 @@ module.exports = (function() {
     }
 
     function transform(pInStream, pOutStream, pOptions, pCallback){
-        var lInput = "";
+        let lInput = "";
 
         pInStream.resume();
         pInStream.setEncoding("utf8");
 
-        pInStream.on("data", function(pChunk) {
-            lInput += pChunk;
-        });
+        pInStream.on("data", pChunk => lInput += pChunk);
 
-        pInStream.on("end", function() {
+        pInStream.on("end", () => {
             pInStream.pause();
-            var lAST = "json" === pOptions.inputType ?
+            let lAST = "json" === pOptions.inputType ?
                 JSON.parse(lInput) :
                 mscgenjs.getParser(pOptions.inputType).parse(lInput);
             render(lAST, pOutStream, pOptions, pCallback);
@@ -113,7 +115,7 @@ module.exports = (function() {
     }
 
     return {
-        transform: function(pOptions, pCallback) {
+        transform(pOptions, pCallback) {
             transform(
                 getInStream(pOptions.inputFrom),
                 getOutStream(pOptions.outputTo),
@@ -122,12 +124,12 @@ module.exports = (function() {
             );
         },
 
-        printLicense:
-        /* istanbul ignore next  */
-            function() {
-                process.stdout.write(LICENSE);
-                process.exit(0);
-            }
+        printLicense() {
+            /* istanbul ignore next */
+            process.stdout.write(LICENSE);
+            /* istanbul ignore next */
+            process.exit(0);
+        }
     };
 })();
 /*

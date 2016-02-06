@@ -1,9 +1,11 @@
-/* jshint node:true, esnext:true */
-module.exports = (function() {
-    "use strict";
-    var fs              = require("fs");
+/* jshint node:true */
+"use strict";
+
+module.exports = (() => {
+    const fs = require("fs");
+
     const VALID_OUTPUT_TYPE_RE = /^(svg|png|jpeg|mscgen|msgenny|xu|dot|doxygen|json)$/;
-    const VALID_INPUT_TYPE_RE = /^(mscgen|xu|msgenny|ast|json)$/;
+    const VALID_INPUT_TYPE_RE  = /^(mscgen|xu|msgenny|ast|json)$/;
 
     function isStdout(pFilename) {
         return "-" === pFilename;
@@ -14,7 +16,6 @@ module.exports = (function() {
             if (!isStdout(pFilename)) {
                 fs.accessSync(pFilename, fs.R_OK);
             }
-
             return true;
         } catch (e) {
             return false;
@@ -22,39 +23,39 @@ module.exports = (function() {
     }
 
     return {
-        validOutputType: function(pType) {
+        validOutputType(pType) {
             if (pType.match(VALID_OUTPUT_TYPE_RE)) {
                 return pType;
             }
 
             throw Error(
-                "\n  error: '" + pType + "' is not a valid output type. mscgen_js can emit:" +
-                "\n         - the grapics formats svg, jpeg and png" +
-                "\n         - the text formats dot, doxygen, mscgen, msgenny, xu and json.\n\n"
+                `  error: '${pType}' is not a valid output type. mscgen_js can emit:` +
+                `          - the grapics formats svg, jpeg and png` +
+                `          - the text formats dot, doxygen, mscgen, msgenny, xu and json.`
             );
         },
 
-        validInputType: function(pType) {
+        validInputType(pType) {
             if (pType.match(VALID_INPUT_TYPE_RE)) {
                 return pType;
             }
 
             throw Error(
-                "\n  error: '" + pType + "' is not a valid input type." +
-                "\n         mscgen_js can read mscgen, msgenny, xu and ast\n\n");
+                `\n  error: '${pType}' is not a valid input type.` +
+                `\n         mscgen_js can read mscgen, msgenny, xu and ast\n\n`);
         },
 
-        validateArguments: function(pOptions) {
+        validateArguments(pOptions) {
             if (!pOptions.inputFrom) {
-                throw Error("\n  error: Please specify an input file.\n\n");
+                throw Error(`\n  error: Please specify an input file.\n\n`);
             }
 
             if (!pOptions.outputTo) {
-                throw Error("\n  error: Please specify an output file.\n\n");
+                throw Error(`\n  error: Please specify an output file.\n\n`);
             }
 
             if (!fileExists(pOptions.inputFrom)) {
-                throw Error("\n  error: Failed to open input file '" + pOptions.inputFrom + "'\n\n");
+                throw Error(`\n  error: Failed to open input file '${pOptions.inputFrom}'\n\n`);
             }
         }
     };
