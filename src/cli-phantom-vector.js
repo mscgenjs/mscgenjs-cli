@@ -14,6 +14,11 @@ page.onCallback = function(pSVG){
     phantom.exit();
 };
 
+page.onError = function(pMessage /*, pTrace*/) {
+    console.error(pMessage);
+    phantom.exit(1);
+};
+
 page.open(gPage, function(/*pStatus*/) {
     page.injectJs(gRequirePath);
     page.evaluate(

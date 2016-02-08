@@ -64,16 +64,28 @@ module.exports = (() => {
 
         childProcess.execFile(binPath, args, (pErr, pStdout, pStderr) => {
             /* istanbul ignore else */
-            if (pStdout) {
-                if ('svg' === pOutputType) {
-                    pOutStream.write(pStdout, pCallback);
+            if (!pErr) {
+                /* istanbul ignore else */
+                if (pStdout) {
+                    if ('svg' === pOutputType) {
+                        pOutStream.write(pStdout, pCallback);
+                    } else {
+                        pOutStream.write(new Buffer(pStdout, 'base64'), pCallback);
+                    }
                 } else {
-                    pOutStream.write(new Buffer(pStdout, 'base64'), pCallback);
+                    process.stderr.write(
+                        `Mysteriously, rendering didn't work, but it didn't raise an error either.\n` +
+                        `It would help tremendously if you raised an issue on github using\n` +
+                        `this link: https://github.com/sverweij/mscgenjs-cli/issues/new?title=Unexpected%20error:%20"Mysteriously,%20rendering%20didn't%20work,%20but%20it%20didn't%20raise%20an%20error%20either."&body=What%20did%20I%20do%20to%20get%20this?`
+                    );
                 }
-            }
-            /* istanbul ignore if */
-            if (pStderr) {
-                process.stderr.write(pStderr);
+            } else {
+                if (pStderr) {
+                    process.stderr.write(pStderr);
+                }
+                if (pStdout) {
+                    process.stderr.write(pStdout);
+                }
             }
         });
     }
