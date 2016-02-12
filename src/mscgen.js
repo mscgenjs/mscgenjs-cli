@@ -36,7 +36,15 @@ try {
         );
     require("./normalizations").normalize(program.args[0], program);
     validations.validateArguments(program);
-    actions.transform(program);
+    actions.transform(program)
+    .catch(e => {
+        if (!!e.location){
+            process.stderr.write(`\n  syntax error on line ${e.location.start.line}, column ${e.location.start.column}:\n  ${e.message}\n\n`);
+        } else {
+            // process.stderr.write(e.message);
+            process.stderr.write(`\n  ${e.name}:\n  ${e.message}\n\n`);
+        }
+    });
 } catch (e) {
     process.stderr.write(e.message);
 }

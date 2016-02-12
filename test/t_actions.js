@@ -88,7 +88,56 @@ const testPairs = [
             }
         },
         expected : "fixtures/rainbow_mscgen_source.png"
+    },
+    {
+        title : "'invalid-mscgen.mscin' - produces an error",
+        input : {
+            options : {
+                outputTo: "output/invalid-mscgen.svg",
+                outputType : "svg",
+                inputFrom  : "fixtures/invalid-mscgen.mscin"
+            }
+        },
+        expected: "whatever",
+        expectedError : "SyntaxError"
+    },
+    {
+        title : "'notanast.json' - produces an error",
+        input : {
+            options : {
+                outputTo: "output/notanast.svg",
+                outputType : "svg",
+                inputFrom  : "fixtures/notanast.json",
+                inputType  : "json"
+            }
+        },
+        expected: "whatever",
+        expectedError : "Error"
+    },
+    {
+        title : "'non/existing/file.json' - produces an error",
+        input : {
+            options : {
+                outputTo: "output/notanast.svg",
+                outputType : "svg",
+                inputFrom  : "fixtures/tis/is/really/not/an/existing/file.json",
+                inputType  : "json"
+            }
+        },
+        expected: "whatever",
+        expectedError : "Error"
     }
+    // {
+    //     title : "'rainbow.mscin unwritablefile.svg' - shows a write error",
+    //     input : {
+    //         options : {
+    //             outputTo: "/tmp/shouldnt/be/able/to/write/to/thisunwritablefile.svg",
+    //             outputType : "svg",
+    //             inputFrom  : "fixtures/rainbow.mscin"
+    //         }
+    //     },
+    //     expected : "een dikke vette schrijffout"
+    // }
 ].map(pTestPair => {
     pTestPair.input.options.inputFrom = path.join(__dirname, pTestPair.input.options.inputFrom);
     pTestPair.input.options.outputTo = path.join(__dirname, pTestPair.input.options.outputTo);
@@ -128,37 +177,37 @@ describe('cli/actions', () => {
         testPairs.forEach(pPair => {
             it(pPair.title, done => {
                 actions.transform(
-                    pPair.input.options,
-                    () => {
-                        if ("svg" === pPair.input.options.outputType){
-                            const lFound = fs.readFileSync(pPair.input.options.outputTo, {"encoding" : "utf8"});
-                            expect(lFound).xml.to.be.valid();
-                            /* Comparing XML's against a fixture won't work -
-                             * on different platforms phantomjs will produce
-                             * (slightly) different output, so for now we'll
-                             * have to be content with valid xml. And a visual
-                             * check.
-                             */
-                            // utl.assertequalFileXML(pPair.input.options.outputTo, pPair.expected);
-                        } else if ("png" === pPair.input.options.outputType){
-                            const lFoundPng = fs.readFileSync(pPair.input.options.outputTo, {"encoding" : "utf8"});
-                            expect(lFoundPng).to.contain("PNG");
-                        } else if (TEXTTYPES.indexOf(pPair.input.options.outputType) > -1) {
-                            utl.assertequalToFile(
-                                pPair.input.options.outputTo,
-                                pPair.expected
-                            );
-                        } else {
-                            utl.assertequalFileJSON(
-                                pPair.input.options.outputTo,
-                                pPair.expected
-                            );
-                        }
-
-                        done();
+                    pPair.input.options
+                ).then(() => {
+                    if ("svg" === pPair.input.options.outputType){
+                        const lFound = fs.readFileSync(pPair.input.options.outputTo, {"encoding" : "utf8"});
+                        expect(lFound).xml.to.be.valid();
+                        /* Comparing XML's against a fixture won't work -
+                         * on different platforms phantomjs will produce
+                         * (slightly) different output, so for now we'll
+                         * have to be content with valid xml. And a visual
+                         * check.
+                         */
+                        // utl.assertequalFileXML(pPair.input.options.outputTo, pPair.expected);
+                    } else if ("png" === pPair.input.options.outputType){
+                        const lFoundPng = fs.readFileSync(pPair.input.options.outputTo, {"encoding" : "utf8"});
+                        expect(lFoundPng).to.contain("PNG");
+                    } else if (TEXTTYPES.indexOf(pPair.input.options.outputType) > -1) {
+                        utl.assertequalToFile(
+                            pPair.input.options.outputTo,
+                            pPair.expected
+                        );
+                    } else {
+                        utl.assertequalFileJSON(
+                            pPair.input.options.outputTo,
+                            pPair.expected
+                        );
                     }
-                );
-
+                    done();
+                }).catch(e => {
+                    done();
+                    expect(e.name).to.equal(pPair.expected);
+                });
             });
         });
     });

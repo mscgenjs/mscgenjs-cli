@@ -37,11 +37,11 @@ prerequisites:
 
 noconsolestatements:
 	@echo "scanning for console statements (run 'make consolecheck' to see offending lines)"
-	grep -r console src/script/* | grep -c console | grep ^0$$
+	grep -r console src/[^cli]*.js | grep -c console | grep ^0$$
 	@echo ... ok
 
 consolecheck:
-	grep -r console src/script/*
+	grep -r console src/[^cli]*
 
 lint:
 	$(NPM) run lint
