@@ -114,6 +114,19 @@ const testPairs = [
         expected: "whatever",
         expectedError : "Error"
     },
+    {
+        title : "'non/existing/file.json' - produces an error",
+        input : {
+            options : {
+                outputTo: "output/notanast.svg",
+                outputType : "svg",
+                inputFrom  : "fixtures/tis/is/really/not/an/existing/file.json",
+                inputType  : "json"
+            }
+        },
+        expected: "whatever",
+        expectedError : "Error"
+    }
     // {
     //     title : "'rainbow.mscin unwritablefile.svg' - shows a write error",
     //     input : {

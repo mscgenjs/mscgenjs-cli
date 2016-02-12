@@ -25,7 +25,6 @@ module.exports = (() => {
 
  `;
     function callback2Promise(pError, pSuccess, pResolve, pReject) {
-        /* istanbul ignore if */
         if(!!pError){
             pReject(pError);
         } else {
@@ -72,7 +71,6 @@ module.exports = (() => {
             args.push(path.relative(__dirname, require.resolve('requirejs/require.js')));
 
             childProcess.execFile(binPath, args, (pErr, pStdout/*, pStderr*/) => {
-                /* istanbul ignore else */
                 if (!pErr) {
                     /* istanbul ignore else */
                     if (pStdout) {
@@ -148,7 +146,6 @@ module.exports = (() => {
                 }
             });
 
-            /* istanbul ignore next */
             pInStream.on("error", (e) => {
                 pReject(e);
             });
