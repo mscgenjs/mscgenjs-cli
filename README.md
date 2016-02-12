@@ -140,7 +140,7 @@ mscgenjs -p -o parsed.json intro02_starter.mscgen
 ... but the abstract syntax tree is a full fledged output format, so you can
 also do this:
 ```sh
-mscgenjs intro02_starter.mscgen -o parsed.json
+mscgenjs -i intro02_starter.mscgen -o parsed.json
 ```
 
 You can in turn render the abstract syntax tree by specifying it as input
