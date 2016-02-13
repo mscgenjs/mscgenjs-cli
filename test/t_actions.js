@@ -211,5 +211,24 @@ describe('cli/actions', () => {
             });
         });
     });
+    describe('formatError()', () => {
+        it("returns the message of non-syntax errors", () => {
+            expect(actions.formatError(new Error('hatsikidee!'))).to.equal('hatsikidee!');
+        });
+
+        it("returns man and horse of syntax errors", () => {
+            let lErr = new Error('Make my day!');
+            lErr.location = {
+                start : {
+                    line : 481,
+                    column : 69
+                }
+            };
+
+            expect(
+                actions.formatError(lErr)
+            ).to.equal(`\n  syntax error on line 481, column 69:\n  Make my day!\n\n`);
+        });
+    });
 
 });

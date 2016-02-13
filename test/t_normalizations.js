@@ -2,7 +2,6 @@
 
 const expect    = require("chai").expect;
 const norm      = require("../src/normalizations");
-const cloneDeep = require("./clone").cloneDeep;
 
 const TESTPAIRS = [
     {
@@ -195,10 +194,9 @@ describe('cli/normalizations', () => {
     describe('#normalize() - ', () => {
         TESTPAIRS.forEach((pPair) => {
             it(pPair.title, () => {
-                let lInputcloneDeep = cloneDeep(pPair.input);
-                norm.normalize(lInputcloneDeep.argument, lInputcloneDeep.options);
+                let lNormalizedOptions = norm.normalize(pPair.input.argument, pPair.input.options);
                 expect(
-                    lInputcloneDeep.options
+                    lNormalizedOptions
                 ).to.deep.equal(
                     pPair.expected.options
                 );

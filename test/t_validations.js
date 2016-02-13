@@ -87,69 +87,64 @@ describe('cli/validations', () => {
         });
 
         it("'-T xu -o - input-doesnot-exists' complains about non existing file", () => {
-            try {
-                val.validateArguments(
-                    {
-                        inputFrom  : "input-doesnot-exist",
-                        outputTo   : "-",
-                        outputType : "xu"
-                    }
-                );
+            val.validateArguments(
+                {
+                    inputFrom  : "input-doesnot-exist",
+                    outputTo   : "-",
+                    outputType : "xu"
+                }
+            ).then(() => {
                 assert.equal("still here", "should not be here!");
-            } catch (e){
+            }).catch(e => {
                 assert.equal(e.message, "\n  error: Failed to open input file 'input-doesnot-exist'\n\n");
-            }
+            });
         });
 
         it("'-T svg -o - ' complains about non existing file", () => {
-            try {
-                val.validateArguments(
-                    {
-                        inputFrom  : "input-doesnot-exist",
-                        outputTo   : "-",
-                        outputType : "xu"
-                    }
-                );
+            val.validateArguments(
+                {
+                    inputFrom  : "input-doesnot-exist",
+                    outputTo   : "-",
+                    outputType : "xu"
+                }
+            ).then(() => {
                 assert.equal("still here", "should not be here!");
-            } catch (e){
+            }).catch (e => {
                 assert.equal(e.message, "\n  error: Failed to open input file 'input-doesnot-exist'\n\n");
-            }
+            });
         });
 
         it("'-T svg -' complains about non specified input file", () => {
-            try {
-                val.validateArguments(
-                    {
-                        inputFrom: "-",
-                        outputType: "svg"
-                    }
-                );
+            val.validateArguments(
+                {
+                    inputFrom: "-",
+                    outputType: "svg"
+                }
+            ).then(() => {
                 assert.equal("still here?", "should not be here!");
-            } catch (e){
+            }).catch (e => {
                 assert.equal(e.message, "\n  error: Please specify an output file.\n\n");
-            }
+            });
         });
 
         it("'-i -' complains about non specified output file", () => {
-            try {
-                val.validateArguments(
-                    {
-                        inputFrom: "-"
-                    }
-                );
+            val.validateArguments(
+                {
+                    inputFrom: "-"
+                }
+            ).then(() => {
                 assert.equal("still here?", "should not be here!");
-            } catch (e){
+            }).catch (e => {
                 assert.equal(e.message, "\n  error: Please specify an output file.\n\n");
-            }
+            });
         });
 
         it("complains about non specified input file", () => {
-            try {
-                val.validateArguments({});
+            val.validateArguments({}).then(() => {
                 assert.equal("still here?", "should not be here!");
-            } catch (e){
+            }).catch (e => {
                 assert.equal(e.message, "\n  error: Please specify an input file.\n\n");
-            }
+            });
         });
     });
 });

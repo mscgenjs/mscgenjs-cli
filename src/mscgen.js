@@ -5,6 +5,11 @@ const program        = require("commander");
 const validations    = require("./validations");
 const actions        = require("./actions");
 
+function presentError(e) {
+    process.stderr.write(actions.formatError(e));
+    process.exit(1);
+}
+
 try {
     program
         .version(require("../package.json").version)
@@ -28,25 +33,23 @@ try {
         ).option(
             "-l --license",
             "Display license and exit",
-            actions.printLicense
+            () => {
+                process.stdout.write (actions.LICENSE);
+                process.exit(0);
+            }
         ).arguments(
             "[infile]"
         ).parse(
             process.argv
         );
-    require("./normalizations").normalize(program.args[0], program);
-    validations.validateArguments(program);
-    actions.transform(program)
-    .catch(e => {
-        if (!!e.location){
-            process.stderr.write(`\n  syntax error on line ${e.location.start.line}, column ${e.location.start.column}:\n  ${e.message}\n\n`);
-        } else {
-            // process.stderr.write(e.message);
-            process.stderr.write(`\n  ${e.name}:\n  ${e.message}\n\n`);
-        }
-    });
-} catch (e) {
-    process.stderr.write(e.message);
+
+    validations.validateArguments(
+        require("./normalizations").normalize(program.args[0], program)
+    )
+    .then(program => actions.transform(program))
+    .catch(e => presentError(e));
+} catch(e) {
+    presentError(e);
 }
 
 /*

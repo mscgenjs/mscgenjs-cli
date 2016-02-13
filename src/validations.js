@@ -29,9 +29,9 @@ module.exports = (() => {
             }
 
             throw Error(
-                `  error: '${pType}' is not a valid output type. mscgen_js can emit:` +
-                `          - the grapics formats svg, jpeg and png` +
-                `          - the text formats dot, doxygen, mscgen, msgenny, xu and json.`
+                `\n  error: '${pType}' is not a valid output type. mscgen_js can emit:` +
+                `\n          - the grapics formats svg, jpeg and png` +
+                `\n          - the text formats dot, doxygen, mscgen, msgenny, xu and json.\n\n`
             );
         },
 
@@ -46,17 +46,20 @@ module.exports = (() => {
         },
 
         validateArguments(pOptions) {
-            if (!pOptions.inputFrom) {
-                throw Error(`\n  error: Please specify an input file.\n\n`);
-            }
+            return new Promise((pResolve, pReject) => {
+                if (!pOptions.inputFrom) {
+                    pReject(Error(`\n  error: Please specify an input file.\n\n`));
+                }
 
-            if (!pOptions.outputTo) {
-                throw Error(`\n  error: Please specify an output file.\n\n`);
-            }
+                if (!pOptions.outputTo) {
+                    pReject(Error(`\n  error: Please specify an output file.\n\n`));
+                }
 
-            if (!fileExists(pOptions.inputFrom)) {
-                throw Error(`\n  error: Failed to open input file '${pOptions.inputFrom}'\n\n`);
-            }
+                if (!fileExists(pOptions.inputFrom)) {
+                    pReject(Error(`\n  error: Failed to open input file '${pOptions.inputFrom}'\n\n`));
+                }
+                pResolve(pOptions);
+            });
         }
     };
 })();

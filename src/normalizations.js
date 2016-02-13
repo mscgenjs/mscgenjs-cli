@@ -98,7 +98,7 @@ module.exports = (() => {
 
     return {
         /**
-         * transforms the given argument and options to a uniform fashion
+         * transforms the given argument and options to a uniform format
          *
          * - guesses the input type when not given
          * - guesses the output type when not given
@@ -106,28 +106,31 @@ module.exports = (() => {
          * - translates parserOutput to a regular output type
          *
          * @param  {string} pArgument
-         * @param  {object} pOptions  a commander options object
-         * @return {}           nothing
+         * @param  {object} pOptions a commander options object
+         * @return {object} a commander options object with options 'normalized'
          */
         normalize (pArgument, pOptions) {
-            pOptions.inputFrom  = !!pArgument ? pArgument : pOptions.inputFrom;
-            pOptions.inputType  =
+            let lRetval = JSON.parse(JSON.stringify(pOptions));
+
+            lRetval.inputFrom  = !!pArgument ? pArgument : pOptions.inputFrom;
+            lRetval.inputType  =
                 determineInputType(
                     pOptions.inputType,
-                    pOptions.inputFrom
-            );
-            pOptions.outputType =
+                    lRetval.inputFrom
+                );
+            lRetval.outputType =
                 determineOutputType(
                     pOptions.outputType,
                     pOptions.outputTo,
                     pOptions.parserOutput
                 );
-            pOptions.outputTo   =
+            lRetval.outputTo   =
                 determineOutputTo(
                     pOptions.outputTo,
-                    pOptions.inputFrom,
-                    pOptions.outputType
+                    lRetval.inputFrom,
+                    lRetval.outputType
                 );
+            return lRetval;
         }
     };
 })();

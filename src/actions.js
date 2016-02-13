@@ -174,11 +174,14 @@ module.exports = (() => {
             });
         },
 
-        printLicense() {
-            /* istanbul ignore next */
-            process.stdout.write(LICENSE);
-            /* istanbul ignore next */
-            process.exit(0);
+        LICENSE: LICENSE,
+
+        formatError (e) {
+            if (!!e.location){
+                return `\n  syntax error on line ${e.location.start.line}, column ${e.location.start.column}:\n  ${e.message}\n\n`;
+            } else {
+                return e.message;
+            }
         }
     };
 })();
