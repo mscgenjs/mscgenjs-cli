@@ -22,11 +22,43 @@
 </head>
 <body><pre id="__svg">Rendering failed, apparently</pre>
 <script>
+
     function renderInThePage(pASTString, pModuleBase){
         require([pModuleBase + '/render/graphics/renderast'], function(renderer){
+
+            function sizeIsRelative(pSize) {
+                /*
+                 * unitType values from
+                 *  https://developer.mozilla.org/en-US/docs/Web/API/SVGLength
+                 */
+                var SVG_LENGTHTYPE_UNKNOWN    = 0;
+                var SVG_LENGTHTYPE_PERCENTAGE = 2;
+
+                return (
+                    !pSize ||
+                    pSize.baseVal.unitType === SVG_LENGTHTYPE_PERCENTAGE ||
+                    pSize.baseVal.unitType === SVG_LENGTHTYPE_UNKNOWN
+                )
+            }
+
+            function SVGisRelativelySized(pSVG) {
+                return (
+                    sizeIsRelative(pSVG.width) ||
+                    sizeIsRelative(pSVG.height)
+                );
+            }
+
+            function makeRelativeSizeAbsolute(pSVG) {
+                if ( SVGisRelativelySized(pSVG) && !!pSVG.viewBox ) {
+                    pSVG.setAttribute("width", pSVG.viewBox.baseVal.width);
+                    pSVG.setAttribute("height", pSVG.viewBox.baseVal.height);
+                }
+            }
+
             window.__svg.innerHTML = "";
             renderer.clean('__svg', window);
             renderer.renderAST(JSON.parse(pASTString), '', '__svg', window);
+            makeRelativeSizeAbsolute(window.__svg.firstElementChild);
             window.callPhantom(window.__svg.getBoundingClientRect());
         });
     }
