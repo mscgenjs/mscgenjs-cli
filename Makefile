@@ -3,7 +3,7 @@ GIT=git
 NPM=npm
 MAKEDEPEND=node_modules/.bin/js-makedepend --output-to jsdependencies.mk --exclude node_modules
 
-.PHONY: help dev-build install deploy-gh-pages check stylecheck fullcheck mostlyclean clean noconsolestatements consolecheck lint cover prerequisites report test update-dependencies run-update-dependencies depend bower-package
+.PHONY: help dev-build install deploy-gh-pages check stylecheck fullcheck mostlyclean clean lint cover prerequisites report test update-dependencies run-update-dependencies depend bower-package
 
 help:
 	@echo " --------------------------------------------------------"
@@ -34,14 +34,6 @@ include dependencies.mk
 # "phony" targets
 prerequisites:
 	$(NPM) install
-
-noconsolestatements:
-	@echo "scanning for console statements (run 'make consolecheck' to see offending lines)"
-	grep -r console src/[^cli]*.js | grep -c console | grep ^0$$
-	@echo ... ok
-
-consolecheck:
-	grep -r console src/[^cli]*
 
 lint:
 	$(NPM) run lint
@@ -81,7 +73,7 @@ nsp:
 outdated:
 	$(NPM) outdated
 
-check: noconsolestatements lint stylecheck test
+check: lint stylecheck test
 	@echo running some simple mscgen_js commands to make sure the binary is working..
 	./bin/mscgen_js --version
 	./bin/mscgen_js --license
