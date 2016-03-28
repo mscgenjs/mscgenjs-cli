@@ -46,6 +46,12 @@
     "url": "https://github.com/sverweij/mscgenjs-cli"
   },
   "author": "Sander Verweij",
+  "contributors": [
+    {
+        "name": "djMax (Max Metral)",
+        "url": "https://github.com/djMax"
+    }
+  ],
   "license": "GPL-3.0",
   "keywords": [
     "mscgen",
