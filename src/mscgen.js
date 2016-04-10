@@ -19,7 +19,7 @@ try {
             validations.validOutputType
         ).option(
             "-I --input-type <type>",
-            "one of mscgen|xu|msgenny|json  ",
+            "one of mscgen|xu|msgenny|json",
             validations.validInputType
         ).option(
             "-i --input-from <file>",
@@ -30,6 +30,9 @@ try {
         ).option(
             "-p --parser-output",
             "Print parsed msc output"
+        ).option(
+            "-s --css <string>",
+            "Addtional styles to use. Experimental!"
         ).option(
             "-l --license",
             "Display license and exit",

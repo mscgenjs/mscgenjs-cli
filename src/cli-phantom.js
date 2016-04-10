@@ -2,11 +2,12 @@
 /* globals renderInThePage */
 var system = require('system');
 
-var gPage       = system.args[1];
-var gASTString  = system.args[2];
-var gOutputType = system.args[3];
-var gModuleBase = system.args[4];
-var gRequirePath = system.args[5];
+var gPage           = system.args[1];
+var gASTString      = system.args[2];
+var gOutputType     = system.args[3];
+var gModuleBase     = system.args[4];
+var gRequirePath    = system.args[5];
+var gStyleAdditions = system.args[6];
 
 var page = require('webpage').create();
 
@@ -24,10 +25,11 @@ page.onError = function(pMessage /*, pTrace*/) {
 page.open(gPage, function(/*pStatus*/) {
     page.injectJs(gRequirePath);
     page.evaluate(
-        function(pASTString, pModuleBase){
-            renderInThePage(pASTString, pModuleBase);
+        function(pASTString, pModuleBase, pStyleAdditions){
+            renderInThePage(pASTString, pModuleBase, pStyleAdditions);
         },
         gASTString,
-        gModuleBase
+        gModuleBase,
+        gStyleAdditions
     );
 });
