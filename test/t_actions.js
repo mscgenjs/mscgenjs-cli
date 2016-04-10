@@ -79,6 +79,18 @@ const testPairs = [
         expected : "fixtures/rainbow_mscgen_source.svg"
     },
     {
+        title : "'-T svg -i rainbow.mscin -s \"svg{font-family:serif}\" custom_style_additions.svg' - produces svg with added styles",
+        input : {
+            options : {
+                outputTo: "output/custom_style_additions.svg",
+                outputType : "svg",
+                inputFrom  : "fixtures/rainbow.mscin",
+                cSs: "svg{font-family:serif}"
+            }
+        },
+        expected : "fixtures/custom_style_additions.svg"
+    },
+    {
         title : "'-T png -i rainbow.mscin tmp_rainbow.png' - produces png",
         input : {
             options : {

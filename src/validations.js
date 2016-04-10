@@ -58,6 +58,7 @@ module.exports = (() => {
                 if (!fileExists(pOptions.inputFrom)) {
                     pReject(Error(`\n  error: Failed to open input file '${pOptions.inputFrom}'\n\n`));
                 }
+
                 pResolve(pOptions);
             });
         }
