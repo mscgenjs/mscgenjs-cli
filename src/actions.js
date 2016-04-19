@@ -69,7 +69,7 @@ module.exports = (() => {
             args.push(pOutputType);
             args.push(path.relative(__dirname, path.dirname(require.resolve('mscgenjs'))));
             args.push(path.relative(__dirname, require.resolve('requirejs/require.js')));
-            args.push(pStyleAdditions);
+            args.push(pStyleAdditions||"");
 
             childProcess.execFile(binPath, args, (pErr, pStdout/*, pStderr*/) => {
                 if (!pErr) {
@@ -154,7 +154,7 @@ module.exports = (() => {
 
     function render(pAST, pOutStream, pOptions) {
         if (GRAPHICSFORMATS.indexOf(pOptions.outputType) > -1) {
-            return renderGraphics (pAST, pOutStream, pOptions.outputType, pOptions.cSs);
+            return renderGraphics (pAST, pOutStream, pOptions.outputType, pOptions.css);
         } else {
             return renderText (pAST, pOutStream, pOptions.outputType);
         }
