@@ -32,7 +32,7 @@ try {
             "Print parsed msc output"
         ).option(
             "-s --css <string>",
-            "Addtional styles to use. Experimental!"
+            "Additional styles to use. Experimental!"
         ).option(
             "-l --license",
             "Display license and exit",
@@ -45,12 +45,11 @@ try {
         ).parse(
             process.argv
         );
-
     validations.validateArguments(
         require("./normalizations").normalize(program.args[0], program)
     )
-    .then(program => actions.transform(program))
-    .catch(e => presentError(e));
+    .then(actions.transform)
+    .catch(presentError);
 } catch(e) {
     presentError(e);
 }
