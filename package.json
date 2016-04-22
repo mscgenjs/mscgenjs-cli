@@ -23,11 +23,11 @@
     "codecov.io": "0.1.6",
     "istanbul": "0.4.3",
     "js-makedepend": "0.2.3",
-    "jscs": "2.11.0",
-    "jshint": "2.9.1",
+    "jscs": "3.0.3",
+    "jshint": "2.9.2",
     "mocha": "2.4.5",
-    "npm-check-updates": "2.6.1",
-    "nsp": "2.3.0",
+    "npm-check-updates": "2.6.3",
+    "nsp": "2.3.1",
     "plato": "1.5.0"
   },
   "scripts": {
