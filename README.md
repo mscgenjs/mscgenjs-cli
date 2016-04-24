@@ -66,6 +66,7 @@ Yes. Run `mscgenjs` with `-h` or `--help` to get them all:
     -i --input-from <file>   File to read from. use - for stdin.
     -o --output-to <file>    File to write to. use - for stdout.
     -p --parser-output       Print parsed msc output
+    -s --css                 Additional styles to use. Expermimental!
     -l --license             Display license and exit
 ```
 
@@ -94,6 +95,25 @@ parsed as MscGen:
 mscgenjs -I mscgen test51_with_alt.xu
 ```
 
+### Styles (experimental)
+You can influence a how charts look a bit by providing css rules that
+override the ones baked into mscgenjs. It's quite raw, the interface
+might change in the next version and does not read style rules from
+external files (yet), but it is working for the brave of heart.
+
+E.g. to override the default sans-serif font with a serif one
+
+```sh
+mscgenjs -i samples/recaptcha-integration.msgenny -s "svg{font-family:serif}"
+```
+
+... or to use bold instead of underlined entity labels
+```sh
+mscgenjs -i samples/recaptcha-integration.msgenny -s "text.entity-text{font-weight:bold;text-decoration:none}"
+```
+
+Near the bottom of this README you'll find a list of elements and class
+names that can occur in generated svg's.
 
 ### Conversion
 When presented with an output file name, `mscgenjs` will try to guess the
@@ -148,6 +168,27 @@ type:
 ```sh
 mscgenjs parsed.json
 ```
+
+### Elements and classes that can be styled
+Note: experimental. Class names are subject to change (as is the whole
+styling feature), and mscgenjs might not respond to all style rules yet due to
+the way it constructs the svg at the moment. E.g. coloring `arc`s won't work
+as mscgenjs inserts a style attribute to set the color of these and executes
+some voodoo to to make sure the arrow heads are in the same color as the arc.
+
+- `svg, line, rect, path, text`
+- `rect`: `.entity .box .rbox .inline_expression .label-text-background
+  .bglayer`
+- `line` and `path` (for selfs): `.arc .directional .nondirectional,
+  .bidirectional .signal .method .return .callback .lost .emphasised`
+- `line` and `path`: `.box`
+- `line` only: `.comment .inline_expression_divider`
+- `path` only: `.note .abox .inline_expression_label`
+- `text`: `.entity-text .box-text .note-text .rbox-text .abox-text
+  .empty-row-text .directional-text .nondirectional-text .bidirectional-text
+  .signal-text .method-text .return-text .callback-text .lost-text
+  .emphasised-text`
+- `.watermark`
 
 ## What is the license?
 [GPL-3.0](LICENSE.md)
