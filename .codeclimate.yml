@@ -6,17 +6,14 @@ engines:
       - javascript
   eslint:
     enabled: true
+    checks:
+      no-console:
+        enabled: false
   fixme:
     enabled: true
 ratings:
   paths:
-  - "**.inc"
   - "**.js"
-  - "**.jsx"
-  - "**.module"
-  - "**.php"
-  - "**.py"
-  - "**.rb"
 exclude_paths:
   - test/*
   - bin/*
