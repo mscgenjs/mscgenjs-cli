@@ -5,7 +5,8 @@
 [![test coverage (codecov.io)](http://codecov.io/github/sverweij/mscgenjs-cli/coverage.svg?branch=master)](http://codecov.io/github/sverweij/mscgenjs-cli?branch=master)
 [![Dependency Status](https://david-dm.org/sverweij/mscgenjs-cli.svg)](https://david-dm.org/sverweij/mscgenjs-cli)
 [![devDependency Status](https://david-dm.org/sverweij/mscgenjs-cli/dev-status.svg)](https://david-dm.org/sverweij/mscgenjs-cli#info=devDependencies)
-[![npm stable version](https://img.shields.io/npm/v/mscgenjs-cli.svg?label=stable)](https://npmjs.org/package/mscgenjs-cli)
+[![npm stable version](https://img.shields.io/npm/v/mscgenjs-cli.svg)](https://npmjs.com/package/mscgenjs-cli)
+[![total downloads on npm](https://img.shields.io/npm/dt/mscgenjs-cli.svg?maxAge=2592000)](https://npmjs.com/package/mscgenjs-cli)
 [![GPL-3.0](https://img.shields.io/badge/license-GPL--3.0-blue.svg)](LICENSE.md)
 
 ## What's this do?
