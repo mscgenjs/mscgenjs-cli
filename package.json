@@ -22,12 +22,12 @@
     "codeclimate-test-reporter": "0.3.1",
     "codecov.io": "0.1.6",
     "istanbul": "0.4.3",
-    "js-makedepend": "0.2.3",
+    "js-makedepend": "0.2.4",
     "jscs": "3.0.3",
     "jshint": "2.9.2",
     "mocha": "2.4.5",
-    "npm-check-updates": "2.6.3",
-    "nsp": "2.3.1",
+    "npm-check-updates": "2.6.4",
+    "nsp": "2.3.2",
     "plato": "1.5.0"
   },
   "scripts": {
