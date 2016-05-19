@@ -1,7 +1,7 @@
 # mscgen_js - command line interface
 
 [![Build Status](https://travis-ci.org/sverweij/mscgenjs-cli.svg?branch=master)][travis.mscgenjs]
-[![Code Climate](https://codeclimate.com/github/sverweij/mscgenjs-cli/badges/gpa.svg)][codeclimate.mscgenjs]
+[![bitHound Overall Score](https://www.bithound.io/github/sverweij/mscgenjs-cli/badges/score.svg)][bithound.mscgenjs]
 [![Test Coverage](https://codeclimate.com/github/sverweij/mscgenjs-cli/badges/coverage.svg)](https://codeclimate.com/github/sverweij/mscgenjs-cli/coverage)
 [![Dependency Status](https://david-dm.org/sverweij/mscgenjs-cli.svg)](https://david-dm.org/sverweij/mscgenjs-cli)
 [![devDependency Status](https://david-dm.org/sverweij/mscgenjs-cli/dev-status.svg)](https://david-dm.org/sverweij/mscgenjs-cli#info=devDependencies)
@@ -203,6 +203,7 @@ some voodoo to to make sure the arrow heads are in the same color as the arc.
 [mscgen]: http://www.mcternan.me.uk/mscgen
 [atom]: https://atom.io
 [codeclimate.mscgenjs]: https://codeclimate.com/github/sverweij/mscgenjs-cli
+[bithound.mscgenjs]: https://www.bithound.io/github/sverweij/mscgenjs-cli
 [mscgen-preview]: https://atom.io/packages/mscgen-preview
 [mscgen_js]: https://github.com/sverweij/mscgenjs-core
 [travis.mscgenjs]: https://travis-ci.org/sverweij/mscgenjs-cli
