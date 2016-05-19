@@ -22,8 +22,6 @@
     "codeclimate-test-reporter": "0.3.1",
     "istanbul": "0.4.3",
     "js-makedepend": "0.3.0",
-    "jscs": "3.0.3",
-    "jshint": "2.9.2",
     "mocha": "2.4.5",
     "npm-check-updates": "2.6.5",
     "nsp": "2.4.0",
