@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/sverweij/mscgenjs-cli.svg?branch=master)][travis.mscgenjs]
 [![Code Climate](https://codeclimate.com/github/sverweij/mscgenjs-cli/badges/gpa.svg)][codeclimate.mscgenjs]
-[![test coverage (codecov.io)](http://codecov.io/github/sverweij/mscgenjs-cli/coverage.svg?branch=master)](http://codecov.io/github/sverweij/mscgenjs-cli?branch=master)
+[![Test Coverage](https://codeclimate.com/github/sverweij/mscgenjs-cli/badges/coverage.svg)](https://codeclimate.com/github/sverweij/mscgenjs-cli/coverage)
 [![Dependency Status](https://david-dm.org/sverweij/mscgenjs-cli.svg)](https://david-dm.org/sverweij/mscgenjs-cli)
 [![devDependency Status](https://david-dm.org/sverweij/mscgenjs-cli/dev-status.svg)](https://david-dm.org/sverweij/mscgenjs-cli#info=devDependencies)
 [![npm stable version](https://img.shields.io/npm/v/mscgenjs-cli.svg)](https://npmjs.com/package/mscgenjs-cli)

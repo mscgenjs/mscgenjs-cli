@@ -20,7 +20,6 @@
     "chai": "3.5.0",
     "chai-xml": "0.3.1",
     "codeclimate-test-reporter": "0.3.1",
-    "codecov.io": "0.1.6",
     "istanbul": "0.4.3",
     "js-makedepend": "0.3.0",
     "jscs": "3.0.3",
@@ -37,7 +36,6 @@
     "plato": "plato -r -d platoreports -x \"test\" src",
     "lint": "jshint src --verbose --show-non-errors",
     "codeclimate-cover-submit": "node node_modules/codeclimate-test-reporter/bin/codeclimate.js < coverage/lcov.info",
-    "codecov-submit": "node node_modules/codecov.io/bin/codecov.io.js < coverage/lcov.info",
     "npm-check-updates": "ncu --upgrade",
     "jscs": "jscs src"
   },
@@ -48,8 +46,8 @@
   "author": "Sander Verweij",
   "contributors": [
     {
-        "name": "djMax (Max Metral)",
-        "url": "https://github.com/djMax"
+      "name": "djMax (Max Metral)",
+      "url": "https://github.com/djMax"
     }
   ],
   "license": "GPL-3.0",
