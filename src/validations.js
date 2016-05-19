@@ -64,6 +64,7 @@ module.exports = (() => {
         }
     };
 })();
+
 /*
     This file is part of mscgen_js.
 

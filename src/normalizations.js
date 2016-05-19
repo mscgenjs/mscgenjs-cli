@@ -1,4 +1,4 @@
-/* jshint node:true */
+/* eslint consistent-return:0 */
 "use strict";
 
 module.exports = (() => {
@@ -38,7 +38,7 @@ module.exports = (() => {
      *
      * When in doubt returns pDefault
      *
-     * @param {string} pString
+     * @param {string} pString - filename
      * @param {object} pExtensionMap - a dictionary with
      *        extension : classification pairs
      * @param {string} pDefault - the default to return when the extension
@@ -52,8 +52,10 @@ module.exports = (() => {
         }
 
         let lPos = pString.lastIndexOf(".");
+
         if (lPos > -1) {
             let lExt = pString.slice(lPos + 1);
+
             if (pExtensionMap[lExt]) {
                 return pExtensionMap[lExt];
             }
@@ -64,39 +66,40 @@ module.exports = (() => {
 
     function deriveOutputFromInput(pInputFrom, pOutputType){
         if (!pInputFrom || '-' === pInputFrom){
-            return undefined;
+            return;
         }
         return path.join(
                     path.dirname(pInputFrom),
                     path.basename(pInputFrom, path.extname(pInputFrom))
-                ) .concat('.').concat(pOutputType);
+                ).concat('.').concat(pOutputType);
     }
 
     function determineOutputTo(pOutputTo, pInputFrom, pOutputType){
-        return !!pOutputTo ? pOutputTo : deriveOutputFromInput(pInputFrom, pOutputType);
+        return Boolean(pOutputTo) ? pOutputTo : deriveOutputFromInput(pInputFrom, pOutputType);
     }
 
     function determineInputType (pInputType, pInputFrom){
         if (pInputType) {
-            return pInputType === 'ast' ? 'json': pInputType;
+            return pInputType === 'ast' ? 'json' : pInputType;
         }
         return classifyExtension(pInputFrom, INPUT_EXTENSIONS, "mscgen");
     }
 
     function determineOutputType(pOutputType, pOutputTo, pParserOutput){
-        if (!!pParserOutput) {
+        if (Boolean(pParserOutput)) {
             return "json";
         }
-        if (!!pOutputType) {
+        if (Boolean(pOutputType)) {
             return pOutputType;
         }
-        if(!!pOutputTo) {
+        if (Boolean(pOutputTo)) {
             return classifyExtension(pOutputTo, OUTPUT_EXTENSIONS, "svg");
         }
         return "svg";
     }
 
     return {
+
         /**
          * transforms the given argument and options to a uniform format
          *
@@ -105,14 +108,14 @@ module.exports = (() => {
          * - gueses the filename to output to when not given
          * - translates parserOutput to a regular output type
          *
-         * @param  {string} pArgument
+         * @param  {string} pArgument an argument (containing the filename to parse)
          * @param  {object} pOptions a commander options object
          * @return {object} a commander options object with options 'normalized'
          */
         normalize (pArgument, pOptions) {
             let lRetval = JSON.parse(JSON.stringify(pOptions));
 
-            lRetval.inputFrom  = !!pArgument ? pArgument : pOptions.inputFrom;
+            lRetval.inputFrom  = Boolean(pArgument) ? pArgument : pOptions.inputFrom;
             lRetval.inputType  =
                 determineInputType(
                     pOptions.inputType,
@@ -134,6 +137,7 @@ module.exports = (() => {
         }
     };
 })();
+
 /*
     This file is part of mscgen_js.
 

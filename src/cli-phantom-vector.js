@@ -1,4 +1,5 @@
-/* jshint phantom:true, strict: false */
+/* eslint-env phantomjs */
+/* eslint no-var:0, no-magic-numbers: 0, func-names:0, no-console:0, prefer-arrow-callback:0 */
 /* globals renderVectorInThePage */
 var system = require('system');
 
@@ -15,12 +16,12 @@ page.onCallback = function(pSVG){
     phantom.exit();
 };
 
-page.onError = function(pMessage /*, pTrace*/) {
+page.onError = function(pMessage /* , pTrace*/) {
     console.error(pMessage);
     phantom.exit(1);
 };
 
-page.open(gPage, function(/*pStatus*/) {
+page.open(gPage, function(/* pStatus*/) {
     page.injectJs(gRequirePath);
     page.evaluate(
         function(pASTString, pModuleBase, pStyleAdditions){

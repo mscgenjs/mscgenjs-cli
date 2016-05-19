@@ -38,9 +38,6 @@ prerequisites:
 lint:
 	$(NPM) run lint
 
-stylecheck:
-	$(NPM) run jscs
-
 cover: src/mscgen.js
 	$(NPM) run cover
 

@@ -32,10 +32,9 @@
     "cover": "istanbul cover node_modules/mocha/bin/_mocha -- --timeout 12000 --recursive test",
     "nsp": "nsp check --warn-only",
     "plato": "plato -r -d platoreports -x \"test\" src",
-    "lint": "jshint src --verbose --show-non-errors",
+    "lint": "eslint src test",
     "codeclimate-cover-submit": "node node_modules/codeclimate-test-reporter/bin/codeclimate.js < coverage/lcov.info",
-    "npm-check-updates": "ncu --upgrade",
-    "jscs": "jscs src"
+    "npm-check-updates": "ncu --upgrade"
   },
   "repository": {
     "type": "git",

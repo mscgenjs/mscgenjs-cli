@@ -1,4 +1,4 @@
-/* jshint node:true, unused:true */
+/* eslint max-len: 0 */
 "use strict";
 
 module.exports = (() => {
@@ -24,8 +24,9 @@ module.exports = (() => {
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
  `;
+
     function callback2Promise(pError, pSuccess, pResolve, pReject) {
-        if(!!pError){
+        if (Boolean(pError)){
             pReject(pError);
         } else {
             pResolve(pSuccess);
@@ -33,6 +34,7 @@ module.exports = (() => {
     }
 
     function getOutStream(pOutputTo) {
+
         /* istanbul ignore if */
         if ("-" === pOutputTo) {
             return process.stdout;
@@ -42,6 +44,7 @@ module.exports = (() => {
     }
 
     function getInStream(pInputFrom) {
+
         /* istanbul ignore if */
         if ("-" === pInputFrom) {
             return process.stdin;
@@ -69,52 +72,51 @@ module.exports = (() => {
             args.push(pOutputType);
             args.push(path.relative(__dirname, path.dirname(require.resolve('mscgenjs'))));
             args.push(path.relative(__dirname, require.resolve('requirejs/require.js')));
-            args.push(pStyleAdditions||"");
+            args.push(pStyleAdditions || "");
 
-            childProcess.execFile(binPath, args, (pErr, pStdout/*, pStderr*/) => {
-                if (!pErr) {
-                    /* istanbul ignore else */
-                    if (pStdout) {
-                        if ('svg' === pOutputType) {
-                            pOutStream.write(
-                                pStdout,
-                                (pError, pSuccess) =>
-                                    callback2Promise(pError, pSuccess, pResolve, pReject)
-                            );
-                        } else {
-                            pOutStream.write(
-                                new Buffer(pStdout, 'base64'),
-                                (pError, pSuccess) =>
-                                    callback2Promise(pError, pSuccess, pResolve, pReject)
-                            );
-                        }
+            childProcess.execFile(binPath, args, (pErr, pStdout/* , pStderr*/) => {
+                if (pErr) {
+                    pReject(pErr);
+
+                /* istanbul ignore else */
+                } else if (pStdout) {
+                    if ('svg' === pOutputType) {
+                        pOutStream.write(
+                            pStdout,
+                            (pError, pSuccess) =>
+                                callback2Promise(pError, pSuccess, pResolve, pReject)
+                        );
                     } else {
-                        pReject(new Error(
-                            `Mysteriously, rendering didn't work, but it didn't raise an error either.\n` +
-                            `It would help tremendously if you raised an issue on github with this link:\n` +
-                            `https://github.com/sverweij/mscgenjs-cli/issues/new?title=Unexpected%20error:%20"Mysteriously,%20rendering%20didn't%20work,%20but%20it%20didn't%20raise%20an%20error%20either."&body=What%20did%20I%20do%20to%20get%20this?`
-                        ));
+                        pOutStream.write(
+                            new Buffer(pStdout, 'base64'),
+                            (pError, pSuccess) =>
+                                callback2Promise(pError, pSuccess, pResolve, pReject)
+                        );
                     }
                 } else {
-                    pReject(pErr);
+                    pReject(new Error(
+                        `Mysteriously, rendering didn't work, but it didn't raise an error either.\n` +
+                        `It would help tremendously if you raised an issue on github with this link:\n` +
+                        `https://github.com/sverweij/mscgenjs-cli/issues/new?title=Unexpected%20error:%20"Mysteriously,%20rendering%20didn't%20work,%20but%20it%20didn't%20raise%20an%20error%20either."&body=What%20did%20I%20do%20to%20get%20this?`
+                    ));
                 }
             });
         });
     }
 
     function renderText(pAST, pOutStream, pOutputType){
-        return new Promise ((pResolve, pReject) => {
+        return new Promise((pResolve, pReject) => {
             if ("json" === pOutputType){
                 pOutStream.write(
                     JSON.stringify(pAST, null, "  "),
                     (pError, pSuccess) =>
-                        callback2Promise (pError, pSuccess, pResolve, pReject)
+                        callback2Promise(pError, pSuccess, pResolve, pReject)
                 );
             } else {
                 pOutStream.write(
                     mscgenjs.getTextRenderer(pOutputType).render(pAST),
                     (pError, pSuccess) =>
-                        callback2Promise (pError, pSuccess, pResolve, pReject)
+                        callback2Promise(pError, pSuccess, pResolve, pReject)
                 );
             }
         });
@@ -129,13 +131,15 @@ module.exports = (() => {
     }
 
     function parse(pInStream, pOptions) {
-        return new Promise ((pResolve, pReject) => {
+        return new Promise((pResolve, pReject) => {
             let lInput = "";
 
             pInStream.resume();
             pInStream.setEncoding("utf8");
 
-            pInStream.on("data", pChunk => lInput += pChunk);
+            pInStream.on("data", pChunk => {
+                lInput += pChunk;
+            });
 
             pInStream.on("end", () => {
                 try {
@@ -154,9 +158,9 @@ module.exports = (() => {
 
     function render(pAST, pOutStream, pOptions) {
         if (GRAPHICSFORMATS.indexOf(pOptions.outputType) > -1) {
-            return renderGraphics (pAST, pOutStream, pOptions.outputType, pOptions.css);
+            return renderGraphics(pAST, pOutStream, pOptions.outputType, pOptions.css);
         } else {
-            return renderText (pAST, pOutStream, pOptions.outputType);
+            return renderText(pAST, pOutStream, pOptions.outputType);
         }
     }
 
@@ -165,19 +169,19 @@ module.exports = (() => {
             return parse(
                 getInStream(pOptions.inputFrom),
                 pOptions
-            ).then (pAST => {
-                return render(
+            ).then(pAST =>
+                render(
                     pAST,
                     getOutStream(pOptions.outputTo),
                     pOptions
-                );
-            });
+                )
+            );
         },
 
-        LICENSE: LICENSE,
+        LICENSE,
 
         formatError (e) {
-            if (!!e.location){
+            if (Boolean(e.location)){
                 return `\n  syntax error on line ${e.location.start.line}, column ${e.location.start.column}:\n  ${e.message}\n\n`;
             } else {
                 return e.message;
@@ -185,6 +189,7 @@ module.exports = (() => {
         }
     };
 })();
+
 /*
     This file is part of mscgen_js.
 

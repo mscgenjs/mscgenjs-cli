@@ -1,4 +1,4 @@
-/* jshint node:true */
+/* eslint no-process-exit:0 */
 "use strict";
 
 const program        = require("commander");
@@ -37,7 +37,7 @@ try {
             "-l --license",
             "Display license and exit",
             () => {
-                process.stdout.write (actions.LICENSE);
+                process.stdout.write(actions.LICENSE);
                 process.exit(0);
             }
         ).arguments(
@@ -50,7 +50,7 @@ try {
     )
     .then(actions.transform)
     .catch(presentError);
-} catch(e) {
+} catch (e) {
     presentError(e);
 }
 

@@ -1,3 +1,4 @@
+/* eslint max-len: 0 */
 "use strict";
 
 const fs      = require("fs");
@@ -163,10 +164,10 @@ function resetOutputDir(){
             // if (!!pPair.input.argument){
             //     fs.unlinkSync(pPair.input.argument);
             // }
-            if (!!pPair.input.options.outputTo){
+            if (Boolean(pPair.input.options.outputTo)){
                 fs.unlinkSync(pPair.input.options.outputTo);
             }
-        } catch(e){
+        } catch (e){
             // probably files didn't exist in the first place
             // so ignore the exception
         }
@@ -174,9 +175,9 @@ function resetOutputDir(){
 }
 
 describe('cli/actions', () => {
-    before("set up", () => resetOutputDir() );
+    before("set up", () => resetOutputDir());
 
-    after("tear down", () => resetOutputDir() );
+    after("tear down", () => resetOutputDir());
 
     describe('#transform()', () => {
         const TEXTTYPES = [
@@ -186,6 +187,7 @@ describe('cli/actions', () => {
             "msgenny",
             "xu"
         ];
+
         testPairs.forEach(pPair => {
             it(pPair.title, done => {
                 actions.transform(
@@ -193,7 +195,9 @@ describe('cli/actions', () => {
                 ).then(() => {
                     if ("svg" === pPair.input.options.outputType){
                         const lFound = fs.readFileSync(pPair.input.options.outputTo, {"encoding" : "utf8"});
+
                         expect(lFound).xml.to.be.valid();
+
                         /* Comparing XML's against a fixture won't work -
                          * on different platforms phantomjs will produce
                          * (slightly) different output, so for now we'll
@@ -203,6 +207,7 @@ describe('cli/actions', () => {
                         // utl.assertequalFileXML(pPair.input.options.outputTo, pPair.expected);
                     } else if ("png" === pPair.input.options.outputType){
                         const lFoundPng = fs.readFileSync(pPair.input.options.outputTo, {"encoding" : "utf8"});
+
                         expect(lFoundPng).to.contain("PNG");
                     } else if (TEXTTYPES.indexOf(pPair.input.options.outputType) > -1) {
                         utl.assertequalToFile(
@@ -230,6 +235,7 @@ describe('cli/actions', () => {
 
         it("returns man and horse of syntax errors", () => {
             let lErr = new Error('Make my day!');
+
             lErr.location = {
                 start : {
                     line : 481,

@@ -195,6 +195,7 @@ describe('cli/normalizations', () => {
         TESTPAIRS.forEach((pPair) => {
             it(pPair.title, () => {
                 let lNormalizedOptions = norm.normalize(pPair.input.argument, pPair.input.options);
+
                 expect(
                     lNormalizedOptions
                 ).to.deep.equal(

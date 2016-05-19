@@ -11,6 +11,7 @@ describe('cli/validations', () => {
     describe('#validOutputType() - ', () => {
         it("'notavalidOutputType' is not a valid output type", () => {
             let lFoundError = "";
+
             try {
                 val.validOutputType("notavalidOutputType");
             } catch (e) {
@@ -27,6 +28,7 @@ describe('cli/validations', () => {
     describe('#validInputType() - ', () => {
         it("'dot' is not a valid input type", () => {
             let lFoundError = "";
+
             try {
                 val.validInputType("dot");
             } catch (e) {
@@ -109,7 +111,7 @@ describe('cli/validations', () => {
                 }
             ).then(() => {
                 assert.equal("still here", "should not be here!");
-            }).catch (e => {
+            }).catch(e => {
                 assert.equal(e.message, "\n  error: Failed to open input file 'input-doesnot-exist'\n\n");
             });
         });
@@ -122,7 +124,7 @@ describe('cli/validations', () => {
                 }
             ).then(() => {
                 assert.equal("still here?", "should not be here!");
-            }).catch (e => {
+            }).catch(e => {
                 assert.equal(e.message, "\n  error: Please specify an output file.\n\n");
             });
         });
@@ -134,7 +136,7 @@ describe('cli/validations', () => {
                 }
             ).then(() => {
                 assert.equal("still here?", "should not be here!");
-            }).catch (e => {
+            }).catch(e => {
                 assert.equal(e.message, "\n  error: Please specify an output file.\n\n");
             });
         });
@@ -142,7 +144,7 @@ describe('cli/validations', () => {
         it("complains about non specified input file", () => {
             val.validateArguments({}).then(() => {
                 assert.equal("still here?", "should not be here!");
-            }).catch (e => {
+            }).catch(e => {
                 assert.equal(e.message, "\n  error: Please specify an input file.\n\n");
             });
         });
