@@ -18,10 +18,10 @@ To make this as easy as possible for you, here's some simple guidelines:
   This might or might not include an actual code fix.
 
 ### Contributing code
-- We prefer well documented **[pull requests](https://help.github.com/articles/creating-a-pull-request/)** 
+- We prefer well documented **[pull requests](https://help.github.com/articles/creating-a-pull-request/)**
   based on the most recent version of the **master** branch.
 - Code quality
-    - Additions pass jshint.
+    - Additions pass eslint.
     - Mocha tests prove your code does what it intends.
     - Your code does not introduce regressions - ```make check``` proves this.
     - Code style (you know, petty things like indentations, where brackets go, how variables &
@@ -37,9 +37,9 @@ To make this as easy as possible for you, here's some simple guidelines:
 
 ### Issue template
     ### steps taken
-    
+
     ### expected
-    
+
     ### found
-    
+
     ### notes

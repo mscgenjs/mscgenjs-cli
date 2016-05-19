@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-/* jshint node: true */
 /*
  * Reads an abstract syntax tree from stdin and writes the corresponding
  * scalable vector graphic to stdout
@@ -18,7 +17,6 @@
  *  ```
  */
 
-/* jshint unused: true */
 var jsdom = require("jsdom");
 var renderast = require("../src/script/render/graphics/renderast");
 
