@@ -3,12 +3,14 @@
 
 # cjs dependencies
 src/mscgen.js: \
+	package.json \
 	src/actions.js \
 	src/normalizations.js \
 	src/validations.js
 
 # cjs dependencies
 CLI_JS_SOURCES=src/mscgen.js \
+	package.json \
 	src/actions.js \
 	src/normalizations.js \
 	src/validations.js
