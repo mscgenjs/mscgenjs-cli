@@ -25,8 +25,7 @@
     "js-makedepend": "0.3.0",
     "mocha": "2.4.5",
     "npm-check-updates": "2.6.5",
-    "nsp": "2.4.0",
-    "plato": "1.5.0"
+    "nsp": "2.4.0"
   },
   "scripts": {
     "test": "mocha -R dot --timeout 6000 --recursive test",
