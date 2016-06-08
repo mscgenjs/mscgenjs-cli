@@ -28,7 +28,7 @@
     "nsp": "2.4.0"
   },
   "scripts": {
-    "test": "mocha -R dot --timeout 6000 --recursive test",
+    "test": "mocha -R dot --timeout 10000 --recursive test",
     "cover": "istanbul cover node_modules/mocha/bin/_mocha -- --timeout 12000 --recursive test",
     "nsp": "nsp check --warn-only",
     "lint": "eslint src test",
