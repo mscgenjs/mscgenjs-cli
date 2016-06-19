@@ -34,6 +34,9 @@ try {
             "-s --css <string>",
             "Additional styles to use. Experimental!"
         ).option(
+            "-m --mirror-entities",
+            "Repeat the entities on the chart's bottom"
+        ).option(
             "-l --license",
             "Display license and exit",
             () => {

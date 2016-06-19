@@ -53,7 +53,7 @@ module.exports = (() => {
         }
     }
 
-    function renderGraphics(pAST, pOutStream, pOutputType, pStyleAdditions){
+    function renderGraphics(pAST, pOutStream, pOutputType, pOptions){
         return new Promise((pResolve, pReject) => {
             const childProcess = require('child_process');
             const path         = require('path');
@@ -72,7 +72,8 @@ module.exports = (() => {
             args.push(pOutputType);
             args.push(path.relative(__dirname, path.dirname(require.resolve('mscgenjs'))));
             args.push(path.relative(__dirname, require.resolve('requirejs/require.js')));
-            args.push(pStyleAdditions || "");
+            args.push((pOptions && pOptions.styleAdditions) || "");
+            args.push((pOptions && pOptions.mirrorEntities) ? "1" : "0");
 
             childProcess.execFile(binPath, args, (pErr, pStdout/* , pStderr*/) => {
                 if (pErr) {
@@ -158,7 +159,15 @@ module.exports = (() => {
 
     function render(pAST, pOutStream, pOptions) {
         if (GRAPHICSFORMATS.indexOf(pOptions.outputType) > -1) {
-            return renderGraphics(pAST, pOutStream, pOptions.outputType, pOptions.css);
+            return renderGraphics(
+                pAST,
+                pOutStream,
+                pOptions.outputType,
+                {
+                    styleAdditions: pOptions.css,
+                    mirrorEntities: Boolean(pOptions.mirrorEntities)
+                }
+            );
         } else {
             return renderText(pAST, pOutStream, pOptions.outputType);
         }

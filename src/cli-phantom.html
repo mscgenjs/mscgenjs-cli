@@ -23,7 +23,7 @@
 <body><pre id="__svg">Rendering failed, apparently</pre>
 <script>
 
-    function renderInThePage(pASTString, pModuleBase, pStyleAdditions){
+    function renderInThePage(pASTString, pModuleBase, pStyleAdditions, pMirrorEntities){
         require([pModuleBase + '/render/graphics/renderast'], function(renderer){
 
             function sizeIsRelative(pSize) {
@@ -57,17 +57,35 @@
 
             window.__svg.innerHTML = "";
             renderer.clean('__svg', window);
-            renderer.renderAST(JSON.parse(pASTString), '', '__svg', window, pStyleAdditions);
+            renderer.renderASTNew(
+                JSON.parse(pASTString),
+                window,
+                '__svg',
+                {
+                    styleAdditions: pStyleAdditions,
+                    mirrorEntitiesOnBottom: (pMirrorEntities === "1")
+                }
+            );
             makeRelativeSizeAbsolute(window.__svg.firstElementChild);
             window.callPhantom(window.__svg.getBoundingClientRect());
         });
     }
 
-    function renderVectorInThePage(pASTString, pModuleBase, pStyleAdditions){
+    function renderVectorInThePage(pASTString, pModuleBase, pStyleAdditions, pMirrorEntities){
         require([pModuleBase + '/render/graphics/renderast'], function(renderer){
             window.__svg.innerHTML = "";
             renderer.clean('__svg', window);
-            window.callPhantom(renderer.renderAST(JSON.parse(pASTString), '', '__svg', window, pStyleAdditions));
+            window.callPhantom(
+                renderer.renderASTNew(
+                    JSON.parse(pASTString),
+                    window,
+                    '__svg',
+                    {
+                        styleAdditions: pStyleAdditions,
+                        mirrorEntitiesOnBottom: (pMirrorEntities === "1")
+                    }
+                )
+            );
         });
     }
 </script>

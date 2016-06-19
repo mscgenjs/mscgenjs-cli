@@ -9,6 +9,7 @@ var gOutputType     = system.args[3];
 var gModuleBase     = system.args[4];
 var gRequirePath    = system.args[5];
 var gStyleAdditions = system.args[6];
+var gMirrorEntities = system.args[7];
 
 var page = require('webpage').create();
 
@@ -26,11 +27,12 @@ page.onError = function(pMessage /* , pTrace*/) {
 page.open(gPage, function(/* pStatus*/) {
     page.injectJs(gRequirePath);
     page.evaluate(
-        function(pASTString, pModuleBase, pStyleAdditions){
-            renderInThePage(pASTString, pModuleBase, pStyleAdditions);
+        function(pASTString, pModuleBase, pStyleAdditions, pMirrorEntities){
+            renderInThePage(pASTString, pModuleBase, pStyleAdditions, pMirrorEntities);
         },
         gASTString,
         gModuleBase,
-        gStyleAdditions
+        gStyleAdditions,
+        gMirrorEntities
     );
 });
