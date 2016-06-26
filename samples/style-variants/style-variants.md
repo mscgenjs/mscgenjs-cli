@@ -1,3 +1,25 @@
+### default
+Which is what you get when you don't pass a named style option.
+
+![](cheat-sheet-wide.png)
+
+### lazy
+![](cheat-sheet-wide-lazy.png)
+
+### classic
+![](cheat-sheet-wide-classic.png)
+
+### cygne
+![](cheat-sheet-wide-cygne.png)
+
+### pegasse
+![](cheat-sheet-wide-pegasse.png)
+
+### inverted
+![](cheat-sheet-wide-inverted.png)
+
+### input used
+```
 # MsGenny: a cheat sheet
 hscale=0.9, width=auto, watermark="This is a 序 watermark";
 
@@ -39,3 +61,4 @@ a alt d : inline expression {
 |||      : ||| (empty row);
 ...      : ... (omitted row);
 ---      : --- (comment);
+```
