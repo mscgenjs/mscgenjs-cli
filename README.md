@@ -60,15 +60,16 @@ Yes. Run `mscgenjs` with `-h` or `--help` to get them all:
 
   Options:
 
-    -h, --help               output usage information
-    -V, --version            output the version number
-    -T --output-type <type>  one of svg|png|jpeg|mscgen|msgenny|xu|dot|doxygen|json
-    -I --input-type <type>   one of mscgen|xu|msgenny|json
-    -i --input-from <file>   File to read from. use - for stdin.
-    -o --output-to <file>    File to write to. use - for stdout.
-    -p --parser-output       Print parsed msc output
-    -s --css                 Additional styles to use. Expermimental!
-    -l --license             Display license and exit
+    -h, --help                output usage information
+    -V, --version             output the version number
+    -T --output-type <type>   one of svg|png|jpeg|mscgen|msgenny|xu|dot|doxygen|json
+    -I --input-type <type>    one of mscgen|xu|msgenny|json
+    -i --input-from <file>    File to read from. use - for stdin.
+    -o --output-to <file>     File to write to. use - for stdout.
+    -p --parser-output        Print parsed msc output
+    -s --css                  Additional styles to use. Expermimental!
+    -n --named-style <style>  lazy|classic|cygne|pegasse Experimental!
+    -l --license              Display license and exit
 ```
 
 ### Basic use: produce pictures from a script
@@ -96,8 +97,29 @@ parsed as MscGen:
 mscgenjs -I mscgen test51_with_alt.xu
 ```
 
-### Styles (experimental)
-You can influence a how charts look a bit by providing css rules that
+### Named styles (experimental)
+mscgenjs contains a few 'baked in' styles that tweak the way its output looks a bit.
+```sh
+mscgenjs -i samples/recaptcha-integration.msgenny -n lazy
+```
+
+mscgenjs currently recognizes these styles:
+- **lazy**
+    - uses a bold font for entity names (instead of underlining them)
+    - gives `note`s a soft yellow background
+    - prints return value text in italics
+    - inline expression boxes get a dark grey outline (instead of the default black)
+- **classic** mimics the vanilla mscgen output
+    - makes all lines 1 pixel wide
+    - entities are just text - not boxes
+- **cygne** a light blue/ orange scheme. If your chart already contains colors this named style will probably be unhelpful.
+- **pegasse** a dark blue/ red scheme. Also not very helpful for already colored charts.
+
+> Although not mentioned in the command line interface's `--help`, **grayscaled** and **inverted** are also valid named styles. They insert a css filter into the svg to do what their names imply. This works splendidly in many browsers, but not at all in some others (e.g. safari who translates the complete output into a black rectangle). Hence use with caution.
+
+
+### Manual styles (experimental)
+You can influence a how charts look even further by providing css rules that
 override the ones baked into mscgenjs. It's quite raw, the interface
 might change in the next version and does not read style rules from
 external files (yet), but it is working for the brave of heart.
