@@ -115,7 +115,7 @@ mscgenjs currently recognizes these styles:
 - **cygne** a light blue/ orange scheme. If your chart already contains colors this named style will probably be unhelpful.
 - **pegasse** a dark blue/ red scheme. Also not very helpful for already colored charts.
 
-[samples/style-variants](samples/style-variants.md) shows how these look when
+[samples/style-variants](samples/style-variants/style-variants.md) shows how these look when
 you apply them on the cheat sheet.
 
 > Although not mentioned in the command line interface's `--help`, **grayscaled** and **inverted** are also valid named styles. They insert a css filter into the svg to do what their names imply. This works splendidly in many browsers, but it doesn't in some (safari, IE). Hence use with caution.
