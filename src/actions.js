@@ -74,6 +74,7 @@ module.exports = (() => {
             args.push(path.relative(__dirname, require.resolve('requirejs/require.js')));
             args.push((pOptions && pOptions.styleAdditions) || "");
             args.push((pOptions && pOptions.mirrorEntities) ? "1" : "0");
+            args.push((pOptions && pOptions.additionalTemplate) || "");
 
             childProcess.execFile(binPath, args, (pErr, pStdout/* , pStderr*/) => {
                 if (pErr) {
@@ -164,8 +165,9 @@ module.exports = (() => {
                 pOutStream,
                 pOptions.outputType,
                 {
-                    styleAdditions: pOptions.css,
-                    mirrorEntities: Boolean(pOptions.mirrorEntities)
+                    styleAdditions     : pOptions.css,
+                    additionalTemplate : pOptions.namedStyle,
+                    mirrorEntities     : Boolean(pOptions.mirrorEntities)
                 }
             );
         } else {

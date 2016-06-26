@@ -3,8 +3,15 @@
 module.exports = (() => {
     const fs = require("fs");
 
-    const VALID_OUTPUT_TYPE_RE = /^(svg|png|jpeg|mscgen|msgenny|xu|dot|doxygen|json)$/;
-    const VALID_INPUT_TYPE_RE  = /^(mscgen|xu|msgenny|ast|json)$/;
+    const VALID_OUTPUT_TYPE_RE  = /^(svg|png|jpeg|mscgen|msgenny|xu|dot|doxygen|json)$/;
+    const VALID_INPUT_TYPE_RE   = /^(mscgen|xu|msgenny|ast|json)$/;
+
+    /*
+     * 'inverted' and 'grayscaled' are valid but not documented in the help -
+     * the filter they currently use is not (yet) universally supported accross
+     * all browsers
+     */
+    const VALID_NAMED_STYLES_RE = /^(lazy|classic|cygne|pegasse|inverted|grayscaled)$/;
 
     function isStdout(pFilename) {
         return "-" === pFilename;
@@ -42,6 +49,17 @@ module.exports = (() => {
             throw Error(
                 `\n  error: '${pType}' is not a valid input type.` +
                 `\n         mscgen_js can read mscgen, msgenny, xu and ast\n\n`);
+        },
+
+        validNamedStyle(pStyle) {
+            if (pStyle.match(VALID_NAMED_STYLES_RE)) {
+                return pStyle;
+            }
+
+            throw Error(
+                `\n  error: '${pStyle}' is not a recognized named style.` +
+                `\n         You can use one of these: lazy, classic, cygne, pegasse\n\n`);
+
         },
 
         validateArguments(pOptions) {

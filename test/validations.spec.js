@@ -42,6 +42,23 @@ describe('cli/validations', () => {
         });
     });
 
+    describe('#validNamedStyle() - ', () => {
+        it("'unrecognized' is not a recognized style", () => {
+            let lFoundError = "";
+
+            try {
+                val.validNamedStyle("unrecognized");
+            } catch (e) {
+                lFoundError = e.message;
+            }
+            expect(lFoundError).to.contain("error: 'unrecognized' is not a recognized named style");
+        });
+
+        it("'lazy' is a valid named style", () => {
+            assert.equal(val.validNamedStyle("lazy"), "lazy");
+        });
+    });
+
     describe('#validateArguments() - ', () => {
         it("'-T svg -o kaboeki.svg fixtures/rainbow.mscin is oki", () => {
             try {

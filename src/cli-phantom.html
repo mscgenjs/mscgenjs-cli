@@ -23,7 +23,7 @@
 <body><pre id="__svg">Rendering failed, apparently</pre>
 <script>
 
-    function renderInThePage(pASTString, pModuleBase, pStyleAdditions, pMirrorEntities){
+    function renderInThePage(pASTString, pModuleBase, pStyleAdditions, pMirrorEntities, pAdditionalTemplate){
         require([pModuleBase + '/render/graphics/renderast'], function(renderer){
 
             function sizeIsRelative(pSize) {
@@ -62,8 +62,9 @@
                 window,
                 '__svg',
                 {
-                    styleAdditions: pStyleAdditions,
-                    mirrorEntitiesOnBottom: (pMirrorEntities === "1")
+                    styleAdditions         : pStyleAdditions,
+                    additionalTemplate     : pAdditionalTemplate,
+                    mirrorEntitiesOnBottom : (pMirrorEntities === "1")
                 }
             );
             makeRelativeSizeAbsolute(window.__svg.firstElementChild);
@@ -71,7 +72,7 @@
         });
     }
 
-    function renderVectorInThePage(pASTString, pModuleBase, pStyleAdditions, pMirrorEntities){
+    function renderVectorInThePage(pASTString, pModuleBase, pStyleAdditions, pMirrorEntities, pAdditionalTemplate){
         require([pModuleBase + '/render/graphics/renderast'], function(renderer){
             window.__svg.innerHTML = "";
             renderer.clean('__svg', window);
@@ -81,8 +82,9 @@
                     window,
                     '__svg',
                     {
-                        styleAdditions: pStyleAdditions,
-                        mirrorEntitiesOnBottom: (pMirrorEntities === "1")
+                        styleAdditions         : pStyleAdditions,
+                        additionalTemplate     : pAdditionalTemplate,
+                        mirrorEntitiesOnBottom : (pMirrorEntities === "1")
                     }
                 )
             );

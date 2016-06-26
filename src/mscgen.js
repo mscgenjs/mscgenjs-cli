@@ -34,6 +34,10 @@ try {
             "-s --css <string>",
             "Additional styles to use. Experimental!"
         ).option(
+            "-n --named-style <style>",
+            "lazy|classic|cygne|pegasse Experimental!",
+            validations.validNamedStyle
+        ).option(
             "-m --mirror-entities",
             "Repeat the entities on the chart's bottom"
         ).option(
