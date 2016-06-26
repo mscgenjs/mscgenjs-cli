@@ -12,7 +12,7 @@
   "dependencies": {
     "amdefine": "1.0.0",
     "commander": "2.9.0",
-    "mscgenjs": "1.4.1",
+    "mscgenjs": "1.4.2",
     "phantomjs-prebuilt": "2.1.7",
     "requirejs": "2.2.0"
   },
@@ -20,12 +20,12 @@
     "chai": "3.5.0",
     "chai-xml": "0.3.1",
     "codeclimate-test-reporter": "0.3.3",
-    "eslint": "2.13.0",
-    "istanbul": "0.4.3",
+    "eslint": "2.13.1",
+    "istanbul": "0.4.4",
     "js-makedepend": "0.4.0",
     "mocha": "2.5.3",
     "npm-check-updates": "2.6.7",
-    "nsp": "2.4.0"
+    "nsp": "2.5.0"
   },
   "scripts": {
     "test": "mocha -R dot --timeout 10000 --recursive test",
