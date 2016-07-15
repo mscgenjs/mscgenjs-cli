@@ -24,7 +24,6 @@ module.exports = (() => {
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
  `;
-    const MAX_STDOUT_BUFFER_SIZE = 1048576; // 1024*1024 bytes should be sufficient
 
     function callback2Promise(pError, pSuccess, pResolve, pReject) {
         if (Boolean(pError)){
@@ -62,6 +61,7 @@ module.exports = (() => {
             const binPath      = phantomjs.path;
 
             let args           = [];
+            let lData          = "";
 
             if ('svg' === pOutputType){
                 args.push(path.join(__dirname, '.', 'cli-phantom-vector.js'));
@@ -77,31 +77,42 @@ module.exports = (() => {
             args.push((pOptions && pOptions.mirrorEntities) ? "1" : "0");
             args.push((pOptions && pOptions.additionalTemplate) || "");
 
-            childProcess.execFile(binPath, args, {maxBuffer: MAX_STDOUT_BUFFER_SIZE}, (pErr, pStdout/* , pStderr*/) => {
-                if (pErr) {
-                    pReject(pErr);
+            let lChildProcess = childProcess.spawn(binPath, args);
 
-                /* istanbul ignore else */
-                } else if (pStdout) {
+            /*
+             * For svg's we coud write directly to the pOutStream, so we would
+             * not need to buffer the data. Pngs and jpegs need to be decoded as
+             * a whole, though, so for those we _do_ need to.
+             * For simplicity's sake using the same process for svgs as for
+             * both bitmap formats for now.
+             */
+            lChildProcess.stdout.on('data', pData => {
+                lData += pData;
+            });
+
+            lChildProcess.on('error', pError => pReject(pError));
+
+            lChildProcess.on('exit', pCode => {
+                if (pCode === 0) {
                     if ('svg' === pOutputType) {
                         pOutStream.write(
-                            pStdout,
+                            lData,
                             (pError, pSuccess) =>
                                 callback2Promise(pError, pSuccess, pResolve, pReject)
                         );
                     } else {
                         pOutStream.write(
-                            new Buffer(pStdout, 'base64'),
+                            new Buffer(lData, 'base64'),
                             (pError, pSuccess) =>
                                 callback2Promise(pError, pSuccess, pResolve, pReject)
                         );
                     }
+                    if (pOutStream.close) {
+                        pOutStream.close();
+                    }
+                    pResolve(true);
                 } else {
-                    pReject(new Error(
-                        `Mysteriously, rendering didn't work, but it didn't raise an error either.\n` +
-                        `It would help tremendously if you raised an issue on github with this link:\n` +
-                        `https://github.com/sverweij/mscgenjs-cli/issues/new?title=Unexpected%20error:%20"Mysteriously,%20rendering%20didn't%20work,%20but%20it%20didn't%20raise%20an%20error%20either."&body=What%20did%20I%20do%20to%20get%20this?`
-                    ));
+                    pReject(pCode);
                 }
             });
         });
