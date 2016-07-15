@@ -12,7 +12,7 @@
   "dependencies": {
     "amdefine": "1.0.0",
     "commander": "2.9.0",
-    "mscgenjs": "1.4.2",
+    "mscgenjs": "1.4.3",
     "phantomjs-prebuilt": "2.1.7",
     "requirejs": "2.2.0"
   },
@@ -25,7 +25,7 @@
     "js-makedepend": "0.4.0",
     "mocha": "2.5.3",
     "npm-check-updates": "2.7.0",
-    "nsp": "2.6.0"
+    "nsp": "2.6.1"
   },
   "scripts": {
     "test": "mocha -R dot --timeout 10000 --recursive test",
