@@ -24,6 +24,7 @@ module.exports = (() => {
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
  `;
+    const MAX_STDOUT_BUFFER_SIZE = 1048576; // 1024*1024 bytes should be sufficient
 
     function callback2Promise(pError, pSuccess, pResolve, pReject) {
         if (Boolean(pError)){
@@ -76,7 +77,7 @@ module.exports = (() => {
             args.push((pOptions && pOptions.mirrorEntities) ? "1" : "0");
             args.push((pOptions && pOptions.additionalTemplate) || "");
 
-            childProcess.execFile(binPath, args, (pErr, pStdout/* , pStderr*/) => {
+            childProcess.execFile(binPath, args, {maxBuffer: MAX_STDOUT_BUFFER_SIZE}, (pErr, pStdout/* , pStderr*/) => {
                 if (pErr) {
                     pReject(pErr);
 
