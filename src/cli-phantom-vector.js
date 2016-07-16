@@ -1,5 +1,6 @@
 /* eslint-env phantomjs */
-/* eslint no-var:0, no-magic-numbers: 0, func-names:0, no-console:0, prefer-arrow-callback:0 max-params:0*/
+/* eslint no-var:0, no-magic-numbers: 0, func-names:0, no-console:0*/
+/* eslint prefer-arrow-callback:0, max-params:0 */
 /* globals renderVectorInThePage */
 var system = require('system');
 
