@@ -69,7 +69,7 @@ module.exports = (() => {
                 args.push(path.join(__dirname, 'cli-phantom.js'));
             }
 
-            args.push(path.join(__dirname, 'cli-phantom.html'));
+            args.push(`file:///${path.join(__dirname, 'cli-phantom.html')}`);
             args.push(JSON.stringify(pAST, null, ''));
             args.push(pOutputType);
             args.push(path.relative(__dirname, path.dirname(require.resolve('mscgenjs'))));
