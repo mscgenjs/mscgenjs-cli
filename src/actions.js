@@ -64,11 +64,12 @@ module.exports = (() => {
             let lData          = "";
 
             if ('svg' === pOutputType){
-                args.push(path.join(__dirname, '.', 'cli-phantom-vector.js'));
+                args.push(path.join(__dirname, 'cli-phantom-vector.js'));
             } else {
-                args.push(path.join(__dirname, '.', 'cli-phantom.js'));
+                args.push(path.join(__dirname, 'cli-phantom.js'));
             }
-            args.push(path.join(__dirname, '.', 'cli-phantom.html'));
+
+            args.push(path.join(__dirname, 'cli-phantom.html'));
             args.push(JSON.stringify(pAST, null, ''));
             args.push(pOutputType);
             args.push(path.relative(__dirname, path.dirname(require.resolve('mscgenjs'))));
@@ -93,26 +94,20 @@ module.exports = (() => {
             lChildProcess.on('error', pError => pReject(pError));
 
             lChildProcess.on('exit', pCode => {
+                if (pOutStream.close) {
+                    pOutStream.close();
+                }
                 if (pCode === 0) {
-                    if ('svg' === pOutputType) {
-                        pOutStream.write(
-                            lData,
-                            (pError, pSuccess) =>
-                                callback2Promise(pError, pSuccess, pResolve, pReject)
-                        );
-                    } else {
-                        pOutStream.write(
-                            new Buffer(lData, 'base64'),
-                            (pError, pSuccess) =>
-                                callback2Promise(pError, pSuccess, pResolve, pReject)
-                        );
+                    if ('svg' !== pOutputType) {
+                        lData = new Buffer(lData, 'base64');
                     }
-                    if (pOutStream.close) {
-                        pOutStream.close();
-                    }
-                    pResolve(true);
+                    pOutStream.write(
+                        lData,
+                        (pError, pSuccess) =>
+                            callback2Promise(pError, pSuccess, pResolve, pReject)
+                    );
                 } else {
-                    pReject(pCode);
+                    pReject(new Error(lData));
                 }
             });
         });
