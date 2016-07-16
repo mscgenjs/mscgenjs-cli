@@ -94,9 +94,6 @@ module.exports = (() => {
             lChildProcess.on('error', pError => pReject(pError));
 
             lChildProcess.on('exit', pCode => {
-                if (pOutStream.close) {
-                    pOutStream.close();
-                }
                 if (pCode === 0) {
                     if ('svg' !== pOutputType) {
                         lData = new Buffer(lData, 'base64');
@@ -108,6 +105,9 @@ module.exports = (() => {
                     );
                 } else {
                     pReject(new Error(lData));
+                }
+                if (pOutStream.close) {
+                    pOutStream.close();
                 }
             });
         });
