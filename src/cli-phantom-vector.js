@@ -24,11 +24,6 @@ page.onError = function(pMessage /* , pTrace*/) {
     phantom.exit(1);
 };
 
-page.onConsoleMessage = function(pMessage) {
-    console.log(pMessage);
-    phantom.exit(0);
-};
-
 page.open(gPage, function(pStatus) {
     if (pStatus === "success") {
         page.injectJs(gRequirePath);
@@ -49,7 +44,7 @@ page.open(gPage, function(pStatus) {
             gAdditionalTemplate
         );
     } else {
-        console.log("failed to open ", gPage);
+        console.error("failed to open ", gPage);
         phantom.exit(1);
     }
 });
