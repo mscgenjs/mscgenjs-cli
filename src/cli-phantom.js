@@ -25,16 +25,21 @@ page.onError = function(pMessage /* , pTrace*/) {
     phantom.exit(1);
 };
 
-page.open(gPage, function(/* pStatus*/) {
-    page.injectJs(gRequirePath);
-    page.evaluate(
-        function(pASTString, pModuleBase, pStyleAdditions, pMirrorEntities, pAdditionalTemplate){
-            renderInThePage(pASTString, pModuleBase, pStyleAdditions, pMirrorEntities, pAdditionalTemplate);
-        },
-        gASTString,
-        gModuleBase,
-        gStyleAdditions,
-        gMirrorEntities,
-        gAdditionalTemplate
-    );
+page.open(gPage, function(pStatus) {
+    if (pStatus === "success") {
+        page.injectJs(gRequirePath);
+        page.evaluate(
+            function(pASTString, pModuleBase, pStyleAdditions, pMirrorEntities, pAdditionalTemplate){
+                renderInThePage(pASTString, pModuleBase, pStyleAdditions, pMirrorEntities, pAdditionalTemplate);
+            },
+            gASTString,
+            gModuleBase,
+            gStyleAdditions,
+            gMirrorEntities,
+            gAdditionalTemplate
+        );
+    } else {
+        console.error("failed to open ", gPage);
+        phantom.exit(1);
+    }
 });
