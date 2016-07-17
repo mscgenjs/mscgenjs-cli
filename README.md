@@ -97,50 +97,6 @@ parsed as MscGen:
 mscgenjs -I mscgen test51_with_alt.xu
 ```
 
-### Named styles (experimental)
-mscgenjs contains a few 'baked in' styles that tweak the way its output looks a bit.
-```sh
-mscgenjs -i samples/recaptcha-integration.msgenny -n lazy
-```
-
-mscgenjs currently recognizes these styles:
-- **lazy**
-    - uses a bold font for entity names (instead of underlining them)
-    - gives `note`s a soft yellow background
-    - prints return value text in italics
-    - inline expression boxes get a dark grey outline (instead of the default black)
-- **classic** mimics the vanilla mscgen output
-    - makes all lines 1 pixel wide
-    - entities are just text - not boxes
-- **cygne** a light blue/ orange scheme. If your chart already contains colors this named style will probably be unhelpful.
-- **pegasse** a dark blue/ red scheme. Also not very helpful for already colored charts.
-
-[samples/style-variants](samples/style-variants/style-variants.md) shows how these look when
-you apply them on the cheat sheet.
-
-> Although not mentioned in the command line interface's `--help`, **grayscaled** and **inverted** are also valid named styles. They insert a css filter into the svg to do what their names imply. This works splendidly in many browsers, but it doesn't in some (safari, IE). Hence use with caution.
-
-
-### Manual styles (experimental)
-You can influence a how charts look even further by providing css rules that
-override the ones baked into mscgenjs. It's quite raw, the interface
-might change in the next version and does not read style rules from
-external files (yet), but it is working for the brave of heart.
-
-E.g. to override the default sans-serif font with a serif one
-
-```sh
-mscgenjs -i samples/recaptcha-integration.msgenny -s "svg{font-family:serif}"
-```
-
-... or to use bold instead of underlined entity labels
-```sh
-mscgenjs -i samples/recaptcha-integration.msgenny -s "text.entity-text{font-weight:bold;text-decoration:none}"
-```
-
-Near the bottom of this README you'll find a list of elements and class
-names that can occur in generated svg's.
-
 ### Conversion
 When presented with an output file name, `mscgenjs` will try to guess the
 type of output desired from the extension.
@@ -194,13 +150,63 @@ type:
 ```sh
 mscgenjs parsed.json
 ```
+### Named styles (experimental)
+mscgenjs contains a few 'baked in' styles that tweak the way its output looks
+a bit.
+```sh
+mscgenjs -i samples/recaptcha-integration.msgenny -n lazy
+```
 
-### Elements and classes that can be styled
+mscgenjs currently recognizes these styles:
+- **lazy**
+    - uses a bold font for entity names (instead of underlining them)
+    - gives `note`s a soft yellow background
+    - prints return value text in italics
+    - inline expression boxes get a dark grey outline (instead of the default
+      black)
+- **classic** mimics the vanilla mscgen output
+    - makes all lines 1 pixel wide
+    - entities are just text - not boxes
+- **cygne** a light blue/ orange scheme. If your chart already contains
+  colors this named style will probably be unhelpful.
+- **pegasse** a dark blue/ red scheme. Also not very helpful for already colored
+  charts.
+
+[samples/style-variants](samples/style-variants/style-variants.md) shows how
+these look when you apply them on the cheat sheet.
+
+> Although not mentioned in the command line interface's `--help`,
+**grayscaled** and **inverted** are also valid named styles. They insert a css
+filter into the svg to do what their names imply. This works splendidly in
+many browsers, but it doesn't in some (safari, IE). Hence use with caution.
+
+
+### Manual styles (experimental)
+You can influence a how charts look even further by providing css rules that
+override the ones baked into mscgenjs. It's quite raw, the interface
+might change in the next version and does not read style rules from
+external files (yet), but it is working for the brave of heart.
+
+E.g. to override the default sans-serif font with a serif one
+
+```sh
+mscgenjs -i samples/recaptcha-integration.msgenny -s "svg{font-family:serif}"
+```
+
+... or to use bold instead of underlined entity labels
+```sh
+mscgenjs -i samples/recaptcha-integration.msgenny -s "text.entity-text{font-weight:bold;text-decoration:none}"
+```
+
+Near the bottom of this README you'll find a list of elements and class
+names that can occur in generated svg's.
+
+### Elements and classes you can style
 Note: experimental. Class names are subject to change (as is the whole
 styling feature), and mscgenjs might not respond to all style rules yet due to
 the way it constructs the svg at the moment. E.g. coloring `arc`s won't work
 as mscgenjs inserts a style attribute to set the color of these and executes
-some voodoo to to make sure the arrow heads are in the same color as the arc.
+some voodoo to make sure the arrow heads are in the same color as the arc.
 
 - `svg, line, rect, path, text`
 - `rect`: `.entity .box .rbox .inline_expression .label-text-background
