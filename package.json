@@ -57,6 +57,9 @@
   "engines": {
     "node": ">=4.0"
   },
+  "os": [
+      "!win32"
+  ],
   "bugs": {
     "url": "https://github.com/sverweij/mscgenjs-cli/issues"
   },
