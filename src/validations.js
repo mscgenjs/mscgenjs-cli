@@ -11,7 +11,7 @@ module.exports = (() => {
      * the filter they currently use is not (yet) universally supported accross
      * all browsers
      */
-    const VALID_NAMED_STYLES_RE = /^(lazy|classic|cygne|pegasse|inverted|grayscaled)$/;
+    const VALID_NAMED_STYLES_RE = /^(lazy|classic|fountainpen|cygne|pegasse|inverted|grayscaled)$/;
 
     function isStdout(pFilename) {
         return "-" === pFilename;
