@@ -1,17 +1,13 @@
 "use strict";
 
 module.exports = (() => {
-    const fs = require("fs");
+    const fs       = require("fs");
+    const mscgenjs = require("mscgenjs");
 
-    const VALID_OUTPUT_TYPE_RE  = /^(svg|png|jpeg|mscgen|msgenny|xu|dot|doxygen|json)$/;
-    const VALID_INPUT_TYPE_RE   = /^(mscgen|xu|msgenny|ast|json)$/;
-
-    /*
-     * 'inverted' and 'grayscaled' are valid but not documented in the help -
-     * the filter they currently use is not (yet) universally supported accross
-     * all browsers
-     */
-    const VALID_NAMED_STYLES_RE = /^(lazy|classic|fountainpen|cygne|pegasse|inverted|grayscaled)$/;
+    const VALID_GRAPHICS_TYPES  = ["svg", "png", "jpeg"];
+    const VALID_OUTPUT_TYPES = VALID_GRAPHICS_TYPES.concat(
+        mscgenjs.allowedValues.outputType.map(pValue => pValue.name)
+    );
 
     function isStdout(pFilename) {
         return "-" === pFilename;
@@ -28,9 +24,22 @@ module.exports = (() => {
         }
     }
 
+    function validNamedStyles() {
+        return mscgenjs.allowedValues
+            .namedStyle
+            .filter(pValue => pValue.experimental === false)
+            .join(", ");
+    }
+
+    function validInputTypes() {
+        return mscgenjs.allowedValues
+            .inputType
+            .join(", ");
+    }
+
     return {
         validOutputType(pType) {
-            if (pType.match(VALID_OUTPUT_TYPE_RE)) {
+            if (VALID_OUTPUT_TYPES.some(pName => pName === pType)){
                 return pType;
             }
 
@@ -42,23 +51,29 @@ module.exports = (() => {
         },
 
         validInputType(pType) {
-            if (pType.match(VALID_INPUT_TYPE_RE)) {
+            if (mscgenjs
+                    .allowedValues
+                    .inputType
+                    .some(value => value.name === pType)){
                 return pType;
             }
 
             throw Error(
                 `\n  error: '${pType}' is not a valid input type.` +
-                `\n         mscgen_js can read mscgen, msgenny, xu and ast\n\n`);
+                `\n         mscgen_js can read ${validInputTypes()}\n\n`);
         },
 
         validNamedStyle(pStyle) {
-            if (pStyle.match(VALID_NAMED_STYLES_RE)) {
+            if (mscgenjs
+                    .allowedValues
+                    .namedStyle
+                    .some(value => value.name === pStyle)){
                 return pStyle;
             }
 
             throw Error(
                 `\n  error: '${pStyle}' is not a recognized named style.` +
-                `\n         You can use one of these: lazy, classic, cygne, pegasse\n\n`);
+                `\n         You can use one of these: ${validNamedStyles()}\n\n`);
 
         },
 
@@ -78,7 +93,20 @@ module.exports = (() => {
 
                 pResolve(pOptions);
             });
-        }
+        },
+
+        validOutputTypeRE: VALID_OUTPUT_TYPES.join("|"),
+
+        validInputTypeRE: mscgenjs.allowedValues
+            .inputType
+            .map(pValue => pValue.name)
+            .join("|"),
+
+        validNamedStyleRE: mscgenjs.allowedValues
+            .namedStyle
+            .filter(pValue => pValue.experimental === false)
+            .map(pValue => pValue.name)
+            .join("|")
     };
 })();
 

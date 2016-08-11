@@ -56,20 +56,21 @@ mscgenjs -T png coolchart.mscgen
 Yes. Run `mscgenjs` with `-h` or `--help` to get them all:
 
 ```
-  Usage: mscgenjs [options] [infile]
+    Usage: mscgen_js [options] [infile]
 
-  Options:
+    Options:
 
-    -h, --help                output usage information
-    -V, --version             output the version number
-    -T --output-type <type>   one of svg|png|jpeg|mscgen|msgenny|xu|dot|doxygen|json
-    -I --input-type <type>    one of mscgen|xu|msgenny|json
-    -i --input-from <file>    File to read from. use - for stdin.
-    -o --output-to <file>     File to write to. use - for stdout.
-    -p --parser-output        Print parsed msc output
-    -s --css                  Additional styles to use. Expermimental!
-    -n --named-style <style>  lazy|classic|cygne|pegasse Experimental!
-    -l --license              Display license and exit
+      -h, --help                output usage information
+      -V, --version             output the version number
+      -T --output-type <type>   svg|png|jpeg|mscgen|msgenny|xu|dot|doxygen|json
+      -I --input-type <type>    mscgen|msgenny|xu|json|ast
+      -i --input-from <file>    File to read from. use - for stdin.
+      -o --output-to <file>     File to write to. use - for stdout.
+      -p --parser-output        Print parsed msc output
+      -s --css <string>         Additional styles to use. Experimental!
+      -n --named-style <style>  lazy|cygne|pegasse|classic
+      -m --mirror-entities      Repeat the entities on the chart's bottom
+      -l --license              Display license and exit
 ```
 
 ### Basic use: produce pictures from a script

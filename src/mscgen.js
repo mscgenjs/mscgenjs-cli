@@ -15,11 +15,11 @@ try {
         .version(require("../package.json").version)
         .option(
             "-T --output-type <type>",
-            "svg|png|jpeg|mscgen|msgenny|xu|dot|doxygen|json",
+            validations.validOutputTypeRE,
             validations.validOutputType
         ).option(
             "-I --input-type <type>",
-            "one of mscgen|xu|msgenny|json",
+            validations.validInputTypeRE,
             validations.validInputType
         ).option(
             "-i --input-from <file>",
@@ -35,7 +35,7 @@ try {
             "Additional styles to use. Experimental!"
         ).option(
             "-n --named-style <style>",
-            "lazy|classic|cygne|pegasse Experimental!",
+            validations.validNamedStyleRE,
             validations.validNamedStyle
         ).option(
             "-m --mirror-entities",
