@@ -6,7 +6,7 @@ module.exports = (() => {
 
     const VALID_GRAPHICS_TYPES  = ["svg", "png", "jpeg"];
     const VALID_OUTPUT_TYPES = VALID_GRAPHICS_TYPES.concat(
-        mscgenjs.allowedValues.outputType.map(pValue => pValue.name)
+        mscgenjs.getAllowedValues().outputType.map(pValue => pValue.name)
     );
 
     function isStdout(pFilename) {
@@ -25,15 +25,17 @@ module.exports = (() => {
     }
 
     function validNamedStyles() {
-        return mscgenjs.allowedValues
+        return mscgenjs.getAllowedValues()
             .namedStyle
             .filter(pValue => pValue.experimental === false)
+            .map(pNamedStyle => pNamedStyle.name)
             .join(", ");
     }
 
     function validInputTypes() {
-        return mscgenjs.allowedValues
+        return mscgenjs.getAllowedValues()
             .inputType
+            .map(pInputType => pInputType.name)
             .join(", ");
     }
 
@@ -52,7 +54,7 @@ module.exports = (() => {
 
         validInputType(pType) {
             if (mscgenjs
-                    .allowedValues
+                    .getAllowedValues()
                     .inputType
                     .some(value => value.name === pType)){
                 return pType;
@@ -65,7 +67,7 @@ module.exports = (() => {
 
         validNamedStyle(pStyle) {
             if (mscgenjs
-                    .allowedValues
+                    .getAllowedValues()
                     .namedStyle
                     .some(value => value.name === pStyle)){
                 return pStyle;
@@ -97,12 +99,12 @@ module.exports = (() => {
 
         validOutputTypeRE: VALID_OUTPUT_TYPES.join("|"),
 
-        validInputTypeRE: mscgenjs.allowedValues
+        validInputTypeRE: mscgenjs.getAllowedValues()
             .inputType
             .map(pValue => pValue.name)
             .join("|"),
 
-        validNamedStyleRE: mscgenjs.allowedValues
+        validNamedStyleRE: mscgenjs.getAllowedValues()
             .namedStyle
             .filter(pValue => pValue.experimental === false)
             .map(pValue => pValue.name)
