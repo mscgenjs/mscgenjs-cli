@@ -12,7 +12,7 @@
   "dependencies": {
     "amdefine": "1.0.0",
     "commander": "2.9.0",
-    "mscgenjs": "sverweij/mscgenjs-core#feature\/add-lovs-to-interface",
+    "mscgenjs": "sverweij/mscgenjs-core",
     "phantomjs-prebuilt": "2.1.11",
     "requirejs": "2.2.0"
   },
