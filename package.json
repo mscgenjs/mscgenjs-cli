@@ -19,7 +19,6 @@
   "devDependencies": {
     "chai": "3.5.0",
     "chai-xml": "0.3.1",
-    "codeclimate-test-reporter": "0.3.3",
     "eslint": "3.7.0",
     "istanbul": "0.4.5",
     "js-makedepend": "1.0.4",
@@ -32,7 +31,6 @@
     "cover": "istanbul cover node_modules/mocha/bin/_mocha -- --timeout 12000 --recursive test",
     "nsp": "nsp check --warn-only",
     "lint": "eslint src test",
-    "codeclimate-cover-submit": "node node_modules/codeclimate-test-reporter/bin/codeclimate.js < coverage/lcov.info",
     "npm-check-updates": "ncu --upgrade"
   },
   "repository": {
@@ -58,7 +56,7 @@
     "node": ">=4.0"
   },
   "os": [
-      "!win32"
+    "!win32"
   ],
   "bugs": {
     "url": "https://github.com/mscgenjs/mscgenjs-cli/issues"
