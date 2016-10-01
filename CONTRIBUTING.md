@@ -7,7 +7,7 @@ To make this as easy as possible for you, here's some simple guidelines:
 ### Reporting issues
 - All **issues** are **welcome**.    
   - These include bug reports, questions, feature requests and enhancement proposals
-  - [GitHub's issue tracker](https://github.com/sverweij/mscgen_js/issues) is the easiest way to submit them.
+  - [GitHub's issue tracker](https://github.com/mscgenjs/mscgenjs-cli/issues) is the easiest way to submit them.
 - We prefer bug reports in  **_steps taken_ - _expected_ - _found_** format.
   -  that makes it more easy to reproduce it, and concoct a solution that fits your expectation.
   - If applicable, it is also nice when you provide
@@ -27,7 +27,7 @@ To make this as easy as possible for you, here's some simple guidelines:
     - Code style (you know, petty things like indentations, where brackets go, how variables &
       parameters are named) fits in with the current code base.
 - Plan to do something drastic?     
-  Contact @SanderSpeaks on Twitter, or leave an [issue](https://github.com/sverweij/mscgen_js/issues/new) on GitHub
+  Contact @SanderSpeaks on Twitter, or leave an [issue](https://github.com/mscgenjs/mscgenjs-cli/issues/new) on GitHub
 
 ### Legal
 - the code you add will be subject to [GPLv3](wikum/licenses/license.mscgen_js.md

@@ -37,7 +37,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/sverweij/mscgenjs-cli"
+    "url": "https://github.com/mscgenjs/mscgenjs-cli"
   },
   "author": "Sander Verweij",
   "contributors": [
@@ -61,7 +61,7 @@
       "!win32"
   ],
   "bugs": {
-    "url": "https://github.com/sverweij/mscgenjs-cli/issues"
+    "url": "https://github.com/mscgenjs/mscgenjs-cli/issues"
   },
-  "homepage": "https://github.com/sverweij/mscgenjs-cli"
+  "homepage": "https://github.com/mscgenjs/mscgenjs-cli"
 }
