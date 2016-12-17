@@ -1,6 +1,6 @@
 {
   "name": "mscgenjs-cli",
-  "version": "1.6.0",
+  "version": "1.6.3",
   "description": "Command line interface to mscgenjs",
   "main": "src/mscgen.js",
   "preferGlobal": true,
@@ -10,20 +10,20 @@
     "mscgen.js": "bin/mscgen_js"
   },
   "dependencies": {
-    "amdefine": "1.0.0",
+    "amdefine": "1.0.1",
     "commander": "2.9.0",
-    "mscgenjs": "1.6.0",
-    "phantomjs-prebuilt": "2.1.13",
+    "mscgenjs": "1.6.3",
+    "phantomjs-prebuilt": "2.1.14",
     "requirejs": "2.3.2"
   },
   "devDependencies": {
     "chai": "3.5.0",
     "chai-xml": "0.3.1",
-    "eslint": "3.8.1",
+    "eslint": "3.12.2",
     "istanbul": "0.4.5",
-    "js-makedepend": "1.0.5",
-    "mocha": "3.1.2",
-    "npm-check-updates": "2.8.5",
+    "js-makedepend": "2.0.1",
+    "mocha": "3.2.0",
+    "npm-check-updates": "2.8.8",
     "nsp": "2.6.2"
   },
   "scripts": {
