@@ -6,7 +6,7 @@
  * if you're serious about implementing re-Captcha
  */
 
-wordwraparcs=true, hscale=1.2, width=auto;
+wordwraparcs=true, hscale=1.2;
 
 customer, client, server, google : Google reCaptcha service;
 

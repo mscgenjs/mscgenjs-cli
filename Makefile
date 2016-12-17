@@ -31,8 +31,24 @@ help:
 include jsdependencies.mk
 include dependencies.mk
 
+.npmignore: .gitignore
+	cp $< $@
+	echo "samples/**" >> $@
+	echo "test/**" >> $@
+	echo "utl/**" >> $@
+	echo ".bithoundrc" >> $@
+	echo ".codeclimate.yml" >> $@
+	echo ".eslintignore" >> $@
+	echo ".eslintrc.json" >> $@
+	echo ".gitlab-ci.yml" >> $@
+	echo ".istanbul.yml" >> $@
+	echo ".travis.yml" >> $@
+	echo "Makefile" >> $@
+	echo "dependencies.mk" >> $@
+	echo "jsdependencies.mk" >> $@
+
 # "phony" targets
-prerequisites:
+prerequisites: .npmignore
 	$(NPM) install
 
 lint:
