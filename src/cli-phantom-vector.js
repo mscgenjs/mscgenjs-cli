@@ -11,6 +11,7 @@ var gRequirePath        = system.args[5];
 var gStyleAdditions     = system.args[6];
 var gMirrorEntities     = system.args[7];
 var gAdditionalTemplate = system.args[8];
+var gRegularArcTextVerticalAlignment = system.args[9];
 
 var page = require('webpage').create();
 
@@ -28,20 +29,29 @@ page.open(gPage, function(pStatus) {
     if (pStatus === "success") {
         page.injectJs(gRequirePath);
         page.evaluate(
-            function(pASTString, pModuleBase, pStyleAdditions, pMirrorEntities, pAdditionalTemplate){
+            function(
+                pASTString,
+                pModuleBase,
+                pStyleAdditions,
+                pMirrorEntities,
+                pAdditionalTemplate,
+                pRegularArcTextVerticalAlignment
+            ){
                 renderVectorInThePage(
                     pASTString,
                     pModuleBase,
                     pStyleAdditions,
                     pMirrorEntities,
-                    pAdditionalTemplate
+                    pAdditionalTemplate,
+                    pRegularArcTextVerticalAlignment
                 );
             },
             gASTString,
             gModuleBase,
             gStyleAdditions,
             gMirrorEntities,
-            gAdditionalTemplate
+            gAdditionalTemplate,
+            gRegularArcTextVerticalAlignment
         );
     } else {
         console.error("failed to open ", gPage);

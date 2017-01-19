@@ -39,6 +39,14 @@ module.exports = (() => {
             .join(", ");
     }
 
+    function validVerticalAlignments() {
+        return mscgenjs.getAllowedValues()
+            .regularArcTextVerticalAlignment
+            // .filter(pValue => pValue.experimental === false)
+            .map(pValue => pValue.name)
+            .join(", ");
+    }
+
     return {
         validOutputType(pType) {
             if (VALID_OUTPUT_TYPES.some(pName => pName === pType)){
@@ -79,6 +87,19 @@ module.exports = (() => {
 
         },
 
+        validVerticalAlignment(pAlignment) {
+            if (mscgenjs
+                    .getAllowedValues()
+                    .regularArcTextVerticalAlignment
+                    .some(pValue => pValue.name === pAlignment)){
+                return pAlignment;
+            }
+
+            throw Error(
+                `\n  error: '${pAlignment}' is not a recognized vertical alignment.` +
+                `\n         You can use one of these: ${validVerticalAlignments()}\n\n`);
+        },
+
         validateArguments(pOptions) {
             return new Promise((pResolve, pReject) => {
                 if (!pOptions.inputFrom) {
@@ -107,6 +128,12 @@ module.exports = (() => {
         validNamedStyleRE: mscgenjs.getAllowedValues()
             .namedStyle
             .filter(pValue => pValue.experimental === false)
+            .map(pValue => pValue.name)
+            .join("|"),
+
+        validVerticalAlignmentRE: mscgenjs.getAllowedValues()
+            .regularArcTextVerticalAlignment
+            // .filter(pValue => pValue.experimental === false)
             .map(pValue => pValue.name)
             .join("|")
     };

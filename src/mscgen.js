@@ -41,6 +41,13 @@ try {
             "-m --mirror-entities",
             "Repeat the entities on the chart's bottom"
         ).option(
+            "-v --vertical-alignment <alignment>",
+            // "Vertical alignment of labels on regular arcs",
+            `Vertical alignment of labels on regular arcs. Experimental!
+                                     ${validations.validVerticalAlignmentRE} (default middle)`,
+            validations.validVerticalAlignment,
+            "middle"
+        ).option(
             "-l --license",
             "Display license and exit",
             () => {

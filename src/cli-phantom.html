@@ -23,7 +23,7 @@
 <body><pre id="__svg">Rendering failed, apparently</pre>
 <script>
 
-    function renderInThePage(pASTString, pModuleBase, pStyleAdditions, pMirrorEntities, pAdditionalTemplate){
+    function renderInThePage(pASTString, pModuleBase, pStyleAdditions, pMirrorEntities, pAdditionalTemplate, pRegularArcTextVerticalAlignment){
         require([pModuleBase + '/render/graphics/renderast'], function(renderer){
 
             function sizeIsRelative(pSize) {
@@ -64,7 +64,8 @@
                 {
                     styleAdditions         : pStyleAdditions,
                     additionalTemplate     : pAdditionalTemplate,
-                    mirrorEntitiesOnBottom : (pMirrorEntities === "1")
+                    mirrorEntitiesOnBottom : (pMirrorEntities === "1"),
+                    regularArcTextVerticalAlignment: pRegularArcTextVerticalAlignment
                 }
             );
             makeRelativeSizeAbsolute(window.__svg.firstElementChild);
@@ -72,7 +73,7 @@
         });
     }
 
-    function renderVectorInThePage(pASTString, pModuleBase, pStyleAdditions, pMirrorEntities, pAdditionalTemplate){
+    function renderVectorInThePage(pASTString, pModuleBase, pStyleAdditions, pMirrorEntities, pAdditionalTemplate, pRegularArcTextVerticalAlignment){
         require([pModuleBase + '/render/graphics/renderast'], function(renderer){
             window.__svg.innerHTML = "";
             renderer.clean('__svg', window);
@@ -84,7 +85,8 @@
                     {
                         styleAdditions         : pStyleAdditions,
                         additionalTemplate     : pAdditionalTemplate,
-                        mirrorEntitiesOnBottom : (pMirrorEntities === "1")
+                        mirrorEntitiesOnBottom : (pMirrorEntities === "1"),
+                        regularArcTextVerticalAlignment: pRegularArcTextVerticalAlignment
                     }
                 )
             );

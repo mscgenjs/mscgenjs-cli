@@ -77,6 +77,7 @@ module.exports = (() => {
             args.push((pOptions && pOptions.styleAdditions) || "");
             args.push((pOptions && pOptions.mirrorEntities) ? "1" : "0");
             args.push((pOptions && pOptions.additionalTemplate) || "");
+            args.push((pOptions && pOptions.regularArcTextVerticalAlignment) || "middle");
 
             let lChildProcess = childProcess.spawn(binPath, args);
 
@@ -174,7 +175,8 @@ module.exports = (() => {
                 {
                     styleAdditions     : pOptions.css,
                     additionalTemplate : pOptions.namedStyle,
-                    mirrorEntities     : Boolean(pOptions.mirrorEntities)
+                    mirrorEntities     : Boolean(pOptions.mirrorEntities),
+                    regularArcTextVerticalAlignment: pOptions.verticalAlignment
                 }
             );
         } else {

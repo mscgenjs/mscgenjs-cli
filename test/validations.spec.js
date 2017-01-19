@@ -59,6 +59,23 @@ describe('cli/validations', () => {
         });
     });
 
+    describe('#verticalAlignment() - ', () => {
+        it("'untoward' is not a recognized alignment", () => {
+            let lFoundError = "";
+
+            try {
+                val.validVerticalAlignment("untoward");
+            } catch (e) {
+                lFoundError = e.message;
+            }
+            expect(lFoundError).to.contain("error: 'untoward' is not a recognized vertical alignment");
+        });
+
+        it("'above' is a valid vertical alignment", () => {
+            assert.equal(val.validVerticalAlignment("above"), "above");
+        });
+    });
+
     describe('#validateArguments() - ', () => {
         it("'-T svg -o kaboeki.svg fixtures/rainbow.mscin is oki", () => {
             try {
