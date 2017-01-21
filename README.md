@@ -56,21 +56,23 @@ mscgenjs -T png coolchart.mscgen
 Yes. Run `mscgenjs` with `-h` or `--help` to get them all:
 
 ```
-    Usage: mscgen_js [options] [infile]
+    Usage: mscgenjs [options] [infile]
 
     Options:
 
-      -h, --help                output usage information
-      -V, --version             output the version number
-      -T --output-type <type>   svg|png|jpeg|mscgen|msgenny|xu|dot|doxygen|json
-      -I --input-type <type>    mscgen|msgenny|xu|json|ast
-      -i --input-from <file>    File to read from. use - for stdin.
-      -o --output-to <file>     File to write to. use - for stdout.
-      -p --parser-output        Print parsed msc output
-      -s --css <string>         Additional styles to use. Experimental!
-      -n --named-style <style>  lazy|cygne|pegasse|classic
-      -m --mirror-entities      Repeat the entities on the chart's bottom
-      -l --license              Display license and exit
+      -h, --help                           output usage information
+      -V, --version                        output the version number
+      -T --output-type <type>              svg|png|jpeg|mscgen|msgenny|xu|json|ast|dot|doxygen
+      -I --input-type <type>               mscgen|msgenny|xu|json|ast
+      -i --input-from <file>               File to read from. use - for stdin.
+      -o --output-to <file>                File to write to. use - for stdout.
+      -p --parser-output                   Print parsed msc output
+      -s --css <string>                    Additional styles to use. Experimental!
+      -n --named-style <style>             basic|lazy|classic|cygne|pegasse
+      -m --mirror-entities                 Repeat the entities on the chart's bottom
+      -v --vertical-alignment <alignment>  Vertical alignment of labels on regular arcs. Experimental!
+                                           above|middle|below (default middle)
+      -l --license                         Display license and exit
 ```
 
 ### Basic use: produce pictures from a script
@@ -151,7 +153,7 @@ type:
 ```sh
 mscgenjs parsed.json
 ```
-### Named styles (experimental)
+### Named styles
 mscgenjs contains a few 'baked in' styles that tweak the way its output looks
 a bit.
 ```sh
@@ -222,6 +224,20 @@ some voodoo to make sure the arrow heads are in the same color as the arc.
   .signal-text .method-text .return-text .callback-text .lost-text
   .emphasised-text`
 - `.watermark`
+
+
+### Vertical alignment
+By default on regular arcs (->, =>, =>>, --, -x :>) longer labels vertically
+align so the arc itself stays in the middle. It's possible to influence that
+by making the label stay above the arc.
+
+By default it looks like this:
+![the label is aligned around the arc here (vertical-alignment 'middle')](samples/vertical-align-middle.png)
+
+When you run the command with `--vertical-alignment above`:
+
+![the label is aligned above the arc here (vertical-alignment 'above')](samples/vertical-align-above.png)
+
 
 ## What is the license?
 [GPL-3.0](LICENSE.md)
