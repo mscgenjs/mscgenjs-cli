@@ -12,7 +12,7 @@
   "dependencies": {
     "amdefine": "1.0.1",
     "commander": "2.9.0",
-    "mscgenjs": "1.9.2",
+    "mscgenjs": "1.9.10",
     "phantomjs-prebuilt": "2.1.14",
     "requirejs": "2.3.3"
   },
