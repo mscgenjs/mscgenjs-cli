@@ -1,6 +1,6 @@
 {
   "name": "mscgenjs-cli",
-  "version": "1.9.2",
+  "version": "1.9.10",
   "description": "Command line interface to mscgenjs",
   "main": "src/mscgen.js",
   "preferGlobal": true,
