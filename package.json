@@ -12,18 +12,18 @@
   "dependencies": {
     "amdefine": "1.0.1",
     "commander": "2.9.0",
-    "mscgenjs": "1.9.11",
+    "mscgenjs": "1.10.0",
     "phantomjs-prebuilt": "2.1.14",
     "requirejs": "2.3.3"
   },
   "devDependencies": {
     "chai": "3.5.0",
     "chai-xml": "0.3.1",
-    "eslint": "3.18.0",
+    "eslint": "3.19.0",
     "istanbul": "0.4.5",
     "js-makedepend": "2.2.2",
     "mocha": "3.2.0",
-    "npm-check-updates": "2.10.4",
+    "npm-check-updates": "2.10.5",
     "nsp": "2.6.3"
   },
   "scripts": {
