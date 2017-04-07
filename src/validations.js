@@ -127,7 +127,7 @@ module.exports = (() => {
 
         validNamedStyleRE: mscgenjs.getAllowedValues()
             .namedStyle
-            .filter(pValue => pValue.experimental === false)
+            .filter(pValue => (pValue.experimental === false && pValue.deprecated === false))
             .map(pValue => pValue.name)
             .join("|"),
 
