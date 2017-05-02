@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/mscgenjs/mscgenjs-cli.svg?branch=master)][travis.mscgenjs]
 [![bitHound Overall Score](https://www.bithound.io/github/mscgenjs/mscgenjs-cli/badges/score.svg)][bithound.mscgenjs]
- [![Test Coverage](https://gitlab.com/sverweij/mscgenjs-cli/badges/master/coverage.svg)](https:    //gitlab.com/sverweij/mscgenjs-cli/builds)
+[![Test Coverage](https://gitlab.com/sverweij/mscgenjs-cli/badges/master/coverage.svg)][gitlab.mscgenjsbuild]
 [![Dependency Status](https://david-dm.org/mscgenjs/mscgenjs-cli.svg)](https://david-dm.org/mscgenjs/mscgenjs-cli)
 [![devDependency Status](https://david-dm.org/mscgenjs/mscgenjs-cli/dev-status.svg)](https://david-dm.org/mscgenjs/mscgenjs-cli#info=devDependencies)
 [![npm stable version](https://img.shields.io/npm/v/mscgenjs-cli.svg)](https://npmjs.com/package/mscgenjs-cli)
@@ -255,3 +255,4 @@ When you run the command with `--vertical-alignment above`:
 [mscgen-preview]: https://atom.io/packages/mscgen-preview
 [mscgen_js]: https://github.com/sverweij/mscgenjs-core
 [travis.mscgenjs]: https://travis-ci.org/mscgenjs/mscgenjs-cli
+[gitlab.mscgenjsbuild]: https://gitlab.com/sverweij/mscgenjs-cli/builds
