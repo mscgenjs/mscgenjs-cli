@@ -220,11 +220,9 @@ describe('cli/actions', () => {
                             pPair.expected
                         );
                     }
-                    done();
                 }).catch(e => {
-                    done();
-                    expect(e.name).to.equal(pPair.expected);
-                });
+                    expect(e.name).to.equal(pPair.expectedError);
+                }).then(done, done);
             });
         });
     });
