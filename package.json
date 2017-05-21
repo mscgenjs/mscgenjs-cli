@@ -12,7 +12,7 @@
   "dependencies": {
     "amdefine": "1.0.1",
     "commander": "2.9.0",
-    "mscgenjs": "1.11.0",
+    "mscgenjs": "1.12.1",
     "phantomjs-prebuilt": "2.1.14",
     "requirejs": "2.3.3"
   },
@@ -22,8 +22,8 @@
     "eslint": "3.19.0",
     "istanbul": "0.4.5",
     "js-makedepend": "2.2.3",
-    "mocha": "3.3.0",
-    "npm-check-updates": "2.11.0",
+    "mocha": "3.4.1",
+    "npm-check-updates": "2.11.1",
     "nsp": "2.6.3"
   },
   "scripts": {
