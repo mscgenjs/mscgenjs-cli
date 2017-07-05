@@ -75,7 +75,7 @@ push-mirrors: mirrors
 	$(GIT) push gitlab-mirror
 
 test:
-	$(NPM) run test
+	$(NPM) test
 
 nsp:
 	$(NPM) run nsp
