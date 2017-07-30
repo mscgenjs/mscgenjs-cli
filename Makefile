@@ -54,8 +54,11 @@ prerequisites: .npmignore
 lint:
 	$(NPM) run lint
 
+lint-fix:
+	$(NPM) run lint:fix
+
 cover: src/mscgen.js
-	$(NPM) run cover
+	$(NPM) run test:cover
 
 tag:
 	$(GIT) tag -a `utl/getver` -m "tag release `utl/getver`"
@@ -90,7 +93,7 @@ check: lint stylecheck test
 
 fullcheck: check outdated nsp
 
-update-dependencies: run-update-dependencies test nsp
+update-dependencies: run-update-dependencies test nsp lint-fix
 	$(GIT) diff package.json
 
 run-update-dependencies:

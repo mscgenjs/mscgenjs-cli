@@ -13,7 +13,7 @@ install:
 script:
   - npm run lint
   - npm run nsp
-  - npm run cover
+  - npm run test:cover
 
 branches:
   except:

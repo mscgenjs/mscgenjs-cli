@@ -27,11 +27,12 @@
     "nsp": "2.6.3"
   },
   "scripts": {
-    "test": "mocha -R dot --timeout 10000 --recursive test",
-    "cover": "istanbul cover node_modules/mocha/bin/_mocha -- --timeout 12000 --recursive test",
-    "nsp": "nsp check --warn-only",
     "lint": "eslint src test",
-    "npm-check-updates": "ncu --upgrade"
+    "lint:fix": "eslint --fix src test",
+    "npm-check-updates": "ncu --upgrade",
+    "nsp": "nsp check --warn-only",
+    "test": "mocha -R dot --timeout 10000 --recursive test",
+    "test:cover": "istanbul cover node_modules/mocha/bin/_mocha -- --timeout 12000 --recursive test"
   },
   "repository": {
     "type": "git",
