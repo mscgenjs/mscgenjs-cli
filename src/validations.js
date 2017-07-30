@@ -62,9 +62,9 @@ module.exports = (() => {
 
         validInputType(pType) {
             if (mscgenjs
-                    .getAllowedValues()
-                    .inputType
-                    .some(value => value.name === pType)){
+                .getAllowedValues()
+                .inputType
+                .some(value => value.name === pType)){
                 return pType;
             }
 
@@ -75,9 +75,9 @@ module.exports = (() => {
 
         validNamedStyle(pStyle) {
             if (mscgenjs
-                    .getAllowedValues()
-                    .namedStyle
-                    .some(value => value.name === pStyle)){
+                .getAllowedValues()
+                .namedStyle
+                .some(value => value.name === pStyle)){
                 return pStyle;
             }
 
@@ -89,9 +89,9 @@ module.exports = (() => {
 
         validVerticalAlignment(pAlignment) {
             if (mscgenjs
-                    .getAllowedValues()
-                    .regularArcTextVerticalAlignment
-                    .some(pValue => pValue.name === pAlignment)){
+                .getAllowedValues()
+                .regularArcTextVerticalAlignment
+                .some(pValue => pValue.name === pAlignment)){
                 return pAlignment;
             }
 

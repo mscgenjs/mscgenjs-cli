@@ -61,8 +61,8 @@ try {
     validations.validateArguments(
         require("./normalizations").normalize(program.args[0], program)
     )
-    .then(actions.transform)
-    .catch(presentError);
+        .then(actions.transform)
+        .catch(presentError);
 } catch (e) {
     presentError(e);
 }

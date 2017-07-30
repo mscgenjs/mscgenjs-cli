@@ -69,9 +69,9 @@ module.exports = (() => {
             return;
         }
         return path.join(
-                    path.dirname(pInputFrom),
-                    path.basename(pInputFrom, path.extname(pInputFrom))
-                ).concat('.').concat(pOutputType);
+            path.dirname(pInputFrom),
+            path.basename(pInputFrom, path.extname(pInputFrom))
+        ).concat('.').concat(pOutputType);
     }
 
     function determineOutputTo(pOutputTo, pInputFrom, pOutputType){
