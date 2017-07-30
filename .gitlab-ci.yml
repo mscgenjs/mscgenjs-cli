@@ -10,4 +10,4 @@ test_async:
    - npm install
    - npm run lint
    - npm run nsp
-   - npm run cover
+   - npm run test:cover
