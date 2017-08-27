@@ -1,4 +1,6 @@
-a, b, c;
+a,
+b,
+c;
 
 a -> b : brace yourself!,
 b -> c : he sez to brace yeself;
