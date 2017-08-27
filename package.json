@@ -31,6 +31,8 @@
     "lint:fix": "eslint --fix src test",
     "npm-check-updates": "ncu --upgrade",
     "nsp": "nsp check --warn-only",
+    "postversion": "git push && git push --tags && npm publish",
+    "preversion": "test `git branch | grep \"^* [a-zA-Z]\" | cut -c 3-` = 'master'",
     "test": "mocha -R dot --timeout 10000 --recursive test",
     "test:cover": "istanbul cover node_modules/mocha/bin/_mocha -- --timeout 12000 --recursive test"
   },
