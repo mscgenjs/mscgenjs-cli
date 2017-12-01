@@ -1,4 +1,5 @@
 # mscgen_js - command line interface
+_Render sequence charts from the command line_
 
 [![Build Status](https://travis-ci.org/mscgenjs/mscgenjs-cli.svg?branch=master)][travis.mscgenjs]
 [![bitHound Overall Score](https://www.bithound.io/github/mscgenjs/mscgenjs-cli/badges/score.svg)][bithound.mscgenjs]

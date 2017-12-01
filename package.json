@@ -1,7 +1,7 @@
 {
   "name": "mscgenjs-cli",
   "version": "1.12.6",
-  "description": "Command line interface to mscgenjs",
+  "description": "Render sequence charts from the command line",
   "main": "src/mscgen.js",
   "preferGlobal": true,
   "bin": {
@@ -11,17 +11,17 @@
   },
   "dependencies": {
     "amdefine": "1.0.1",
-    "commander": "2.12.1",
-    "mscgenjs": "1.12.6",
+    "commander": "2.12.2",
+    "mscgenjs": "1.12.7",
     "phantomjs-prebuilt": "2.1.16",
     "requirejs": "2.3.5"
   },
   "devDependencies": {
     "chai": "4.1.2",
     "chai-xml": "0.3.1",
-    "eslint": "4.11.0",
+    "eslint": "4.12.1",
     "istanbul": "0.4.5",
-    "js-makedepend": "2.4.0",
+    "js-makedepend": "2.4.1",
     "mocha": "4.0.1",
     "npm-check-updates": "2.13.0",
     "nsp": "3.1.0"
