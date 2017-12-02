@@ -4,7 +4,7 @@
 module.exports = (() => {
     const path = require("path");
 
-    const INPUT_EXTENSIONS = {
+    const INPUT_EXTENSIONS = Object.freeze({
         "msgenny" : "msgenny",
         "mscgen"  : "mscgen",
         "msc"     : "mscgen",
@@ -13,8 +13,8 @@ module.exports = (() => {
         "xu"      : "xu",
         "json"    : "json",
         "ast"     : "json"
-    };
-    const OUTPUT_EXTENSIONS = {
+    });
+    const OUTPUT_EXTENSIONS = Object.freeze({
         "msgenny" : "msgenny",
         "mscgen"  : "mscgen",
         "msc"     : "mscgen",
@@ -29,7 +29,7 @@ module.exports = (() => {
         "jpeg"    : "jpeg",
         "dot"     : "dot",
         "doxygen" : "doxygen"
-    };
+    });
 
     /**
      * Given a filename in pString, returns what language is probably

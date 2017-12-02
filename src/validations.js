@@ -4,7 +4,7 @@ module.exports = (() => {
     const fs       = require("fs");
     const mscgenjs = require("mscgenjs");
 
-    const VALID_GRAPHICS_TYPES  = ["svg", "png", "jpeg"];
+    const VALID_GRAPHICS_TYPES  = Object.freeze(["svg", "png", "jpeg"]);
     const VALID_OUTPUT_TYPES = VALID_GRAPHICS_TYPES.concat(
         mscgenjs.getAllowedValues().outputType.map(pValue => pValue.name)
     );
