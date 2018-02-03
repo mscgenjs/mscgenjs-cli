@@ -245,9 +245,8 @@ When you run the command with `--vertical-alignment above`:
 
 ## How does mscgenjs render?
 - It uses the (pure javascript) [mscgen_js][mscgen_js] library.
-- For graphical formats (svg, png, jpeg) it uses mscgen_js in phantomjs.
-  If you want to know why, or want to know other gory details:
-  [src/README.md](src/README.md) tries to explain that.
+- For graphical formats (svg, png, jpeg) it uses mscgen_js in chrome headless
+  via the puppeteer library.
 
 [mscgen]: http://www.mcternan.me.uk/mscgen
 [atom]: https://atom.io
