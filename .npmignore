@@ -19,6 +19,7 @@ src/**
 test/**
 utl/**
 .bithoundrc
+.dependency-cruiser.json
 .eslintignore
 .eslintrc.json
 .gitlab-ci.yml
