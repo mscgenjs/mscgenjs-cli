@@ -3,7 +3,6 @@ const formatError = require("../../dist/actions/formatError");
 const chai    = require("chai");
 const expect  = chai.expect;
 
-
 describe('formatError()', () => {
     it("returns the message of non-syntax errors", () => {
         expect(formatError(new Error('hatsikidee!'))).to.equal('hatsikidee!');
