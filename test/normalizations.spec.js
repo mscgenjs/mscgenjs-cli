@@ -1,7 +1,7 @@
 "use strict";
 
 const expect    = require("chai").expect;
-const norm      = require("../src/normalizations");
+const norm      = require("../dist/normalizations");
 
 const TESTPAIRS = [
     {
@@ -19,7 +19,8 @@ const TESTPAIRS = [
                 inputFrom: "input.xu",
                 inputType: "msgenny",
                 outputTo: "output.svg",
-                outputType: "mscgen"
+                outputType: "mscgen",
+                regularArcTextVerticalAlignment: "middle"
             }
         }
     },
@@ -36,7 +37,8 @@ const TESTPAIRS = [
                 inputFrom: "input.xu",
                 inputType: "xu",
                 outputTo: "output.svg",
-                outputType: "svg"
+                outputType: "svg",
+                regularArcTextVerticalAlignment: "middle"
             }
         }
     },
@@ -54,7 +56,8 @@ const TESTPAIRS = [
                 inputType: "mscgen",
                 outputType: "json",
                 outputTo: "w00tchart.json",
-                parserOutput: true
+                parserOutput: true,
+                regularArcTextVerticalAlignment: "middle"
             }
         }
     },
@@ -71,7 +74,8 @@ const TESTPAIRS = [
                 inputFrom: "w00tchart.seq",
                 inputType: "mscgen",
                 outputType: "png",
-                outputTo: "a nice file.notanextension.png"
+                outputTo: "a nice file.notanextension.png",
+                regularArcTextVerticalAlignment: "middle"
             }
         }
     },
@@ -88,7 +92,8 @@ const TESTPAIRS = [
                 inputFrom: "-",
                 inputType: "mscgen",
                 outputTo: "output.svg",
-                outputType: "svg"
+                outputType: "svg",
+                regularArcTextVerticalAlignment: "middle"
             }
         }
     },
@@ -104,7 +109,8 @@ const TESTPAIRS = [
                 inputFrom: "achoo.ast",
                 inputType: "json",
                 outputTo: "achoo.svg",
-                outputType: "svg"
+                outputType: "svg",
+                regularArcTextVerticalAlignment: "middle"
             }
         }
     },
@@ -121,7 +127,8 @@ const TESTPAIRS = [
                 inputFrom: "achoo.interestingextension",
                 inputType: "json",
                 outputTo: "achoo.svg",
-                outputType: "svg"
+                outputType: "svg",
+                regularArcTextVerticalAlignment: "middle"
             }
         }
     },
@@ -137,7 +144,8 @@ const TESTPAIRS = [
                 inputFrom: "-",
                 inputType: "mscgen",
                 outputTo: undefined,
-                outputType: "svg"
+                outputType: "svg",
+                regularArcTextVerticalAlignment: "middle"
             }
         }
     },
@@ -152,7 +160,8 @@ const TESTPAIRS = [
                 inputFrom: undefined,
                 inputType: "mscgen",
                 outputTo: undefined,
-                outputType: "svg"
+                outputType: "svg",
+                regularArcTextVerticalAlignment: "middle"
             }
         }
     },
@@ -167,7 +176,8 @@ const TESTPAIRS = [
                 inputFrom: "inputFrom.bladiebla",
                 inputType: "mscgen",
                 outputTo: "inputFrom.svg",
-                outputType: "svg"
+                outputType: "svg",
+                regularArcTextVerticalAlignment: "middle"
             }
         }
     },
@@ -184,7 +194,8 @@ const TESTPAIRS = [
                 inputFrom: "argument.won",
                 inputType: "mscgen",
                 outputTo: "argument.svg",
-                outputType: "svg"
+                outputType: "svg",
+                regularArcTextVerticalAlignment: "middle"
             }
         }
     }

@@ -1,0 +1,11 @@
+wordwraparcs=true;
+
+a: sender,
+b: receiver,
+log: logging server;
+
+a => b: this is a message;
+b -> log: got message ('this is a message');
+b rbox b: do something intelligent;
+b >> a: this is a reply,
+log note log: actually saving that log thing can happy anytime. No guarantees;

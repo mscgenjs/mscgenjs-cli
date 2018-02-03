@@ -1,0 +1,163 @@
+# test01: all possible arcs
+msc {
+  hscale="0.6",
+  arcgradient="18",
+  wordwraparcs=false,
+  watermark="This humongous fictive chart contains all arcs possible in xù. It can be used for spot checks and for performance evaluations.";
+
+  0 [linecolor="white", textcolor="white", arclinecolor="transparent", arctextcolor="grey"],
+  a [linecolor="#008800", textbgcolor="#CCFFCC", arclinecolor="#008800"],
+  b [linecolor="#FF0000", textbgcolor="#FFCCCC", arclinecolor="#FF0000"],
+  c [linecolor="#0000FF", textbgcolor="#CCCCFF", arclinecolor="#0000FF"],
+  d [linecolor="#FF00FF", textbgcolor="#FFCCFF", arclinecolor="#FF00FF"],
+  e [linecolor="black", textbgcolor="#DDDDDD", arclinecolor="black"],
+  f [linecolor="orange", textbgcolor="#FFFFCC", arclinecolor="orange"],
+  g [linecolor="#117700", textbgcolor="#00FF00", arclinecolor="#117700"],
+  h [linecolor="purple", textbgcolor="violet", arclinecolor="purple"],
+  i [linecolor="grey", textbgcolor="white", arclinecolor="grey"],
+  j [linecolor="#008800", textbgcolor="#CCFFCC", arclinecolor="#008800"],
+  k [linecolor="#FF0000", textbgcolor="#FFCCCC", arclinecolor="#FF0000"];
+
+  a -- b [label="left to right", linecolor="transparent", textcolor="grey"],
+  b -- c [label="right to left", linecolor="transparent", textcolor="grey"],
+  c -- d [label="left to right\nbi-directional\n\n", linecolor="transparent", textcolor="grey"],
+  d -- e [label="right to left\nbi-directional\n\n", linecolor="transparent", textcolor="grey"],
+  e -- f [label="left to right\nnon-directional\n\n", linecolor="transparent", textcolor="grey"],
+  f -- g [label="left to right\nnon-directional\n\n", linecolor="transparent", textcolor="grey"],
+  g -- h [label="left to right\nself reference\n\n", linecolor="transparent", textcolor="grey"],
+  h -- i [label="right to left\nself reference\n\n", linecolor="transparent", textcolor="grey"],
+  i -- j [label="bi-directional\nself reference\n\n", linecolor="transparent", textcolor="grey"],
+  j -- k [label="non-directional\nself reference\n\n", linecolor="transparent", textcolor="grey"];
+  0 -- a [label="signal"],
+  a -> b [label="a -> b"],
+  b <- c [label="b <- c"],
+  c <-> d [label="c <-> d"],
+  e <-> d [label="e <-> d"],
+  e -- f [label="e -- f"],
+  g -- f [label="g -- f"],
+  g -> g [label="g -> g"],
+  h <- h [label="h <- h"],
+  i <-> i [label="i <-> i"],
+  j -- j [label="j -- j"];
+  0 -- a [label="method"],
+  a => b [label="a => b"],
+  b <= c [label="b <= c"],
+  c <=> d [label="c <=> d"],
+  e <=> d [label="e <=> d"],
+  e == f [label="e == f"],
+  g == f [label="g == f"],
+  g => g [label="g => g"],
+  h <= h [label="h <= h"],
+  i <=> i [label="i <=> i"],
+  j == j [label="j == j"];
+  0 -- a [label="return"],
+  a >> b [label="a >> b"],
+  b << c [label="b << c"],
+  c <<>> d [label="c <<>> d"],
+  e <<>> d [label="e <<>> d"],
+  e .. f [label="e .. f"],
+  g .. f [label="g .. g"],
+  g >> g [label="g >> g"],
+  h << h [label="h << h"],
+  i <<>> i [label="i <<>> i"],
+  j .. j [label="j .. j"];
+  0 -- a [label="callback"],
+  a =>> b [label="a =>> b"],
+  b <<= c [label="b <<= c"],
+  c <<=>> d [label="c <<=>> d"],
+  e <<=>> d [label="e <<=>> d"],
+  g =>> g [label="g =>> g"],
+  h <<= h [label="g <<= g"],
+  i <<=>> i [label="i <<=>>i "];
+  0 -- a [label="lost"],
+  a -x b [label="a -x b"],
+  b x- c [label="b x- c"],
+  g -x g [label="g -x g"],
+  h x- h [label="h x- h"];
+  0 -- a [label="emphasised"],
+  a :> b [label="a :> b"],
+  b <: c [label="b <: c"],
+  c <:> d [label="c <:> d"],
+  e <:> d [label="e <:> d"],
+  e :: f [label="e :: f"],
+  g :: f [label="g :: f"],
+  g :> g [label="g :> g"],
+  h <: h [label="h <: h"],
+  i <:> i [label="i <:> i"],
+  j :: j [label="j :: j"];
+  0 -- a [label="note"],
+  b note c [label="b note c", linecolor="black", textbgcolor="#FFFFCC"],
+  e note d [label="e note d", linecolor="black", textbgcolor="#FFFFCC"],
+  g note g [label="g note g", linecolor="black", textbgcolor="#FFFFCC"];
+  0 -- a [label="box"],
+  b box c [label="b box c", linecolor="black", textbgcolor="white"],
+  e box d [label="e box d", linecolor="black", textbgcolor="white"],
+  g box g [label="g box g", linecolor="black", textbgcolor="white"];
+  0 -- a [label="rbox"],
+  b rbox c [label="b rbox c", linecolor="black", textbgcolor="white"],
+  e rbox d [label="e rbox d", linecolor="black", textbgcolor="white"],
+  g rbox g [label="g rbox g", linecolor="black", textbgcolor="white"];
+  0 -- a [label="abox"],
+  b abox c [label="b abox c", linecolor="black", textbgcolor="white"],
+  e abox d [label="e abox d", linecolor="black", textbgcolor="white"],
+  g abox g [label="g abox g", linecolor="black", textbgcolor="white"];
+  0 -- a [label="empty row"],
+  ||| [label="|||"];
+  ... [label="...\n(omitted row)"];
+  0 -- a [label="comment"],
+  --- [label="---", linecolor="grey", textbgcolor="white"];
+  0 -- a [label="broadcasts"];
+  a -> * [label="a -> *"];
+  * <- c [label="* <- c"];
+  b <-> * [label="b <-> *"];
+  d => * [label="d => *"];
+  * <= e [label="* <= e"];
+  d <=> * [label="d <=> *"];
+  f >> * [label="f >> *"];
+  * << g [label="* << g"];
+  f <<>> * [label="f <<>> *"];
+  h =>> * [label="h =>> *"];
+  * <<= i [label="* <<= i"];
+  h <<=>> * [label="h <<=>> *"];
+  j -x * [label="j -x *"];
+  * x- k [label="* x- k"];
+  a :> * [label="a :> *"];
+  * <: c [label="* <: c"];
+  b <:> * [label="b <:> *"];
+  --- [linecolor="grey", textbgcolor="white"];
+  0 -- a [label="inline\nexpressions"];
+  b alt k [label="b alt k", linecolor="grey", textbgcolor="white"] {
+    c else j [label="c else j", linecolor="grey", textbgcolor="white"] {
+      d opt i [label="d opt i", linecolor="grey", textbgcolor="white"] {
+        e break h [label="e break k", linecolor="grey", textbgcolor="white"] {
+          f critical g [label="f critical g", linecolor="grey", textbgcolor="white"] {
+            --- [linecolor="grey", textbgcolor="white"];
+          };
+        };
+      };
+    };
+  };
+  b neg k [label="b neg k", linecolor="grey", textbgcolor="white"] {
+    b strict j [label="b strict j", linecolor="grey", textbgcolor="white"] {
+      b seq i [label="b seq i", linecolor="grey", textbgcolor="white"] {
+        b assert h [label="b assert h", linecolor="grey", textbgcolor="white"] {
+          b exc g [label="b exc g", linecolor="grey", textbgcolor="white"] {
+            --- [linecolor="grey", textbgcolor="white"];
+          };
+        };
+      };
+    };
+  };
+  b ref k [label="b ref k", linecolor="grey", textbgcolor="white"] {
+    c consider k [label="c consider k", linecolor="grey", textbgcolor="white"] {
+      k ignore d [label="k ignore d", linecolor="grey", textbgcolor="white"] {
+        e loop k [label="e loop k", linecolor="grey", textbgcolor="white"] {
+          k par f [label="k par f", linecolor="grey", textbgcolor="white"] {
+            --- [linecolor="grey", textbgcolor="white"];
+          };
+        };
+      };
+    };
+  };
+  ||| [label="options used: hscale=\"0.6\", arcgradient=\"18\""];
+}

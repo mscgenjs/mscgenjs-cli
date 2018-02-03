@@ -4,7 +4,7 @@ const path   = require("path");
 const chai   = require("chai");
 const assert = chai.assert;
 const expect = chai.expect;
-const val    = require("../src/validations");
+const val    = require("../dist/validations");
 
 describe('cli/validations', () => {
 
@@ -81,7 +81,7 @@ describe('cli/validations', () => {
             try {
                 val.validateArguments(
                     {
-                        inputFrom: path.join(__dirname, "fixtures/rainbow.mscin"),
+                        inputFrom: path.join(__dirname, "actions/fixtures/rainbow.mscin"),
                         outputTo: "kaboeki.svg",
                         outputType: "svg"
                     }
