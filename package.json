@@ -1,5 +1,5 @@
 {
-  "name": "tmp_chrome_headless",
+  "name": "mscgenjs-cli",
   "version": "2.0.0-beta-1",
   "description": "Render sequence charts from the command line",
   "repository": {
