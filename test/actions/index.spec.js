@@ -1,7 +1,6 @@
 "use strict";
 const index = require("../../dist/actions/index");
 const chai  = require("chai");
-const fs    = require("fs");
 
 chai.use(require("chai-as-promised"));
 const expect  = chai.expect;
@@ -17,7 +16,7 @@ describe('index()', () => {
             })
         ).to.eventually.equal(
             true
-        )
+        );
     });
     it("when transpiling something non-existing - promise rejects", () => {
         expect(

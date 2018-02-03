@@ -216,3 +216,5 @@ describe('cli/normalizations', () => {
         });
     });
 });
+
+/* eslint no-undefined: 0 */

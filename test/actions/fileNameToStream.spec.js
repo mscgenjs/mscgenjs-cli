@@ -21,7 +21,7 @@ describe("fileNameToStream", () => {
     });
     it("getOutStream('./tmp_hello') yields a writable file stream", () => {
         expect(getOutStream("./tmp_hello") instanceof fs.WriteStream).to.be.true;
-        
+
     });
     it("getOutStream('./tmp_hello') does not yields stdout", () => {
         expect(getOutStream("./tmp_hello")).to.not.equal(process.stdout);
@@ -45,4 +45,4 @@ describe("fileNameToStream", () => {
     it("getInStream('./tmp_hello') does not yields stdin", () => {
         expect(getInStream("./tmp_hello")).to.not.equal(process.stdin);
     });
-})
+});

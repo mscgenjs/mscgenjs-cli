@@ -14,6 +14,6 @@ describe('readFromStream()', () => {
             )
         ).to.eventually.equal(
             fs.readFileSync(`${__dirname}/fixtures/bigandhonking.xu`, 'utf8')
-        )
+        );
     });
 });
