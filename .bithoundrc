@@ -9,9 +9,5 @@
     "wc": {
       "limit": 6000
     }
-  },
-  "dependencies": {
-    "unused-ignores": [
-    ]
   }
 }
