@@ -11,7 +11,7 @@ function cookEvalFunction(pAST: string, pOptions: INormalizedOptions): string {
             "data-regular-arc-text-vertical-alignment",
             "${pOptions.regularArcTextVerticalAlignment}"
         );
-        lReplaceMe.innerHTML = \`${pAST}\``;
+        lReplaceMe.innerHTML = \`${pAST.replace(/\\/g, "\\\\")}\``;
 }
 
 export async function renderTheShizzle(pAST: string, pOptions: INormalizedOptions) {
@@ -39,14 +39,13 @@ export async function renderTheShizzle(pAST: string, pOptions: INormalizedOption
             path: "./node_modules/mscgenjs-inpage/dist/mscgen-inpage.js",
         });
 
-        // TODO if rendering failed there's a pre instead of an
-        // svg. Maybe listen to to the appearance of the
-        // 'data-rendered-by' attribute on the mscgen#replaceme tag?
-        await page.waitFor("svg#mscgenjsreplaceme", {timeout: 10000});
+        // await page.waitFor("svg#mscgenjsreplaceme", {timeout: 10000});
+        await page.waitFor("mscgen#replaceme[data-renderedby='mscgen_js']", {timeout: 10000});
 
         if (pOptions.outputType === "svg") {
             return await page.evaluate(() => {
-                return Promise.resolve(document.getElementsByTagName("svg")[0].outerHTML);
+                return Promise.resolve(document.getElementById('mscgenjsreplaceme').outerHTML);
+                // return Promise.resolve(document.getElementsByTagName("svg")[0].outerHTML);
             });
         } else {
             await page.setViewport({
