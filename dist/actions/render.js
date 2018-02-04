@@ -35,7 +35,6 @@ function renderTheShizzle(pAST, pOptions) {
             yield page.addScriptTag({
                 path: "./node_modules/mscgenjs-inpage/dist/mscgen-inpage.js",
             });
-            // await page.waitFor("svg#mscgenjsreplaceme", {timeout: 10000});
             yield page.waitFor("mscgen#replaceme[data-renderedby='mscgen_js']", { timeout: 10000 });
             if (pOptions.outputType === "svg") {
                 return yield page.evaluate(() => {
@@ -44,7 +43,6 @@ function renderTheShizzle(pAST, pOptions) {
                         return Promise.resolve(lSVGElement.outerHTML);
                     }
                     return Promise.reject("Couldn't render the SVG.");
-                    // return Promise.resolve(document.getElementsByTagName("svg")[0].outerHTML);
                 });
             }
             else {
@@ -61,8 +59,8 @@ function renderTheShizzle(pAST, pOptions) {
                 });
             }
         }
-        catch (e) {
-            return e;
+        catch (pError) {
+            return pError;
         }
         finally {
             if (Boolean(browser) && typeof browser.close === "function") {
