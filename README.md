@@ -3,7 +3,6 @@ _Render sequence charts from the command line_
 
 [![Build Status](https://travis-ci.org/mscgenjs/mscgenjs-cli.svg?branch=master)][travis.mscgenjs]
 [![bitHound Overall Score](https://www.bithound.io/github/mscgenjs/mscgenjs-cli/badges/score.svg)][bithound.mscgenjs]
-[![Test Coverage](https://gitlab.com/sverweij/mscgenjs-cli/badges/master/coverage.svg)][gitlab.mscgenjsbuild]
 [![Dependency Status](https://david-dm.org/mscgenjs/mscgenjs-cli.svg)](https://david-dm.org/mscgenjs/mscgenjs-cli)
 [![devDependency Status](https://david-dm.org/mscgenjs/mscgenjs-cli/dev-status.svg)](https://david-dm.org/mscgenjs/mscgenjs-cli#info=devDependencies)
 [![npm stable version](https://img.shields.io/npm/v/mscgenjs-cli.svg)](https://npmjs.com/package/mscgenjs-cli)
