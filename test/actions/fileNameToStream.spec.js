@@ -33,7 +33,7 @@ describe("fileNameToStream", () => {
     it("getInStream('-') yields stdin", () => {
         expect(getInStream("-")).to.equal(process.stdin);
     });
-    it("getInStream('-') yields does not yield a file stream", () => {
+    it("getInStream('-') does not yield a file stream", () => {
         expect(getInStream("-") instanceof fs.ReadStream).to.be.false;
     });
     it("getInStream('./tmp_hello') yields a writable stream", () => {
