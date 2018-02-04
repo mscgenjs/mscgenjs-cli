@@ -46,7 +46,7 @@
   ],
   "license": "GPL-3.0",
   "engines": {
-    "node": ">=4.0"
+    "node": ">=6.0"
   },
   "bugs": {
     "url": "https://github.com/mscgenjs/mscgenjs-cli/issues"
