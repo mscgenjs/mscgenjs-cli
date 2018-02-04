@@ -38,7 +38,7 @@ function renderTheShizzle(pAST, pOptions) {
             yield page.waitFor("mscgen#replaceme[data-renderedby='mscgen_js']", { timeout: 10000 });
             if (pOptions.outputType === "svg") {
                 return yield page.evaluate(() => {
-                    const lSVGElement = document.getElementById('mscgenjsreplaceme');
+                    const lSVGElement = document.getElementById("mscgenjsreplaceme");
                     if (lSVGElement) {
                         return Promise.resolve(lSVGElement.outerHTML);
                     }

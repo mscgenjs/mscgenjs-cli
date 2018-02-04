@@ -43,11 +43,11 @@ export async function renderTheShizzle(pAST: string, pOptions: INormalizedOption
 
         if (pOptions.outputType === "svg") {
             return await page.evaluate(() => {
-                const lSVGElement = document.getElementById('mscgenjsreplaceme')
+                const lSVGElement = document.getElementById("mscgenjsreplaceme");
                 if (lSVGElement) {
                     return Promise.resolve(lSVGElement.outerHTML);
                 }
-                return Promise.reject("Couldn't render the SVG.")
+                return Promise.reject("Couldn't render the SVG.");
             });
         } else {
             await page.setViewport({
