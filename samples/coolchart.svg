@@ -1,1 +1,102 @@
-<svg version="1.1" id="mscgenjs__svg" class="mscgenjs__svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="688" height="311.02249908447266" viewBox="0 0 688 311.02249908447266"><defs><style type="text/css">svg.mscgenjs__svg{font-family:Helvetica,sans-serif;font-size:12px;font-weight:normal;font-style:normal;text-decoration:none;background-color:white;stroke:black;stroke-width:2}.mscgenjs__svg path, .mscgenjs__svg rect{fill:none}.mscgenjs__svg .label-text-background{fill:white;stroke:white;stroke-width:0}.mscgenjs__svg .bglayer{fill:white;stroke:white;stroke-width:0}.mscgenjs__svg line{}.mscgenjs__svg .return, .mscgenjs__svg .comment{stroke-dasharray:5,3}.mscgenjs__svg .inline_expression_divider{stroke-dasharray:10,5}.mscgenjs__svg text{color:inherit;stroke:none;text-anchor:middle}.mscgenjs__svg text.anchor-start{text-anchor:start}.mscgenjs__svg .arrow-marker{overflow:visible}.mscgenjs__svg .arrow-style{stroke-width:1}.mscgenjs__svg .arcrow, .mscgenjs__svg .arcrowomit, .mscgenjs__svg .emphasised{stroke-linecap:butt}.mscgenjs__svg .arcrowomit{stroke-dasharray:2,2}.mscgenjs__svg .box, .mscgenjs__svg .entity{fill:white;stroke-linejoin:round}.mscgenjs__svg .inherit{stroke:inherit;color:inherit}.mscgenjs__svg .inherit-fill{fill:inherit}.mscgenjs__svg .watermark{font-size:48pt;font-weight:bold;opacity:0.14}.mscgenjs__svg text.entity-text{font-weight:bold;}.mscgenjs__svg text.return-text{font-style:italic}.mscgenjs__svg path.note{fill:#FFFFCC}.mscgenjs__svg rect.label-text-background{opacity:0.9}.mscgenjs__svg line.comment,.mscgenjs__svg rect.inline_expression,.mscgenjs__svg .inline_expression_divider,.mscgenjs__svg .inline_expression_label{stroke:grey}</style><marker orient="auto" id="mscgenjs__svgcallback-#005B82" class="arrow-marker" viewBox="0 0 10 10" refX="9" refY="3" markerUnits="strokeWidth" markerWidth="10" markerHeight="10"><path d="M 1,1 l 8,2 l-8,2" class="arrow-style" style="stroke-dasharray:100,1;stroke:#005B82"></path></marker><marker orient="auto" id="mscgenjs__svgcallback-l-#005B82" class="arrow-marker" viewBox="0 0 10 10" refX="9" refY="3" markerUnits="strokeWidth" markerWidth="10" markerHeight="10"><path d="M17,1 l-8,2 l 8,2" class="arrow-style" style="stroke-dasharray:100,1;stroke:#005B82"></path></marker><marker orient="auto" id="mscgenjs__svgmethod-#005B82" class="arrow-marker" viewBox="0 0 10 10" refX="9" refY="3" markerUnits="strokeWidth" markerWidth="10" markerHeight="10"><polygon points="1,1  9,3  1,5" class="arrow-style" stroke="#005B82" fill="#005B82"></polygon></marker><marker orient="auto" id="mscgenjs__svgmethod-l-#005B82" class="arrow-marker" viewBox="0 0 10 10" refX="9" refY="3" markerUnits="strokeWidth" markerWidth="10" markerHeight="10"><polygon points="17,1 9,3 17,5" class="arrow-style" stroke="#005B82" fill="#005B82"></polygon></marker></defs><g id="mscgenjs__svg_body" transform="translate(50,3) scale(1,1)"><g id="mscgenjs__svg_background"><rect width="688" height="311.02" x="-50" y="-3" class="bglayer"></rect></g><g id="mscgenjs__svg_arcspans"></g><g id="mscgenjs__svg_lifelines"><line x1="70" y1="38" x2="70" y2="76" class="arcrow" style="stroke:#00A1DE;"></line><line x1="294" y1="38" x2="294" y2="76" class="arcrow" style="stroke:#00A1DE;"></line><line x1="518" y1="38" x2="518" y2="76" class="arcrow" style="stroke:transparent;"></line><line x1="70" y1="76" x2="70" y2="129.53" class="arcrow" style="stroke:#00A1DE;"></line><line x1="294" y1="76" x2="294" y2="129.53" class="arcrow" style="stroke:#00A1DE;"></line><line x1="518" y1="76" x2="518" y2="129.53" class="arcrow" style="stroke:transparent;"></line><line x1="70" y1="129.53" x2="70" y2="175.5" class="arcrow" style="stroke:#00A1DE;"></line><line x1="294" y1="129.53" x2="294" y2="175.5" class="arcrow" style="stroke:#00A1DE;"></line><line x1="518" y1="129.53" x2="518" y2="175.5" class="arcrow" style="stroke:transparent;"></line><line x1="70" y1="175.5" x2="70" y2="213.5" class="arcrow" style="stroke:#00A1DE;"></line><line x1="294" y1="175.5" x2="294" y2="213.5" class="arcrow" style="stroke:#00A1DE;"></line><line x1="518" y1="175.5" x2="518" y2="213.5" class="arcrow" style="stroke:transparent;"></line><line x1="70" y1="213.5" x2="70" y2="251.5" class="arcrow" style="stroke:#00A1DE;"></line><line x1="294" y1="213.5" x2="294" y2="251.5" class="arcrow" style="stroke:#00A1DE;"></line><line x1="518" y1="213.5" x2="518" y2="251.5" class="arcrow" style="stroke:transparent;"></line><line x1="70" y1="251.5" x2="70" y2="305.02" class="arcrow" style="stroke:#00A1DE;"></line><line x1="294" y1="251.5" x2="294" y2="305.02" class="arcrow" style="stroke:#00A1DE;"></line><line x1="518" y1="251.5" x2="518" y2="305.02" class="arcrow" style="stroke:transparent;"></line></g><g id="mscgenjs__svg_sequence"><g><g><rect width="140" height="38" class="entity" style="fill:#00A1DE;stroke:#00A1DE;"></rect><g><text x="70" y="22" class="entity-text " style="fill:white;"><tspan>Alice</tspan></text></g></g><g><rect width="140" height="38" x="224" class="entity" style="fill:#00A1DE;stroke:#00A1DE;"></rect><g><text x="294" y="22" class="entity-text " style="fill:white;"><tspan>Bob</tspan></text></g></g><g><rect width="140" height="38" x="448" class="entity" style="stroke:transparent;"></rect><g><text x="518" y="22" class="entity-text "><tspan> </tspan></text></g></g></g><g><path d="M70,95.16 C182,95.26 182,117.96 70,117.96 " class="arc directional method" style="stroke:#005B82" marker-end="url(#mscgenjs__svgmethod-#005B82)"></path><g><rect width="98.64" height="12" x="73" y="68.44" class="label-text-background"></rect><text x="73" y="77.68" class="directional-text method-text anchor-start " style="fill:#005B82;"><tspan>sign message with</tspan></text><rect width="83.31" height="12" x="73" y="81.42" class="label-text-background"></rect><text x="73" y="90.67" class="directional-text method-text anchor-start " style="fill:#005B82;"><tspan>own private key</tspan></text></g></g><g><line x1="70" y1="152.51" x2="294" y2="152.51" class="arc directional method" style="stroke:#005B82" marker-end="url(#mscgenjs__svgmethod-#005B82)"></line><g><rect width="87.34" height="12" x="138.33" y="139.28" class="label-text-background"></rect><text x="182" y="148.52" class="directional-text method-text " style="fill:#005B82;"><tspan>signed message</tspan></text></g></g><g><line x1="294" y1="194.5" x2="70" y2="194.5" class="arc directional method" style="stroke:#005B82" marker-end="url(#mscgenjs__svgmethod-#005B82)"></line><g><rect width="123.31" height="11.98" x="120.34" y="181.27" class="label-text-background"></rect><text x="182" y="190.5" class="directional-text method-text " style="fill:#005B82;"><tspan>get Alice her public key</tspan></text></g></g><g><line x1="70" y1="232.5" x2="294" y2="232.5" class="arc directional return" style="stroke:#005B82" marker-end="url(#mscgenjs__svgcallback-#005B82)"></line><g><rect width="90.94" height="11.98" x="136.53" y="219.27" class="label-text-background"></rect><text x="182" y="228.5" class="directional-text return-text " style="fill:#005B82;"><tspan>Alices' public key</tspan></text></g></g><g><path d="M294,270.66 C406,270.76 406,293.46 294,293.46 " class="arc directional method" style="stroke:#005B82" marker-end="url(#mscgenjs__svgmethod-#005B82)"></path><g><rect width="80.64" height="12" x="297" y="243.94" class="label-text-background"></rect><text x="297" y="253.18" class="directional-text method-text anchor-start " style="fill:#005B82;"><tspan>verify message</tspan></text><rect width="115.56" height="12" x="297" y="256.92" class="label-text-background"></rect><text x="297" y="266.17" class="directional-text method-text anchor-start " style="fill:#005B82;"><tspan>with Alices' public key</tspan></text></g></g></g><g id="mscgenjs__svg_notes"><g><path d="M410,131.53 l207,0 l0,9 l9,0 m-9,-9 l9,9 l0,32.97 l-216,0 l0,-41.97 z" class="box note" style="fill:#E77B2F;stroke:white;"></path><g><text x="518" y="142.53" class="box-text note-text " style="fill:white;"><tspan>This is just a sample chart with</tspan></text><text x="518" y="155.51" class="box-text note-text " style="fill:white;"><tspan>a (high level) illustration of</tspan></text><text x="518" y="168.5" class="box-text note-text " style="fill:white;"><tspan>public key encryption.</tspan></text></g></g></g><g id="mscgenjs__svg_watermark"></g></g></svg>
+<svg version="1.1" id="mscgenjsreplaceme" class="mscgenjsreplaceme" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="688" height="325.61312103271484" viewBox="0 0 688 325.61312103271484"><desc>
+
+# Generated by mscgen_js - https://sverweij.github.io/mscgen_js
+{
+  "precomment": [
+    "# Alice &amp; Bob classics: public key encryption",
+    "\n"
+  ],
+  "meta": {
+    "extendedOptions": false,
+    "extendedArcTypes": false,
+    "extendedFeatures": false
+  },
+  "options": {
+    "hscale": "1.4",
+    "wordwraparcs": true
+  },
+  "entities": [
+    {
+      "name": "Alice",
+      "linecolor": "#00A1DE",
+      "textcolor": "white",
+      "textbgcolor": "#00A1DE",
+      "arclinecolor": "#00A1DE",
+      "arctextcolor": "white"
+    },
+    {
+      "name": "Bob",
+      "linecolor": "#00A1DE",
+      "textcolor": "white",
+      "textbgcolor": "#00A1DE",
+      "arclinecolor": "#00A1DE",
+      "arctextcolor": "white"
+    },
+    {
+      "name": "notes",
+      "label": " ",
+      "linecolor": "transparent"
+    }
+  ],
+  "arcs": [
+    [
+      {
+        "kind": "=&gt;",
+        "from": "Alice",
+        "to": "Alice",
+        "label": "sign message with own private key",
+        "linecolor": "#005B82",
+        "textcolor": "#005B82"
+      }
+    ],
+    [
+      {
+        "kind": "=&gt;",
+        "from": "Alice",
+        "to": "Bob",
+        "label": "signed message",
+        "linecolor": "#005B82",
+        "textcolor": "#005B82"
+      },
+      {
+        "kind": "note",
+        "from": "notes",
+        "to": "notes",
+        "label": "This is just a sample chart with a (high level) illustration of public key encryption.",
+        "linecolor": "white",
+        "textcolor": "white",
+        "textbgcolor": "#E77B2F"
+      }
+    ],
+    [
+      {
+        "kind": "=&gt;",
+        "from": "Bob",
+        "to": "Alice",
+        "label": "get Alice her public key",
+        "linecolor": "#005B82",
+        "textcolor": "#005B82"
+      }
+    ],
+    [
+      {
+        "kind": "&gt;&gt;",
+        "from": "Alice",
+        "to": "Bob",
+        "label": "Alices' public key",
+        "linecolor": "#005B82",
+        "textcolor": "#005B82"
+      }
+    ],
+    [
+      {
+        "kind": "=&gt;",
+        "from": "Bob",
+        "to": "Bob",
+        "label": "verify message with Alices' public key",
+        "linecolor": "#005B82",
+        "textcolor": "#005B82"
+      }
+    ]
+  ]
+}</desc><defs><style type="text/css">svg.mscgenjsreplaceme{font-family:Helvetica,sans-serif;font-size:12px;font-weight:normal;font-style:normal;text-decoration:none;background-color:white;stroke:black;stroke-width:2}.mscgenjsreplaceme path, .mscgenjsreplaceme rect{fill:none}.mscgenjsreplaceme .label-text-background{fill:white;stroke:white;stroke-width:0}.mscgenjsreplaceme .bglayer{fill:white;stroke:white;stroke-width:0}.mscgenjsreplaceme line{}.mscgenjsreplaceme .return, .mscgenjsreplaceme .comment{stroke-dasharray:5,3}.mscgenjsreplaceme .inline_expression_divider{stroke-dasharray:10,5}.mscgenjsreplaceme text{color:inherit;stroke:none;text-anchor:middle}.mscgenjsreplaceme text.anchor-start{text-anchor:start}.mscgenjsreplaceme .arrow-marker{overflow:visible}.mscgenjsreplaceme .arrow-style{stroke-width:1}.mscgenjsreplaceme .arcrow, .mscgenjsreplaceme .arcrowomit, .mscgenjsreplaceme .emphasised{stroke-linecap:butt}.mscgenjsreplaceme .arcrowomit{stroke-dasharray:2,2}.mscgenjsreplaceme .box, .mscgenjsreplaceme .entity{fill:white;stroke-linejoin:round}.mscgenjsreplaceme .inherit{stroke:inherit;color:inherit}.mscgenjsreplaceme .inherit-fill{fill:inherit}.mscgenjsreplaceme .watermark{font-size:48pt;font-weight:bold;opacity:0.14}.mscgenjsreplaceme text.entity-text{font-weight:bold;}.mscgenjsreplaceme text.return-text{font-style:italic}.mscgenjsreplaceme path.note{fill:#FFFFCC}.mscgenjsreplaceme rect.label-text-background{opacity:0.9}.mscgenjsreplaceme line.comment,.mscgenjsreplaceme rect.inline_expression,.mscgenjsreplaceme .inline_expression_divider,.mscgenjsreplaceme .inline_expression_label{stroke:grey}</style><marker orient="auto" id="mscgenjsreplacemecallback-#005B82" class="arrow-marker" viewBox="0 0 10 10" refX="9" refY="3" markerUnits="strokeWidth" markerWidth="10" markerHeight="10"><path d="M 1,1 l 8,2 l-8,2" class="arrow-style" style="stroke-dasharray:100,1;stroke:#005B82"></path></marker><marker orient="auto" id="mscgenjsreplacemecallback-l-#005B82" class="arrow-marker" viewBox="0 0 10 10" refX="9" refY="3" markerUnits="strokeWidth" markerWidth="10" markerHeight="10"><path d="M17,1 l-8,2 l 8,2" class="arrow-style" style="stroke-dasharray:100,1;stroke:#005B82"></path></marker><marker orient="auto" id="mscgenjsreplacememethod-#005B82" class="arrow-marker" viewBox="0 0 10 10" refX="9" refY="3" markerUnits="strokeWidth" markerWidth="10" markerHeight="10"><polygon points="1,1  9,3  1,5" class="arrow-style" stroke="#005B82" fill="#005B82"></polygon></marker><marker orient="auto" id="mscgenjsreplacememethod-l-#005B82" class="arrow-marker" viewBox="0 0 10 10" refX="9" refY="3" markerUnits="strokeWidth" markerWidth="10" markerHeight="10"><polygon points="17,1 9,3 17,5" class="arrow-style" stroke="#005B82" fill="#005B82"></polygon></marker></defs><g id="mscgenjsreplaceme_body" transform="translate(50,3) scale(1,1)"><g id="mscgenjsreplaceme_background"><rect width="688" height="325.61" x="-50" y="-3" class="bglayer"></rect></g><g id="mscgenjsreplaceme_arcspans"></g><g id="mscgenjsreplaceme_lifelines"><line x1="70" y1="38" x2="70" y2="76" class="arcrow" style="stroke:#00A1DE;"></line><line x1="294" y1="38" x2="294" y2="76" class="arcrow" style="stroke:#00A1DE;"></line><line x1="518" y1="38" x2="518" y2="76" class="arcrow" style="stroke:transparent;"></line><line x1="70" y1="76" x2="70" y2="133.81" class="arcrow" style="stroke:#00A1DE;"></line><line x1="294" y1="76" x2="294" y2="133.81" class="arcrow" style="stroke:#00A1DE;"></line><line x1="518" y1="76" x2="518" y2="133.81" class="arcrow" style="stroke:transparent;"></line><line x1="70" y1="133.81" x2="70" y2="185.81" class="arcrow" style="stroke:#00A1DE;"></line><line x1="294" y1="133.81" x2="294" y2="185.81" class="arcrow" style="stroke:#00A1DE;"></line><line x1="518" y1="133.81" x2="518" y2="185.81" class="arcrow" style="stroke:transparent;"></line><line x1="70" y1="185.81" x2="70" y2="223.81" class="arcrow" style="stroke:#00A1DE;"></line><line x1="294" y1="185.81" x2="294" y2="223.81" class="arcrow" style="stroke:#00A1DE;"></line><line x1="518" y1="185.81" x2="518" y2="223.81" class="arcrow" style="stroke:transparent;"></line><line x1="70" y1="223.81" x2="70" y2="261.81" class="arcrow" style="stroke:#00A1DE;"></line><line x1="294" y1="223.81" x2="294" y2="261.81" class="arcrow" style="stroke:#00A1DE;"></line><line x1="518" y1="223.81" x2="518" y2="261.81" class="arcrow" style="stroke:transparent;"></line><line x1="70" y1="261.81" x2="70" y2="319.61" class="arcrow" style="stroke:#00A1DE;"></line><line x1="294" y1="261.81" x2="294" y2="319.61" class="arcrow" style="stroke:#00A1DE;"></line><line x1="518" y1="261.81" x2="518" y2="319.61" class="arcrow" style="stroke:transparent;"></line></g><g id="mscgenjsreplaceme_sequence"><g><g><rect width="140" height="38" class="entity" style="fill:#00A1DE;stroke:#00A1DE;"></rect><g><text x="70" y="22.5" class="entity-text " style="fill:white;"><tspan>Alice</tspan></text></g></g><g><rect width="140" height="38" x="224" class="entity" style="fill:#00A1DE;stroke:#00A1DE;"></rect><g><text x="294" y="22.5" class="entity-text " style="fill:white;"><tspan>Bob</tspan></text></g></g><g><rect width="140" height="38" x="448" class="entity" style="stroke:transparent;"></rect><g><text x="518" y="22.5" class="entity-text "><tspan> </tspan></text></g></g></g><g><path d="M70,97.3 C182,97.4 182,120.1 70,120.1 " class="arc directional method" style="stroke:#005B82" marker-end="url(#mscgenjsreplacememethod-#005B82)"></path><g><rect width="98.7" height="14" x="73" y="66.3" class="label-text-background"></rect><text x="73" y="77.3" class="directional-text method-text anchor-start " style="fill:#005B82;"><tspan>sign message with</tspan></text><rect width="83.36" height="14" x="73" y="81.3" class="label-text-background"></rect><text x="73" y="92.3" class="directional-text method-text anchor-start " style="fill:#005B82;"><tspan>own private key</tspan></text></g></g><g><line x1="70" y1="159.81" x2="294" y2="159.81" class="arc directional method" style="stroke:#005B82" marker-end="url(#mscgenjsreplacememethod-#005B82)"></line><g><rect width="87.38" height="14" x="138.3" y="144.3" class="label-text-background"></rect><text x="182" y="155.31" class="directional-text method-text " style="fill:#005B82;"><tspan>signed message</tspan></text></g></g><g><line x1="294" y1="204.81" x2="70" y2="204.81" class="arc directional method" style="stroke:#005B82" marker-end="url(#mscgenjsreplacememethod-#005B82)"></line><g><rect width="123.39" height="14" x="120.3" y="189.3" class="label-text-background"></rect><text x="182" y="200.31" class="directional-text method-text " style="fill:#005B82;"><tspan>get Alice her public key</tspan></text></g></g><g><line x1="70" y1="242.81" x2="294" y2="242.81" class="arc directional return" style="stroke:#005B82" marker-end="url(#mscgenjsreplacemecallback-#005B82)"></line><g><rect width="92.17" height="14" x="136.5" y="227.3" class="label-text-background"></rect><text x="182" y="238.31" class="directional-text return-text " style="fill:#005B82;"><tspan>Alices' public key</tspan></text></g></g><g><path d="M294,283.11 C406,283.21 406,305.91 294,305.91 " class="arc directional method" style="stroke:#005B82" marker-end="url(#mscgenjsreplacememethod-#005B82)"></path><g><rect width="80.69" height="14" x="297" y="252.11" class="label-text-background"></rect><text x="297" y="263.11" class="directional-text method-text anchor-start " style="fill:#005B82;"><tspan>verify message</tspan></text><rect width="115.66" height="14" x="297" y="267.11" class="label-text-background"></rect><text x="297" y="278.11" class="directional-text method-text anchor-start " style="fill:#005B82;"><tspan>with Alices' public key</tspan></text></g></g></g><g id="mscgenjsreplaceme_notes"><g><path d="M410,135.81 l207,0 l0,9 l9,0 m-9,-9 l9,9 l0,39 l-216,0 l0,-48 z" class="box note" style="fill:#E77B2F;stroke:white;"></path><g><text x="518" y="148.31" class="box-text note-text " style="fill:white;"><tspan>This is just a sample chart with</tspan></text><text x="518" y="163.31" class="box-text note-text " style="fill:white;"><tspan>a (high level) illustration of</tspan></text><text x="518" y="178.31" class="box-text note-text " style="fill:white;"><tspan>public key encryption.</tspan></text></g></g></g><g id="mscgenjsreplaceme_watermark"></g></g></svg>
