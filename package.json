@@ -27,7 +27,7 @@
     "npm-check-updates": "ncu --upgrade",
     "npm-install": "npm install",
     "nsp": "nsp check --warn-only",
-    "test": "mocha -R dot --recursive test",
+    "test": "mocha --timeout 5000 --reporter dot --recursive test",
     "update-dependencies": "npm-run-all npm-check-updates npm-install lint:fix depcruise build test"
   },
   "keywords": [

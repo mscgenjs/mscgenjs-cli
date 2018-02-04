@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "extendedOptions": false,
+    "extendedArcTypes": false,
+    "extendedFeatures": false
+  },
+  "arcs": [
+    [
+      {
+        "kind": "=>",
+        "from": "a",
+        "to": "b",
+        "label": "this is a message"
+      }
+    ]
+  ],
+  "entities": [
+    {
+      "name": "a"
+    },
+    {
+      "name": "b"
+    }
+  ]
+}
