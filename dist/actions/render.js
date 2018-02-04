@@ -33,7 +33,7 @@ function renderTheShizzle(pAST, pOptions) {
             });
             yield page.evaluate(cookEvalFunction(pAST, pOptions));
             yield page.addScriptTag({
-                path: "./node_modules/mscgenjs-inpage/dist/mscgen-inpage.js",
+                path: require.resolve("mscgenjs-inpage"),
             });
             yield page.waitFor("mscgen#replaceme[data-renderedby='mscgen_js']", { timeout: 10000 });
             if (pOptions.outputType === "svg") {
