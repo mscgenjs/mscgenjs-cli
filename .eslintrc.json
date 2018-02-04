@@ -1,10 +1,4 @@
 {
-    // replaced the clear strings with the old-skool numbers soo the
-    // version codeclimate is using can handle this config too:
-    // "error" => 2
-    // "off" => 0
-    // "warn" => 1
-
     "root": true,
     "parserOptions": {
         "ecmaVersion": 6,
@@ -14,7 +8,6 @@
         }
     },
     "rules": {
-        // Possible errors
         "comma-dangle": [2, "never"],
         "no-cond-assign": 2,
         "no-console": 2,
@@ -45,7 +38,6 @@
         "valid-jsdoc": 2,
         "valid-typeof": 2,
 
-        // Best Practices
         "accessor-pairs":2,
         "array-callback-return": 2,
         "block-scoped-var": 2,
@@ -98,7 +90,7 @@
         "no-sequences": 2,
         "no-throw-literal": 2,
         "no-unmodified-loop-condition": 2,
-        "no-unused-expressions": 2,
+        "no-unused-expressions": 0,
         "no-unused-labels": 2,
         "no-useless-call": 2,
         "no-useless-concat": 2,
@@ -111,10 +103,8 @@
         "wrap-iife": 2,
         "yoda": 0,
 
-        // Strict mode
         "strict": 0,
 
-        // Variables
         "init-declarations": 2,
         "no-catch-shadow": 2,
         "no-delete-var": 2,
@@ -128,7 +118,6 @@
         "no-unused-vars": [2, {"vars": "all", "args": "after-used"}],
         "no-use-before-define": 2,
 
-        // Node.js and CommonJS
         "callback-return": 2,
         "global-require": 0,
         "handle-callback-err": 2,
@@ -140,7 +129,6 @@
         "no-restricted-modules": 2,
         "no-sync": 0,
 
-        // Stylistic Issues
         "array-bracket-spacing": 2,
         "block-spacing": 2,
         "brace-style": 2,
@@ -209,7 +197,6 @@
         "spaced-comment": 2,
         "wrap-regex": 2,
 
-        // ECMAScript 6
         "arrow-body-style": 2,
         "arrow-parens": 0,
         "arrow-spacing": 2,

@@ -1,45 +1,43 @@
 {
   "name": "mscgenjs-cli",
-  "version": "1.12.8",
+  "version": "2.0.0-beta-2",
   "description": "Render sequence charts from the command line",
-  "main": "src/mscgen.js",
-  "preferGlobal": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mscgenjs/mscgenjs-cli"
+  },
   "bin": {
     "mscgen_js": "bin/mscgen_js",
     "mscgenjs": "bin/mscgen_js",
     "mscgen.js": "bin/mscgen_js"
   },
-  "dependencies": {
-    "amdefine": "1.0.1",
-    "commander": "2.12.2",
-    "mscgenjs": "1.12.8",
-    "phantomjs-prebuilt": "2.1.16",
-    "requirejs": "2.3.5"
-  },
-  "devDependencies": {
-    "chai": "4.1.2",
-    "chai-xml": "0.3.1",
-    "eslint": "4.13.1",
-    "istanbul": "0.4.5",
-    "js-makedepend": "2.4.1",
-    "mocha": "4.0.1",
-    "npm-check-updates": "2.13.0",
-    "nsp": "3.1.0"
-  },
+  "main": "dist/index.js",
   "scripts": {
-    "lint": "eslint src test",
-    "lint:fix": "eslint --fix src test",
+    "build": "npm-run-all build:clean build:compile build:copy",
+    "build:clean": "shx rm -rf dist/*",
+    "build:compile": "tsc",
+    "build:copy": "shx cp src/actions/template.html dist/actions/template.html",
+    "check": "npm-run-all build lint depcruise test",
+    "check:full": "npm-run-all check nsp",
+    "depcruise": "depcruise --validate -- src test",
+    "depcruise:cat": "depcruise --output-type dot --validate -- src | dot -T png | imgcat",
+    "depcruise:graph": "depcruise --output-type dot --validate -- src/cli.ts | dot -T svg > tmp_deps.svg",
+    "lint": "tslint src/*.ts src/*/*.ts",
+    "lint:fix": "tslint --fix src/*.ts src/*/*.ts",
     "npm-check-updates": "ncu --upgrade",
+    "npm-install": "npm install",
     "nsp": "nsp check --warn-only",
-    "postversion": "git push && git push --tags && npm publish",
-    "preversion": "test `git branch | grep \"^* [a-zA-Z]\" | cut -c 3-` = 'master'",
-    "test": "mocha -R dot --timeout 10000 --recursive test",
-    "test:cover": "istanbul cover node_modules/mocha/bin/_mocha -- --timeout 12000 --recursive test"
+    "test": "mocha --timeout 5000 --reporter dot --recursive test",
+    "test:cover": "npx nyc npm test",
+    "update-dependencies": "npm-run-all npm-check-updates npm-install lint:fix depcruise build test"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/mscgenjs/mscgenjs-cli"
-  },
+  "keywords": [
+    "mscgen",
+    "sequence chart",
+    "sequence diagram",
+    "xu",
+    "msgenny"
+  ],
   "author": "Sander Verweij",
   "contributors": [
     {
@@ -48,21 +46,34 @@
     }
   ],
   "license": "GPL-3.0",
-  "keywords": [
-    "mscgen",
-    "sequence chart",
-    "sequence diagram",
-    "xu",
-    "msgenny"
-  ],
   "engines": {
-    "node": ">=4.0"
+    "node": ">=6.0"
   },
-  "os": [
-    "!win32"
-  ],
   "bugs": {
     "url": "https://github.com/mscgenjs/mscgenjs-cli/issues"
   },
-  "homepage": "https://github.com/mscgenjs/mscgenjs-cli"
+  "homepage": "https://github.com/mscgenjs/mscgenjs-cli",
+  "dependencies": {
+    "commander": "2.13.0",
+    "mscgenjs": "1.13.0-beta-4",
+    "mscgenjs-inpage": "1.12.9",
+    "pify": "3.0.0",
+    "puppeteer": "1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "9.4.0",
+    "@types/pify": "3.0.0",
+    "@types/puppeteer": "1.0.0",
+    "chai": "4.1.2",
+    "chai-as-promised": "7.1.1",
+    "chai-xml": "0.3.1",
+    "dependency-cruiser": "2.13.0",
+    "mocha": "5.0.0",
+    "npm-check-updates": "2.14.0",
+    "npm-run-all": "4.1.2",
+    "nsp": "3.1.0",
+    "shx": "0.2.2",
+    "tslint": "5.9.1",
+    "typescript": "2.7.1"
+  }
 }

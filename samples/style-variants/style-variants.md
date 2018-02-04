@@ -18,10 +18,15 @@ Which is what you get when you don't pass a named style option.
 ### inverted
 ![](cheat-sheet-wide-inverted.png)
 
+### fountainpen
+(note: experimental)
+![](cheat-sheet-wide-fountainpen.png)
+
+
 ### input used
 ```
 # MsGenny: a cheat sheet
-hscale=0.9, width=auto, watermark="This is a 序 watermark";
+hscale=0.9, watermark="This is a 序 watermark";
 
 a alt d : inline expression {
 

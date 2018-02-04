@@ -11,9 +11,7 @@ install:
   - npm install
 
 script:
-  - npm run lint
-  - npm run nsp
-  - npm run test:cover
+  - npm run check
 
 branches:
   except:
@@ -22,7 +20,3 @@ branches:
 cache:
   directories:
     - node_modules
-
-addons:
-   code_climate:
-     repo_token: $CODECLIMATE_REPO_TOKEN

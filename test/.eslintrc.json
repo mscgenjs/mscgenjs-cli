@@ -1,6 +1,0 @@
-{
-    "rules": {
-        "max-nested-callbacks": [2, 5],
-        "no-undefined": 0
-    }
-}
