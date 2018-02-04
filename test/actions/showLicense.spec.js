@@ -2,7 +2,7 @@
 
 const chai   = require("chai");
 const expect = chai.expect;
-const showLicense = require("../dist/actions/showLicense");
+const showLicense = require("../../dist/actions/showLicense");
 
 describe('showLicense()', () => {
     it("returns the license", () => {
