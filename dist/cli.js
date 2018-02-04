@@ -25,6 +25,6 @@ try {
         .then(actions.transform)
         .catch(presentError);
 }
-catch (e) {
-    presentError(e);
+catch (pError) {
+    presentError(pError);
 }
