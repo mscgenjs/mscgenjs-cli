@@ -39,7 +39,7 @@ export function transform(pOptions: INormalizedOptions): Promise<boolean> {
             .then((pResult) => getOutStream(pOptions.outputTo).write(pResult));
     } else {
         return transpile(pOptions)
-            .then((pResult) => getOutStream(pOptions.outputTo).write(pResult));
+            .then((pResult) => getOutStream(pOptions.outputTo).write(pResult, "utf8"));
     }
 }
 

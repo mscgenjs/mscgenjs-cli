@@ -32,7 +32,7 @@ function transform(pOptions) {
     }
     else {
         return transpile(pOptions)
-            .then((pResult) => fileNameToStream_1.getOutStream(pOptions.outputTo).write(pResult));
+            .then((pResult) => fileNameToStream_1.getOutStream(pOptions.outputTo).write(pResult, "utf8"));
     }
 }
 exports.transform = transform;
