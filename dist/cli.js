@@ -1,4 +1,3 @@
-/* eslint no-process-exit:0 */
 /* tslint no-var-requires:0 */
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });

@@ -1,4 +1,3 @@
-/* eslint consistent-return:0 */
 "use strict";
 
 import { CommanderStatic } from "commander";
