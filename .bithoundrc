@@ -1,9 +1,9 @@
 {
   "ignore": [
-    "/dist/**"
+    "dist/**/*"
   ],
   "test": [
-    "/test/**"
+    "test/**/*"
   ],
   "critics": {
     "wc": {
