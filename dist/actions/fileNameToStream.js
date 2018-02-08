@@ -5,18 +5,14 @@ function getOutStream(pOutputTo) {
     if ("-" === pOutputTo) {
         return process.stdout;
     }
-    else {
-        return fs_1.createWriteStream(pOutputTo);
-    }
+    return fs_1.createWriteStream(pOutputTo);
 }
 exports.getOutStream = getOutStream;
 function getInStream(pInputFrom) {
     if ("-" === pInputFrom) {
         return process.stdin;
     }
-    else {
-        return fs_1.createReadStream(pInputFrom);
-    }
+    return fs_1.createReadStream(pInputFrom);
 }
 exports.getInStream = getInStream;
 /*

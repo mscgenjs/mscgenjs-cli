@@ -3,17 +3,15 @@ import { createReadStream, createWriteStream } from "fs";
 export function getOutStream(pOutputTo: string): NodeJS.WritableStream {
     if ("-" === pOutputTo) {
         return process.stdout;
-    } else {
-        return createWriteStream(pOutputTo);
     }
+    return createWriteStream(pOutputTo);
 }
 
 export function getInStream(pInputFrom: string): NodeJS.ReadableStream {
     if ("-" === pInputFrom) {
         return process.stdin;
-    } else {
-        return createReadStream(pInputFrom);
     }
+    return createReadStream(pInputFrom);
 }
 /*
     This file is part of mscgenjs-cli.
