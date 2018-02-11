@@ -17,7 +17,7 @@ function getAST(pInput, pOptions) {
     });
 }
 function removeAutoWidth(pAST, pOutputType) {
-    if (pOutputType === "png" || pOutputType === "jpeg" &&
+    if ((pOutputType === "png" || pOutputType === "jpeg") &&
         pAST.options && pAST.options.width &&
         pAST.options.width === "auto") {
         delete pAST.options.width;

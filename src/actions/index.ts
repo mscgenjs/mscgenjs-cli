@@ -24,7 +24,7 @@ function getAST(pInput: string, pOptions: INormalizedOptions): Promise<string> {
 
 export function removeAutoWidth(pAST: any, pOutputType: string) {
     if (
-        pOutputType === "png" || pOutputType === "jpeg" &&
+        (pOutputType === "png" || pOutputType === "jpeg") &&
         pAST.options && pAST.options.width &&
         pAST.options.width === "auto"
     ) {
