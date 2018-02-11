@@ -40,6 +40,96 @@ describe('index()', () => {
     });
 });
 
+describe("removeAutoWidth", () => {
+    const AST_WITH_WIDTH_EQUALS_AUTO = {
+        "meta": {
+            "extendedOptions": true,
+            "extendedArcTypes": false,
+            "extendedFeatures": true
+        },
+        "options": {
+            "width": "auto"
+        },
+        "entities": [
+            {
+                "name": "a"
+            }
+        ]
+    };
+    const AST_WITH_WIDTH_NUMBER = {
+        "meta": {
+            "extendedOptions": true,
+            "extendedArcTypes": false,
+            "extendedFeatures": true
+        },
+        "options": {
+            "width": "481"
+        },
+        "entities": [
+            {
+                "name": "a"
+            }
+        ]
+    };
+    const AST_WITHOUT_WIDTH_EQUALS_AUTO = {
+        "meta": {
+            "extendedOptions": true,
+            "extendedArcTypes": false,
+            "extendedFeatures": true
+        },
+        "options": {
+        },
+        "entities": [
+            {
+                "name": "a"
+            }
+        ]
+    };
+
+    it("removes the auto-width element if outputType === png", () => {
+        expect(
+            index.removeAutoWidth(AST_WITH_WIDTH_EQUALS_AUTO, "png")
+        ).to.deep.equal(
+            AST_WITHOUT_WIDTH_EQUALS_AUTO
+        );
+    });
+    it("removes the auto-width element if outputType === jpeg", () => {
+        expect(
+            index.removeAutoWidth(AST_WITH_WIDTH_EQUALS_AUTO, "jpeg")
+        ).to.deep.equal(
+            AST_WITHOUT_WIDTH_EQUALS_AUTO
+        );
+    });
+    it("leaves the auto-width element alone outputType === svg", () => {
+        expect(
+            index.removeAutoWidth(AST_WITH_WIDTH_EQUALS_AUTO, "svg")
+        ).to.deep.equal(
+            AST_WITH_WIDTH_EQUALS_AUTO
+        );
+    });
+    it("leaves the width element if outputType === png and width is a number", () => {
+        expect(
+            index.removeAutoWidth(AST_WITH_WIDTH_NUMBER, "png")
+        ).to.deep.equal(
+            AST_WITH_WIDTH_NUMBER
+        );
+    });
+    it("leaves the width element if outputType === jpeg and width is a number", () => {
+        expect(
+            index.removeAutoWidth(AST_WITH_WIDTH_NUMBER, "jpeg")
+        ).to.deep.equal(
+            AST_WITH_WIDTH_NUMBER
+        );
+    });
+    it("leaves the width element if outputType === svg and width is a number", () => {
+        expect(
+            index.removeAutoWidth(AST_WITH_WIDTH_NUMBER, "svg")
+        ).to.deep.equal(
+            AST_WITH_WIDTH_NUMBER
+        );
+    });
+});
+
 /*
     This file is part of mscgenjs-cli.
     mscgenjs-cli is free software: you can redistribute it and/or modify

@@ -1,3 +1,4 @@
+node bin/mscgen_js -T png -n lazy samples/autoscale.msgenny
 node bin/mscgen_js -T png -n classic -o samples/style-variants/cheat-sheet-wide-classic.png samples/cheat-sheet-wide.msgenny
 node bin/mscgen_js -T png -n cygne -o samples/style-variants/cheat-sheet-wide-cygne.png samples/cheat-sheet-wide.msgenny
 node bin/mscgen_js -T png -n inverted -o samples/style-variants/cheat-sheet-wide-inverted.png samples/cheat-sheet-wide.msgenny

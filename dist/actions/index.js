@@ -13,13 +13,24 @@ function isGraphicsOutput(pOutputType) {
 function getAST(pInput, pOptions) {
     return translate(pInput, {
         inputType: pOptions.inputType,
-        outputType: "json",
+        outputType: "ast",
     });
 }
+function removeAutoWidth(pAST, pOutputType) {
+    if (pOutputType === "png" || pOutputType === "jpeg" &&
+        pAST.options && pAST.options.width &&
+        pAST.options.width === "auto") {
+        delete pAST.options.width;
+    }
+    return pAST;
+}
+exports.removeAutoWidth = removeAutoWidth;
 function render(pOptions) {
     return readFromStream_1.readFromStream(fileNameToStream_1.getInStream(pOptions.inputFrom))
         .then((pInput) => getAST(pInput, pOptions))
-        .then((pAST) => render_1.renderTheShizzle(pAST, pOptions));
+        .then((pAST) => removeAutoWidth(pAST, pOptions.outputType))
+        .then((pAST) => JSON.stringify(pAST))
+        .then((pASTAsJSON) => render_1.renderTheShizzle(pASTAsJSON, pOptions));
 }
 function transpile(pOptions) {
     return readFromStream_1.readFromStream(fileNameToStream_1.getInStream(pOptions.inputFrom))

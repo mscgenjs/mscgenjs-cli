@@ -17,15 +17,28 @@ function getAST(pInput: string, pOptions: INormalizedOptions): Promise<string> {
         pInput,
         {
             inputType: pOptions.inputType,
-            outputType: "json",
+            outputType: "ast",
         },
     );
+}
+
+export function removeAutoWidth(pAST: any, pOutputType: string) {
+    if (
+        pOutputType === "png" || pOutputType === "jpeg" &&
+        pAST.options && pAST.options.width &&
+        pAST.options.width === "auto"
+    ) {
+        delete pAST.options.width;
+    }
+    return pAST;
 }
 
 function render(pOptions: INormalizedOptions): Promise<any> {
     return readFromStream(getInStream(pOptions.inputFrom))
         .then((pInput) => getAST(pInput, pOptions))
-        .then((pAST) => renderTheShizzle(pAST, pOptions));
+        .then((pAST) => removeAutoWidth(pAST, pOptions.outputType))
+        .then((pAST) => JSON.stringify(pAST))
+        .then((pASTAsJSON) => renderTheShizzle(pASTAsJSON, pOptions));
 }
 
 function transpile(pOptions: INormalizedOptions): Promise<string> {

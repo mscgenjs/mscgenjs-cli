@@ -55,7 +55,7 @@
   "homepage": "https://github.com/mscgenjs/mscgenjs-cli",
   "dependencies": {
     "commander": "2.13.0",
-    "mscgenjs": "1.13.0",
+    "mscgenjs": "1.14.0",
     "mscgenjs-inpage": "1.13.0",
     "pify": "3.0.0",
     "puppeteer": "1.0.0"
