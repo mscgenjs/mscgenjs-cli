@@ -93,7 +93,7 @@ function determineOutputType(
         return "json";
     }
     if (Boolean(pOutputType)) {
-        return pOutputType as OutputType;
+        return pOutputType === "ast" ? "json" : pOutputType as OutputType;
     }
     if (Boolean(pOutputTo)) {
         return classifyExtension(pOutputTo, OUTPUT_EXTENSIONS, "svg") as OutputType;

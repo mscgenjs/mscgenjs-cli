@@ -75,7 +75,7 @@ function determineOutputType(pOutputType, pOutputTo, pParserOutput) {
         return "json";
     }
     if (Boolean(pOutputType)) {
-        return pOutputType;
+        return pOutputType === "ast" ? "json" : pOutputType;
     }
     if (Boolean(pOutputTo)) {
         return classifyExtension(pOutputTo, OUTPUT_EXTENSIONS, "svg");
