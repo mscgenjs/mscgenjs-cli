@@ -17,7 +17,7 @@
     "build:clean": "shx rm -rf dist/*",
     "build:compile": "tsc",
     "build:copy": "shx cp src/actions/template.html dist/actions/template.html",
-    "check": "npm-run-all build lint depcruise test",
+    "check": "npm-run-all build lint depcruise test:cover",
     "check:full": "npm-run-all check nsp",
     "depcruise": "depcruise --validate -- src test",
     "depcruise:cat": "depcruise --output-type dot --validate -- src | dot -T png | imgcat",
@@ -28,7 +28,7 @@
     "npm-install": "npm install",
     "nsp": "nsp check --warn-only",
     "test": "mocha --timeout 10000 --reporter dot --recursive test",
-    "test:cover": "npx nyc --reporter text-summary --check-coverage --lines 92 npm test",
+    "test:cover": "nyc --reporter text-summary --check-coverage --lines 92 npm test",
     "update-dependencies": "npm-run-all npm-check-updates npm-install lint:fix depcruise build test"
   },
   "keywords": [
@@ -72,6 +72,7 @@
     "npm-check-updates": "2.14.0",
     "npm-run-all": "4.1.2",
     "nsp": "3.1.0",
+    "nyc": "11.4.1",
     "shx": "0.2.2",
     "tslint": "5.9.1",
     "typescript": "2.7.1"

@@ -8,5 +8,4 @@ cache:
 test_async:
   script:
    - npm install
-   - npm run check
-   - npm run nsp
+   - npm run check:full
