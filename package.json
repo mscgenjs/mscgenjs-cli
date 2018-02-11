@@ -28,7 +28,7 @@
     "npm-install": "npm install",
     "nsp": "nsp check --warn-only",
     "test": "mocha --timeout 10000 --reporter dot --recursive test",
-    "test:cover": "npx nyc npm test",
+    "test:cover": "npx nyc --reporter text-summary --check-coverage --lines 92 npm test",
     "update-dependencies": "npm-run-all npm-check-updates npm-install lint:fix depcruise build test"
   },
   "keywords": [
