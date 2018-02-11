@@ -28,7 +28,7 @@
     "npm-install": "npm install",
     "nsp": "nsp check --warn-only",
     "test": "mocha --timeout 10000 --reporter dot --recursive test",
-    "test:cover": "nyc --reporter text-summary --check-coverage --lines 92 npm test",
+    "test:cover": "nyc --reporter text-summary --check-coverage --lines 85 npm test",
     "update-dependencies": "npm-run-all npm-check-updates npm-install lint:fix depcruise build test"
   },
   "keywords": [
@@ -54,14 +54,14 @@
   },
   "homepage": "https://github.com/mscgenjs/mscgenjs-cli",
   "dependencies": {
-    "commander": "2.13.0",
+    "commander": "2.14.1",
     "mscgenjs": "1.14.0",
     "mscgenjs-inpage": "1.13.0",
     "pify": "3.0.0",
     "puppeteer": "1.0.0"
   },
   "devDependencies": {
-    "@types/node": "9.4.0",
+    "@types/node": "9.4.5",
     "@types/pify": "3.0.0",
     "@types/puppeteer": "1.0.0",
     "chai": "4.1.2",
