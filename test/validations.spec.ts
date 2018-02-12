@@ -1,10 +1,8 @@
 "use strict";
-
-const path   = require("path");
-const chai   = require("chai");
-const assert = chai.assert;
-const expect = chai.expect;
-const val    = require("../dist/validations");
+import * as path from "path";
+import {assert, expect} from "chai";
+import * as val from "../src/validations";
+import { OutputType, NamedStyleType, INormalizedOptions } from "../src/types";
 
 describe('cli/validations', () => {
 
@@ -13,7 +11,7 @@ describe('cli/validations', () => {
             let lFoundError = "";
 
             try {
-                val.validOutputType("notavalidOutputType");
+                val.validOutputType("notavalidOutputType" as OutputType);
             } catch (e) {
                 lFoundError = e.message;
             }
@@ -47,7 +45,7 @@ describe('cli/validations', () => {
             let lFoundError = "";
 
             try {
-                val.validNamedStyle("unrecognized");
+                val.validNamedStyle("unrecognized" as NamedStyleType);
             } catch (e) {
                 lFoundError = e.message;
             }
@@ -84,7 +82,7 @@ describe('cli/validations', () => {
                         inputFrom: path.join(__dirname, "actions/fixtures/rainbow.mscin"),
                         outputTo: "kaboeki.svg",
                         outputType: "svg"
-                    }
+                    } as INormalizedOptions
                 );
                 assert.equal("still here", "still here");
             } catch (e){
@@ -99,7 +97,7 @@ describe('cli/validations', () => {
                         inputFrom: "-",
                         outputTo: "-",
                         outputType: "mscgen"
-                    }
+                    } as INormalizedOptions
                 );
                 assert.equal("still here", "still here");
             } catch (e){
@@ -114,7 +112,7 @@ describe('cli/validations', () => {
                         inputFrom: "-",
                         outputTo: "-",
                         outputType: "dot"
-                    }
+                    } as INormalizedOptions
                 );
                 assert.equal("still here", "still here");
             } catch (e){
@@ -128,7 +126,7 @@ describe('cli/validations', () => {
                     inputFrom  : "input-doesnot-exist",
                     outputTo   : "-",
                     outputType : "xu"
-                }
+                } as INormalizedOptions
             ).then(() => {
                 assert.equal("still here", "should not be here!");
             }).catch(e => {
@@ -142,7 +140,7 @@ describe('cli/validations', () => {
                     inputFrom  : "input-doesnot-exist",
                     outputTo   : "-",
                     outputType : "xu"
-                }
+                } as INormalizedOptions
             ).then(() => {
                 assert.equal("still here", "should not be here!");
             }).catch(e => {
@@ -155,7 +153,7 @@ describe('cli/validations', () => {
                 {
                     inputFrom: "-",
                     outputType: "svg"
-                }
+                } as INormalizedOptions
             ).then(() => {
                 assert.equal("still here?", "should not be here!");
             }).catch(e => {
@@ -167,7 +165,7 @@ describe('cli/validations', () => {
             val.validateArguments(
                 {
                     inputFrom: "-"
-                }
+                } as INormalizedOptions
             ).then(() => {
                 assert.equal("still here?", "should not be here!");
             }).catch(e => {
@@ -176,7 +174,7 @@ describe('cli/validations', () => {
         });
 
         it("complains about non specified input file", () => {
-            val.validateArguments({}).then(() => {
+            val.validateArguments({} as INormalizedOptions).then(() => {
                 assert.equal("still here?", "should not be here!");
             }).catch(e => {
                 assert.equal(e.message, "\n  error: Please specify an input file.\n\n");

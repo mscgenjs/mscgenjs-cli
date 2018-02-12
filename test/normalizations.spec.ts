@@ -1,7 +1,6 @@
-"use strict";
-
-const expect    = require("chai").expect;
-const norm      = require("../dist/normalizations");
+import {expect} from "chai";
+import * as norm from "../src/normalizations";
+import { CommanderStatic } from "commander";
 
 const TESTPAIRS = [
     {
@@ -205,7 +204,7 @@ describe('cli/normalizations', () => {
     describe('#normalize() - ', () => {
         TESTPAIRS.forEach((pPair) => {
             it(pPair.title, () => {
-                let lNormalizedOptions = norm.normalize(pPair.input.argument, pPair.input.options);
+                let lNormalizedOptions = norm.normalize(pPair.input.argument as string, pPair.input.options as CommanderStatic);
 
                 expect(
                     lNormalizedOptions

@@ -1,7 +1,5 @@
-"use strict";
-const formatError = require("../../dist/actions/formatError");
-const chai    = require("chai");
-const expect  = chai.expect;
+import {expect} from "chai";
+import formatError = require("../../src/actions/formatError");
 
 describe('formatError()', () => {
     it("returns the message of non-syntax errors", () => {
@@ -9,7 +7,7 @@ describe('formatError()', () => {
     });
 
     it("returns man and horse of syntax errors", () => {
-        let lErr = new Error('Make my day!');
+        let lErr:any = new Error('Make my day!');
 
         lErr.location = {
             start : {

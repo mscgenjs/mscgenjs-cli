@@ -1,9 +1,10 @@
-"use strict";
-const index = require("../../dist/actions/index");
-const chai  = require("chai");
+import * as index from "../../src/actions/index";
+import {expect, use} from "chai";
+import * as chaiAsPromised from "chai-as-promised";
+import * as fs from "fs";
+import {INormalizedOptions} from "../../src/types";
 
-chai.use(require("chai-as-promised"));
-const expect  = chai.expect;
+use(chaiAsPromised);
 
 describe('index()', () => {
     it("transpiles the rainbow", () => {
@@ -13,7 +14,7 @@ describe('index()', () => {
                 inputType: "mscgen",
                 outputTo: `${__dirname}/output/rainbow.json`,
                 outputType: "json"
-            })
+            } as INormalizedOptions)
         ).to.eventually.equal(
             true
         );
@@ -25,7 +26,7 @@ describe('index()', () => {
                 inputType: "json",
                 outputTo: `${__dirname}/output/notanast.json`,
                 outputType: "json"
-            })
+            } as INormalizedOptions)
         ).to.eventually.be.rejected;
     });
     it("when transpiling something non-existing - promise rejects", () => {
@@ -35,7 +36,7 @@ describe('index()', () => {
                 inputType: "mscgen",
                 outputTo: `${__dirname}/output/notanast.json`,
                 outputType: "json"
-            })
+            } as INormalizedOptions)
         ).to.eventually.be.rejected;
     });
 });

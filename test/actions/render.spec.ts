@@ -1,12 +1,13 @@
-"use strict";
-const render = require("../../dist/actions/render");
-const chai   = require("chai");
+import * as render from "../../src/actions/render";
+import {expect, use, should} from "chai";
+import * as chaiAsPromised from "chai-as-promised";
+import { INormalizedOptions } from "../../src/types";
 
-chai.use(require("chai-as-promised"));
-chai.use(require("chai-xml"));
+use(chaiAsPromised);
+
 const lAST    = JSON.stringify(require('./fixtures/simplest.json'));
 
-chai.should();
+should();
 
 describe('render()', () => {
     it("coughs up something when passed an ast asked to output svg", (pDone) => {
@@ -14,7 +15,7 @@ describe('render()', () => {
             lAST,
             {
                 outputType: "svg"
-            }
+            } as INormalizedOptions
         ).should.be.fulfilled.and.notify(pDone);
     });
 
@@ -23,7 +24,7 @@ describe('render()', () => {
             lAST,
             {
                 outputType: "png"
-            }
+            } as INormalizedOptions
         ).should.be.fulfilled.and.notify(pDone);
     });
 

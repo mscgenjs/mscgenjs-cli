@@ -1,10 +1,9 @@
-"use strict";
-const readFromStream = require("../../dist/actions/readFromStream").readFromStream;
-const chai           = require("chai");
-const fs             = require("fs");
+import {readFromStream} from "../../src/actions/readFromStream";
+import {expect, use} from "chai";
+import * as chaiAsPromised from "chai-as-promised";
+import * as fs from "fs";
 
-chai.use(require("chai-as-promised"));
-const expect  = chai.expect;
+use(chaiAsPromised);
 
 describe('readFromStream()', () => {
     it("returns a promise that resolves to text from the stream", () => {

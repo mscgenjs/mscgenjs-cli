@@ -1,10 +1,8 @@
 
-const chai    = require("chai");
-const stream  = require("stream");
-const fs      = require("fs");
-const expect  = chai.expect;
-const getOutStream = require("../../dist/actions/fileNameToStream").getOutStream;
-const getInStream = require("../../dist/actions/fileNameToStream").getInStream;
+import * as fs from "fs";
+import * as stream from "stream";
+import {getInStream, getOutStream} from "../../src/actions/fileNameToStream";
+import {expect} from "chai";
 
 describe("fileNameToStream", () => {
     it("getOutStream('-') is a writable stream", () => {
