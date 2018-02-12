@@ -20,12 +20,11 @@ To make this as easy as possible for you, here's some simple guidelines:
 ### Contributing code
 - We prefer well documented **[pull requests](https://help.github.com/articles/creating-a-pull-request/)**
   based on the most recent version of the **master** branch.
-- Code quality
-    - Additions pass eslint.
+- Code quality: additions pass `npm run check:full` which a.o. means:
     - Mocha tests prove your code does what it intends.
-    - Your code does not introduce regressions - ```make check``` proves this.
-    - Code style (you know, petty things like indentations, where brackets go, how variables &
-      parameters are named) fits in with the current code base.
+    - Your code does not introduce regressions and doesn't decrease code coverage
+    - The code you add follows the project's lint rules (mostly tslint:recommended) 
+      hint: run `npm run lint:fix` to check and auto-fix
 - Plan to do something drastic?     
   Contact @SanderSpeaks on Twitter, or leave an [issue](https://github.com/mscgenjs/mscgenjs-cli/issues/new) on GitHub
 
