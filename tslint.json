@@ -4,9 +4,11 @@
         "tslint:recommended"
     ],
     "jsRules": {},
-    "rules": {},
+    "rules": {
+        "object-literal-sort-keys": false
+    },
     "rulesDirectory": [],
     "linterOptions": {
-        "exclude": ["test/**" ,"dist/**"]
+        "exclude": ["dist/**"]
     }
 }

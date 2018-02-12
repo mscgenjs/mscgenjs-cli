@@ -1,9 +1,10 @@
 
+import {expect} from "chai";
 import * as fs from "fs";
 import * as stream from "stream";
 import {getInStream, getOutStream} from "../../src/actions/fileNameToStream";
-import {expect} from "chai";
 
+// tslint:disable no-unused-expression
 describe("fileNameToStream", () => {
     it("getOutStream('-') is a writable stream", () => {
         expect(getOutStream("-") instanceof stream.Writable).to.be.true;
@@ -44,6 +45,7 @@ describe("fileNameToStream", () => {
         expect(getInStream("./tmp_hello")).to.not.equal(process.stdin);
     });
 });
+// tslint:enable no-unused-expression
 
 /*
     This file is part of mscgenjs-cli.

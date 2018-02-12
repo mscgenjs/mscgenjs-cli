@@ -1,21 +1,22 @@
-import * as render from "../../src/actions/render";
-import {expect, use, should} from "chai";
+import {expect, should, use} from "chai";
 import * as chaiAsPromised from "chai-as-promised";
+import * as render from "../../src/actions/render";
 import { INormalizedOptions } from "../../src/types";
 
 use(chaiAsPromised);
 
-const lAST    = JSON.stringify(require('./fixtures/simplest.json'));
+// tslint:disable-next-line: no-var-requires
+const lAST = JSON.stringify(require("./fixtures/simplest.json"));
 
 should();
 
-describe('render()', () => {
+describe("render()", () => {
     it("coughs up something when passed an ast asked to output svg", (pDone) => {
         render.renderTheShizzle(
             lAST,
             {
-                outputType: "svg"
-            } as INormalizedOptions
+                outputType: "svg",
+            } as INormalizedOptions,
         ).should.be.fulfilled.and.notify(pDone);
     });
 
@@ -23,8 +24,8 @@ describe('render()', () => {
         render.renderTheShizzle(
             lAST,
             {
-                outputType: "png"
-            } as INormalizedOptions
+                outputType: "png",
+            } as INormalizedOptions,
         ).should.be.fulfilled.and.notify(pDone);
     });
 
@@ -43,4 +44,3 @@ describe('render()', () => {
     You should have received a copy of the GNU General Public License
     along with mscgenjs-cli.  If not, see <http://www.gnu.org/licenses/>.
 */
-

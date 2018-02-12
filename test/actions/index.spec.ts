@@ -1,22 +1,23 @@
-import * as index from "../../src/actions/index";
 import {expect, use} from "chai";
 import * as chaiAsPromised from "chai-as-promised";
 import * as fs from "fs";
+import * as index from "../../src/actions/index";
 import {INormalizedOptions} from "../../src/types";
 
 use(chaiAsPromised);
 
-describe('index()', () => {
+// tslint:disable no-unused-expression
+describe("index()", () => {
     it("transpiles the rainbow", () => {
         expect(
             index.transform({
                 inputFrom: `${__dirname}/fixtures/rainbow.mscin`,
                 inputType: "mscgen",
                 outputTo: `${__dirname}/output/rainbow.json`,
-                outputType: "json"
-            } as INormalizedOptions)
+                outputType: "json",
+            } as INormalizedOptions),
         ).to.eventually.equal(
-            true
+            true,
         );
     });
     it("when transpiling something non-existing - promise rejects", () => {
@@ -25,8 +26,8 @@ describe('index()', () => {
                 inputFrom: `${__dirname}/fixtures/doesnotexist`,
                 inputType: "json",
                 outputTo: `${__dirname}/output/notanast.json`,
-                outputType: "json"
-            } as INormalizedOptions)
+                outputType: "json",
+            } as INormalizedOptions),
         ).to.eventually.be.rejected;
     });
     it("when transpiling something non-existing - promise rejects", () => {
@@ -35,101 +36,102 @@ describe('index()', () => {
                 inputFrom: `${__dirname}/fixtures/invalid-mscgen.mscin`,
                 inputType: "mscgen",
                 outputTo: `${__dirname}/output/notanast.json`,
-                outputType: "json"
-            } as INormalizedOptions)
+                outputType: "json",
+            } as INormalizedOptions),
         ).to.eventually.be.rejected;
     });
 });
 
 describe("removeAutoWidth", () => {
     const AST_WITH_WIDTH_EQUALS_AUTO = {
-        "meta": {
-            "extendedOptions": true,
-            "extendedArcTypes": false,
-            "extendedFeatures": true
+        meta: {
+            extendedArcTypes: false,
+            extendedFeatures: true,
+            extendedOptions: true,
         },
-        "options": {
-            "width": "auto"
+        options: {
+            width: "auto",
         },
-        "entities": [
+        entities: [
             {
-                "name": "a"
-            }
-        ]
+                name: "a",
+            },
+        ],
     };
     const AST_WITH_WIDTH_NUMBER = {
-        "meta": {
-            "extendedOptions": true,
-            "extendedArcTypes": false,
-            "extendedFeatures": true
+        meta: {
+            extendedOptions: true,
+            extendedArcTypes: false,
+            extendedFeatures: true,
         },
-        "options": {
-            "width": "481"
+        options: {
+            width: "481",
         },
-        "entities": [
+        entities: [
             {
-                "name": "a"
-            }
-        ]
+                name: "a",
+            },
+        ],
     };
     const AST_WITHOUT_WIDTH_EQUALS_AUTO = {
-        "meta": {
-            "extendedOptions": true,
-            "extendedArcTypes": false,
-            "extendedFeatures": true
+        meta: {
+            extendedOptions: true,
+            extendedArcTypes: false,
+            extendedFeatures: true,
         },
-        "options": {
+        options: {
         },
-        "entities": [
+        entities: [
             {
-                "name": "a"
-            }
-        ]
+                name: "a",
+            },
+        ],
     };
 
     it("removes the auto-width element if outputType === png", () => {
         expect(
-            index.removeAutoWidth(AST_WITH_WIDTH_EQUALS_AUTO, "png")
+            index.removeAutoWidth(AST_WITH_WIDTH_EQUALS_AUTO, "png"),
         ).to.deep.equal(
-            AST_WITHOUT_WIDTH_EQUALS_AUTO
+            AST_WITHOUT_WIDTH_EQUALS_AUTO,
         );
     });
     it("removes the auto-width element if outputType === jpeg", () => {
         expect(
-            index.removeAutoWidth(AST_WITH_WIDTH_EQUALS_AUTO, "jpeg")
+            index.removeAutoWidth(AST_WITH_WIDTH_EQUALS_AUTO, "jpeg"),
         ).to.deep.equal(
-            AST_WITHOUT_WIDTH_EQUALS_AUTO
+            AST_WITHOUT_WIDTH_EQUALS_AUTO,
         );
     });
     it("leaves the auto-width element alone outputType === svg", () => {
         expect(
-            index.removeAutoWidth(AST_WITH_WIDTH_EQUALS_AUTO, "svg")
+            index.removeAutoWidth(AST_WITH_WIDTH_EQUALS_AUTO, "svg"),
         ).to.deep.equal(
-            AST_WITH_WIDTH_EQUALS_AUTO
+            AST_WITH_WIDTH_EQUALS_AUTO,
         );
     });
     it("leaves the width element if outputType === png and width is a number", () => {
         expect(
-            index.removeAutoWidth(AST_WITH_WIDTH_NUMBER, "png")
+            index.removeAutoWidth(AST_WITH_WIDTH_NUMBER, "png"),
         ).to.deep.equal(
-            AST_WITH_WIDTH_NUMBER
+            AST_WITH_WIDTH_NUMBER,
         );
     });
     it("leaves the width element if outputType === jpeg and width is a number", () => {
         expect(
-            index.removeAutoWidth(AST_WITH_WIDTH_NUMBER, "jpeg")
+            index.removeAutoWidth(AST_WITH_WIDTH_NUMBER, "jpeg"),
         ).to.deep.equal(
-            AST_WITH_WIDTH_NUMBER
+            AST_WITH_WIDTH_NUMBER,
         );
     });
     it("leaves the width element if outputType === svg and width is a number", () => {
         expect(
-            index.removeAutoWidth(AST_WITH_WIDTH_NUMBER, "svg")
+            index.removeAutoWidth(AST_WITH_WIDTH_NUMBER, "svg"),
         ).to.deep.equal(
-            AST_WITH_WIDTH_NUMBER
+            AST_WITH_WIDTH_NUMBER,
         );
     });
 });
+// tslint:enable no-unused-expression
 
 /*
     This file is part of mscgenjs-cli.
@@ -144,4 +146,3 @@ describe("removeAutoWidth", () => {
     You should have received a copy of the GNU General Public License
     along with mscgenjs-cli.  If not, see <http://www.gnu.org/licenses/>.
 */
-

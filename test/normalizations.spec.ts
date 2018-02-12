@@ -1,6 +1,6 @@
 import {expect} from "chai";
-import * as norm from "../src/normalizations";
 import { CommanderStatic } from "commander";
+import * as norm from "../src/normalizations";
 
 const TESTPAIRS = [
     {
@@ -10,8 +10,8 @@ const TESTPAIRS = [
                 inputFrom: "input.xu",
                 inputType: "msgenny",
                 outputTo: "output.svg",
-                outputType: "mscgen"
-            }
+                outputType: "mscgen",
+            },
         },
         expected: {
             options: {
@@ -19,17 +19,17 @@ const TESTPAIRS = [
                 inputType: "msgenny",
                 outputTo: "output.svg",
                 outputType: "mscgen",
-                regularArcTextVerticalAlignment: "middle"
-            }
-        }
+                regularArcTextVerticalAlignment: "middle",
+            },
+        },
     },
     {
         title: "guesses the input type, takes a default for the output type",
         input: {
             options: {
                 inputFrom: "input.xu",
-                outputTo: "output.svg"
-            }
+                outputTo: "output.svg",
+            },
         },
         expected: {
             options: {
@@ -37,17 +37,17 @@ const TESTPAIRS = [
                 inputType: "xu",
                 outputTo: "output.svg",
                 outputType: "svg",
-                regularArcTextVerticalAlignment: "middle"
-            }
-        }
+                regularArcTextVerticalAlignment: "middle",
+            },
+        },
     },
     {
         title: "if parser-output is specified take sets outputType to 'json'",
         input: {
             options: {
                 inputFrom: "w00tchart.mscin",
-                parserOutput: true
-            }
+                parserOutput: true,
+            },
         },
         expected: {
             options: {
@@ -56,17 +56,17 @@ const TESTPAIRS = [
                 outputType: "json",
                 outputTo: "w00tchart.json",
                 parserOutput: true,
-                regularArcTextVerticalAlignment: "middle"
-            }
-        }
+                regularArcTextVerticalAlignment: "middle",
+            },
+        },
     },
     {
         title: "guesses the output type from a given filename",
         input: {
             options: {
                 inputFrom: "w00tchart.seq",
-                outputTo: "a nice file.notanextension.png"
-            }
+                outputTo: "a nice file.notanextension.png",
+            },
         },
         expected: {
             options: {
@@ -74,17 +74,17 @@ const TESTPAIRS = [
                 inputType: "mscgen",
                 outputType: "png",
                 outputTo: "a nice file.notanextension.png",
-                regularArcTextVerticalAlignment: "middle"
-            }
-        }
+                regularArcTextVerticalAlignment: "middle",
+            },
+        },
     },
     {
         title: "cannot guess the input type when it is stdin, so takes a default",
         input: {
             options: {
                 inputFrom: "-",
-                outputTo: "output.svg"
-            }
+                outputTo: "output.svg",
+            },
         },
         expected: {
             options: {
@@ -92,16 +92,16 @@ const TESTPAIRS = [
                 inputType: "mscgen",
                 outputTo: "output.svg",
                 outputType: "svg",
-                regularArcTextVerticalAlignment: "middle"
-            }
-        }
+                regularArcTextVerticalAlignment: "middle",
+            },
+        },
     },
     {
         title: "treats .ast as .json",
         input: {
             options: {
-                inputFrom: "achoo.ast"
-            }
+                inputFrom: "achoo.ast",
+            },
         },
         expected: {
             options: {
@@ -109,17 +109,17 @@ const TESTPAIRS = [
                 inputType: "json",
                 outputTo: "achoo.svg",
                 outputType: "svg",
-                regularArcTextVerticalAlignment: "middle"
-            }
-        }
+                regularArcTextVerticalAlignment: "middle",
+            },
+        },
     },
     {
         title: "treats .ast as .json - even wen explicitly stated in options.inputType",
         input: {
             options: {
                 inputFrom: "achoo.interestingextension",
-                inputType: "ast"
-            }
+                inputType: "ast",
+            },
         },
         expected: {
             options: {
@@ -127,16 +127,16 @@ const TESTPAIRS = [
                 inputType: "json",
                 outputTo: "achoo.svg",
                 outputType: "svg",
-                regularArcTextVerticalAlignment: "middle"
-            }
-        }
+                regularArcTextVerticalAlignment: "middle",
+            },
+        },
     },
     {
         title: "can't guess outputTo when inputFrom is stdin",
         input: {
             options: {
-                inputFrom: "-"
-            }
+                inputFrom: "-",
+            },
         },
         expected: {
             options: {
@@ -144,15 +144,15 @@ const TESTPAIRS = [
                 inputType: "mscgen",
                 outputTo: undefined,
                 outputType: "svg",
-                regularArcTextVerticalAlignment: "middle"
-            }
-        }
+                regularArcTextVerticalAlignment: "middle",
+            },
+        },
     },
     {
         title: "can't guess outputTo when inputFrom is not there",
         input: {
             options: {
-            }
+            },
         },
         expected: {
             options: {
@@ -160,15 +160,15 @@ const TESTPAIRS = [
                 inputType: "mscgen",
                 outputTo: undefined,
                 outputType: "svg",
-                regularArcTextVerticalAlignment: "middle"
-            }
-        }
+                regularArcTextVerticalAlignment: "middle",
+            },
+        },
     },
     {
         title: "migrates arguments to options.inputFrom",
         input: {
             argument: "inputFrom.bladiebla",
-            options: {}
+            options: {},
         },
         expected: {
             options: {
@@ -176,17 +176,17 @@ const TESTPAIRS = [
                 inputType: "mscgen",
                 outputTo: "inputFrom.svg",
                 outputType: "svg",
-                regularArcTextVerticalAlignment: "middle"
-            }
-        }
+                regularArcTextVerticalAlignment: "middle",
+            },
+        },
     },
     {
         title: "arguments win from options.inputFrom",
         input: {
             argument: "argument.won",
             options: {
-                inputFrom: "inputFrom.xxx"
-            }
+                inputFrom: "inputFrom.xxx",
+            },
         },
         expected: {
             options: {
@@ -194,22 +194,25 @@ const TESTPAIRS = [
                 inputType: "mscgen",
                 outputTo: "argument.svg",
                 outputType: "svg",
-                regularArcTextVerticalAlignment: "middle"
-            }
-        }
-    }
+                regularArcTextVerticalAlignment: "middle",
+            },
+        },
+    },
 ];
 
-describe('cli/normalizations', () => {
-    describe('#normalize() - ', () => {
+describe("cli/normalizations", () => {
+    describe("#normalize() - ", () => {
         TESTPAIRS.forEach((pPair) => {
             it(pPair.title, () => {
-                let lNormalizedOptions = norm.normalize(pPair.input.argument as string, pPair.input.options as CommanderStatic);
+                const lNormalizedOptions = norm.normalize(
+                    pPair.input.argument as string,
+                    pPair.input.options as CommanderStatic,
+                );
 
                 expect(
-                    lNormalizedOptions
+                    lNormalizedOptions,
                 ).to.deep.equal(
-                    pPair.expected.options
+                    pPair.expected.options,
                 );
             });
         });
