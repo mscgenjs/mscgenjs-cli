@@ -28,9 +28,7 @@ exports.removeAutoWidth = removeAutoWidth;
 function render(pOptions) {
     return readFromStream_1.readFromStream(fileNameToStream_1.getInStream(pOptions.inputFrom))
         .then((pInput) => getAST(pInput, pOptions))
-        .then((pAST) => removeAutoWidth(pAST, pOptions.outputType))
-        .then((pAST) => JSON.stringify(pAST))
-        .then((pASTAsJSON) => render_1.renderTheShizzle(pASTAsJSON, pOptions));
+        .then((pAST) => render_1.renderTheShizzle(removeAutoWidth(pAST, pOptions.outputType), pOptions));
 }
 function transpile(pOptions) {
     return readFromStream_1.readFromStream(fileNameToStream_1.getInStream(pOptions.inputFrom))

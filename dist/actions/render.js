@@ -31,7 +31,7 @@ function renderTheShizzle(pAST, pOptions) {
             yield page.goto(`file:///${__dirname}/template.html`, {
                 waitUntil: "networkidle2",
             });
-            yield page.evaluate(cookEvalFunction(pAST, pOptions));
+            yield page.evaluate(cookEvalFunction(JSON.stringify(pAST), pOptions));
             yield page.addScriptTag({
                 path: require.resolve("mscgenjs-inpage"),
             });

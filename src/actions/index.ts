@@ -22,7 +22,7 @@ function getAST(pInput: string, pOptions: INormalizedOptions): Promise<string> {
     );
 }
 
-export function removeAutoWidth(pAST: any, pOutputType: string) {
+export function removeAutoWidth(pAST: any, pOutputType: OutputType) {
     if (
         (pOutputType === "png" || pOutputType === "jpeg") &&
         pAST.options && pAST.options.width &&
@@ -36,9 +36,12 @@ export function removeAutoWidth(pAST: any, pOutputType: string) {
 function render(pOptions: INormalizedOptions): Promise<any> {
     return readFromStream(getInStream(pOptions.inputFrom))
         .then((pInput) => getAST(pInput, pOptions))
-        .then((pAST) => removeAutoWidth(pAST, pOptions.outputType))
-        .then((pAST) => JSON.stringify(pAST))
-        .then((pASTAsJSON) => renderTheShizzle(pASTAsJSON, pOptions));
+        .then((pAST) =>
+            renderTheShizzle(
+                removeAutoWidth(pAST, pOptions.outputType),
+                pOptions,
+            ),
+        );
 }
 
 function transpile(pOptions: INormalizedOptions): Promise<string> {

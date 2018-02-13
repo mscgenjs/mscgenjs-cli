@@ -14,7 +14,7 @@ function cookEvalFunction(pAST: string, pOptions: INormalizedOptions): string {
         lReplaceMe.innerHTML = \`${pAST.replace(/\\/g, "\\\\")}\``;
 }
 
-export async function renderTheShizzle(pAST: string, pOptions: INormalizedOptions) {
+export async function renderTheShizzle(pAST: any, pOptions: INormalizedOptions) {
 
     let browser: puppeteer.Browser = {} as puppeteer.Browser;
 
@@ -33,7 +33,7 @@ export async function renderTheShizzle(pAST: string, pOptions: INormalizedOption
             },
         );
 
-        await page.evaluate(cookEvalFunction(pAST, pOptions));
+        await page.evaluate(cookEvalFunction(JSON.stringify(pAST), pOptions));
 
         await page.addScriptTag({
             path: require.resolve("mscgenjs-inpage"),
