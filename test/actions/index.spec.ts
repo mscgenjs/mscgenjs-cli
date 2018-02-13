@@ -1,24 +1,10 @@
 import {expect, use} from "chai";
 import * as chaiAsPromised from "chai-as-promised";
-import * as fs from "fs";
-import * as path from "path";
 import * as index from "../../src/actions/index";
 import {INormalizedOptions} from "../../src/types";
+import {resetOutputDir} from "./utl";
 
 use(chaiAsPromised);
-
-function resetOutputDir() {
-    fs.readdirSync(`${path.join(__dirname, "output")}`)
-        .filter((pFileName) => pFileName.endsWith(".json"))
-        .forEach((pFileName) => {
-        try {
-            fs.unlinkSync(path.join(__dirname, "output", pFileName));
-        } catch (e) {
-            // probably files didn't exist in the first place
-            // so ignore the exception
-        }
-    });
-}
 
 // tslint:disable no-unused-expression
 describe("index()", () => {
