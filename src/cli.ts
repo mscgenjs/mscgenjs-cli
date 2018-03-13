@@ -36,18 +36,20 @@ try {
             "Print parsed msc output",
         ).option(
             "-s --css <string>",
-            "Additional styles to use. Experimental!",
+            "Additional styles to use. Experimental",
         ).option(
             "-n --named-style <style>",
             validations.validNamedStyleRE,
             validations.validNamedStyle,
         ).option(
             "-m --mirror-entities",
-            "Repeat the entities on the chart's bottom",
+            `Repeat the entities on the chart's
+                                 bottom`,
         ).option(
-            "-v --vertical-alignment <alignment>",
-            `Vertical alignment of labels on regular arcs. Experimental!
-                                     ${validations.validVerticalAlignmentRE} (default middle)`,
+            "-v --vertical-alignment <align>",
+            `Vertical alignment of labels on regular
+                                 arcs. Experimental
+                                 ${validations.validVerticalAlignmentRE}`,
             validations.validVerticalAlignment,
             "middle",
         ).option(
