@@ -56,23 +56,25 @@ mscgenjs -T png coolchart.mscgen
 Yes. Run `mscgenjs` with `-h` or `--help` to get them all:
 
 ```
-    Usage: mscgenjs [options] [infile]
+  Usage: mscgen_js [options] [infile]
 
-    Options:
+  Options:
 
-      -h, --help                           output usage information
-      -V, --version                        output the version number
-      -T --output-type <type>              svg|png|jpeg|mscgen|msgenny|xu|json|ast|dot|doxygen
-      -I --input-type <type>               mscgen|msgenny|xu|json|ast
-      -i --input-from <file>               File to read from. use - for stdin.
-      -o --output-to <file>                File to write to. use - for stdout.
-      -p --parser-output                   Print parsed msc output
-      -s --css <string>                    Additional styles to use. Experimental!
-      -n --named-style <style>             basic|lazy|classic|cygne|pegasse
-      -m --mirror-entities                 Repeat the entities on the chart's bottom
-      -v --vertical-alignment <alignment>  Vertical alignment of labels on regular arcs. Experimental!
-                                           above|middle|below (default middle)
-      -l --license                         Display license and exit
+    -V, --version                    output the version number
+    -T --output-type <type>          svg|png|jpeg|mscgen|msgenny|xu|json|ast|dot|doxygen
+    -I --input-type <type>           mscgen|msgenny|xu|json|ast
+    -i --input-from <file>           File to read from. use - for stdin.
+    -o --output-to <file>            File to write to. use - for stdout.
+    -p --parser-output               Print parsed msc output
+    -s --css <string>                Additional styles to use. Experimental
+    -n --named-style <style>         basic|lazy|classic|noentityboxes
+    -m --mirror-entities             Repeat the entities on the chart's
+                                     bottom
+    -v --vertical-alignment <align>  Vertical alignment of labels on regular
+                                     arcs. Experimental
+                                     above|middle|below (default: middle)
+    -l --license                     Display license and exit
+    -h, --help                       output usage information
 ```
 
 ### Basic use: produce pictures from a script
