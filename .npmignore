@@ -21,6 +21,7 @@ test/**
 utl/**
 .bithoundrc
 .dependency-cruiser.json
+.github/**
 .gitlab-ci.yml
 .istanbul.yml
 .travis.yml
