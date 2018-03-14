@@ -251,8 +251,7 @@ and some
 [guidance](https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md).
 
 `mscgenjs-cli`'s `--puppeteer-options` takes a JSON file with puppeteer options 
-which it passes 1:1 to puppeteer. As a side effect it's also more easy to do
-debug things (e.g. by passing devtools and slowMo options). 
+which it passes 1:1 to puppeteer. 
 
 ```sh
 mscgenjs coolchart.mscgen --puppeteer-options puppeteer-config.json
@@ -267,7 +266,8 @@ google-chrome is installed in `/usr/bin`):
 }
 ```
 
-An example to make visible what mscgenjs-cli is doing under the hood:
+You can also use this to make visible what mscgenjs-cli is doing under
+the hood by adding some debugging options:
 ```json
 {
     "headless": false,
