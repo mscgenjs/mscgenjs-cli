@@ -20,13 +20,16 @@ function cookEvalFunction(pAST, pOptions) {
         );
         lReplaceMe.innerHTML = \`${pAST.replace(/\\/g, "\\\\")}\``;
 }
+function getPuppeteerLaunchOptions(pPuppeteerLaunchOptions) {
+    return Object.assign({
+        headless: true,
+    }, pPuppeteerLaunchOptions || {});
+}
 function renderTheShizzle(pAST, pOptions) {
     return __awaiter(this, void 0, void 0, function* () {
         let browser = {};
         try {
-            browser = yield puppeteer.launch({
-                headless: true,
-            });
+            browser = yield puppeteer.launch(getPuppeteerLaunchOptions(pOptions.puppeteerOptions));
             const page = yield browser.newPage();
             yield page.goto(`file:///${__dirname}/template.html`, {
                 waitUntil: "networkidle2",

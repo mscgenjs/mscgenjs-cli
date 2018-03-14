@@ -1,7 +1,7 @@
 "use strict";
 import * as fs from "fs";
 import * as mscgenjs from "mscgenjs";
-import { INormalizedOptions, NamedStyleType, OutputType } from "./types";
+import { INormalizedOptions, IPuppeteerOptions, NamedStyleType, OutputType } from "./types";
 
 const VALID_GRAPHICS_TYPES  = Object.freeze(["svg", "png", "jpeg"]);
 const VALID_OUTPUT_TYPES = VALID_GRAPHICS_TYPES.concat(
@@ -113,6 +113,24 @@ export function validateArguments(pOptions: INormalizedOptions): Promise<INormal
 
         pResolve(pOptions);
     });
+}
+
+export function validPuppeteerOptions(pPuppeteerConfigFileName: string): IPuppeteerOptions {
+
+    let lPuppeteerConfigFileContents = "";
+
+    try {
+        lPuppeteerConfigFileContents = fs.readFileSync(pPuppeteerConfigFileName, "utf8");
+    } catch (pException) {
+        throw Error(`\n  error: Failed to open puppeteer options configuration file '${pPuppeteerConfigFileName}'\n\n`);
+    }
+
+    try {
+        return JSON.parse(lPuppeteerConfigFileContents);
+    } catch (pException) {
+        throw Error(`\n  error: '${pPuppeteerConfigFileName}' does not contain valid puppeteer options\n\n`);
+    }
+
 }
 
 export const validOutputTypeRE = VALID_OUTPUT_TYPES.join("|");

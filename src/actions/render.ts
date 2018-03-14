@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import * as puppeteer from "puppeteer";
-import { INormalizedOptions, NamedStyleType, OutputType } from "../types";
+import { INormalizedOptions, IPuppeteerOptions, NamedStyleType, OutputType } from "../types";
 
 function cookEvalFunction(pAST: string, pOptions: INormalizedOptions): string {
     return `const lReplaceMe = document.getElementById('replaceme');
@@ -14,15 +14,21 @@ function cookEvalFunction(pAST: string, pOptions: INormalizedOptions): string {
         lReplaceMe.innerHTML = \`${pAST.replace(/\\/g, "\\\\")}\``;
 }
 
+function getPuppeteerLaunchOptions(pPuppeteerLaunchOptions: IPuppeteerOptions) {
+    return Object.assign(
+        {
+            headless: true,
+        },
+        pPuppeteerLaunchOptions || {},
+    );
+}
+
 export async function renderTheShizzle(pAST: any, pOptions: INormalizedOptions) {
 
     let browser: puppeteer.Browser = {} as puppeteer.Browser;
 
     try {
-        browser = await puppeteer.launch({
-            headless: true,
-            // devtools: true,
-        });
+        browser = await puppeteer.launch(getPuppeteerLaunchOptions(pOptions.puppeteerOptions));
 
         const page = await browser.newPage();
 

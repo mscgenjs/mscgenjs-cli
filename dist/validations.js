@@ -94,6 +94,22 @@ function validateArguments(pOptions) {
     });
 }
 exports.validateArguments = validateArguments;
+function validPuppeteerOptions(pPuppeteerConfigFileName) {
+    let lPuppeteerConfigFileContents = "";
+    try {
+        lPuppeteerConfigFileContents = fs.readFileSync(pPuppeteerConfigFileName, "utf8");
+    }
+    catch (pException) {
+        throw Error(`\n  error: Failed to open puppeteer options configuration file '${pPuppeteerConfigFileName}'\n\n`);
+    }
+    try {
+        return JSON.parse(lPuppeteerConfigFileContents);
+    }
+    catch (pException) {
+        throw Error(`\n  error: '${pPuppeteerConfigFileName}' does not contain valid puppeteer options\n\n`);
+    }
+}
+exports.validPuppeteerOptions = validPuppeteerOptions;
 exports.validOutputTypeRE = VALID_OUTPUT_TYPES.join("|");
 exports.validInputTypeRE = mscgenjs.getAllowedValues()
     .inputType
