@@ -28,7 +28,7 @@
     "npm-install": "npm install",
     "nsp": "nsp check --warn-only",
     "test": "mocha --require ts-node/register --timeout 10000 --reporter dot --recursive test/*.ts test/**/*.ts",
-    "test:cover": "nyc --reporter text-summary --extension .ts --check-coverage --lines 85 npm test",
+    "test:cover": "nyc --extension .ts --check-coverage npm test",
     "update-dependencies": "npm-run-all npm-check-updates npm-install lint:fix depcruise build test",
     "watch": "tsc --project src --watch"
   },
@@ -80,5 +80,12 @@
     "ts-node": "5.0.1",
     "tslint": "5.9.1",
     "typescript": "2.7.2"
+  },
+  "nyc" : {
+    "lines": 85,
+    "reporter": [
+      "text-summary",
+      "html"
+    ]
   }
 }
