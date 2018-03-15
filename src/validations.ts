@@ -2,20 +2,15 @@
 import * as Ajv from "ajv";
 import * as fs from "fs";
 import * as mscgenjs from "mscgenjs";
-import * as path from "path";
 import { INormalizedOptions, IPuppeteerOptions, NamedStyleType, OutputType } from "./types";
+/* tslint:disable-next-line */
+const puppeteerOptionsSchema = require("./puppeteer-options.schema.json");
 
 const VALID_GRAPHICS_TYPES  = Object.freeze(["svg", "png", "jpeg"]);
 const VALID_OUTPUT_TYPES    = VALID_GRAPHICS_TYPES.concat(
     mscgenjs.getAllowedValues().outputType.map((pValue) => pValue.name),
 );
 const ajv = new Ajv();
-const puppeteerOptionsSchema = JSON.parse(
-    fs.readFileSync(
-        path.join(__dirname, "./puppeteer-options.schema.json"),
-        "utf8",
-    ),
-);
 
 function isStdout(pFilename: string): boolean {
     return "-" === pFilename;

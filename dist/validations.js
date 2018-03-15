@@ -3,11 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Ajv = require("ajv");
 const fs = require("fs");
 const mscgenjs = require("mscgenjs");
-const path = require("path");
+/* tslint:disable-next-line */
+const puppeteerOptionsSchema = require("./puppeteer-options.schema.json");
 const VALID_GRAPHICS_TYPES = Object.freeze(["svg", "png", "jpeg"]);
 const VALID_OUTPUT_TYPES = VALID_GRAPHICS_TYPES.concat(mscgenjs.getAllowedValues().outputType.map((pValue) => pValue.name));
 const ajv = new Ajv();
-const puppeteerOptionsSchema = JSON.parse(fs.readFileSync(path.join(__dirname, "./puppeteer-options.schema.json"), "utf8"));
 function isStdout(pFilename) {
     return "-" === pFilename;
 }
