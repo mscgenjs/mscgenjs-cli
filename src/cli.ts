@@ -54,7 +54,8 @@ try {
             "middle",
         ).option(
             "--puppeteer-options <file>",
-            "(advanced) tweak how puppeteer behaves itself",
+            `(advanced) pass puppeteer launch options
+                                 see README.md for details`,
             validations.validPuppeteerOptions,
         ).option(
             "-l --license",

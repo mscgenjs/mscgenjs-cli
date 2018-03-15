@@ -73,7 +73,8 @@ Yes. Run `mscgenjs` with `-h` or `--help` to get them all:
     -v --vertical-alignment <align>  Vertical alignment of labels on regular
                                      arcs. Experimental
                                      above|middle|below (default: middle)
-    --puppeteer-options <file>       (advanced) tweak how puppeteer behaves itself
+    --puppeteer-options <file>       (advanced) pass puppeteer launch options
+                                     see README.md for details
     -l --license                     Display license and exit
     -h, --help                       output usage information
 ```
