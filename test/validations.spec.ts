@@ -204,7 +204,19 @@ describe("cli/validations", () => {
             } catch (e) {
                 lFoundError = e.message;
             }
-            expect(lFoundError).to.contain(`error: '${lFixture}' does not contain valid puppeteer options`);
+            expect(lFoundError).to.contain(`error: '${lFixture}' does not contain valid JSON`);
+        });
+
+        it("barfs if passed file is no valid json", () => {
+            let lFoundError = "";
+            const lFixture = path.join(__dirname, "fixtures", "invalid-puppeteer-config.json");
+
+            try {
+                val.validPuppeteerOptions(lFixture);
+            } catch (e) {
+                lFoundError = e.message;
+            }
+            expect(lFoundError).to.contain(`error: '${lFixture}' does not contain`);
         });
 
         it("returns the parsed json if passed file is valid json", () => {
