@@ -150,7 +150,8 @@ export function validPuppeteerOptions(pPuppeteerConfigFileName: string): IPuppet
          - devtools (boolean)
          - executablePath (path to an executable)
          - headless (boolean)
-         - slowMo (delay in ms)\n\n`);
+         - slowMo (delay in ms)
+         - timeout (in ms)\n\n`);
     }
 
     return lPuppeteerConfigObject as IPuppeteerOptions;

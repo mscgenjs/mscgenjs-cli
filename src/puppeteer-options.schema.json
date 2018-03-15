@@ -22,6 +22,9 @@
         },
         "slowMo": {
             "type": "number"
+        },
+        "timeout": {
+            "type": "number"
         }
     }
 }

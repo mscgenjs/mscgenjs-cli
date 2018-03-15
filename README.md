@@ -251,12 +251,20 @@ but on some it needs some convincing. For this it has a host of
 and some
 [guidance](https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md).
 
-`mscgenjs-cli`'s `--puppeteer-options` takes a JSON file with puppeteer options 
-which it passes 1:1 to puppeteer. 
+`mscgenjs-cli`'s `--puppeteer-options` takes a JSON file with (a subset
+of the) puppeteer options which it passes 1:1 to puppeteer.
 
 ```sh
 mscgenjs coolchart.mscgen --puppeteer-options puppeteer-config.json
 ```
+
+The puppeteer options `mscgenjs-cli` accepts:
+- args
+- devtools
+- headless
+- executablePath
+- slowMo
+- timeout
 
 An example puppeteer-config.json to make things work on Fedora (assuming
 google-chrome is installed in `/usr/bin`):

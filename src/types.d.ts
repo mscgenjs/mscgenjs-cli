@@ -28,6 +28,7 @@ export interface IPuppeteerOptions {
     executablePath?: string;
     headless: boolean;
     slowMo?: number;
+    timeout?: number;
 }
 
 export type OutputType = GraphicalOutputType | TextOutputType;
@@ -52,8 +53,6 @@ export interface INormalizedOptions {
     regularArcTextVerticalAlignment: RegularArcTextVerticalAlignmentType;
     puppeteerOptions: IPuppeteerOptions;
 }
-
-// export {RegularArcTextVerticalAlignmentType, InputType};
 
 /*
     This file is part of mscgenjs-cli.
