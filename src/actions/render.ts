@@ -23,7 +23,7 @@ function getPuppeteerLaunchOptions(pPuppeteerLaunchOptions: IPuppeteerOptions) {
     );
 }
 
-export async function renderTheShizzle(pAST: any, pOptions: INormalizedOptions) {
+export async function renderWithChromeHeadless(pAST: any, pOptions: INormalizedOptions) {
 
     let browser: puppeteer.Browser = {} as puppeteer.Browser;
 
@@ -48,6 +48,12 @@ export async function renderTheShizzle(pAST: any, pOptions: INormalizedOptions) 
         await page.waitFor("mscgen#replaceme[data-renderedby='mscgen_js']");
 
         if (pOptions.outputType === "svg") {
+            /* the istanbul ignore thing is so istanbul won't instrument code
+               that is meant to be run in browser context. If it does,
+               you'll get errors like 'Error: Evaluation failed: ReferenceError: cov_'
+               - which is chrome (not node) telling us something is foobar
+            */
+            /* istanbul ignore next */
             return await page.evaluate(() => {
                 const lSVGElement = document.getElementById("mscgenjsreplaceme");
                 if (lSVGElement) {
@@ -68,8 +74,6 @@ export async function renderTheShizzle(pAST: any, pOptions: INormalizedOptions) 
                 type: pOptions.outputType as any,
             });
         }
-    } catch (pError) {
-        return pError;
     } finally {
         if (Boolean(browser) && typeof browser.close === "function") {
             browser.close();

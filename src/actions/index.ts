@@ -3,7 +3,7 @@ import * as pify from "pify";
 import { INormalizedOptions, OutputType } from "../types";
 import { getInStream, getOutStream } from "./fileNameToStream";
 import { readFromStream } from "./readFromStream";
-import { renderTheShizzle } from "./render";
+import { renderWithChromeHeadless } from "./render";
 
 const translate = pify(translateMsc);
 
@@ -37,7 +37,7 @@ function render(pOptions: INormalizedOptions): Promise<any> {
     return readFromStream(getInStream(pOptions.inputFrom))
         .then((pInput) => getAST(pInput, pOptions))
         .then((pAST) =>
-            renderTheShizzle(
+            renderWithChromeHeadless(
                 removeAutoWidth(pAST, pOptions.outputType),
                 pOptions,
             ),

@@ -28,7 +28,7 @@ exports.removeAutoWidth = removeAutoWidth;
 function render(pOptions) {
     return readFromStream_1.readFromStream(fileNameToStream_1.getInStream(pOptions.inputFrom))
         .then((pInput) => getAST(pInput, pOptions))
-        .then((pAST) => render_1.renderTheShizzle(removeAutoWidth(pAST, pOptions.outputType), pOptions));
+        .then((pAST) => render_1.renderWithChromeHeadless(removeAutoWidth(pAST, pOptions.outputType), pOptions));
 }
 function transpile(pOptions) {
     return readFromStream_1.readFromStream(fileNameToStream_1.getInStream(pOptions.inputFrom))

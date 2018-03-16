@@ -6,25 +6,43 @@ import { INormalizedOptions } from "../../src/types";
 use(chaiAsPromised);
 
 // tslint:disable-next-line: no-var-requires
-const lAST = JSON.stringify(require("./fixtures/simplest.json"));
+const lAST = require("./fixtures/simplest.json");
 
 should();
 
 describe("render()", () => {
+    it("should fail when passed a non-executable executablePath", (pDone) => {
+        render.renderWithChromeHeadless(
+            lAST,
+            {
+                outputType: "png",
+                puppeteerOptions: {
+                    executablePath: "non/existing/path/to/chromium",
+                },
+            } as INormalizedOptions,
+        ).should.be.rejected.and.notify(pDone);
+    });
+
     it("coughs up something when passed an ast asked to output svg", (pDone) => {
-        render.renderTheShizzle(
+        render.renderWithChromeHeadless(
             lAST,
             {
                 outputType: "svg",
+                puppeteerOptions: {
+                    args: ["--no-sandbox"], // ci server's docker/ linux does not support sandboxing yet
+                },
             } as INormalizedOptions,
         ).should.be.fulfilled.and.notify(pDone);
     });
 
     it("coughs something when passed an ast asked to output png", (pDone) => {
-        render.renderTheShizzle(
+        render.renderWithChromeHeadless(
             lAST,
             {
                 outputType: "png",
+                puppeteerOptions: {
+                    args: ["--no-sandbox"], // ci server's docker/ linux does not support sandboxing yet
+                },
             } as INormalizedOptions,
         ).should.be.fulfilled.and.notify(pDone);
     });
