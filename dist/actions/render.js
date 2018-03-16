@@ -40,6 +40,12 @@ function renderWithChromeHeadless(pAST, pOptions) {
             });
             yield page.waitFor("mscgen#replaceme[data-renderedby='mscgen_js']");
             if (pOptions.outputType === "svg") {
+                /* the istanbul ignore thing is so istanbul won't instrument code
+                   that is meant to be run in browser context. If it does,
+                   you'll get errors like 'Error: Evaluation failed: ReferenceError: cov_'
+                   - which is chrome (not node) telling us something is foobar
+                */
+                /* istanbul ignore next */
                 return yield page.evaluate(() => {
                     const lSVGElement = document.getElementById("mscgenjsreplaceme");
                     if (lSVGElement) {
