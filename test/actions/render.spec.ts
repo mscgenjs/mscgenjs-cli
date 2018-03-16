@@ -28,6 +28,9 @@ describe("render()", () => {
             lAST,
             {
                 outputType: "svg",
+                puppeteerOptions: {
+                    args: ["--no-sandbox"], // ci server's docker/ linux does not support sandboxing yet
+                },
             } as INormalizedOptions,
         ).should.be.fulfilled.and.notify(pDone);
     });
@@ -37,6 +40,9 @@ describe("render()", () => {
             lAST,
             {
                 outputType: "png",
+                puppeteerOptions: {
+                    args: ["--no-sandbox"], // ci server's docker/ linux does not support sandboxing yet
+                },
             } as INormalizedOptions,
         ).should.be.fulfilled.and.notify(pDone);
     });
