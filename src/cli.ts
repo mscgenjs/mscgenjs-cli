@@ -53,6 +53,11 @@ try {
             validations.validVerticalAlignment,
             "middle",
         ).option(
+            "--puppeteer-options <file>",
+            `(advanced) pass puppeteer launch options
+                                 see README.md for details`,
+            validations.validPuppeteerOptions,
+        ).option(
             "-l --license",
             "Display license and exit",
             () => {

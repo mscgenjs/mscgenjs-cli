@@ -1,12 +1,16 @@
 "use strict";
+import * as Ajv from "ajv";
 import * as fs from "fs";
 import * as mscgenjs from "mscgenjs";
-import { INormalizedOptions, NamedStyleType, OutputType } from "./types";
+import { INormalizedOptions, IPuppeteerOptions, NamedStyleType, OutputType } from "./types";
+/* tslint:disable-next-line */
+const puppeteerOptionsSchema = require("./puppeteer-options.schema.json");
 
 const VALID_GRAPHICS_TYPES  = Object.freeze(["svg", "png", "jpeg"]);
-const VALID_OUTPUT_TYPES = VALID_GRAPHICS_TYPES.concat(
+const VALID_OUTPUT_TYPES    = VALID_GRAPHICS_TYPES.concat(
     mscgenjs.getAllowedValues().outputType.map((pValue) => pValue.name),
 );
+const ajv = new Ajv();
 
 function isStdout(pFilename: string): boolean {
     return "-" === pFilename;
@@ -113,6 +117,40 @@ export function validateArguments(pOptions: INormalizedOptions): Promise<INormal
 
         pResolve(pOptions);
     });
+}
+
+export function validPuppeteerOptions(pPuppeteerConfigFileName: string): IPuppeteerOptions {
+
+    let lPuppeteerConfigFileContents = "";
+    let lPuppeteerConfigObject = {};
+
+    try {
+        lPuppeteerConfigFileContents = fs.readFileSync(pPuppeteerConfigFileName, "utf8");
+    } catch (pException) {
+        throw Error(`\n  error: Failed to open puppeteer options configuration file '${pPuppeteerConfigFileName}'\n\n`);
+    }
+
+    try {
+        lPuppeteerConfigObject = JSON.parse(lPuppeteerConfigFileContents);
+    } catch (pException) {
+        throw Error(`\n  error: '${pPuppeteerConfigFileName}' does not contain valid JSON\n\n`);
+    }
+
+    if (!ajv.validate(puppeteerOptionsSchema, lPuppeteerConfigObject)) {
+        throw Error(`\n  error: '${pPuppeteerConfigFileName}' does not contain
+         puppeteer options that are valid for use in mscgenjs-cli.
+
+         These options you can use:
+         - args (an array of options)
+         - devtools (boolean)
+         - executablePath (path to an executable)
+         - headless (boolean)
+         - slowMo (delay in ms)
+         - timeout (in ms)\n\n`);
+    }
+
+    return lPuppeteerConfigObject as IPuppeteerOptions;
+
 }
 
 export const validOutputTypeRE = VALID_OUTPUT_TYPES.join("|");

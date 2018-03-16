@@ -181,6 +181,61 @@ describe("cli/validations", () => {
             });
         });
     });
+
+    describe("#validPuppeteerOptions() - ", () => {
+        it("barfs if passed file does not exist", () => {
+            let lFoundError = "";
+            const lFixture = "this-file-does-not-exist";
+
+            try {
+                val.validPuppeteerOptions(lFixture);
+            } catch (e) {
+                lFoundError = e.message;
+            }
+            expect(lFoundError).to.contain(`error: Failed to open puppeteer options configuration file '${lFixture}'`);
+        });
+
+        it("barfs if passed file is no valid json", () => {
+            let lFoundError = "";
+            const lFixture = path.join(__dirname, "fixtures", "invalid-json.json");
+
+            try {
+                val.validPuppeteerOptions(lFixture);
+            } catch (e) {
+                lFoundError = e.message;
+            }
+            expect(lFoundError).to.contain(`error: '${lFixture}' does not contain valid JSON`);
+        });
+
+        it("barfs if passed file is no valid json", () => {
+            let lFoundError = "";
+            const lFixture = path.join(__dirname, "fixtures", "invalid-puppeteer-config.json");
+
+            try {
+                val.validPuppeteerOptions(lFixture);
+            } catch (e) {
+                lFoundError = e.message;
+            }
+            expect(lFoundError).to.contain(`error: '${lFixture}' does not contain`);
+        });
+
+        it("returns the parsed json if passed file is valid json", () => {
+            const lFoundError = "";
+            const lFixture = path.join(__dirname, "fixtures", "valid-puppeteer-config.json");
+            expect(
+                val.validPuppeteerOptions(lFixture),
+            ).to.deep.equal(
+                {
+                    args: [
+                        "--no-sandbox",
+                        "--disable-setuid-sandbox",
+                    ],
+                    executablePath: "/usr/bin/google-chrome",
+                },
+            );
+
+        });
+    });
 });
 
 /*

@@ -22,6 +22,15 @@ export type TextOutputType =
     "doxygen"
 ;
 
+export interface IPuppeteerOptions {
+    args?: string[];
+    devtools?: boolean;
+    executablePath?: string;
+    headless: boolean;
+    slowMo?: number;
+    timeout?: number;
+}
+
 export type OutputType = GraphicalOutputType | TextOutputType;
 
 export interface IOptions {
@@ -42,9 +51,8 @@ export interface INormalizedOptions {
     namedStyle: NamedStyleType;
     mirrorEntities: boolean;
     regularArcTextVerticalAlignment: RegularArcTextVerticalAlignmentType;
+    puppeteerOptions: IPuppeteerOptions;
 }
-
-// export {RegularArcTextVerticalAlignmentType, InputType};
 
 /*
     This file is part of mscgenjs-cli.

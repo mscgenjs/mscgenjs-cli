@@ -1,9 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const Ajv = require("ajv");
 const fs = require("fs");
 const mscgenjs = require("mscgenjs");
+/* tslint:disable-next-line */
+const puppeteerOptionsSchema = require("./puppeteer-options.schema.json");
 const VALID_GRAPHICS_TYPES = Object.freeze(["svg", "png", "jpeg"]);
 const VALID_OUTPUT_TYPES = VALID_GRAPHICS_TYPES.concat(mscgenjs.getAllowedValues().outputType.map((pValue) => pValue.name));
+const ajv = new Ajv();
 function isStdout(pFilename) {
     return "-" === pFilename;
 }
@@ -94,6 +98,36 @@ function validateArguments(pOptions) {
     });
 }
 exports.validateArguments = validateArguments;
+function validPuppeteerOptions(pPuppeteerConfigFileName) {
+    let lPuppeteerConfigFileContents = "";
+    let lPuppeteerConfigObject = {};
+    try {
+        lPuppeteerConfigFileContents = fs.readFileSync(pPuppeteerConfigFileName, "utf8");
+    }
+    catch (pException) {
+        throw Error(`\n  error: Failed to open puppeteer options configuration file '${pPuppeteerConfigFileName}'\n\n`);
+    }
+    try {
+        lPuppeteerConfigObject = JSON.parse(lPuppeteerConfigFileContents);
+    }
+    catch (pException) {
+        throw Error(`\n  error: '${pPuppeteerConfigFileName}' does not contain valid JSON\n\n`);
+    }
+    if (!ajv.validate(puppeteerOptionsSchema, lPuppeteerConfigObject)) {
+        throw Error(`\n  error: '${pPuppeteerConfigFileName}' does not contain
+         puppeteer options that are valid for use in mscgenjs-cli.
+
+         These options you can use:
+         - args (an array of options)
+         - devtools (boolean)
+         - executablePath (path to an executable)
+         - headless (boolean)
+         - slowMo (delay in ms)
+         - timeout (in ms)\n\n`);
+    }
+    return lPuppeteerConfigObject;
+}
+exports.validPuppeteerOptions = validPuppeteerOptions;
 exports.validOutputTypeRE = VALID_OUTPUT_TYPES.join("|");
 exports.validInputTypeRE = mscgenjs.getAllowedValues()
     .inputType

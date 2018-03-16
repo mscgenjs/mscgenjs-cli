@@ -73,6 +73,8 @@ Yes. Run `mscgenjs` with `-h` or `--help` to get them all:
     -v --vertical-alignment <align>  Vertical alignment of labels on regular
                                      arcs. Experimental
                                      above|middle|below (default: middle)
+    --puppeteer-options <file>       (advanced) pass puppeteer launch options
+                                     see README.md for details
     -l --license                     Display license and exit
     -h, --help                       output usage information
 ```
@@ -240,6 +242,48 @@ When you run the command with `--vertical-alignment above`:
 
 ![the label is aligned above the arc here (vertical-alignment 'above')](samples/vertical-align-above.png)
 
+### Puppeteer options (advanced)
+Under the hood `mscgenjs-cli` uses `puppeteer` - the javascript wrapper
+around Chrome headless - for rendering graphics. `puppeteer` does a good
+job of abstracting a lot and running out of the box in most enviromnents,
+but on some it needs some convincing. For this it has a host of 
+[launch options](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions),
+and some
+[guidance](https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md).
+
+`mscgenjs-cli`'s `--puppeteer-options` takes a JSON file with (a subset
+of the) puppeteer options which it passes 1:1 to puppeteer.
+
+```sh
+mscgenjs coolchart.mscgen --puppeteer-options puppeteer-config.json
+```
+
+The puppeteer options `mscgenjs-cli` accepts:
+- args
+- devtools
+- headless
+- executablePath
+- slowMo
+- timeout
+
+An example puppeteer-config.json to make things work on Fedora (assuming
+google-chrome is installed in `/usr/bin`):
+```json
+{
+    "executablePath": "/usr/bin/google-chrome",
+    "args": ["--no-sandbox", "--disable-setuid-sandbox"]
+}
+```
+
+You can also use this to make visible what mscgenjs-cli is doing under
+the hood by adding some debugging options:
+```json
+{
+    "headless": false,
+    "slowMo": 500,
+    "devtools": true
+}
+```
 
 ## What is the license?
 [GPL-3.0](LICENSE.md)

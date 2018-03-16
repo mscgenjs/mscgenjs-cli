@@ -1,6 +1,6 @@
 {
   "name": "mscgenjs-cli",
-  "version": "2.0.5",
+  "version": "2.1.0-beta-3",
   "description": "Render sequence charts from the command line",
   "repository": {
     "type": "git",
@@ -16,7 +16,9 @@
     "build": "npm-run-all build:clean build:compile build:copy",
     "build:clean": "shx rm -rf dist/*",
     "build:compile": "tsc --project src",
-    "build:copy": "shx cp src/actions/template.html dist/actions/template.html",
+    "build:copy": "npm-run-all build:copy-template build:copy-schema",
+    "build:copy-template": "shx cp src/actions/template.html dist/actions/template.html",
+    "build:copy-schema": "shx cp src/puppeteer-options.schema.json dist/.",
     "check": "npm-run-all build lint depcruise test:cover",
     "check:full": "npm-run-all check nsp",
     "depcruise": "depcruise --validate -- src test",
@@ -55,6 +57,7 @@
   },
   "homepage": "https://github.com/mscgenjs/mscgenjs-cli",
   "dependencies": {
+    "ajv": "6.2.1",
     "commander": "2.15.0",
     "mscgenjs": "1.15.1",
     "mscgenjs-inpage": "1.13.0",
@@ -81,7 +84,7 @@
     "tslint": "5.9.1",
     "typescript": "2.7.2"
   },
-  "nyc" : {
+  "nyc": {
     "lines": 85,
     "reporter": [
       "text-summary",

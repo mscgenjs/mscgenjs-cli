@@ -1,0 +1,30 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "puppeteer configuration options",
+    "description": "puppeteer configuration options that can be used with mscgenjs-cli.",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "args": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "devtools": {
+            "type": "boolean"
+        },
+        "executablePath": {
+            "type": "string"
+        },
+        "headless": {
+            "type": "boolean"
+        },
+        "slowMo": {
+            "type": "number"
+        },
+        "timeout": {
+            "type": "number"
+        }
+    }
+}
