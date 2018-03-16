@@ -49,7 +49,7 @@ export async function renderWithChromeHeadless(pAST: any, pOptions: INormalizedO
 
         if (pOptions.outputType === "svg") {
             /* the istanbul ignore thing is so istanbul won't instrument code
-               that is meant to be run in browser context. If it does, 
+               that is meant to be run in browser context. If it does,
                you'll get errors like 'Error: Evaluation failed: ReferenceError: cov_'
                - which is chrome (not node) telling us something is foobar
             */
