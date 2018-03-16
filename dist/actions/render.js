@@ -25,7 +25,7 @@ function getPuppeteerLaunchOptions(pPuppeteerLaunchOptions) {
         headless: true,
     }, pPuppeteerLaunchOptions || {});
 }
-function renderTheShizzle(pAST, pOptions) {
+function renderWithChromeHeadless(pAST, pOptions) {
     return __awaiter(this, void 0, void 0, function* () {
         let browser = {};
         try {
@@ -62,9 +62,6 @@ function renderTheShizzle(pAST, pOptions) {
                 });
             }
         }
-        catch (pError) {
-            return pError;
-        }
         finally {
             if (Boolean(browser) && typeof browser.close === "function") {
                 browser.close();
@@ -72,7 +69,7 @@ function renderTheShizzle(pAST, pOptions) {
         }
     });
 }
-exports.renderTheShizzle = renderTheShizzle;
+exports.renderWithChromeHeadless = renderWithChromeHeadless;
 /*
     This file is part of mscgenjs-cli.
     mscgenjs-cli is free software: you can redistribute it and/or modify

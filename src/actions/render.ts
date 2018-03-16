@@ -23,7 +23,7 @@ function getPuppeteerLaunchOptions(pPuppeteerLaunchOptions: IPuppeteerOptions) {
     );
 }
 
-export async function renderTheShizzle(pAST: any, pOptions: INormalizedOptions) {
+export async function renderWithChromeHeadless(pAST: any, pOptions: INormalizedOptions) {
 
     let browser: puppeteer.Browser = {} as puppeteer.Browser;
 
@@ -68,8 +68,6 @@ export async function renderTheShizzle(pAST: any, pOptions: INormalizedOptions) 
                 type: pOptions.outputType as any,
             });
         }
-    } catch (pError) {
-        return pError;
     } finally {
         if (Boolean(browser) && typeof browser.close === "function") {
             browser.close();

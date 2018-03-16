@@ -6,13 +6,25 @@ import { INormalizedOptions } from "../../src/types";
 use(chaiAsPromised);
 
 // tslint:disable-next-line: no-var-requires
-const lAST = JSON.stringify(require("./fixtures/simplest.json"));
+const lAST = require("./fixtures/simplest.json");
 
 should();
 
 describe("render()", () => {
+    it("should fail when passed a non-executable executablePath", (pDone) => {
+        render.renderWithChromeHeadless(
+            lAST,
+            {
+                outputType: "png",
+                puppeteerOptions: {
+                    executablePath: "non/existing/path/to/chromium"
+                }
+            } as INormalizedOptions,
+        ).should.be.rejected.and.notify(pDone)
+    });
+
     it("coughs up something when passed an ast asked to output svg", (pDone) => {
-        render.renderTheShizzle(
+        render.renderWithChromeHeadless(
             lAST,
             {
                 outputType: "svg",
@@ -21,7 +33,7 @@ describe("render()", () => {
     });
 
     it("coughs something when passed an ast asked to output png", (pDone) => {
-        render.renderTheShizzle(
+        render.renderWithChromeHeadless(
             lAST,
             {
                 outputType: "png",
