@@ -17,10 +17,10 @@ describe("render()", () => {
             {
                 outputType: "png",
                 puppeteerOptions: {
-                    executablePath: "non/existing/path/to/chromium"
-                }
+                    executablePath: "non/existing/path/to/chromium",
+                },
             } as INormalizedOptions,
-        ).should.be.rejected.and.notify(pDone)
+        ).should.be.rejected.and.notify(pDone);
     });
 
     it("coughs up something when passed an ast asked to output svg", (pDone) => {
