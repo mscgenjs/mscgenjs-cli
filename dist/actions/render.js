@@ -38,7 +38,7 @@ function renderTheShizzle(pAST, pOptions) {
             yield page.addScriptTag({
                 path: require.resolve("mscgenjs-inpage"),
             });
-            yield page.waitFor("mscgen#replaceme[data-renderedby='mscgen_js']", { timeout: 10000 });
+            yield page.waitFor("mscgen#replaceme[data-renderedby='mscgen_js']");
             if (pOptions.outputType === "svg") {
                 return yield page.evaluate(() => {
                     const lSVGElement = document.getElementById("mscgenjsreplaceme");

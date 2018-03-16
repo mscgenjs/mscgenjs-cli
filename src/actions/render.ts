@@ -45,7 +45,7 @@ export async function renderTheShizzle(pAST: any, pOptions: INormalizedOptions) 
             path: require.resolve("mscgenjs-inpage"),
         });
 
-        await page.waitFor("mscgen#replaceme[data-renderedby='mscgen_js']", {timeout: 10000});
+        await page.waitFor("mscgen#replaceme[data-renderedby='mscgen_js']");
 
         if (pOptions.outputType === "svg") {
             return await page.evaluate(() => {
