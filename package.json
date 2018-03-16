@@ -29,7 +29,7 @@
     "npm-check-updates": "ncu --upgrade",
     "npm-install": "npm install",
     "nsp": "nsp check --warn-only",
-    "test": "mocha --require ts-node/register --timeout 10000 --reporter dot --recursive test/*.ts test/**/*.ts",
+    "test": "mocha --require ts-node/register --timeout 10000 --recursive test/*.ts test/**/*.ts",
     "test:cover": "nyc --extension .ts --check-coverage npm test",
     "update-dependencies": "npm-run-all npm-check-updates npm-install lint:fix depcruise build test",
     "watch": "tsc --project src --watch"
