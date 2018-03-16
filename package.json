@@ -85,7 +85,10 @@
     "typescript": "2.7.2"
   },
   "nyc": {
-    "lines": 85,
+    "statements": 95.95,
+    "branches": 95.77,
+    "functions": 90.74,
+    "lines": 95.91,
     "reporter": [
       "text-summary",
       "html"
