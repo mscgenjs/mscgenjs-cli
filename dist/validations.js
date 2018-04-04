@@ -38,6 +38,7 @@ function validInputTypes() {
 function validVerticalAlignments() {
     return mscgenjs.getAllowedValues()
         .regularArcTextVerticalAlignment
+        // .filter(pValue => pValue.experimental === false)
         .map((pValue) => pValue.name)
         .join(", ");
 }
@@ -140,5 +141,6 @@ exports.validNamedStyleRE = mscgenjs.getAllowedValues()
     .join("|");
 exports.validVerticalAlignmentRE = mscgenjs.getAllowedValues()
     .regularArcTextVerticalAlignment
+    // .filter(pValue => pValue.experimental === false)
     .map((pValue) => pValue.name)
     .join("|");

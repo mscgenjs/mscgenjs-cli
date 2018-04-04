@@ -13,6 +13,7 @@ function presentError(e) {
 }
 try {
     program
+        /* tslint:disable-next-line */
         .version(require("../package.json").version)
         .option("-T --output-type <type>", validations.validOutputTypeRE, validations.validOutputType).option("-I --input-type <type>", validations.validInputTypeRE, validations.validInputType).option("-i --input-from <file>", "File to read from. use - for stdin.").option("-o --output-to <file>", "File to write to. use - for stdout.").option("-p --parser-output", "Print parsed msc output").option("-s --css <string>", "Additional styles to use. Experimental").option("-n --named-style <style>", validations.validNamedStyleRE, validations.validNamedStyle).option("-m --mirror-entities", `Repeat the entities on the chart's
                                  bottom`).option("-v --vertical-alignment <align>", `Vertical alignment of labels on regular
