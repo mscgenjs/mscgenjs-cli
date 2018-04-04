@@ -236,11 +236,12 @@ align so the arc itself stays in the middle. It's possible to influence that
 by making the label stay above the arc.
 
 By default it looks like this:
-![the label is aligned around the arc here (vertical-alignment 'middle')](samples/vertical-align-middle.png)
+
+<img width="336" alt="the label is aligned around the arc here (vertical-alignment 'middle')]" src="samples/vertical-align-middle.png">
 
 When you run the command with `--vertical-alignment above`:
 
-![the label is aligned above the arc here (vertical-alignment 'above')](samples/vertical-align-above.png)
+<img width="336" alt="the label is aligned above the arc here (vertical-alignment 'above')" src="samples/vertical-align-above.png">
 
 ### Puppeteer options (advanced)
 Under the hood `mscgenjs-cli` uses `puppeteer` - the javascript wrapper
