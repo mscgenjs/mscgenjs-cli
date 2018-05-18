@@ -26,7 +26,7 @@ To make this as easy as possible for you, here's some simple guidelines:
     - The code you add follows the project's lint rules (mostly tslint:recommended) 
       hint: run `npm run lint:fix` to check and auto-fix
 - Plan to do something drastic?     
-  Contact @SanderSpeaks on Twitter, or leave an [issue](https://github.com/mscgenjs/mscgenjs-cli/issues/new) on GitHub
+  Leave an [issue](https://github.com/mscgenjs/mscgenjs-cli/issues/new) on GitHub
 
 ### Legal
 - the code you add will be subject to [GPLv3](wikum/licenses/license.mscgen_js.md
