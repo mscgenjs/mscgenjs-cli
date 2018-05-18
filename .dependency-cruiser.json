@@ -30,6 +30,15 @@
       }
     },
     {
+      "name": "no-circular",
+      "severity": "warn",
+      "comment": "Warn in case there's circular dependencies",
+      "from": {
+        "orphan": true
+      },
+      "to": {}
+    },
+    {
       "name": "no-deprecated-core",
       "comment": "Warn about dependencies on deprecated core modules.",
       "severity": "warn",
@@ -124,7 +133,7 @@
     }
   ],
   "options": {
-    "doNotFollow": "^node_modules",
+    "doNotFollow": "node_modules",
     "tsPreCompilationDeps": true
   }
 }
