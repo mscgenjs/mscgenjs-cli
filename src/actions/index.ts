@@ -1,19 +1,16 @@
-import { translateMsc } from "mscgenjs";
-import * as pify from "pify";
+import { ITranslateOptions, translateMsc } from "mscgenjs";
 import { INormalizedOptions, OutputType } from "../types";
 import { getInStream, getOutStream } from "./fileNameToStream";
 import { readFromStream } from "./readFromStream";
 import { renderWithChromeHeadless } from "./render";
-
-const translate = pify(translateMsc);
 
 function isGraphicsOutput(pOutputType: OutputType) {
     const GRAPHICSFORMATS = ["svg", "png", "jpeg"];
     return GRAPHICSFORMATS.includes(pOutputType);
 }
 
-function getAST(pInput: string, pOptions: INormalizedOptions): Promise<string> {
-    return translate(
+function getAST(pInput: string, pOptions: INormalizedOptions): string {
+    return translateMsc(
         pInput,
         {
             inputType: pOptions.inputType,
@@ -46,7 +43,7 @@ function render(pOptions: INormalizedOptions): Promise<any> {
 
 function transpile(pOptions: INormalizedOptions): Promise<string> {
     return readFromStream(getInStream(pOptions.inputFrom))
-        .then((pInput) => translate(pInput, pOptions));
+        .then((pInput) => translateMsc(pInput, pOptions as ITranslateOptions));
 }
 
 export function transform(pOptions: INormalizedOptions): Promise<boolean> {
