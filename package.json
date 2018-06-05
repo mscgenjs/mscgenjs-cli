@@ -89,7 +89,8 @@
     "lines": 95.86,
     "reporter": [
       "text-summary",
-      "html"
+      "html",
+      "lcov"
     ]
   }
 }
