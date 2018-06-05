@@ -19,7 +19,7 @@ samples/**
 src/**
 test/**
 utl/**
-.bithoundrc
+.codeclimate.yml
 .dependency-cruiser.json
 .github/**
 .gitlab-ci.yml
