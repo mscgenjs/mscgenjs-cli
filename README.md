@@ -2,6 +2,8 @@
 _Render sequence charts from the command line_
 
 [![Build Status](https://travis-ci.org/mscgenjs/mscgenjs-cli.svg?branch=master)][travis.mscgenjs]
+[![Maintainability](https://api.codeclimate.com/v1/badges/92476027fbfdc6021eed/maintainability)](https://codeclimate.com/github/mscgenjs/mscgenjs-cli/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/92476027fbfdc6021eed/test_coverage)](https://codeclimate.com/github/mscgenjs/mscgenjs-cli/test_coverage)
 [![Dependency Status](https://david-dm.org/mscgenjs/mscgenjs-cli.svg)](https://david-dm.org/mscgenjs/mscgenjs-cli)
 [![devDependency Status](https://david-dm.org/mscgenjs/mscgenjs-cli/dev-status.svg)](https://david-dm.org/mscgenjs/mscgenjs-cli#info=devDependencies)
 [![npm stable version](https://img.shields.io/npm/v/mscgenjs-cli.svg)](https://npmjs.com/package/mscgenjs-cli)
