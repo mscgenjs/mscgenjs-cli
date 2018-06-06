@@ -30,9 +30,9 @@
       }
     },
     {
-      "name": "no-circular",
+      "name": "no-orphans",
       "severity": "warn",
-      "comment": "Warn in case there's circular dependencies",
+      "comment": "Warn in case there's orphans",
       "from": {
         "orphan": true
       },
