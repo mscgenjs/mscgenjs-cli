@@ -23,6 +23,36 @@ function getPuppeteerLaunchOptions(pPuppeteerLaunchOptions: IPuppeteerOptions) {
     );
 }
 
+async function renderSVG(page: puppeteer.Page) {
+    /* the istanbul ignore thing is so istanbul won't instrument code
+       that is meant to be run in browser context. If it does,
+       you'll get errors like 'Error: Evaluation failed: ReferenceError: cov_'
+       - which is chrome (not node) telling us something is foobar
+    */
+    /* istanbul ignore next */
+    return await page.evaluate(() => {
+        const lSVGElement = document.getElementById("mscgenjsreplaceme");
+        if (lSVGElement) {
+            return Promise.resolve(lSVGElement.outerHTML);
+        }
+        return Promise.reject("Couldn't render the SVG.");
+    });
+}
+
+async function renderBitmap(page: puppeteer.Page, pOptions: INormalizedOptions) {
+    await page.setViewport({
+        deviceScaleFactor: 2,
+        height: 1,
+        isMobile: false,
+        width: 1,
+    });
+    return await page.screenshot({
+        fullPage: true,
+        omitBackground: false,
+        type: pOptions.outputType as any,
+    });
+}
+
 export async function renderWithChromeHeadless(pAST: any, pOptions: INormalizedOptions) {
 
     let browser: puppeteer.Browser = {} as puppeteer.Browser;
@@ -48,31 +78,9 @@ export async function renderWithChromeHeadless(pAST: any, pOptions: INormalizedO
         await page.waitFor("mscgen#replaceme[data-renderedby='mscgen_js']");
 
         if (pOptions.outputType === "svg") {
-            /* the istanbul ignore thing is so istanbul won't instrument code
-               that is meant to be run in browser context. If it does,
-               you'll get errors like 'Error: Evaluation failed: ReferenceError: cov_'
-               - which is chrome (not node) telling us something is foobar
-            */
-            /* istanbul ignore next */
-            return await page.evaluate(() => {
-                const lSVGElement = document.getElementById("mscgenjsreplaceme");
-                if (lSVGElement) {
-                    return Promise.resolve(lSVGElement.outerHTML);
-                }
-                return Promise.reject("Couldn't render the SVG.");
-            });
+            return await renderSVG(page);
         } else {
-            await page.setViewport({
-                deviceScaleFactor: 2,
-                height: 1,
-                isMobile: false,
-                width: 1,
-            });
-            return await page.screenshot({
-                fullPage: true,
-                omitBackground: false,
-                type: pOptions.outputType as any,
-            });
+            return await renderBitmap(page, pOptions);
         }
     } finally {
         if (Boolean(browser) && typeof browser.close === "function") {
@@ -80,7 +88,6 @@ export async function renderWithChromeHeadless(pAST: any, pOptions: INormalizedO
         }
     }
 }
-
 /*
     This file is part of mscgenjs-cli.
     mscgenjs-cli is free software: you can redistribute it and/or modify

@@ -25,6 +25,38 @@ function getPuppeteerLaunchOptions(pPuppeteerLaunchOptions) {
         headless: true,
     }, pPuppeteerLaunchOptions || {});
 }
+function renderSVG(page) {
+    return __awaiter(this, void 0, void 0, function* () {
+        /* the istanbul ignore thing is so istanbul won't instrument code
+           that is meant to be run in browser context. If it does,
+           you'll get errors like 'Error: Evaluation failed: ReferenceError: cov_'
+           - which is chrome (not node) telling us something is foobar
+        */
+        /* istanbul ignore next */
+        return yield page.evaluate(() => {
+            const lSVGElement = document.getElementById("mscgenjsreplaceme");
+            if (lSVGElement) {
+                return Promise.resolve(lSVGElement.outerHTML);
+            }
+            return Promise.reject("Couldn't render the SVG.");
+        });
+    });
+}
+function renderBitmap(page, pOptions) {
+    return __awaiter(this, void 0, void 0, function* () {
+        yield page.setViewport({
+            deviceScaleFactor: 2,
+            height: 1,
+            isMobile: false,
+            width: 1,
+        });
+        return yield page.screenshot({
+            fullPage: true,
+            omitBackground: false,
+            type: pOptions.outputType,
+        });
+    });
+}
 function renderWithChromeHeadless(pAST, pOptions) {
     return __awaiter(this, void 0, void 0, function* () {
         let browser = {};
@@ -40,32 +72,10 @@ function renderWithChromeHeadless(pAST, pOptions) {
             });
             yield page.waitFor("mscgen#replaceme[data-renderedby='mscgen_js']");
             if (pOptions.outputType === "svg") {
-                /* the istanbul ignore thing is so istanbul won't instrument code
-                   that is meant to be run in browser context. If it does,
-                   you'll get errors like 'Error: Evaluation failed: ReferenceError: cov_'
-                   - which is chrome (not node) telling us something is foobar
-                */
-                /* istanbul ignore next */
-                return yield page.evaluate(() => {
-                    const lSVGElement = document.getElementById("mscgenjsreplaceme");
-                    if (lSVGElement) {
-                        return Promise.resolve(lSVGElement.outerHTML);
-                    }
-                    return Promise.reject("Couldn't render the SVG.");
-                });
+                return yield renderSVG(page);
             }
             else {
-                yield page.setViewport({
-                    deviceScaleFactor: 2,
-                    height: 1,
-                    isMobile: false,
-                    width: 1,
-                });
-                return yield page.screenshot({
-                    fullPage: true,
-                    omitBackground: false,
-                    type: pOptions.outputType,
-                });
+                return yield renderBitmap(page, pOptions);
             }
         }
         finally {
