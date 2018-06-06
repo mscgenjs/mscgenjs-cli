@@ -34,6 +34,11 @@ function getValidValues(pAttribute: string): string {
         .join(", ");
 }
 
+function isValidValue(pAttribute: string, pCandidateValue: string): boolean {
+    return (mscgenjs.getAllowedValues() as any)[pAttribute]
+    .some((pValue: mscgenjs.IValueDetails) => pValue.name === pCandidateValue);
+}
+
 export function validOutputType(pType: OutputType): OutputType {
     if (VALID_OUTPUT_TYPES.some((pName) => pName === pType)) {
         return pType;
@@ -47,11 +52,8 @@ export function validOutputType(pType: OutputType): OutputType {
 }
 
 export function validInputType(pType: string): string {
-    if (mscgenjs
-        .getAllowedValues()
-        .inputType
-        .some((pValue) => pValue.name === pType)) {
-        return pType;
+    if (isValidValue("inputType", pType)) {
+        return pType as mscgenjs.InputType;
     }
 
     throw Error(
@@ -60,11 +62,8 @@ export function validInputType(pType: string): string {
 }
 
 export function validNamedStyle(pStyle: NamedStyleType): NamedStyleType {
-    if (mscgenjs
-        .getAllowedValues()
-        .namedStyle
-        .some((pValue) => pValue.name === pStyle)) {
-        return pStyle;
+    if (isValidValue("namedStyle", pStyle)) {
+        return pStyle as NamedStyleType;
     }
 
     throw Error(
@@ -73,10 +72,7 @@ export function validNamedStyle(pStyle: NamedStyleType): NamedStyleType {
 }
 
 export function validVerticalAlignment(pAlignment: string): mscgenjs.RegularArcTextVerticalAlignmentType {
-    if (mscgenjs
-        .getAllowedValues()
-        .regularArcTextVerticalAlignment
-        .some((pValue) => pValue.name === pAlignment)) {
+    if (isValidValue("regularArcTextVerticalAlignment", pAlignment)) {
         return pAlignment as mscgenjs.RegularArcTextVerticalAlignmentType;
     }
 

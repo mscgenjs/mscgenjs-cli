@@ -28,6 +28,10 @@ function getValidValues(pAttribute) {
         .map((pValue) => pValue.name)
         .join(", ");
 }
+function isValidValue(pAttribute, pCandidateValue) {
+    return mscgenjs.getAllowedValues()[pAttribute]
+        .some((pValue) => pValue.name === pCandidateValue);
+}
 function validOutputType(pType) {
     if (VALID_OUTPUT_TYPES.some((pName) => pName === pType)) {
         return pType;
@@ -38,10 +42,7 @@ function validOutputType(pType) {
 }
 exports.validOutputType = validOutputType;
 function validInputType(pType) {
-    if (mscgenjs
-        .getAllowedValues()
-        .inputType
-        .some((pValue) => pValue.name === pType)) {
+    if (isValidValue("inputType", pType)) {
         return pType;
     }
     throw Error(`\n  error: '${pType}' is not a valid input type.` +
@@ -49,10 +50,7 @@ function validInputType(pType) {
 }
 exports.validInputType = validInputType;
 function validNamedStyle(pStyle) {
-    if (mscgenjs
-        .getAllowedValues()
-        .namedStyle
-        .some((pValue) => pValue.name === pStyle)) {
+    if (isValidValue("namedStyle", pStyle)) {
         return pStyle;
     }
     throw Error(`\n  error: '${pStyle}' is not a recognized named style.` +
@@ -60,10 +58,7 @@ function validNamedStyle(pStyle) {
 }
 exports.validNamedStyle = validNamedStyle;
 function validVerticalAlignment(pAlignment) {
-    if (mscgenjs
-        .getAllowedValues()
-        .regularArcTextVerticalAlignment
-        .some((pValue) => pValue.name === pAlignment)) {
+    if (isValidValue("regularArcTextVerticalAlignment", pAlignment)) {
         return pAlignment;
     }
     throw Error(`\n  error: '${pAlignment}' is not a recognized vertical alignment.` +

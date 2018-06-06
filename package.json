@@ -83,9 +83,9 @@
     "typescript": "2.9.1"
   },
   "nyc": {
-    "statements": 95.8,
+    "statements": 95.7,
     "branches": 95.7,
-    "functions": 90.0,
+    "functions": 89.8,
     "lines": 95.7,
     "reporter": [
       "text-summary",
