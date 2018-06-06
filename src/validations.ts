@@ -27,25 +27,10 @@ function fileExists(pFilename: string): boolean {
     }
 }
 
-function validNamedStyles(): string {
-    return mscgenjs.getAllowedValues()
-        .namedStyle
-        .filter((pValue) => pValue.experimental === false)
-        .map((pNamedStyle) => pNamedStyle.name)
-        .join(", ");
-}
-
-function validInputTypes() {
-    return mscgenjs.getAllowedValues()
-        .inputType
-        .map((pInputType) => pInputType.name)
-        .join(", ");
-}
-
-function validVerticalAlignments() {
-    return mscgenjs.getAllowedValues()
-        .regularArcTextVerticalAlignment
-        .map((pValue) => pValue.name)
+function getValidValues(pAttribute: string): string {
+    return (mscgenjs.getAllowedValues() as any)[pAttribute]
+        .filter((pValue: mscgenjs.IValueDetails) => pValue.experimental === false)
+        .map((pValue: mscgenjs.IValueDetails) => pValue.name)
         .join(", ");
 }
 
@@ -71,7 +56,7 @@ export function validInputType(pType: string): string {
 
     throw Error(
         `\n  error: '${pType}' is not a valid input type.` +
-        `\n         mscgen_js can read ${validInputTypes()}\n\n`);
+        `\n         mscgen_js can read ${getValidValues("inputType")}\n\n`);
 }
 
 export function validNamedStyle(pStyle: NamedStyleType): NamedStyleType {
@@ -84,7 +69,7 @@ export function validNamedStyle(pStyle: NamedStyleType): NamedStyleType {
 
     throw Error(
         `\n  error: '${pStyle}' is not a recognized named style.` +
-        `\n         You can use one of these: ${validNamedStyles()}\n\n`);
+        `\n         You can use one of these: ${getValidValues("namedStyle")}\n\n`);
 }
 
 export function validVerticalAlignment(pAlignment: string): mscgenjs.RegularArcTextVerticalAlignmentType {
@@ -97,7 +82,7 @@ export function validVerticalAlignment(pAlignment: string): mscgenjs.RegularArcT
 
     throw Error(
         `\n  error: '${pAlignment}' is not a recognized vertical alignment.` +
-        `\n         You can use one of these: ${validVerticalAlignments()}\n\n`);
+        `\n         You can use one of these: ${getValidValues("regularArcTextVerticalAlignment")}\n\n`);
 }
 
 export function validateArguments(pOptions: INormalizedOptions): Promise<INormalizedOptions> {

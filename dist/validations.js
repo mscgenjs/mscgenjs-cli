@@ -22,22 +22,9 @@ function fileExists(pFilename) {
         return false;
     }
 }
-function validNamedStyles() {
-    return mscgenjs.getAllowedValues()
-        .namedStyle
+function getValidValues(pAttribute) {
+    return mscgenjs.getAllowedValues()[pAttribute]
         .filter((pValue) => pValue.experimental === false)
-        .map((pNamedStyle) => pNamedStyle.name)
-        .join(", ");
-}
-function validInputTypes() {
-    return mscgenjs.getAllowedValues()
-        .inputType
-        .map((pInputType) => pInputType.name)
-        .join(", ");
-}
-function validVerticalAlignments() {
-    return mscgenjs.getAllowedValues()
-        .regularArcTextVerticalAlignment
         .map((pValue) => pValue.name)
         .join(", ");
 }
@@ -58,7 +45,7 @@ function validInputType(pType) {
         return pType;
     }
     throw Error(`\n  error: '${pType}' is not a valid input type.` +
-        `\n         mscgen_js can read ${validInputTypes()}\n\n`);
+        `\n         mscgen_js can read ${getValidValues("inputType")}\n\n`);
 }
 exports.validInputType = validInputType;
 function validNamedStyle(pStyle) {
@@ -69,7 +56,7 @@ function validNamedStyle(pStyle) {
         return pStyle;
     }
     throw Error(`\n  error: '${pStyle}' is not a recognized named style.` +
-        `\n         You can use one of these: ${validNamedStyles()}\n\n`);
+        `\n         You can use one of these: ${getValidValues("namedStyle")}\n\n`);
 }
 exports.validNamedStyle = validNamedStyle;
 function validVerticalAlignment(pAlignment) {
@@ -80,7 +67,7 @@ function validVerticalAlignment(pAlignment) {
         return pAlignment;
     }
     throw Error(`\n  error: '${pAlignment}' is not a recognized vertical alignment.` +
-        `\n         You can use one of these: ${validVerticalAlignments()}\n\n`);
+        `\n         You can use one of these: ${getValidValues("regularArcTextVerticalAlignment")}\n\n`);
 }
 exports.validVerticalAlignment = validVerticalAlignment;
 function validateArguments(pOptions) {
