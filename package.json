@@ -26,12 +26,12 @@
     "depcruise:graph": "depcruise --output-type dot --validate -- src/cli.ts | dot -T svg > tmp_deps.svg",
     "lint": "tslint src/*.ts src/*/*.ts test/*.ts test/*/*.ts",
     "lint:fix": "tslint --format verbose --fix src/*.ts src/*/*.ts test/*.ts test/*/*.ts",
-    "npm-check-updates": "ncu --upgrade",
-    "npm-install": "npm install",
     "nsp": "nsp check --warn-only",
     "test": "mocha --require ts-node/register --timeout 10000 --recursive test/*.ts test/**/*.ts",
     "test:cover": "nyc --extension .ts --check-coverage npm test",
-    "update-dependencies": "npm-run-all npm-check-updates npm-install lint:fix depcruise build test",
+    "update-dependencies": "npm-run-all upem:update upem:install lint:fix depcruise build test",
+    "upem:update": "npm outdated --json | upem",
+    "upem:install": "npm install",
     "watch": "tsc --project src --watch"
   },
   "keywords": [
@@ -73,14 +73,14 @@
     "chai-as-promised": "7.1.1",
     "dependency-cruiser": "4.0.1",
     "mocha": "5.2.0",
-    "npm-check-updates": "2.14.2",
     "npm-run-all": "4.1.3",
     "nsp": "3.2.1",
     "nyc": "12.0.2",
     "shx": "0.2.2",
     "ts-node": "6.1.0",
     "tslint": "5.10.0",
-    "typescript": "2.9.1"
+    "typescript": "2.9.1",
+    "upem": "1.0.0"
   },
   "nyc": {
     "statements": 95.7,
