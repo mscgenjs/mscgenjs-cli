@@ -1,6 +1,6 @@
 {
   "name": "mscgenjs-cli",
-  "version": "2.1.6-beta-1",
+  "version": "2.1.6",
   "description": "Render sequence charts from the command line",
   "repository": {
     "type": "git",
@@ -13,7 +13,7 @@
   },
   "main": "dist/index.js",
   "files": [
-    "bin/*",
+    "bin/",
     "dist/",
     "package.json",
     "README.md",
