@@ -12,6 +12,14 @@
     "mscgen.js": "bin/mscgen_js"
   },
   "main": "dist/index.js",
+  "files": [
+    "bin/*",
+    "dist/**/*.js",
+    "package.json",
+    "README.md",
+    "COPYPING",
+    "LICENSE.md"
+  ],
   "scripts": {
     "build": "npm-run-all build:clean build:compile build:copy",
     "build:clean": "shx rm -rf dist/*",
