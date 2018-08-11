@@ -5,7 +5,6 @@ import * as actions from "./actions";
 import formatError = require("./actions/formatError");
 import showLicense = require("./actions/showLicense");
 import * as normalizations from "./normalizations";
-import { IOptions } from "./types";
 import * as validations from "./validations";
 
 function presentError(e: Error) {

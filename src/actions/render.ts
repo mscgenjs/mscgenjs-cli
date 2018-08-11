@@ -1,6 +1,5 @@
-import * as fs from "fs";
 import * as puppeteer from "puppeteer";
-import { INormalizedOptions, IPuppeteerOptions, NamedStyleType, OutputType } from "../types";
+import { INormalizedOptions, IPuppeteerOptions } from "../types";
 
 function cookEvalFunction(pAST: string, pOptions: INormalizedOptions): string {
     return `const lReplaceMe = document.getElementById('replaceme');
