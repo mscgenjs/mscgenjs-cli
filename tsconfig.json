@@ -1,13 +1,9 @@
 {
   // compilerOptions for testing
   // the compilerOptions for the distribution are in src/tsconfig.json
+  "extends": "./src/tsconfig.json",
   "compilerOptions": {
-    "target": "ES2016",
-    "module": "commonjs",
-    "declaration": false,
-    "removeComments": false,
     "noEmit": false,
-    "strict": true,
-    "moduleResolution": "node"
+    "outDir": "."
   }
 }
