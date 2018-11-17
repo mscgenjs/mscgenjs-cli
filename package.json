@@ -2,6 +2,21 @@
   "name": "mscgenjs-cli",
   "version": "2.1.7",
   "description": "Render sequence charts from the command line",
+  "author": "Sander Verweij",
+  "contributors": [
+    {
+      "name": "djMax (Max Metral)",
+      "url": "https://github.com/djMax"
+    }
+  ],
+  "license": "GPL-3.0",
+  "engines": {
+    "node": ">=6.0"
+  },
+  "bugs": {
+    "url": "https://github.com/mscgenjs/mscgenjs-cli/issues"
+  },
+  "homepage": "https://github.com/mscgenjs/mscgenjs-cli",
   "repository": {
     "type": "git",
     "url": "https://github.com/mscgenjs/mscgenjs-cli"
@@ -20,26 +35,6 @@
     "COPYPING",
     "LICENSE.md"
   ],
-  "scripts": {
-    "build": "npm-run-all build:clean build:compile build:copy",
-    "build:clean": "shx rm -rf dist/*",
-    "build:compile": "tsc --project src",
-    "build:copy": "npm-run-all build:copy-template build:copy-schema",
-    "build:copy-template": "shx cp src/actions/template.html dist/actions/template.html",
-    "build:copy-schema": "shx cp src/puppeteer-options.schema.json dist/.",
-    "check": "npm-run-all build lint depcruise test:cover",
-    "depcruise": "depcruise --validate --ts-config ./src/tsconfig.json -- src test",
-    "depcruise:cat": "depcruise --output-type dot --validate --ts-config ./src/tsconfig.json -- src | dot -T png | imgcat",
-    "depcruise:graph": "depcruise --output-type dot --validate --ts-config ./src/tsconfig.json -- src/cli.ts | dot -T svg > tmp_deps.svg",
-    "lint": "tslint src/*.ts src/*/*.ts test/*.ts test/*/*.ts",
-    "lint:fix": "tslint --format verbose --fix src/*.ts src/*/*.ts test/*.ts test/*/*.ts",
-    "test": "mocha --require ts-node/register --timeout 10000 --recursive test/*.ts test/**/*.ts",
-    "test:cover": "nyc --extension .ts --check-coverage npm test",
-    "update-dependencies": "npm-run-all upem:update upem:install lint:fix depcruise build test",
-    "upem:update": "npm outdated --json | upem",
-    "upem:install": "npm install",
-    "watch": "tsc --project src --watch"
-  },
   "keywords": [
     "mscgen",
     "sequence chart",
@@ -47,50 +42,50 @@
     "xu",
     "msgenny"
   ],
-  "author": "Sander Verweij",
-  "contributors": [
-    {
-      "name": "djMax (Max Metral)",
-      "url": "https://github.com/djMax"
-    }
-  ],
-  "license": "GPL-3.0",
-  "engines": {
-    "node": ">=6.0"
-  },
-  "bugs": {
-    "url": "https://github.com/mscgenjs/mscgenjs-cli/issues"
-  },
-  "homepage": "https://github.com/mscgenjs/mscgenjs-cli",
   "dependencies": {
-    "ajv": "6.5.3",
-    "commander": "2.18.0",
+    "ajv": "6.5.4",
+    "commander": "2.19.0",
     "mscgenjs": "3.0.0-beta-1",
-    "mscgenjs-inpage": "2.0.1",
-    "puppeteer": "1.8.0"
+    "mscgenjs-inpage": "2.0.2",
+    "puppeteer": "1.9.0"
   },
   "devDependencies": {
-    "@types/chai": "4.1.4",
+    "@types/chai": "4.1.6",
     "@types/chai-as-promised": "7.1.0",
     "@types/mocha": "5.2.5",
-    "@types/node": "10.9.4",
-    "@types/puppeteer": "1.6.3",
-    "chai": "4.1.2",
+    "@types/node": "10.11.7",
+    "@types/puppeteer": "1.9.0",
+    "chai": "4.2.0",
     "chai-as-promised": "7.1.1",
-    "dependency-cruiser": "4.5.0",
+    "dependency-cruiser": "4.6.0",
     "mocha": "5.2.0",
     "npm-run-all": "4.1.3",
-    "nyc": "13.0.1",
+    "nyc": "13.1.0",
     "shx": "0.3.2",
     "ts-node": "7.0.1",
     "tslint": "5.11.0",
-    "typescript": "3.0.3",
-    "upem": "1.0.0"
+    "typescript": "3.1.3",
+    "upem": "1.0.1"
   },
-  "upem": {
-    "donotup": [
-      "mscgenjs"
-    ]
+  "scripts": {
+    "build": "npm-run-all build:clean build:compile build:copy",
+    "build:clean": "shx rm -rf dist/*",
+    "build:compile": "tsc --project src/tsconfig.json",
+    "build:copy": "npm-run-all build:copy-template build:copy-schema",
+    "build:copy-template": "shx cp src/actions/template.html dist/actions/template.html",
+    "build:copy-schema": "shx cp src/puppeteer-options.schema.json dist/.",
+    "check": "npm-run-all build lint depcruise test:cover",
+    "depcruise": "depcruise --validate -- src test",
+    "depcruise:cat": "depcruise --output-type rcdot --validate -- src | dot -T png | imgcat",
+    "depcruise:graph": "depcruise --output-type rcdot --validate -- src/cli.ts | dot -T svg > tmp_deps.svg",
+    "lint": "tslint src/*.ts src/*/*.ts test/*.ts test/*/*.ts",
+    "lint:fix": "tslint --format verbose --fix src/*.ts src/*/*.ts test/*.ts test/*/*.ts",
+    "test": "mocha --require ts-node/register --timeout 10000 --recursive test/*.ts test/**/*.ts",
+    "test:cover": "nyc --extension .ts --check-coverage npm test",
+    "update-dependencies": "npm-run-all upem:update upem:install lint:fix depcruise build test",
+    "upem:update": "npm outdated --json | upem",
+    "upem:install": "npm install",
+    "watch": "tsc --project src/tsconfig.json --watch"
   },
   "nyc": {
     "statements": 95.7,
@@ -101,6 +96,11 @@
       "text-summary",
       "html",
       "lcov"
+    ]
+  },
+  "upem": {
+    "donotup": [
+      "mscgenjs"
     ]
   }
 }
