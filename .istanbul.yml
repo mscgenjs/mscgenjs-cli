@@ -1,3 +1,0 @@
-instrumentation:
-    excludes: ["dist/**/*", "test/**/*", "utl/**/*"]
-    include-all-sources: true
