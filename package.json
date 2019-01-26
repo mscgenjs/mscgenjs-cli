@@ -77,7 +77,9 @@
     "check": "npm-run-all build lint depcruise test:cover",
     "depcruise": "depcruise --validate -- src test",
     "depcruise:cat": "depcruise --output-type rcdot --validate -- src | dot -T png | imgcat",
-    "depcruise:graph": "depcruise --output-type rcdot --validate -- src/cli.ts | dot -T svg > tmp_deps.svg",
+    "depcruise:graph": "npm-run-all --parallel depcruise:graph:*",
+    "depcruise:graph:html": "depcruise --output-type dot --validate -- src/cli.ts | dot -T svg | cat docs/assets/depcruise-graph-head.snippet.html - docs/assets/depcruise-graph-foot.snippet.html > docs/dependencygraph.html",
+    "depcruise:graph:png": "depcruise --output-type dot --validate -- src/cli.ts | dot -T png > docs/dependencygraph.png",
     "lint": "tslint src/*.ts src/*/*.ts test/*.ts test/*/*.ts",
     "lint:fix": "tslint --format verbose --fix src/*.ts src/*/*.ts test/*.ts test/*/*.ts",
     "scm:stage": "git add .",
@@ -86,7 +88,7 @@
     "update-dependencies": "npm-run-all upem:update upem:install lint:fix depcruise build test",
     "upem:update": "npm outdated --json | upem",
     "upem:install": "npm install",
-    "version": "run-s build scm:stage",
+    "version": "run-s build depcruise:graph scm:stage",
     "watch": "tsc --project src/tsconfig.json --watch"
   },
   "nyc": {
