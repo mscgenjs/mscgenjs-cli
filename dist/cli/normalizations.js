@@ -9,7 +9,7 @@ const INPUT_EXTENSIONS = Object.freeze({
     mscin: "mscgen",
     msgenny: "msgenny",
     seq: "mscgen",
-    xu: "xu",
+    xu: "xu"
 });
 const OUTPUT_EXTENSIONS = Object.freeze({
     ast: "json",
@@ -25,7 +25,7 @@ const OUTPUT_EXTENSIONS = Object.freeze({
     png: "png",
     seq: "mscgen",
     svg: "svg",
-    xu: "xu",
+    xu: "xu"
 });
 /**
  * Given a filename in pString, returns what language is probably
@@ -59,10 +59,15 @@ function deriveOutputFromInput(pInputFrom, pOutputType) {
     if (!pInputFrom || "-" === pInputFrom) {
         return;
     }
-    return path.join(path.dirname(pInputFrom), path.basename(pInputFrom, path.extname(pInputFrom))).concat(".").concat(pOutputType);
+    return path
+        .join(path.dirname(pInputFrom), path.basename(pInputFrom, path.extname(pInputFrom)))
+        .concat(".")
+        .concat(pOutputType);
 }
 function determineOutputTo(pOutputTo, pInputFrom, pOutputType) {
-    return Boolean(pOutputTo) ? pOutputTo : deriveOutputFromInput(pInputFrom, pOutputType);
+    return Boolean(pOutputTo)
+        ? pOutputTo
+        : deriveOutputFromInput(pInputFrom, pOutputType);
 }
 function determineInputType(pInputType, pInputFrom) {
     if (pInputType) {
@@ -97,13 +102,11 @@ function determineOutputType(pOutputType, pOutputTo, pParserOutput) {
 function normalize(pArgument, pOptions) {
     const lRetval = JSON.parse(JSON.stringify(pOptions));
     lRetval.inputFrom = Boolean(pArgument) ? pArgument : pOptions.inputFrom;
-    lRetval.inputType =
-        determineInputType(pOptions.inputType, lRetval.inputFrom);
-    lRetval.outputType =
-        determineOutputType(pOptions.outputType, pOptions.outputTo, pOptions.parserOutput);
-    lRetval.outputTo =
-        determineOutputTo(pOptions.outputTo, lRetval.inputFrom, lRetval.outputType);
-    lRetval.regularArcTextVerticalAlignment = pOptions.verticalAlignment || "middle";
+    lRetval.inputType = determineInputType(pOptions.inputType, lRetval.inputFrom);
+    lRetval.outputType = determineOutputType(pOptions.outputType, pOptions.outputTo, pOptions.parserOutput);
+    lRetval.outputTo = determineOutputTo(pOptions.outputTo, lRetval.inputFrom, lRetval.outputType);
+    lRetval.regularArcTextVerticalAlignment =
+        pOptions.verticalAlignment || "middle";
     return lRetval;
 }
 exports.normalize = normalize;

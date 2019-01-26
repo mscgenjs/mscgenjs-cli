@@ -1,22 +1,14 @@
-import {expect} from "chai";
+import { expect } from "chai";
 import showLicense = require("../../src/actions/showLicense");
 
 describe("showLicense()", () => {
-    it("returns the license", () => {
-        expect(
-            showLicense(),
-        ).to.contain(
-            "GNU General Public License",
-        );
-    });
+  it("returns the license", () => {
+    expect(showLicense()).to.contain("GNU General Public License");
+  });
 
-    it("has the current year in it", () => {
-        expect(
-            showLicense(),
-        ).to.contain(
-            `-${new Date().getUTCFullYear()}`,
-        );
-    });
+  it("has the current year in it", () => {
+    expect(showLicense()).to.contain(`-${new Date().getUTCFullYear()}`);
+  });
 });
 
 /*

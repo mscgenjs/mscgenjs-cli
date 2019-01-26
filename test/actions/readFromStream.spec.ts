@@ -1,20 +1,20 @@
-import {expect, use} from "chai";
+import { expect, use } from "chai";
 import * as chaiAsPromised from "chai-as-promised";
 import * as fs from "fs";
-import {readFromStream} from "../../src/actions/readFromStream";
+import { readFromStream } from "../../src/actions/readFromStream";
 
 use(chaiAsPromised);
 
 describe("readFromStream()", () => {
-    it("returns a promise that resolves to text from the stream", () => {
-        expect(
-            readFromStream(
-                fs.createReadStream(`${__dirname}/fixtures/bigandhonking.xu`),
-            ),
-        ).to.eventually.equal(
-            fs.readFileSync(`${__dirname}/fixtures/bigandhonking.xu`, "utf8"),
-        );
-    });
+  it("returns a promise that resolves to text from the stream", () => {
+    expect(
+      readFromStream(
+        fs.createReadStream(`${__dirname}/fixtures/bigandhonking.xu`)
+      )
+    ).to.eventually.equal(
+      fs.readFileSync(`${__dirname}/fixtures/bigandhonking.xu`, "utf8")
+    );
+  });
 });
 
 /*

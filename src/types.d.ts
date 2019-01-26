@@ -1,57 +1,47 @@
 import { InputType, RegularArcTextVerticalAlignmentType } from "mscgenjs";
 
-export type NamedStyleType =
-    "basic"      |
-    "lazy"       |
-    "classic"    |
-    "fountainpen"
-;
+export type NamedStyleType = "basic" | "lazy" | "classic" | "fountainpen";
 
-export type GraphicalOutputType =
-    "svg"  |
-    "png"  |
-    "jpeg"
-;
+export type GraphicalOutputType = "svg" | "png" | "jpeg";
 
 export type TextOutputType =
-    "mscgen"  |
-    "msgenny" |
-    "xu"      |
-    "json"    |
-    "dot"     |
-    "doxygen"
-;
+  | "mscgen"
+  | "msgenny"
+  | "xu"
+  | "json"
+  | "dot"
+  | "doxygen";
 
 export interface IPuppeteerOptions {
-    args?: string[];
-    devtools?: boolean;
-    executablePath?: string;
-    headless: boolean;
-    slowMo?: number;
-    timeout?: number;
+  args?: string[];
+  devtools?: boolean;
+  executablePath?: string;
+  headless: boolean;
+  slowMo?: number;
+  timeout?: number;
 }
 
 export type OutputType = GraphicalOutputType | TextOutputType;
 
 export interface IOptions {
-    inputFrom: string;
-    outputTo?: string;
-    inputType?: InputType;
-    outputType?: OutputType;
-    namedStyle?: NamedStyleType;
-    mirrorEntities?: boolean;
-    verticalAlignment?: RegularArcTextVerticalAlignmentType;
+  inputFrom: string;
+  outputTo?: string;
+  inputType?: InputType;
+  outputType?: OutputType;
+  namedStyle?: NamedStyleType;
+  mirrorEntities?: boolean;
+  verticalAlignment?: RegularArcTextVerticalAlignmentType;
 }
 
 export interface INormalizedOptions {
-    inputFrom: string;
-    outputTo: string;
-    inputType: InputType;
-    outputType: OutputType;
-    namedStyle: NamedStyleType;
-    mirrorEntities: boolean;
-    regularArcTextVerticalAlignment: RegularArcTextVerticalAlignmentType;
-    puppeteerOptions: IPuppeteerOptions;
+  inputFrom: string;
+  outputTo: string;
+  inputType: InputType;
+  outputType: OutputType;
+  namedStyle: NamedStyleType;
+  mirrorEntities: boolean;
+  regularArcTextVerticalAlignment: RegularArcTextVerticalAlignmentType;
+  puppeteerOptions: IPuppeteerOptions;
 }
 
 /*

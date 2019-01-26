@@ -5,30 +5,30 @@ import * as path from "path";
 import { INormalizedOptions, OutputType } from "../types";
 
 const INPUT_EXTENSIONS = Object.freeze({
-    ast     : "json",
-    json    : "json",
-    msc     : "mscgen",
-    mscgen  : "mscgen",
-    mscin   : "mscgen",
-    msgenny : "msgenny",
-    seq     : "mscgen",
-    xu      : "xu",
+  ast: "json",
+  json: "json",
+  msc: "mscgen",
+  mscgen: "mscgen",
+  mscin: "mscgen",
+  msgenny: "msgenny",
+  seq: "mscgen",
+  xu: "xu"
 });
 const OUTPUT_EXTENSIONS = Object.freeze({
-    ast     : "json",
-    dot     : "dot",
-    doxygen : "doxygen",
-    jpeg    : "jpeg",
-    jpg     : "jpeg",
-    json    : "json",
-    msc     : "mscgen",
-    mscgen  : "mscgen",
-    mscin   : "mscgen",
-    msgenny : "msgenny",
-    png     : "png",
-    seq     : "mscgen",
-    svg     : "svg",
-    xu      : "xu",
+  ast: "json",
+  dot: "dot",
+  doxygen: "doxygen",
+  jpeg: "jpeg",
+  jpg: "jpeg",
+  json: "json",
+  msc: "mscgen",
+  mscgen: "mscgen",
+  mscin: "mscgen",
+  msgenny: "msgenny",
+  png: "png",
+  seq: "mscgen",
+  svg: "svg",
+  xu: "xu"
 });
 
 /**
@@ -46,59 +46,79 @@ const OUTPUT_EXTENSIONS = Object.freeze({
  * @return  {string} - language. Possible values: LHS of the passed
  *        extension map.
  */
-function classifyExtension(pString: string|undefined, pExtensionMap: any, pDefault: string): string {
-    if (!pString) {
-        return pDefault;
-    }
-
-    const lPos = pString.lastIndexOf(".");
-
-    if (lPos > -1) {
-        const lExt = pString.slice(lPos + 1);
-
-        if (pExtensionMap[lExt]) {
-            return pExtensionMap[lExt];
-        }
-    }
-
+function classifyExtension(
+  pString: string | undefined,
+  pExtensionMap: any,
+  pDefault: string
+): string {
+  if (!pString) {
     return pDefault;
-}
+  }
 
-function deriveOutputFromInput(pInputFrom: string, pOutputType: OutputType): string | void {
-    if (!pInputFrom || "-" === pInputFrom) {
-        return;
+  const lPos = pString.lastIndexOf(".");
+
+  if (lPos > -1) {
+    const lExt = pString.slice(lPos + 1);
+
+    if (pExtensionMap[lExt]) {
+      return pExtensionMap[lExt];
     }
-    return path.join(
-        path.dirname(pInputFrom),
-        path.basename(pInputFrom, path.extname(pInputFrom)),
-    ).concat(".").concat(pOutputType);
+  }
+
+  return pDefault;
 }
 
-function determineOutputTo(pOutputTo: string | undefined, pInputFrom: string, pOutputType: OutputType): string | void {
-    return Boolean(pOutputTo) ? pOutputTo : deriveOutputFromInput(pInputFrom, pOutputType);
+function deriveOutputFromInput(
+  pInputFrom: string,
+  pOutputType: OutputType
+): string | void {
+  if (!pInputFrom || "-" === pInputFrom) {
+    return;
+  }
+  return path
+    .join(
+      path.dirname(pInputFrom),
+      path.basename(pInputFrom, path.extname(pInputFrom))
+    )
+    .concat(".")
+    .concat(pOutputType);
 }
 
-function determineInputType(pInputType: string|undefined, pInputFrom: string): string {
-    if (pInputType) {
-        return pInputType === "ast" ? "json" : pInputType;
-    }
-    return classifyExtension(pInputFrom, INPUT_EXTENSIONS, "mscgen");
+function determineOutputTo(
+  pOutputTo: string | undefined,
+  pInputFrom: string,
+  pOutputType: OutputType
+): string | void {
+  return Boolean(pOutputTo)
+    ? pOutputTo
+    : deriveOutputFromInput(pInputFrom, pOutputType);
+}
+
+function determineInputType(
+  pInputType: string | undefined,
+  pInputFrom: string
+): string {
+  if (pInputType) {
+    return pInputType === "ast" ? "json" : pInputType;
+  }
+  return classifyExtension(pInputFrom, INPUT_EXTENSIONS, "mscgen");
 }
 
 function determineOutputType(
-    pOutputType: string|undefined,
-    pOutputTo: string|undefined,
-    pParserOutput: string): OutputType {
-    if (Boolean(pParserOutput)) {
-        return "json";
-    }
-    if (Boolean(pOutputType)) {
-        return pOutputType === "ast" ? "json" : pOutputType as OutputType;
-    }
-    if (Boolean(pOutputTo)) {
-        return classifyExtension(pOutputTo, OUTPUT_EXTENSIONS, "svg") as OutputType;
-    }
-    return "svg";
+  pOutputType: string | undefined,
+  pOutputTo: string | undefined,
+  pParserOutput: string
+): OutputType {
+  if (Boolean(pParserOutput)) {
+    return "json";
+  }
+  if (Boolean(pOutputType)) {
+    return pOutputType === "ast" ? "json" : (pOutputType as OutputType);
+  }
+  if (Boolean(pOutputTo)) {
+    return classifyExtension(pOutputTo, OUTPUT_EXTENSIONS, "svg") as OutputType;
+  }
+  return "svg";
 }
 
 /**
@@ -113,30 +133,28 @@ function determineOutputType(
  * @param  {object} pOptions a commander options object
  * @return {object} a commander options object with options 'normalized'
  */
-export function normalize(pArgument: string, pOptions: CommanderStatic): INormalizedOptions {
-    const lRetval = JSON.parse(JSON.stringify(pOptions));
+export function normalize(
+  pArgument: string,
+  pOptions: CommanderStatic
+): INormalizedOptions {
+  const lRetval = JSON.parse(JSON.stringify(pOptions));
 
-    lRetval.inputFrom  = Boolean(pArgument) ? pArgument : pOptions.inputFrom;
-    lRetval.inputType  =
-        determineInputType(
-            pOptions.inputType,
-            lRetval.inputFrom,
-        );
-    lRetval.outputType =
-        determineOutputType(
-            pOptions.outputType,
-            pOptions.outputTo,
-            pOptions.parserOutput,
-        );
-    lRetval.outputTo   =
-        determineOutputTo(
-            pOptions.outputTo,
-            lRetval.inputFrom,
-            lRetval.outputType,
-        );
-    lRetval.regularArcTextVerticalAlignment = pOptions.verticalAlignment || "middle";
+  lRetval.inputFrom = Boolean(pArgument) ? pArgument : pOptions.inputFrom;
+  lRetval.inputType = determineInputType(pOptions.inputType, lRetval.inputFrom);
+  lRetval.outputType = determineOutputType(
+    pOptions.outputType,
+    pOptions.outputTo,
+    pOptions.parserOutput
+  );
+  lRetval.outputTo = determineOutputTo(
+    pOptions.outputTo,
+    lRetval.inputFrom,
+    lRetval.outputType
+  );
+  lRetval.regularArcTextVerticalAlignment =
+    pOptions.verticalAlignment || "middle";
 
-    return lRetval;
+  return lRetval;
 }
 
 /*

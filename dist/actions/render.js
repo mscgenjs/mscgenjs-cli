@@ -22,16 +22,16 @@ function cookEvalFunction(pAST, pOptions) {
 }
 function getPuppeteerLaunchOptions(pPuppeteerLaunchOptions) {
     return Object.assign({
-        headless: true,
+        headless: true
     }, pPuppeteerLaunchOptions || {});
 }
 function renderSVG(page) {
     return __awaiter(this, void 0, void 0, function* () {
         /* the istanbul ignore thing is so istanbul won't instrument code
-           that is meant to be run in browser context. If it does,
-           you'll get errors like 'Error: Evaluation failed: ReferenceError: cov_'
-           - which is chrome (not node) telling us something is foobar
-        */
+             that is meant to be run in browser context. If it does,
+             you'll get errors like 'Error: Evaluation failed: ReferenceError: cov_'
+             - which is chrome (not node) telling us something is foobar
+          */
         /* istanbul ignore next */
         return yield page.evaluate(() => {
             const lSVGElement = document.getElementById("mscgenjsreplaceme");
@@ -48,12 +48,12 @@ function renderBitmap(page, pOptions) {
             deviceScaleFactor: 2,
             height: 1,
             isMobile: false,
-            width: 1,
+            width: 1
         });
         return yield page.screenshot({
             fullPage: true,
             omitBackground: false,
-            type: pOptions.outputType,
+            type: pOptions.outputType
         });
     });
 }
@@ -64,11 +64,11 @@ function renderWithChromeHeadless(pAST, pOptions) {
             browser = yield puppeteer.launch(getPuppeteerLaunchOptions(pOptions.puppeteerOptions));
             const page = yield browser.newPage();
             yield page.goto(`file:///${__dirname}/template.html`, {
-                waitUntil: "networkidle2",
+                waitUntil: "networkidle2"
             });
             yield page.evaluate(cookEvalFunction(JSON.stringify(pAST), pOptions));
             yield page.addScriptTag({
-                path: require.resolve("mscgenjs-inpage"),
+                path: require.resolve("mscgenjs-inpage")
             });
             yield page.waitFor("mscgen#replaceme[data-renderedby='mscgen_js']");
             if (pOptions.outputType === "svg") {

@@ -11,12 +11,13 @@ function isGraphicsOutput(pOutputType) {
 function getAST(pInput, pOptions) {
     return mscgenjs_1.translateMsc(pInput, {
         inputType: pOptions.inputType,
-        outputType: "ast",
+        outputType: "ast"
     });
 }
 function removeAutoWidth(pAST, pOutputType) {
     if ((pOutputType === "png" || pOutputType === "jpeg") &&
-        pAST.options && pAST.options.width &&
+        pAST.options &&
+        pAST.options.width &&
         pAST.options.width === "auto") {
         delete pAST.options.width;
     }
@@ -25,21 +26,18 @@ function removeAutoWidth(pAST, pOutputType) {
 exports.removeAutoWidth = removeAutoWidth;
 function render(pOptions) {
     return readFromStream_1.readFromStream(fileNameToStream_1.getInStream(pOptions.inputFrom))
-        .then((pInput) => getAST(pInput, pOptions))
-        .then((pAST) => render_1.renderWithChromeHeadless(removeAutoWidth(pAST, pOptions.outputType), pOptions));
+        .then(pInput => getAST(pInput, pOptions))
+        .then(pAST => render_1.renderWithChromeHeadless(removeAutoWidth(pAST, pOptions.outputType), pOptions));
 }
 function transpile(pOptions) {
-    return readFromStream_1.readFromStream(fileNameToStream_1.getInStream(pOptions.inputFrom))
-        .then((pInput) => mscgenjs_1.translateMsc(pInput, pOptions));
+    return readFromStream_1.readFromStream(fileNameToStream_1.getInStream(pOptions.inputFrom)).then(pInput => mscgenjs_1.translateMsc(pInput, pOptions));
 }
 function transform(pOptions) {
     if (isGraphicsOutput(pOptions.outputType)) {
-        return render(pOptions)
-            .then((pResult) => fileNameToStream_1.getOutStream(pOptions.outputTo).write(pResult));
+        return render(pOptions).then(pResult => fileNameToStream_1.getOutStream(pOptions.outputTo).write(pResult));
     }
     else {
-        return transpile(pOptions)
-            .then((pResult) => fileNameToStream_1.getOutStream(pOptions.outputTo).write(pResult, "utf8"));
+        return transpile(pOptions).then(pResult => fileNameToStream_1.getOutStream(pOptions.outputTo).write(pResult, "utf8"));
     }
 }
 exports.transform = transform;

@@ -1,25 +1,25 @@
-import {expect} from "chai";
+import { expect } from "chai";
 import formatError = require("../../src/actions/formatError");
 
 describe("formatError()", () => {
-    it("returns the message of non-syntax errors", () => {
-        expect(formatError(new Error("hatsikidee!"))).to.equal("hatsikidee!");
-    });
+  it("returns the message of non-syntax errors", () => {
+    expect(formatError(new Error("hatsikidee!"))).to.equal("hatsikidee!");
+  });
 
-    it("returns man and horse of syntax errors", () => {
-        const lErr: any = new Error("Make my day!");
+  it("returns man and horse of syntax errors", () => {
+    const lErr: any = new Error("Make my day!");
 
-        lErr.location = {
-            start : {
-                column : 69,
-                line : 481,
-            },
-        };
+    lErr.location = {
+      start: {
+        column: 69,
+        line: 481
+      }
+    };
 
-        expect(
-            formatError(lErr),
-        ).to.equal(`\n  syntax error on line 481, column 69:\n  Make my day!\n\n`);
-    });
+    expect(formatError(lErr)).to.equal(
+      `\n  syntax error on line 481, column 69:\n  Make my day!\n\n`
+    );
+  });
 });
 
 /*

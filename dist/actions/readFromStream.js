@@ -5,7 +5,7 @@ function readFromStream(pInStream) {
         let lInput = "";
         pInStream.resume();
         pInStream.setEncoding("utf8");
-        pInStream.on("data", (pChunk) => {
+        pInStream.on("data", pChunk => {
             lInput += pChunk;
         });
         pInStream.on("end", () => {
@@ -17,7 +17,7 @@ function readFromStream(pInStream) {
                 pReject(e);
             }
         });
-        pInStream.on("error", (e) => {
+        pInStream.on("error", e => {
             pReject(e);
         });
     });

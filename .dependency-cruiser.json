@@ -29,9 +29,7 @@
         "path": "^src"
       },
       "to": {
-        "dependencyTypes": [
-          "npm-dev"
-        ]
+        "dependencyTypes": ["npm-dev"]
       }
     },
     {
@@ -40,9 +38,7 @@
       "comment": "optional dependencies don't make sense here",
       "from": {},
       "to": {
-        "dependencyTypes": [
-          "npm-optional"
-        ]
+        "dependencyTypes": ["npm-optional"]
       }
     },
     {
@@ -51,9 +47,7 @@
       "severity": "error",
       "from": {},
       "to": {
-        "dependencyTypes": [
-          "npm-peer"
-        ]
+        "dependencyTypes": ["npm-peer"]
       }
     }
   ],

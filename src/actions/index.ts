@@ -5,55 +5,56 @@ import { readFromStream } from "./readFromStream";
 import { renderWithChromeHeadless } from "./render";
 
 function isGraphicsOutput(pOutputType: OutputType) {
-    const GRAPHICSFORMATS = ["svg", "png", "jpeg"];
-    return GRAPHICSFORMATS.includes(pOutputType);
+  const GRAPHICSFORMATS = ["svg", "png", "jpeg"];
+  return GRAPHICSFORMATS.includes(pOutputType);
 }
 
 function getAST(pInput: string, pOptions: INormalizedOptions): string {
-    return translateMsc(
-        pInput,
-        {
-            inputType: pOptions.inputType,
-            outputType: "ast",
-        },
-    );
+  return translateMsc(pInput, {
+    inputType: pOptions.inputType,
+    outputType: "ast"
+  });
 }
 
 export function removeAutoWidth(pAST: any, pOutputType: OutputType) {
-    if (
-        (pOutputType === "png" || pOutputType === "jpeg") &&
-        pAST.options && pAST.options.width &&
-        pAST.options.width === "auto"
-    ) {
-        delete pAST.options.width;
-    }
-    return pAST;
+  if (
+    (pOutputType === "png" || pOutputType === "jpeg") &&
+    pAST.options &&
+    pAST.options.width &&
+    pAST.options.width === "auto"
+  ) {
+    delete pAST.options.width;
+  }
+  return pAST;
 }
 
 function render(pOptions: INormalizedOptions): Promise<any> {
-    return readFromStream(getInStream(pOptions.inputFrom))
-        .then((pInput) => getAST(pInput, pOptions))
-        .then((pAST) =>
-            renderWithChromeHeadless(
-                removeAutoWidth(pAST, pOptions.outputType),
-                pOptions,
-            ),
-        );
+  return readFromStream(getInStream(pOptions.inputFrom))
+    .then(pInput => getAST(pInput, pOptions))
+    .then(pAST =>
+      renderWithChromeHeadless(
+        removeAutoWidth(pAST, pOptions.outputType),
+        pOptions
+      )
+    );
 }
 
 function transpile(pOptions: INormalizedOptions): Promise<string> {
-    return readFromStream(getInStream(pOptions.inputFrom))
-        .then((pInput) => translateMsc(pInput, pOptions as ITranslateOptions));
+  return readFromStream(getInStream(pOptions.inputFrom)).then(pInput =>
+    translateMsc(pInput, pOptions as ITranslateOptions)
+  );
 }
 
 export function transform(pOptions: INormalizedOptions): Promise<boolean> {
-    if (isGraphicsOutput(pOptions.outputType)) {
-        return render(pOptions)
-            .then((pResult) => getOutStream(pOptions.outputTo).write(pResult));
-    } else {
-        return transpile(pOptions)
-            .then((pResult) => getOutStream(pOptions.outputTo).write(pResult, "utf8"));
-    }
+  if (isGraphicsOutput(pOptions.outputType)) {
+    return render(pOptions).then(pResult =>
+      getOutStream(pOptions.outputTo).write(pResult)
+    );
+  } else {
+    return transpile(pOptions).then(pResult =>
+      getOutStream(pOptions.outputTo).write(pResult, "utf8")
+    );
+  }
 }
 
 /*

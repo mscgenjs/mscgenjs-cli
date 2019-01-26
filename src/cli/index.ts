@@ -8,74 +8,64 @@ import * as normalizations from "./normalizations";
 import * as validations from "./validations";
 
 function presentError(e: Error) {
-    process.stderr.write(formatError(e) + "\n");
-    process.exit(1);
+  process.stderr.write(formatError(e) + "\n");
+  process.exit(1);
 }
 
 try {
-    program
-        /* tslint:disable-next-line */
-        .version(require("../../package.json").version)
-        .option(
-            "-T --output-type <type>",
-            validations.validOutputTypeRE,
-            validations.validOutputType,
-        ).option(
-            "-I --input-type <type>",
-            validations.validInputTypeRE,
-            validations.validInputType,
-        ).option(
-            "-i --input-from <file>",
-            "File to read from. use - for stdin.",
-        ).option(
-            "-o --output-to <file>",
-            "File to write to. use - for stdout.",
-        ).option(
-            "-p --parser-output",
-            "Print parsed msc output",
-        ).option(
-            "-s --css <string>",
-            "Additional styles to use. Experimental",
-        ).option(
-            "-n --named-style <style>",
-            validations.validNamedStyleRE,
-            validations.validNamedStyle,
-        ).option(
-            "-m --mirror-entities",
-            `Repeat the entities on the chart's
-                                 bottom`,
-        ).option(
-            "-v --vertical-alignment <align>",
-            `Vertical alignment of labels on regular
+  program
+    /* tslint:disable-next-line */
+    .version(require("../../package.json").version)
+    .option(
+      "-T --output-type <type>",
+      validations.validOutputTypeRE,
+      validations.validOutputType
+    )
+    .option(
+      "-I --input-type <type>",
+      validations.validInputTypeRE,
+      validations.validInputType
+    )
+    .option("-i --input-from <file>", "File to read from. use - for stdin.")
+    .option("-o --output-to <file>", "File to write to. use - for stdout.")
+    .option("-p --parser-output", "Print parsed msc output")
+    .option("-s --css <string>", "Additional styles to use. Experimental")
+    .option(
+      "-n --named-style <style>",
+      validations.validNamedStyleRE,
+      validations.validNamedStyle
+    )
+    .option(
+      "-m --mirror-entities",
+      `Repeat the entities on the chart's
+                                 bottom`
+    )
+    .option(
+      "-v --vertical-alignment <align>",
+      `Vertical alignment of labels on regular
                                  arcs. Experimental
                                  ${validations.validVerticalAlignmentRE}`,
-            validations.validVerticalAlignment,
-            "middle",
-        ).option(
-            "--puppeteer-options <file>",
-            `(advanced) pass puppeteer launch options
+      validations.validVerticalAlignment,
+      "middle"
+    )
+    .option(
+      "--puppeteer-options <file>",
+      `(advanced) pass puppeteer launch options
                                  see README.md for details`,
-            validations.validPuppeteerOptions,
-        ).option(
-            "-l --license",
-            "Display license and exit",
-            () => {
-                process.stdout.write(showLicense());
-                process.exit(0);
-            },
-        ).arguments(
-            "[infile]",
-        ).parse(
-            process.argv,
-        );
-    validations
-        .validateArguments(
-            normalizations.normalize(program.args[0], program),
-        )
-        .then(actions.transform)
-        .catch(presentError);
+      validations.validPuppeteerOptions
+    )
+    .option("-l --license", "Display license and exit", () => {
+      process.stdout.write(showLicense());
+      process.exit(0);
+    })
+    .arguments("[infile]")
+    .parse(process.argv);
+  validations
+    .validateArguments(normalizations.normalize(program.args[0], program))
+    .then(actions.transform)
+    .catch(presentError);
 } catch (pError) {
-    presentError(pError);
+  presentError(pError);
 }
 
 /*
