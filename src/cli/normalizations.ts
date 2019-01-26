@@ -2,7 +2,7 @@
 
 import { CommanderStatic } from "commander";
 import * as path from "path";
-import { INormalizedOptions, OutputType } from "./types";
+import { INormalizedOptions, OutputType } from "../types";
 
 const INPUT_EXTENSIONS = Object.freeze({
     ast     : "json",

@@ -1,9 +1,9 @@
 /* tslint no-var-requires:0 */
 "use strict";
 import * as program from "commander";
-import * as actions from "./actions";
-import formatError = require("./actions/formatError");
-import showLicense = require("./actions/showLicense");
+import * as actions from "../actions";
+import formatError = require("../actions/formatError");
+import showLicense = require("../actions/showLicense");
 import * as normalizations from "./normalizations";
 import * as validations from "./validations";
 
@@ -15,7 +15,7 @@ function presentError(e: Error) {
 try {
     program
         /* tslint:disable-next-line */
-        .version(require("../package.json").version)
+        .version(require("../../package.json").version)
         .option(
             "-T --output-type <type>",
             validations.validOutputTypeRE,

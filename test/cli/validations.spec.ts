@@ -1,8 +1,8 @@
 "use strict";
 import {assert, expect} from "chai";
 import * as path from "path";
-import { INormalizedOptions, NamedStyleType, OutputType } from "../src/types";
-import * as val from "../src/validations";
+import * as val from "../../src/cli/validations";
+import { INormalizedOptions, NamedStyleType, OutputType } from "../../src/types";
 
 describe("cli/validations", () => {
 
@@ -79,7 +79,7 @@ describe("cli/validations", () => {
             try {
                 val.validateArguments(
                     {
-                        inputFrom: path.join(__dirname, "actions/fixtures/rainbow.mscin"),
+                        inputFrom: path.join(__dirname, "../actions/fixtures/rainbow.mscin"),
                         outputTo: "kaboeki.svg",
                         outputType: "svg",
                     } as INormalizedOptions,

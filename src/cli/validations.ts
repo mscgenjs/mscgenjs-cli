@@ -2,7 +2,7 @@
 import * as Ajv from "ajv";
 import * as fs from "fs";
 import * as mscgenjs from "mscgenjs";
-import { INormalizedOptions, IPuppeteerOptions, NamedStyleType, OutputType } from "./types";
+import { INormalizedOptions, IPuppeteerOptions, NamedStyleType, OutputType } from "../types";
 /* tslint:disable-next-line */
 const puppeteerOptionsSchema = require("./puppeteer-options.schema.json");
 

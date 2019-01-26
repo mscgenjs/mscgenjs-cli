@@ -1,6 +1,6 @@
 import {expect} from "chai";
 import { CommanderStatic } from "commander";
-import * as norm from "../src/normalizations";
+import * as norm from "../../src/cli/normalizations";
 
 const TESTPAIRS = [
     {
