@@ -1,6 +1,6 @@
 {
   "name": "mscgenjs-cli",
-  "version": "2.1.12",
+  "version": "2.1.13",
   "description": "Render sequence charts from the command line",
   "author": "Sander Verweij",
   "contributors": [
@@ -79,8 +79,8 @@
     "check": "npm-run-all build lint depcruise test:cover",
     "depcruise": "depcruise --validate -- src test",
     "depcruise:graph": "npm-run-all --parallel depcruise:graph:*",
-    "depcruise:graph:html": "depcruise --output-type dot --validate -- src | dot -Gsplines=true -T svg | cat docs/assets/depcruise-graph-head.snippet.html - docs/assets/depcruise-graph-foot.snippet.html > docs/dependencygraph.html",
-    "depcruise:graph:png": "depcruise --output-type dot --validate -- src | dot -T png > docs/dependencygraph.png",
+    "depcruise:graph:html": "depcruise --output-type dot --validate -- src | dot -Gsplines=ortho -T svg | cat docs/assets/depcruise-graph-head.snippet.html - docs/assets/depcruise-graph-foot.snippet.html > docs/dependencygraph.html",
+    "depcruise:graph:png": "depcruise --output-type dot --validate -- src | dot -Gsplines=ortho -Gdpi=192 -T png | pngquant - > docs/dependencygraph.png",
     "lint": "tslint {src,test}/**/*.ts",
     "lint:fix": "npm-run-all lint:tslint-fix lint:prettier",
     "lint:tslint-fix": "tslint --format verbose --fix {src,test}/**/*.ts",
