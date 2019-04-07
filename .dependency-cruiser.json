@@ -53,6 +53,6 @@
   ],
   "options": {
     "tsPreCompilationDeps": true,
-    "prefix": "https://github.com/mscgenjs/mscgenjs-cli/blob/develop/src/"
+    "prefix": "https://github.com/mscgenjs/mscgenjs-cli/blob/develop/"
   }
 }
