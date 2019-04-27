@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const getStream = require("get-stream");
+const lodash_1 = require("lodash");
 const mscgenjs_1 = require("mscgenjs");
 const fileNameToStream_1 = require("./fileNameToStream");
 const render_1 = require("./render");
@@ -16,9 +17,7 @@ function getAST(pInput, pOptions) {
 }
 function removeAutoWidth(pAST, pOutputType) {
     if ((pOutputType === "png" || pOutputType === "jpeg") &&
-        pAST.options &&
-        pAST.options.width &&
-        pAST.options.width === "auto") {
+        lodash_1.get(pAST, "options.width", "not-auto") === "auto") {
         delete pAST.options.width;
     }
     return pAST;

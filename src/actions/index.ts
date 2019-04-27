@@ -1,4 +1,5 @@
 import * as getStream from "get-stream";
+import { get as _get } from "lodash";
 import { ITranslateOptions, translateMsc } from "mscgenjs";
 import { INormalizedOptions, OutputType } from "../types";
 import { getInStream, getOutStream } from "./fileNameToStream";
@@ -19,9 +20,7 @@ function getAST(pInput: string, pOptions: INormalizedOptions): string {
 export function removeAutoWidth(pAST: any, pOutputType: OutputType) {
   if (
     (pOutputType === "png" || pOutputType === "jpeg") &&
-    pAST.options &&
-    pAST.options.width &&
-    pAST.options.width === "auto"
+    _get(pAST, "options.width", "not-auto") === "auto"
   ) {
     delete pAST.options.width;
   }
