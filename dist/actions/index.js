@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const getStream = require("get-stream");
 const mscgenjs_1 = require("mscgenjs");
 const fileNameToStream_1 = require("./fileNameToStream");
-const readFromStream_1 = require("./readFromStream");
 const render_1 = require("./render");
 function isGraphicsOutput(pOutputType) {
     const GRAPHICSFORMATS = ["svg", "png", "jpeg"];
@@ -25,12 +25,12 @@ function removeAutoWidth(pAST, pOutputType) {
 }
 exports.removeAutoWidth = removeAutoWidth;
 function render(pOptions) {
-    return readFromStream_1.readFromStream(fileNameToStream_1.getInStream(pOptions.inputFrom))
+    return getStream(fileNameToStream_1.getInStream(pOptions.inputFrom))
         .then(pInput => getAST(pInput, pOptions))
         .then(pAST => render_1.renderWithChromeHeadless(removeAutoWidth(pAST, pOptions.outputType), pOptions));
 }
 function transpile(pOptions) {
-    return readFromStream_1.readFromStream(fileNameToStream_1.getInStream(pOptions.inputFrom)).then(pInput => mscgenjs_1.translateMsc(pInput, pOptions));
+    return getStream(fileNameToStream_1.getInStream(pOptions.inputFrom)).then(pInput => mscgenjs_1.translateMsc(pInput, pOptions));
 }
 function transform(pOptions) {
     if (isGraphicsOutput(pOptions.outputType)) {

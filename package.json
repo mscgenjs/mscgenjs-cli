@@ -45,6 +45,7 @@
   "dependencies": {
     "ajv": "6.10.0",
     "commander": "2.20.0",
+    "get-stream": "5.1.0",
     "mscgenjs": "3.0.2",
     "mscgenjs-inpage": "2.0.7",
     "puppeteer": "1.14.0"
@@ -105,10 +106,10 @@
     "watch": "tsc --project src/tsconfig.json --watch"
   },
   "nyc": {
-    "statements": 94.9,
-    "branches": 91.3,
-    "functions": 89.3,
-    "lines": 94.9,
+    "statements": 95,
+    "branches": 91,
+    "functions": 88,
+    "lines": 95,
     "reporter": [
       "text-summary",
       "html",

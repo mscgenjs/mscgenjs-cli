@@ -1,7 +1,7 @@
+import * as getStream from "get-stream";
 import { ITranslateOptions, translateMsc } from "mscgenjs";
 import { INormalizedOptions, OutputType } from "../types";
 import { getInStream, getOutStream } from "./fileNameToStream";
-import { readFromStream } from "./readFromStream";
 import { renderWithChromeHeadless } from "./render";
 
 function isGraphicsOutput(pOutputType: OutputType) {
@@ -29,7 +29,7 @@ export function removeAutoWidth(pAST: any, pOutputType: OutputType) {
 }
 
 function render(pOptions: INormalizedOptions): Promise<any> {
-  return readFromStream(getInStream(pOptions.inputFrom))
+  return getStream(getInStream(pOptions.inputFrom))
     .then(pInput => getAST(pInput, pOptions))
     .then(pAST =>
       renderWithChromeHeadless(
@@ -40,7 +40,7 @@ function render(pOptions: INormalizedOptions): Promise<any> {
 }
 
 function transpile(pOptions: INormalizedOptions): Promise<string> {
-  return readFromStream(getInStream(pOptions.inputFrom)).then(pInput =>
+  return getStream(getInStream(pOptions.inputFrom)).then(pInput =>
     translateMsc(pInput, pOptions as ITranslateOptions)
   );
 }
