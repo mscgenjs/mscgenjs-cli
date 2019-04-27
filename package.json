@@ -49,14 +49,14 @@
     "lodash": "4.17.11",
     "mscgenjs": "3.0.2",
     "mscgenjs-inpage": "2.0.7",
-    "puppeteer": "1.14.0"
+    "puppeteer": "1.15.0"
   },
   "devDependencies": {
     "@types/chai": "4.1.7",
     "@types/chai-as-promised": "7.1.0",
     "@types/lodash": "4.14.123",
     "@types/mocha": "5.2.6",
-    "@types/node": "11.13.7",
+    "@types/node": "11.13.8",
     "@types/puppeteer": "1.12.3",
     "chai": "4.2.0",
     "chai-as-promised": "7.1.1",
@@ -70,7 +70,7 @@
     "tslint": "5.16.0",
     "tslint-config-prettier": "1.18.0",
     "typescript": "3.4.5",
-    "upem": "2.0.0"
+    "upem": "2.0.1"
   },
   "scripts": {
     "build": "npm-run-all build:clean build:compile build:copy",
