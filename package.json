@@ -11,7 +11,7 @@
   ],
   "license": "GPL-3.0",
   "engines": {
-    "node": ">=6.0"
+    "node": ">=8.0"
   },
   "bugs": {
     "url": "https://github.com/mscgenjs/mscgenjs-cli/issues"
@@ -49,7 +49,8 @@
     "lodash": "4.17.11",
     "mscgenjs": "3.0.2",
     "mscgenjs-inpage": "2.0.7",
-    "puppeteer": "1.15.0"
+    "puppeteer": "1.15.0",
+    "semver": "6.0.0"
   },
   "devDependencies": {
     "@types/chai": "4.1.7",
@@ -58,6 +59,7 @@
     "@types/mocha": "5.2.6",
     "@types/node": "11.13.8",
     "@types/puppeteer": "1.12.3",
+    "@types/semver": "6.0.0",
     "chai": "4.2.0",
     "chai-as-promised": "7.1.1",
     "dependency-cruiser": "4.16.0",

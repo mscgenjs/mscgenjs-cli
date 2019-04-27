@@ -2,13 +2,23 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const program = require("commander");
+const semver = require("semver");
 const actions = require("../actions");
 const formatError = require("../actions/formatError");
 const showLicense = require("../actions/showLicense");
 const normalizations = require("./normalizations");
 const validations = require("./validations");
+// tslint:disable-next-line:no-var-requires
+const $package = require("../../package.json");
 function presentError(e) {
     process.stderr.write(formatError(e) + "\n");
+    process.exit(1);
+}
+/* istanbul ignore if  */
+if (!semver.satisfies(process.versions.node, $package.engines.node)) {
+    process.stderr.write(`\nERROR: your node version (${process.versions.node}) is not recent enough.\n`);
+    process.stderr.write(`       ${$package.name} needs a version of node ${$package.engines.node}\n\n`);
+    /* eslint no-process-exit: 0 */
     process.exit(1);
 }
 try {

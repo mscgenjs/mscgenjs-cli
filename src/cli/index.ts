@@ -1,14 +1,35 @@
 /* tslint no-var-requires:0 */
 "use strict";
 import * as program from "commander";
+import * as semver from "semver";
 import * as actions from "../actions";
 import formatError = require("../actions/formatError");
 import showLicense = require("../actions/showLicense");
 import * as normalizations from "./normalizations";
 import * as validations from "./validations";
 
+// tslint:disable-next-line:no-var-requires
+const $package = require("../../package.json");
+
 function presentError(e: Error) {
   process.stderr.write(formatError(e) + "\n");
+  process.exit(1);
+}
+
+/* istanbul ignore if  */
+if (!semver.satisfies(process.versions.node, $package.engines.node)) {
+  process.stderr.write(
+    `\nERROR: your node version (${
+      process.versions.node
+    }) is not recent enough.\n`
+  );
+  process.stderr.write(
+    `       ${$package.name} needs a version of node ${
+      $package.engines.node
+    }\n\n`
+  );
+
+  /* eslint no-process-exit: 0 */
   process.exit(1);
 }
 
