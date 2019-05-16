@@ -28,15 +28,16 @@ function getPuppeteerLaunchOptions(pPuppeteerLaunchOptions) {
 function renderSVG(page) {
     return __awaiter(this, void 0, void 0, function* () {
         /* the istanbul ignore thing is so istanbul won't instrument code
-             that is meant to be run in browser context. If it does,
-             you'll get errors like 'Error: Evaluation failed: ReferenceError: cov_'
-             - which is chrome (not node) telling us something is foobar
-          */
+          that is meant to be run in browser context. If it does,
+          you'll get errors like 'Error: Evaluation failed: ReferenceError: cov_'
+          - which is chrome (not node) telling us something is foobar
+        */
         /* istanbul ignore next */
         return yield page.evaluate(() => {
             const lSVGElement = document.getElementById("mscgenjsreplaceme");
+            const SVG_DOCTYPE = '<!DOCTYPE svg [<!ENTITY nbsp "&#160;">]>';
             if (lSVGElement) {
-                return Promise.resolve(lSVGElement.outerHTML);
+                return Promise.resolve(SVG_DOCTYPE + lSVGElement.outerHTML);
             }
             return Promise.reject("Couldn't render the SVG.");
         });
