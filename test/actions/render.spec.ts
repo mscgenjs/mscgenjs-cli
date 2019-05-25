@@ -30,7 +30,8 @@ describe("render()", () => {
           args: ["--no-sandbox"] // ci server's docker/ linux does not support sandboxing yet
         }
       } as INormalizedOptions)
-      .should.eventually.contain('<!DOCTYPE svg [<!ENTITY nbsp "&#160;">]>').and.notify(pDone);;
+      .should.eventually.contain('<!DOCTYPE svg [<!ENTITY nbsp "&#160;">]>')
+      .and.notify(pDone);
   });
 
   it("coughs something when passed an ast asked to output png", pDone => {
