@@ -49,6 +49,17 @@
       "to": {
         "dependencyTypes": ["npm-peer"]
       }
+    },
+    {
+      "name": "no-unreachable",
+      "severity": "error",
+      "from": {
+        "path": "^src/cli/index\\.ts$"
+      },
+      "to": {
+        "path": "^src/",
+        "reachable": false
+      }
     }
   ],
   "options": {
