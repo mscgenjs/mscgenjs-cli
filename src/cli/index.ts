@@ -19,14 +19,10 @@ function presentError(e: Error) {
 /* istanbul ignore if  */
 if (!semver.satisfies(process.versions.node, $package.engines.node)) {
   process.stderr.write(
-    `\nERROR: your node version (${
-      process.versions.node
-    }) is not recent enough.\n`
+    `\nERROR: your node version (${process.versions.node}) is not recent enough.\n`
   );
   process.stderr.write(
-    `       ${$package.name} needs a version of node ${
-      $package.engines.node
-    }\n\n`
+    `       ${$package.name} needs a version of node ${$package.engines.node}\n\n`
   );
 
   /* eslint no-process-exit: 0 */
