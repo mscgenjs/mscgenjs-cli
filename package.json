@@ -23,8 +23,7 @@
   },
   "bin": {
     "mscgen_js": "bin/mscgen_js",
-    "mscgenjs": "bin/mscgen_js",
-    "mscgen.js": "bin/mscgen_js"
+    "mscgenjs": "bin/mscgen_js"
   },
   "main": "dist/index.js",
   "files": [
@@ -47,31 +46,31 @@
     "commander": "4.0.1",
     "get-stream": "5.1.0",
     "lodash": "4.17.15",
-    "mscgenjs": "4.0.2",
-    "mscgenjs-inpage": "2.0.12",
+    "mscgenjs": "4.0.4",
+    "mscgenjs-inpage": "2.0.13",
     "puppeteer": "2.0.0",
     "semver": "6.3.0"
   },
   "devDependencies": {
-    "@types/chai": "4.2.5",
+    "@types/chai": "4.2.7",
     "@types/chai-as-promised": "7.1.2",
-    "@types/lodash": "4.14.148",
+    "@types/lodash": "4.14.149",
     "@types/mocha": "5.2.7",
-    "@types/node": "12.12.7",
-    "@types/puppeteer": "1.20.2",
+    "@types/node": "13.1.2",
+    "@types/puppeteer": "2.0.0",
     "@types/semver": "6.2.0",
     "chai": "4.2.0",
     "chai-as-promised": "7.1.1",
-    "dependency-cruiser": "5.3.1",
+    "dependency-cruiser": "6.1.0",
     "mocha": "6.2.2",
     "npm-run-all": "4.1.5",
-    "nyc": "14.1.1",
+    "nyc": "15.0.0",
     "prettier": "1.19.1",
     "shx": "0.3.2",
-    "ts-node": "8.5.2",
+    "ts-node": "8.5.4",
     "tslint": "5.20.1",
     "tslint-config-prettier": "1.18.0",
-    "typescript": "3.7.2",
+    "typescript": "3.7.4",
     "upem": "3.1.2"
   },
   "scripts": {
@@ -108,6 +107,14 @@
     "upem:install": "npm install",
     "version": "run-s build depcruise:graph scm:stage",
     "watch": "tsc --project src/tsconfig.json --watch"
+  },
+  "upem": {
+    "donotup": [
+      {
+        "package": "semver",
+        "because": "doesn't support node 8 anymore, while current mscgenjs still does"
+      }
+    ]
   },
   "nyc": {
     "statements": 95,
