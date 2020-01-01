@@ -1,6 +1,6 @@
 mscgen_js - turns text into sequence charts
 
-Copyright (C) 2013 - 2018 Sander Verweij
+Copyright (C) 2013 - 2020 Sander Verweij
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
