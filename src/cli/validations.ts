@@ -6,14 +6,14 @@ import {
   INormalizedOptions,
   IPuppeteerOptions,
   NamedStyleType,
-  OutputType
+  OutputType,
 } from "../types";
 /* tslint:disable-next-line */
 const puppeteerOptionsSchema = require("./puppeteer-options.schema.json");
 
 const VALID_GRAPHICS_TYPES = Object.freeze(["svg", "png", "jpeg"]);
 const VALID_OUTPUT_TYPES = VALID_GRAPHICS_TYPES.concat(
-  mscgenjs.getAllowedValues().outputType.map(pValue => pValue.name)
+  mscgenjs.getAllowedValues().outputType.map((pValue) => pValue.name)
 );
 const ajv = new Ajv();
 
@@ -46,7 +46,7 @@ function isValidValue(pAttribute: string, pCandidateValue: string): boolean {
 }
 
 export function validOutputType(pType: OutputType): OutputType {
-  if (VALID_OUTPUT_TYPES.some(pName => pName === pType)) {
+  if (VALID_OUTPUT_TYPES.some((pName) => pName === pType)) {
     return pType;
   }
 
@@ -163,20 +163,20 @@ export const validOutputTypeRE = VALID_OUTPUT_TYPES.join("|");
 
 export const validInputTypeRE = mscgenjs
   .getAllowedValues()
-  .inputType.map(pValue => pValue.name)
+  .inputType.map((pValue) => pValue.name)
   .join("|");
 
 export const validNamedStyleRE = mscgenjs
   .getAllowedValues()
   .namedStyle.filter(
-    pValue => pValue.experimental === false && pValue.deprecated === false
+    (pValue) => pValue.experimental === false && pValue.deprecated === false
   )
-  .map(pValue => pValue.name)
+  .map((pValue) => pValue.name)
   .join("|");
 
 export const validVerticalAlignmentRE = mscgenjs
   .getAllowedValues()
-  .regularArcTextVerticalAlignment.map(pValue => pValue.name)
+  .regularArcTextVerticalAlignment.map((pValue) => pValue.name)
   .join("|");
 
 /*

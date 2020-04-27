@@ -13,7 +13,7 @@ function isGraphicsOutput(pOutputType: OutputType) {
 function getAST(pInput: string, pOptions: INormalizedOptions): string {
   return translateMsc(pInput, {
     inputType: pOptions.inputType,
-    outputType: "ast"
+    outputType: "ast",
   });
 }
 
@@ -29,8 +29,8 @@ export function removeAutoWidth(pAST: any, pOutputType: OutputType) {
 
 function render(pOptions: INormalizedOptions): Promise<any> {
   return getStream(getInStream(pOptions.inputFrom))
-    .then(pInput => getAST(pInput, pOptions))
-    .then(pAST =>
+    .then((pInput) => getAST(pInput, pOptions))
+    .then((pAST) =>
       renderWithChromeHeadless(
         removeAutoWidth(pAST, pOptions.outputType),
         pOptions
@@ -39,18 +39,18 @@ function render(pOptions: INormalizedOptions): Promise<any> {
 }
 
 function transpile(pOptions: INormalizedOptions): Promise<string> {
-  return getStream(getInStream(pOptions.inputFrom)).then(pInput =>
+  return getStream(getInStream(pOptions.inputFrom)).then((pInput) =>
     translateMsc(pInput, pOptions as ITranslateOptions)
   );
 }
 
 export function transform(pOptions: INormalizedOptions): Promise<boolean> {
   if (isGraphicsOutput(pOptions.outputType)) {
-    return render(pOptions).then(pResult =>
+    return render(pOptions).then((pResult) =>
       getOutStream(pOptions.outputTo).write(pResult)
     );
   } else {
-    return transpile(pOptions).then(pResult =>
+    return transpile(pOptions).then((pResult) =>
       getOutStream(pOptions.outputTo).write(pResult, "utf8")
     );
   }

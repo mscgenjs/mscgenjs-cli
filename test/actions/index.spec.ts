@@ -18,7 +18,7 @@ describe("index()", () => {
         inputFrom: `${__dirname}/fixtures/rainbow.mscin`,
         inputType: "mscgen",
         outputTo: `${__dirname}/output/rainbow.json`,
-        outputType: "json"
+        outputType: "json",
       } as INormalizedOptions)
     ).to.eventually.equal(true);
   });
@@ -28,7 +28,7 @@ describe("index()", () => {
         inputFrom: `${__dirname}/fixtures/doesnotexist`,
         inputType: "json",
         outputTo: `${__dirname}/output/notanast.json`,
-        outputType: "json"
+        outputType: "json",
       } as INormalizedOptions)
     ).to.eventually.be.rejected;
   });
@@ -38,7 +38,7 @@ describe("index()", () => {
         inputFrom: `${__dirname}/fixtures/invalid-mscgen.mscin`,
         inputType: "mscgen",
         outputTo: `${__dirname}/output/notanast.json`,
-        outputType: "json"
+        outputType: "json",
       } as INormalizedOptions)
     ).to.eventually.be.rejected;
   });
@@ -49,44 +49,44 @@ describe("removeAutoWidth", () => {
     meta: {
       extendedArcTypes: false,
       extendedFeatures: true,
-      extendedOptions: true
+      extendedOptions: true,
     },
     options: {
-      width: "auto"
+      width: "auto",
     },
     entities: [
       {
-        name: "a"
-      }
-    ]
+        name: "a",
+      },
+    ],
   };
   const AST_WITH_WIDTH_NUMBER = {
     meta: {
       extendedOptions: true,
       extendedArcTypes: false,
-      extendedFeatures: true
+      extendedFeatures: true,
     },
     options: {
-      width: "481"
+      width: "481",
     },
     entities: [
       {
-        name: "a"
-      }
-    ]
+        name: "a",
+      },
+    ],
   };
   const AST_WITHOUT_WIDTH_EQUALS_AUTO = {
     meta: {
       extendedOptions: true,
       extendedArcTypes: false,
-      extendedFeatures: true
+      extendedFeatures: true,
     },
     options: {},
     entities: [
       {
-        name: "a"
-      }
-    ]
+        name: "a",
+      },
+    ],
   };
 
   it("removes the auto-width element if outputType === png", () => {

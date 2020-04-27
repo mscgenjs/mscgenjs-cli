@@ -12,8 +12,8 @@ describe("formatError()", () => {
     lErr.location = {
       start: {
         column: 69,
-        line: 481
-      }
+        line: 481,
+      },
     };
 
     expect(formatError(lErr)).to.equal(

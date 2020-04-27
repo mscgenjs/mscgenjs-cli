@@ -7,6 +7,7 @@ import formatError = require("../actions/formatError");
 import showLicense = require("../actions/showLicense");
 import * as normalizations from "./normalizations";
 import * as validations from "./validations";
+import { OutputType, NamedStyleType } from "../types";
 
 // tslint:disable-next-line:no-var-requires
 const $package = require("../../package.json");
@@ -36,7 +37,8 @@ try {
     .option(
       "-T --output-type <type>",
       validations.validOutputTypeRE,
-      validations.validOutputType
+      (pOutputType) =>
+        validations.validOutputType(pOutputType as OutputType) as string
     )
     .option(
       "-I --input-type <type>",
@@ -50,7 +52,8 @@ try {
     .option(
       "-n --named-style <style>",
       validations.validNamedStyleRE,
-      validations.validNamedStyle
+      (pNamedStyle) =>
+        validations.validNamedStyle(pNamedStyle as NamedStyleType) as string
     )
     .option(
       "-m --mirror-entities",

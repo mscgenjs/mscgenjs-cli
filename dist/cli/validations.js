@@ -6,7 +6,7 @@ const mscgenjs = require("mscgenjs");
 /* tslint:disable-next-line */
 const puppeteerOptionsSchema = require("./puppeteer-options.schema.json");
 const VALID_GRAPHICS_TYPES = Object.freeze(["svg", "png", "jpeg"]);
-const VALID_OUTPUT_TYPES = VALID_GRAPHICS_TYPES.concat(mscgenjs.getAllowedValues().outputType.map(pValue => pValue.name));
+const VALID_OUTPUT_TYPES = VALID_GRAPHICS_TYPES.concat(mscgenjs.getAllowedValues().outputType.map((pValue) => pValue.name));
 const ajv = new Ajv();
 function isStdout(pFilename) {
     return "-" === pFilename;
@@ -32,7 +32,7 @@ function isValidValue(pAttribute, pCandidateValue) {
     return mscgenjs.getAllowedValues()[pAttribute].some((pValue) => pValue.name === pCandidateValue);
 }
 function validOutputType(pType) {
-    if (VALID_OUTPUT_TYPES.some(pName => pName === pType)) {
+    if (VALID_OUTPUT_TYPES.some((pName) => pName === pType)) {
         return pType;
     }
     throw Error(`\n  error: '${pType}' is not a valid output type. mscgen_js can emit:` +
@@ -112,14 +112,14 @@ exports.validPuppeteerOptions = validPuppeteerOptions;
 exports.validOutputTypeRE = VALID_OUTPUT_TYPES.join("|");
 exports.validInputTypeRE = mscgenjs
     .getAllowedValues()
-    .inputType.map(pValue => pValue.name)
+    .inputType.map((pValue) => pValue.name)
     .join("|");
 exports.validNamedStyleRE = mscgenjs
     .getAllowedValues()
-    .namedStyle.filter(pValue => pValue.experimental === false && pValue.deprecated === false)
-    .map(pValue => pValue.name)
+    .namedStyle.filter((pValue) => pValue.experimental === false && pValue.deprecated === false)
+    .map((pValue) => pValue.name)
     .join("|");
 exports.validVerticalAlignmentRE = mscgenjs
     .getAllowedValues()
-    .regularArcTextVerticalAlignment.map(pValue => pValue.name)
+    .regularArcTextVerticalAlignment.map((pValue) => pValue.name)
     .join("|");

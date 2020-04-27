@@ -4,9 +4,10 @@ checks:
     config:
       threshold: 30
 plugins:
+  eslint:
+    enabled: false
   tslint:
-    enabled: true
-    config: tslint.json
+    enabled: false
 exclude_patterns:
   - ".github/"
   - "dist/"

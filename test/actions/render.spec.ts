@@ -11,36 +11,36 @@ const lAST = require("./fixtures/simplest.json");
 should();
 
 describe("render()", () => {
-  it("should fail when passed a non-executable executablePath", pDone => {
+  it("should fail when passed a non-executable executablePath", (pDone) => {
     render
       .renderWithChromeHeadless(lAST, {
         outputType: "png",
         puppeteerOptions: {
-          executablePath: "non/existing/path/to/chromium"
-        }
+          executablePath: "non/existing/path/to/chromium",
+        },
       } as INormalizedOptions)
       .should.be.rejected.and.notify(pDone);
   });
 
-  it("coughs up something when passed an ast asked to output svg", pDone => {
+  it("coughs up something when passed an ast asked to output svg", (pDone) => {
     render
       .renderWithChromeHeadless(lAST, {
         outputType: "svg",
         puppeteerOptions: {
-          args: ["--no-sandbox"] // ci server's docker/ linux does not support sandboxing yet
-        }
+          args: ["--no-sandbox", "--disable-setuid-sandbox"], // ci server's docker/ linux does not support sandboxing yet
+        },
       } as INormalizedOptions)
       .should.eventually.contain('<!DOCTYPE svg [<!ENTITY nbsp "&#160;">]>')
       .and.notify(pDone);
   });
 
-  it("coughs something when passed an ast asked to output png", pDone => {
+  it("coughs something when passed an ast asked to output png", (pDone) => {
     render
       .renderWithChromeHeadless(lAST, {
         outputType: "png",
         puppeteerOptions: {
-          args: ["--no-sandbox"] // ci server's docker/ linux does not support sandboxing yet
-        }
+          args: ["--no-sandbox", "--disable-setuid-sandbox"], // ci server's docker/ linux does not support sandboxing yet
+        },
       } as INormalizedOptions)
       .should.be.fulfilled.and.notify(pDone);
   });

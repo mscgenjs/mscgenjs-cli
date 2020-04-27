@@ -18,7 +18,7 @@ function cookEvalFunction(pAST: string, pOptions: INormalizedOptions): string {
 function getPuppeteerLaunchOptions(pPuppeteerLaunchOptions: IPuppeteerOptions) {
   return Object.assign(
     {
-      headless: true
+      headless: true,
     },
     pPuppeteerLaunchOptions || {}
   );
@@ -49,12 +49,12 @@ async function renderBitmap(
     deviceScaleFactor: 2,
     height: 1,
     isMobile: false,
-    width: 1
+    width: 1,
   });
   return await page.screenshot({
     fullPage: true,
     omitBackground: false,
-    type: pOptions.outputType as any
+    type: pOptions.outputType as any,
   });
 }
 
@@ -72,13 +72,13 @@ export async function renderWithChromeHeadless(
     const page = await browser.newPage();
 
     await page.goto(`file:///${__dirname}/template.html`, {
-      waitUntil: "networkidle2"
+      waitUntil: "networkidle2",
     });
 
     await page.evaluate(cookEvalFunction(JSON.stringify(pAST), pOptions));
 
     await page.addScriptTag({
-      path: require.resolve("mscgenjs-inpage")
+      path: require.resolve("mscgenjs-inpage"),
     });
 
     await page.waitFor("mscgen#replaceme[data-renderedby='mscgen_js']");

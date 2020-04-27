@@ -5,7 +5,7 @@ import * as val from "../../src/cli/validations";
 import {
   INormalizedOptions,
   NamedStyleType,
-  OutputType
+  OutputType,
 } from "../../src/types";
 
 describe("cli/validations", () => {
@@ -89,7 +89,7 @@ describe("cli/validations", () => {
         val.validateArguments({
           inputFrom: path.join(__dirname, "../actions/fixtures/rainbow.mscin"),
           outputTo: "kaboeki.svg",
-          outputType: "svg"
+          outputType: "svg",
         } as INormalizedOptions);
         assert.equal("still here", "still here");
       } catch (e) {
@@ -102,7 +102,7 @@ describe("cli/validations", () => {
         val.validateArguments({
           inputFrom: "-",
           outputTo: "-",
-          outputType: "mscgen"
+          outputType: "mscgen",
         } as INormalizedOptions);
         assert.equal("still here", "still here");
       } catch (e) {
@@ -115,7 +115,7 @@ describe("cli/validations", () => {
         val.validateArguments({
           inputFrom: "-",
           outputTo: "-",
-          outputType: "dot"
+          outputType: "dot",
         } as INormalizedOptions);
         assert.equal("still here", "still here");
       } catch (e) {
@@ -128,12 +128,12 @@ describe("cli/validations", () => {
         .validateArguments({
           inputFrom: "input-doesnot-exist",
           outputTo: "-",
-          outputType: "xu"
+          outputType: "xu",
         } as INormalizedOptions)
         .then(() => {
           assert.equal("still here", "should not be here!");
         })
-        .catch(e => {
+        .catch((e) => {
           assert.equal(
             e.message,
             "\n  error: Failed to open input file 'input-doesnot-exist'\n\n"
@@ -146,12 +146,12 @@ describe("cli/validations", () => {
         .validateArguments({
           inputFrom: "input-doesnot-exist",
           outputTo: "-",
-          outputType: "xu"
+          outputType: "xu",
         } as INormalizedOptions)
         .then(() => {
           assert.equal("still here", "should not be here!");
         })
-        .catch(e => {
+        .catch((e) => {
           assert.equal(
             e.message,
             "\n  error: Failed to open input file 'input-doesnot-exist'\n\n"
@@ -163,12 +163,12 @@ describe("cli/validations", () => {
       val
         .validateArguments({
           inputFrom: "-",
-          outputType: "svg"
+          outputType: "svg",
         } as INormalizedOptions)
         .then(() => {
           assert.equal("still here?", "should not be here!");
         })
-        .catch(e => {
+        .catch((e) => {
           assert.equal(
             e.message,
             "\n  error: Please specify an output file.\n\n"
@@ -179,12 +179,12 @@ describe("cli/validations", () => {
     it("'-i -' complains about non specified output file", () => {
       val
         .validateArguments({
-          inputFrom: "-"
+          inputFrom: "-",
         } as INormalizedOptions)
         .then(() => {
           assert.equal("still here?", "should not be here!");
         })
-        .catch(e => {
+        .catch((e) => {
           assert.equal(
             e.message,
             "\n  error: Please specify an output file.\n\n"
@@ -198,7 +198,7 @@ describe("cli/validations", () => {
         .then(() => {
           assert.equal("still here?", "should not be here!");
         })
-        .catch(e => {
+        .catch((e) => {
           assert.equal(
             e.message,
             "\n  error: Please specify an input file.\n\n"
@@ -261,7 +261,7 @@ describe("cli/validations", () => {
       );
       expect(val.validPuppeteerOptions(lFixture)).to.deep.equal({
         args: ["--no-sandbox", "--disable-setuid-sandbox"],
-        executablePath: "/usr/bin/google-chrome"
+        executablePath: "/usr/bin/google-chrome",
       });
     });
   });

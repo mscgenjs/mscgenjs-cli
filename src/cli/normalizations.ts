@@ -12,7 +12,7 @@ const INPUT_EXTENSIONS = Object.freeze({
   mscin: "mscgen",
   msgenny: "msgenny",
   seq: "mscgen",
-  xu: "xu"
+  xu: "xu",
 });
 const OUTPUT_EXTENSIONS = Object.freeze({
   ast: "json",
@@ -28,7 +28,7 @@ const OUTPUT_EXTENSIONS = Object.freeze({
   png: "png",
   seq: "mscgen",
   svg: "svg",
-  xu: "xu"
+  xu: "xu",
 });
 
 /**
