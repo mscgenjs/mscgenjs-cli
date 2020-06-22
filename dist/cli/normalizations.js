@@ -99,8 +99,18 @@ function determineOutputType(pOutputType, pOutputTo, pParserOutput) {
  * @param  {object} pOptions a commander options object
  * @return {object} a commander options object with options 'normalized'
  */
-function normalize(pArgument, pOptions) {
-    const lRetval = JSON.parse(JSON.stringify(pOptions));
+function normalize(pArgument, pOptions // CommanderStatic
+) {
+    // TODO: this used to validate & clone the object with node's JSON parser, but
+    // CommanderStatic started to become circular, so that doesn't work
+    // very well anymore.
+    // Instead we'll probably want to get all valid options
+    // only and strip the useless ones (see dependency-cruiser source code for
+    // an example how to do this)
+    // For now fixed by:
+    // - any-ing the pOptions
+    // - Work with the naked pOptions
+    const lRetval = pOptions;
     lRetval.inputFrom = Boolean(pArgument) ? pArgument : pOptions.inputFrom;
     lRetval.inputType = determineInputType(pOptions.inputType, lRetval.inputFrom);
     lRetval.outputType = determineOutputType(pOptions.outputType, pOptions.outputTo, pOptions.parserOutput);
