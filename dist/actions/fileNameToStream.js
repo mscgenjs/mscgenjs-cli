@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.getInStream = exports.getOutStream = void 0;
 const fs_1 = require("fs");
 function getOutStream(pOutputTo) {
     if ("-" === pOutputTo) {

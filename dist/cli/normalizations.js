@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.normalize = void 0;
 const path = require("path");
 const INPUT_EXTENSIONS = Object.freeze({
     ast: "json",
@@ -109,7 +110,7 @@ function normalize(pArgument, pOptions // CommanderStatic
     // an example how to do this)
     // For now fixed by:
     // - any-ing the pOptions
-    // - Work with the naked pOptions
+    // - working with the naked pOptions
     const lRetval = pOptions;
     lRetval.inputFrom = Boolean(pArgument) ? pArgument : pOptions.inputFrom;
     lRetval.inputType = determineInputType(pOptions.inputType, lRetval.inputFrom);

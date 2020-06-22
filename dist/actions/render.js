@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.renderWithChromeHeadless = void 0;
 const puppeteer = require("puppeteer");
 function cookEvalFunction(pAST, pOptions) {
     return `const lReplaceMe = document.getElementById('replaceme');

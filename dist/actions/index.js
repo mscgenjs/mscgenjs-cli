@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.transform = exports.removeAutoWidth = void 0;
 const getStream = require("get-stream");
 const lodash_1 = require("lodash");
 const mscgenjs_1 = require("mscgenjs");
