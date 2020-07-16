@@ -45,7 +45,7 @@
     "ajv": "6.12.2",
     "commander": "5.1.0",
     "get-stream": "5.1.0",
-    "lodash": "4.17.15",
+    "lodash": "4.17.19",
     "mscgenjs": "5.0.0",
     "mscgenjs-inpage": "3.0.0",
     "puppeteer": "2.1.1",
