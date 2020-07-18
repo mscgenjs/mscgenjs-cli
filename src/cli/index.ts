@@ -5,7 +5,7 @@ import * as semver from "semver";
 import * as actions from "../actions";
 import formatError = require("../actions/formatError");
 import showLicense = require("../actions/showLicense");
-import * as normalizations from "./normalizations";
+import normalize from "./normalize";
 import * as validations from "./validations";
 import { OutputType, NamedStyleType } from "../types";
 
@@ -32,8 +32,6 @@ if (!semver.satisfies(process.versions.node, $package.engines.node)) {
 
 try {
   program
-    /* tslint:disable-next-line */
-    .version(require("../../package.json").version)
     .option(
       "-T --output-type <type>",
       validations.validOutputTypeRE,
@@ -78,10 +76,11 @@ try {
       process.stdout.write(showLicense());
       process.exit(0);
     })
+    .version($package.version)
     .arguments("[infile]")
     .parse(process.argv);
   validations
-    .validateArguments(normalizations.normalize(program.args[0], program))
+    .validateArguments(normalize(program.args[0], program))
     .then(actions.transform)
     .catch(presentError);
 } catch (pError) {

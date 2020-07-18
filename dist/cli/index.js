@@ -6,7 +6,7 @@ const semver = require("semver");
 const actions = require("../actions");
 const formatError = require("../actions/formatError");
 const showLicense = require("../actions/showLicense");
-const normalizations = require("./normalizations");
+const normalize_1 = require("./normalize");
 const validations = require("./validations");
 // tslint:disable-next-line:no-var-requires
 const $package = require("../../package.json");
@@ -23,8 +23,6 @@ if (!semver.satisfies(process.versions.node, $package.engines.node)) {
 }
 try {
     program
-        /* tslint:disable-next-line */
-        .version(require("../../package.json").version)
         .option("-T --output-type <type>", validations.validOutputTypeRE, (pOutputType) => validations.validOutputType(pOutputType))
         .option("-I --input-type <type>", validations.validInputTypeRE, validations.validInputType)
         .option("-i --input-from <file>", "File to read from. use - for stdin.")
@@ -43,10 +41,11 @@ try {
         process.stdout.write(showLicense());
         process.exit(0);
     })
+        .version($package.version)
         .arguments("[infile]")
         .parse(process.argv);
     validations
-        .validateArguments(normalizations.normalize(program.args[0], program))
+        .validateArguments(normalize_1.default(program.args[0], program))
         .then(actions.transform)
         .catch(presentError);
 }

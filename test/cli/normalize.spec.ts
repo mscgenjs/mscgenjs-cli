@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import { CommanderStatic } from "commander";
-import * as norm from "../../src/cli/normalizations";
+import normalize from "../../src/cli/normalize";
 
 const TESTPAIRS = [
   {
@@ -143,7 +143,7 @@ const TESTPAIRS = [
       options: {
         inputFrom: "-",
         inputType: "mscgen",
-        outputTo: undefined,
+        outputTo: "-",
         outputType: "svg",
         regularArcTextVerticalAlignment: "middle",
       },
@@ -158,7 +158,7 @@ const TESTPAIRS = [
       options: {
         inputFrom: undefined,
         inputType: "mscgen",
-        outputTo: undefined,
+        outputTo: "-",
         outputType: "svg",
         regularArcTextVerticalAlignment: "middle",
       },
@@ -200,11 +200,11 @@ const TESTPAIRS = [
   },
 ];
 
-describe("cli/normalizations", () => {
+describe("cli/normalize", () => {
   describe("#normalize() - ", () => {
     TESTPAIRS.forEach((pPair) => {
       it(pPair.title, () => {
-        const lNormalizedOptions = norm.normalize(
+        const lNormalizedOptions = normalize(
           pPair.input.argument as string,
           pPair.input.options as CommanderStatic
         );

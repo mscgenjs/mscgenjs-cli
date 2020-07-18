@@ -6,6 +6,7 @@
 .nyc_output
 .project
 .settings/*
+.vscode
 coverage
 node_modules
 npm-debug.log

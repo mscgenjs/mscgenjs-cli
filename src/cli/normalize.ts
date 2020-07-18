@@ -3,6 +3,7 @@
 import { CommanderStatic } from "commander";
 import * as path from "path";
 import { INormalizedOptions, OutputType } from "../types";
+import { InputType } from "mscgenjs";
 
 const INPUT_EXTENSIONS = Object.freeze({
   ast: "json",
@@ -71,9 +72,9 @@ function classifyExtension(
 function deriveOutputFromInput(
   pInputFrom: string,
   pOutputType: OutputType
-): string | void {
+): string {
   if (!pInputFrom || "-" === pInputFrom) {
-    return;
+    return "-";
   }
   return path
     .join(
@@ -88,20 +89,20 @@ function determineOutputTo(
   pOutputTo: string | undefined,
   pInputFrom: string,
   pOutputType: OutputType
-): string | void {
+): string {
   return Boolean(pOutputTo)
-    ? pOutputTo
+    ? (pOutputTo as string)
     : deriveOutputFromInput(pInputFrom, pOutputType);
 }
 
 function determineInputType(
   pInputType: string | undefined,
   pInputFrom: string
-): string {
+): InputType {
   if (pInputType) {
-    return pInputType === "ast" ? "json" : pInputType;
+    return (pInputType === "ast" ? "json" : pInputType) as InputType;
   }
-  return classifyExtension(pInputFrom, INPUT_EXTENSIONS, "mscgen");
+  return classifyExtension(pInputFrom, INPUT_EXTENSIONS, "mscgen") as InputType;
 }
 
 function determineOutputType(
@@ -121,6 +122,38 @@ function determineOutputType(
   return "svg";
 }
 
+const KNOWN_CLI_OPTIONS = [
+  "inputFrom",
+  "outputTo",
+  "inputType",
+  "outputType",
+  "namedStyle",
+  "mirrorEntities",
+  "parserOutput",
+  "regularArcTextVerticalAlignment",
+  "puppeteerOptions",
+];
+
+function isKnownCLIOption(pCandidateString: string) {
+  return KNOWN_CLI_OPTIONS.includes(pCandidateString);
+}
+
+/**
+ * Remove all attributes from the input object (which'd typically be
+ * originating from commander) that are not functional mscgenjs-cli
+ * options so a clean object can be passed through to the main function
+ *
+ * @param {any} pOptions - an options object e.g. as output from commander
+ * @returns {INormalizedOptions} - an options object that only contains stuff we care about
+ */
+function ejectNonCLIOptions(pOptions: any): INormalizedOptions {
+  return Object.keys(pOptions)
+    .filter(isKnownCLIOption)
+    .reduce((pAll: any, pKey: string) => {
+      pAll[pKey] = pOptions[pKey];
+      return pAll;
+    }, {});
+}
 /**
  * transforms the given argument and options to a uniform format
  *
@@ -133,38 +166,33 @@ function determineOutputType(
  * @param  {object} pOptions a commander options object
  * @return {object} a commander options object with options 'normalized'
  */
-export function normalize(
+export default function normalize(
   pArgument: string,
   pOptions: any // CommanderStatic
 ): INormalizedOptions {
-  // TODO: this used to validate & clone the object with node's JSON parser, but
-  // CommanderStatic started to become circular, so that doesn't work
-  // very well anymore.
-  // Instead we'll probably want to get all valid options
-  // only and strip the useless ones (see dependency-cruiser source code for
-  // an example how to do this)
-  // For now fixed by:
-  // - any-ing the pOptions
-  // - working with the naked pOptions
+  const lReturnValue = ejectNonCLIOptions(pOptions);
 
-  const lRetval = pOptions;
-
-  lRetval.inputFrom = Boolean(pArgument) ? pArgument : pOptions.inputFrom;
-  lRetval.inputType = determineInputType(pOptions.inputType, lRetval.inputFrom);
-  lRetval.outputType = determineOutputType(
-    pOptions.outputType,
-    pOptions.outputTo,
+  lReturnValue.inputFrom = Boolean(pArgument)
+    ? pArgument
+    : lReturnValue.inputFrom;
+  lReturnValue.inputType = determineInputType(
+    lReturnValue.inputType,
+    lReturnValue.inputFrom
+  );
+  lReturnValue.outputType = determineOutputType(
+    lReturnValue.outputType,
+    lReturnValue.outputTo,
     pOptions.parserOutput
   );
-  lRetval.outputTo = determineOutputTo(
-    pOptions.outputTo,
-    lRetval.inputFrom,
-    lRetval.outputType
+  lReturnValue.outputTo = determineOutputTo(
+    lReturnValue.outputTo,
+    lReturnValue.inputFrom,
+    lReturnValue.outputType
   );
-  lRetval.regularArcTextVerticalAlignment =
+  lReturnValue.regularArcTextVerticalAlignment =
     pOptions.verticalAlignment || "middle";
 
-  return lRetval;
+  return lReturnValue;
 }
 
 /*

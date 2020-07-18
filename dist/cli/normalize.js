@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.normalize = void 0;
 const path = require("path");
 const INPUT_EXTENSIONS = Object.freeze({
     ast: "json",
@@ -58,7 +57,7 @@ function classifyExtension(pString, pExtensionMap, pDefault) {
 }
 function deriveOutputFromInput(pInputFrom, pOutputType) {
     if (!pInputFrom || "-" === pInputFrom) {
-        return;
+        return "-";
     }
     return path
         .join(path.dirname(pInputFrom), path.basename(pInputFrom, path.extname(pInputFrom)))
@@ -72,7 +71,7 @@ function determineOutputTo(pOutputTo, pInputFrom, pOutputType) {
 }
 function determineInputType(pInputType, pInputFrom) {
     if (pInputType) {
-        return pInputType === "ast" ? "json" : pInputType;
+        return (pInputType === "ast" ? "json" : pInputType);
     }
     return classifyExtension(pInputFrom, INPUT_EXTENSIONS, "mscgen");
 }
@@ -88,6 +87,36 @@ function determineOutputType(pOutputType, pOutputTo, pParserOutput) {
     }
     return "svg";
 }
+const KNOWN_CLI_OPTIONS = [
+    "inputFrom",
+    "outputTo",
+    "inputType",
+    "outputType",
+    "namedStyle",
+    "mirrorEntities",
+    "parserOutput",
+    "regularArcTextVerticalAlignment",
+    "puppeteerOptions",
+];
+function isKnownCLIOption(pCandidateString) {
+    return KNOWN_CLI_OPTIONS.includes(pCandidateString);
+}
+/**
+ * Remove all attributes from the input object (which'd typically be
+ * originating from commander) that are not functional mscgenjs-cli
+ * options so a clean object can be passed through to the main function
+ *
+ * @param {any} pOptions - an options object e.g. as output from commander
+ * @returns {INormalizedOptions} - an options object that only contains stuff we care about
+ */
+function ejectNonCLIOptions(pOptions) {
+    return Object.keys(pOptions)
+        .filter(isKnownCLIOption)
+        .reduce((pAll, pKey) => {
+        pAll[pKey] = pOptions[pKey];
+        return pAll;
+    }, {});
+}
 /**
  * transforms the given argument and options to a uniform format
  *
@@ -102,22 +131,15 @@ function determineOutputType(pOutputType, pOutputTo, pParserOutput) {
  */
 function normalize(pArgument, pOptions // CommanderStatic
 ) {
-    // TODO: this used to validate & clone the object with node's JSON parser, but
-    // CommanderStatic started to become circular, so that doesn't work
-    // very well anymore.
-    // Instead we'll probably want to get all valid options
-    // only and strip the useless ones (see dependency-cruiser source code for
-    // an example how to do this)
-    // For now fixed by:
-    // - any-ing the pOptions
-    // - working with the naked pOptions
-    const lRetval = pOptions;
-    lRetval.inputFrom = Boolean(pArgument) ? pArgument : pOptions.inputFrom;
-    lRetval.inputType = determineInputType(pOptions.inputType, lRetval.inputFrom);
-    lRetval.outputType = determineOutputType(pOptions.outputType, pOptions.outputTo, pOptions.parserOutput);
-    lRetval.outputTo = determineOutputTo(pOptions.outputTo, lRetval.inputFrom, lRetval.outputType);
-    lRetval.regularArcTextVerticalAlignment =
+    const lReturnValue = ejectNonCLIOptions(pOptions);
+    lReturnValue.inputFrom = Boolean(pArgument)
+        ? pArgument
+        : lReturnValue.inputFrom;
+    lReturnValue.inputType = determineInputType(lReturnValue.inputType, lReturnValue.inputFrom);
+    lReturnValue.outputType = determineOutputType(lReturnValue.outputType, lReturnValue.outputTo, pOptions.parserOutput);
+    lReturnValue.outputTo = determineOutputTo(lReturnValue.outputTo, lReturnValue.inputFrom, lReturnValue.outputType);
+    lReturnValue.regularArcTextVerticalAlignment =
         pOptions.verticalAlignment || "middle";
-    return lRetval;
+    return lReturnValue;
 }
-exports.normalize = normalize;
+exports.default = normalize;
