@@ -37,7 +37,7 @@ mscgenjs -T png coolchart.mscgen
 ### But ...
 - But isn't it more practical to have an **interactive interpreter** for this?   
   When you **edit** sequence charts: definitely!
-  - Scoot over to [mscgen_js][mscgen_js] for an on line interpreter.
+  - Scoot over to [mscgen.js.org][mscgen.js.org] for an on line interpreter.
   - If you're using [atom][atom] you'll _**love**_ the
     [mscgen-preview][mscgen-preview] package.
 - But there's also the **original** [`mscgen`][mscgen].     
@@ -300,5 +300,6 @@ the hood by adding some debugging options:
 [codeclimate.mscgenjs]: https://codeclimate.com/github/mscgenjs/mscgenjs-cli
 [mscgen-preview]: https://atom.io/packages/mscgen-preview
 [mscgen_js]: https://github.com/sverweij/mscgenjs-core
+[mscgen.js.org]: https://mscgen.js.org
 [travis.mscgenjs]: https://travis-ci.org/mscgenjs/mscgenjs-cli
 [gitlab.mscgenjsbuild]: https://gitlab.com/sverweij/mscgenjs-cli/builds
