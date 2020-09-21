@@ -64,6 +64,11 @@
   ],
   "options": {
     "tsPreCompilationDeps": true,
-    "prefix": "https://github.com/mscgenjs/mscgenjs-cli/blob/develop/"
+    "prefix": "https://github.com/mscgenjs/mscgenjs-cli/blob/develop/",
+    "reporterOptions": {
+      "dot": {
+        "collapsePattern": "node_modules/[^/]+"
+      }
+    }
   }
 }
