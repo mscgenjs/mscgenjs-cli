@@ -1,6 +1,6 @@
 {
   "name": "mscgenjs-cli",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "description": "Render sequence charts from the command line",
   "author": "Sander Verweij",
   "contributors": [
