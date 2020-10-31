@@ -73,7 +73,7 @@ function renderWithChromeHeadless(pAST, pOptions) {
             yield page.addScriptTag({
                 path: require.resolve("mscgenjs-inpage"),
             });
-            yield page.waitFor("mscgen#replaceme[data-renderedby='mscgen_js']");
+            yield page.waitForSelector("mscgen#replaceme[data-renderedby='mscgen_js']");
             if (pOptions.outputType === "svg") {
                 return yield renderSVG(page);
             }

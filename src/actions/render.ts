@@ -81,7 +81,7 @@ export async function renderWithChromeHeadless(
       path: require.resolve("mscgenjs-inpage"),
     });
 
-    await page.waitFor("mscgen#replaceme[data-renderedby='mscgen_js']");
+    await page.waitForSelector("mscgen#replaceme[data-renderedby='mscgen_js']");
 
     if (pOptions.outputType === "svg") {
       return await renderSVG(page);
