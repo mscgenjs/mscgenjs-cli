@@ -1,5 +1,5 @@
 "use strict";
-import * as Ajv from "ajv";
+import Ajv from "ajv";
 import * as fs from "fs";
 import * as mscgenjs from "mscgenjs";
 import {

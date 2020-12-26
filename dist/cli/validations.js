@@ -1,14 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.validVerticalAlignmentRE = exports.validNamedStyleRE = exports.validInputTypeRE = exports.validOutputTypeRE = exports.validPuppeteerOptions = exports.validateArguments = exports.validVerticalAlignment = exports.validNamedStyle = exports.validInputType = exports.validOutputType = void 0;
-const Ajv = require("ajv");
+const ajv_1 = require("ajv");
 const fs = require("fs");
 const mscgenjs = require("mscgenjs");
 /* tslint:disable-next-line */
 const puppeteerOptionsSchema = require("./puppeteer-options.schema.json");
 const VALID_GRAPHICS_TYPES = Object.freeze(["svg", "png", "jpeg"]);
 const VALID_OUTPUT_TYPES = VALID_GRAPHICS_TYPES.concat(mscgenjs.getAllowedValues().outputType.map((pValue) => pValue.name));
-const ajv = new Ajv();
+const ajv = new ajv_1.default();
 function isStdout(pFilename) {
     return "-" === pFilename;
 }
