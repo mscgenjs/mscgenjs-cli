@@ -1,13 +1,4 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.renderWithChromeHeadless = void 0;
 const puppeteer = require("puppeteer");
@@ -27,66 +18,60 @@ function getPuppeteerLaunchOptions(pPuppeteerLaunchOptions) {
         headless: true,
     }, pPuppeteerLaunchOptions || {});
 }
-function renderSVG(page) {
-    return __awaiter(this, void 0, void 0, function* () {
-        /* the istanbul ignore thing is so istanbul won't instrument code
-          that is meant to be run in browser context. If it does,
-          you'll get errors like 'Error: Evaluation failed: ReferenceError: cov_'
-          - which is chrome (not node) telling us something is foobar
-        */
-        /* istanbul ignore next */
-        return yield page.evaluate(() => {
-            const lSVGElement = document.getElementById("mscgenjsreplaceme");
-            const SVG_DOCTYPE = '<!DOCTYPE svg [<!ENTITY nbsp "&#160;">]>';
-            if (lSVGElement) {
-                return Promise.resolve(SVG_DOCTYPE + lSVGElement.outerHTML);
-            }
-            return Promise.reject("Couldn't render the SVG.");
-        });
+async function renderSVG(page) {
+    /* the istanbul ignore thing is so istanbul won't instrument code
+      that is meant to be run in browser context. If it does,
+      you'll get errors like 'Error: Evaluation failed: ReferenceError: cov_'
+      - which is chrome (not node) telling us something is foobar
+    */
+    /* istanbul ignore next */
+    return await page.evaluate(() => {
+        const lSVGElement = document.getElementById("mscgenjsreplaceme");
+        const SVG_DOCTYPE = '<!DOCTYPE svg [<!ENTITY nbsp "&#160;">]>';
+        if (lSVGElement) {
+            return Promise.resolve(SVG_DOCTYPE + lSVGElement.outerHTML);
+        }
+        return Promise.reject("Couldn't render the SVG.");
     });
 }
-function renderBitmap(page, pOptions) {
-    return __awaiter(this, void 0, void 0, function* () {
-        yield page.setViewport({
-            deviceScaleFactor: 2,
-            height: 1,
-            isMobile: false,
-            width: 1,
-        });
-        return yield page.screenshot({
-            fullPage: true,
-            omitBackground: false,
-            type: pOptions.outputType,
-        });
+async function renderBitmap(page, pOptions) {
+    await page.setViewport({
+        deviceScaleFactor: 2,
+        height: 1,
+        isMobile: false,
+        width: 1,
+    });
+    return await page.screenshot({
+        fullPage: true,
+        omitBackground: false,
+        type: pOptions.outputType,
     });
 }
-function renderWithChromeHeadless(pAST, pOptions) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let browser = {};
-        try {
-            browser = yield puppeteer.launch(getPuppeteerLaunchOptions(pOptions.puppeteerOptions));
-            const page = yield browser.newPage();
-            yield page.goto(`file:///${__dirname}/template.html`, {
-                waitUntil: "networkidle2",
-            });
-            yield page.evaluate(cookEvalFunction(JSON.stringify(pAST), pOptions));
-            yield page.addScriptTag({
-                path: require.resolve("mscgenjs-inpage"),
-            });
-            yield page.waitForSelector("mscgen#replaceme[data-renderedby='mscgen_js']");
-            if (pOptions.outputType === "svg") {
-                return yield renderSVG(page);
-            }
-            else {
-                return yield renderBitmap(page, pOptions);
-            }
+async function renderWithChromeHeadless(pAST, pOptions) {
+    let browser = {};
+    try {
+        browser = await puppeteer.launch(getPuppeteerLaunchOptions(pOptions.puppeteerOptions));
+        const page = await browser.newPage();
+        await page.goto(`file:///${__dirname}/template.html`, {
+            waitUntil: "networkidle2",
+        });
+        await page.evaluate(cookEvalFunction(JSON.stringify(pAST), pOptions));
+        await page.addScriptTag({
+            path: require.resolve("mscgenjs-inpage"),
+        });
+        await page.waitForSelector("mscgen#replaceme[data-renderedby='mscgen_js']");
+        if (pOptions.outputType === "svg") {
+            return await renderSVG(page);
         }
-        finally {
-            if (Boolean(browser) && typeof browser.close === "function") {
-                browser.close();
-            }
+        else {
+            return await renderBitmap(page, pOptions);
         }
-    });
+    }
+    finally {
+        if (Boolean(browser) && typeof browser.close === "function") {
+            browser.close();
+        }
+    }
 }
 exports.renderWithChromeHeadless = renderWithChromeHeadless;
 /*

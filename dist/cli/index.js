@@ -45,7 +45,7 @@ try {
         .arguments("[infile]")
         .parse(process.argv);
     validations
-        .validateArguments(normalize_1.default(program.args[0], program))
+        .validateArguments(normalize_1.default(program.args[0], program.opts()))
         .then(actions.transform)
         .catch(presentError);
 }
