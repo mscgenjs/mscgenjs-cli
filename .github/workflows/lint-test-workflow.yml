@@ -14,7 +14,7 @@ jobs:
         node-version:
           - 12.x
           - 14.x
-          - 15.x
+          - 16.x
         platform:
           - ubuntu-latest
 
@@ -47,7 +47,7 @@ jobs:
           node --version
           npm run lint
           npm run depcruise
-        if: matrix.platform == 'ubuntu-latest' && matrix.node-version == '14.x'
+        if: matrix.platform == 'ubuntu-latest' && matrix.node-version == '16.x'
         shell: bash
         env:
           CI: true
@@ -59,7 +59,7 @@ jobs:
         env:
           CI: true
       - name: report coverage to code climate (runs on one platform only)
-        if: matrix.node-version == '14.x'
+        if: matrix.node-version == '16.x'
         uses: paambaati/codeclimate-action@v2.7.5
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE_TEST_COVERAGE_ID }}
