@@ -11,7 +11,7 @@
   ],
   "license": "GPL-3.0",
   "engines": {
-    "node": "^10||^12||>=13"
+    "node": "^12||^14||>=16"
   },
   "bugs": {
     "url": "https://github.com/mscgenjs/mscgenjs-cli/issues"
