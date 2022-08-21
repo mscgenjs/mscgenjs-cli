@@ -4,14 +4,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const commander_1 = require("commander");
 const semver = require("semver");
 const actions = require("../actions");
-const formatError = require("../actions/formatError");
-const showLicense = require("../actions/showLicense");
+const formatError_1 = require("../actions/formatError");
+const showLicense_1 = require("../actions/showLicense");
 const normalize_1 = require("./normalize");
 const validations = require("./validations");
 // tslint:disable-next-line:no-var-requires
 const $package = require("../../package.json");
 function presentError(e) {
-    process.stderr.write(formatError(e) + "\n");
+    process.stderr.write((0, formatError_1.default)(e) + "\n");
     process.exit(1);
 }
 /* istanbul ignore if  */
@@ -38,7 +38,7 @@ try {
         .option("--puppeteer-options <file>", `(advanced) pass puppeteer launch options
                                  see README.md for details`, validations.validPuppeteerOptions)
         .option("-l --license", "Display license and exit", () => {
-        process.stdout.write(showLicense());
+        process.stdout.write((0, showLicense_1.default)());
         process.exit(0);
     })
         .version($package.version)

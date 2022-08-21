@@ -1,4 +1,4 @@
-import { expect, should, use } from "chai";
+import { should, use } from "chai";
 import * as chaiAsPromised from "chai-as-promised";
 import * as render from "../../src/actions/render";
 import { INormalizedOptions } from "../../src/types";

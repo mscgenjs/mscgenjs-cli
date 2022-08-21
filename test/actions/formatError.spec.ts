@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import formatError = require("../../src/actions/formatError");
+import formatError from "../../src/actions/formatError";
 
 describe("formatError()", () => {
   it("returns the message of non-syntax errors", () => {

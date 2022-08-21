@@ -5,13 +5,13 @@ import * as stream from "stream";
 import { getInStream, getOutStream } from "../../src/actions/fileNameToStream";
 import { resetOutputDir } from "./utl";
 
-const OUTFILE = path.join(__dirname, "output", "tmp_hello.json");
+const OUTDIR = "output";
+const OUTFILE = path.join(__dirname, OUTDIR, "tmp_hello.json");
 
-// tslint:disable no-unused-expression
 describe("fileNameToStream", () => {
-  before("set up", resetOutputDir);
+  before("set up", resetOutputDir(OUTDIR));
 
-  after("tear down", resetOutputDir);
+  after("tear down", resetOutputDir(OUTDIR));
 
   it("getOutStream('-') is a writable stream", () => {
     expect(getOutStream("-") instanceof stream.Writable).to.be.true;

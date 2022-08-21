@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import showLicense = require("../../src/actions/showLicense");
+import showLicense from "../../src/actions/showLicense";
 
 describe("showLicense()", () => {
   it("returns the license", () => {

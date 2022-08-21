@@ -1,5 +1,6 @@
 "use strict";
-module.exports = () => `
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = () => `
     mscgen_js - turns text into sequence charts
     Copyright (C) 2013-2022 Sander Verweij
 

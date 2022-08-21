@@ -2,8 +2,8 @@
 import { program } from "commander";
 import * as semver from "semver";
 import * as actions from "../actions";
-import formatError = require("../actions/formatError");
-import showLicense = require("../actions/showLicense");
+import formatError from "../actions/formatError";
+import showLicense from "../actions/showLicense";
 import normalize from "./normalize";
 import * as validations from "./validations";
 import { OutputType, NamedStyleType } from "../types";

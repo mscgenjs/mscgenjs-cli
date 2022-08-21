@@ -1,4 +1,4 @@
-export = () => `
+export default () => `
     mscgen_js - turns text into sequence charts
     Copyright (C) 2013-2022 Sander Verweij
 

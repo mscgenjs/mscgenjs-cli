@@ -8,16 +8,16 @@ use(chaiAsPromised);
 
 // tslint:disable no-unused-expression
 describe("index()", () => {
-  before("set up", resetOutputDir);
+  before("set up", resetOutputDir("integration-output"));
 
-  after("tear down", resetOutputDir);
+  after("tear down", resetOutputDir("integration-output"));
 
   it("transpiles the rainbow", () => {
     expect(
       index.transform({
         inputFrom: `${__dirname}/fixtures/rainbow.mscin`,
         inputType: "mscgen",
-        outputTo: `${__dirname}/output/rainbow.json`,
+        outputTo: `${__dirname}/integration-output/rainbow.json`,
         outputType: "json",
       } as INormalizedOptions)
     ).to.eventually.equal(true);
@@ -27,7 +27,7 @@ describe("index()", () => {
       index.transform({
         inputFrom: `${__dirname}/fixtures/doesnotexist`,
         inputType: "json",
-        outputTo: `${__dirname}/output/notanast.json`,
+        outputTo: `${__dirname}/integration-output/notanast.json`,
         outputType: "json",
       } as INormalizedOptions)
     ).to.eventually.be.rejected;
@@ -37,7 +37,7 @@ describe("index()", () => {
       index.transform({
         inputFrom: `${__dirname}/fixtures/invalid-mscgen.mscin`,
         inputType: "mscgen",
-        outputTo: `${__dirname}/output/notanast.json`,
+        outputTo: `${__dirname}/integration-output/notanast.json`,
         outputType: "json",
       } as INormalizedOptions)
     ).to.eventually.be.rejected;
