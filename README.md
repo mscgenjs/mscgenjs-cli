@@ -5,8 +5,6 @@ _Render sequence charts from the command line_
 [![linting & test coverage - linux](https://github.com/mscgenjs/mscgenjs-cli/workflows/linting%20&%20test%20coverage%20-%20linux/badge.svg)](https://github.com/mscgenjs/mscgenjs-cli/actions?query=workflow%3A%22linting+%26+test+coverage+-+linux%22)
 [![Maintainability](https://api.codeclimate.com/v1/badges/92476027fbfdc6021eed/maintainability)](https://codeclimate.com/github/mscgenjs/mscgenjs-cli/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/92476027fbfdc6021eed/test_coverage)](https://codeclimate.com/github/mscgenjs/mscgenjs-cli/test_coverage)
-[![Dependency Status](https://david-dm.org/mscgenjs/mscgenjs-cli.svg)](https://david-dm.org/mscgenjs/mscgenjs-cli)
-[![devDependency Status](https://david-dm.org/mscgenjs/mscgenjs-cli/dev-status.svg)](https://david-dm.org/mscgenjs/mscgenjs-cli#info=devDependencies)
 [![npm stable version](https://img.shields.io/npm/v/mscgenjs-cli.svg)](https://npmjs.com/package/mscgenjs-cli)
 [![total downloads on npm](https://img.shields.io/npm/dt/mscgenjs-cli.svg?maxAge=2592000)](https://npmjs.com/package/mscgenjs-cli)
 [![GPL-3.0](https://img.shields.io/badge/license-GPL--3.0-blue.svg)](LICENSE.md)
