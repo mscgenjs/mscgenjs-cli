@@ -1,6 +1,5 @@
 /* tslint no-var-requires:0 */
-"use strict";
-import * as program from "commander";
+import { program } from "commander";
 import * as semver from "semver";
 import * as actions from "../actions";
 import formatError = require("../actions/formatError");
@@ -83,7 +82,7 @@ try {
     .validateArguments(normalize(program.args[0], program.opts()))
     .then(actions.transform)
     .catch(presentError);
-} catch (pError) {
+} catch (pError: any) {
   presentError(pError);
 }
 

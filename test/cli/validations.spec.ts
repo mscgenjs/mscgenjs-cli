@@ -15,7 +15,7 @@ describe("cli/validations", () => {
 
       try {
         val.validOutputType("notavalidOutputType" as OutputType);
-      } catch (e) {
+      } catch (e: any) {
         lFoundError = e.message;
       }
       expect(lFoundError).to.contain(
@@ -34,7 +34,7 @@ describe("cli/validations", () => {
 
       try {
         val.validInputType("dot");
-      } catch (e) {
+      } catch (e: any) {
         lFoundError = e.message;
       }
       expect(lFoundError).to.contain("error: 'dot' is not a valid input type");
@@ -51,7 +51,7 @@ describe("cli/validations", () => {
 
       try {
         val.validNamedStyle("unrecognized" as NamedStyleType);
-      } catch (e) {
+      } catch (e: any) {
         lFoundError = e.message;
       }
       expect(lFoundError).to.contain(
@@ -70,7 +70,7 @@ describe("cli/validations", () => {
 
       try {
         val.validVerticalAlignment("untoward");
-      } catch (e) {
+      } catch (e: any) {
         lFoundError = e.message;
       }
       expect(lFoundError).to.contain(
@@ -92,7 +92,7 @@ describe("cli/validations", () => {
           outputType: "svg",
         } as INormalizedOptions);
         assert.equal("still here", "still here");
-      } catch (e) {
+      } catch (e: any) {
         assert.equal(e.message, "should not be an exception");
       }
     });
@@ -105,7 +105,7 @@ describe("cli/validations", () => {
           outputType: "mscgen",
         } as INormalizedOptions);
         assert.equal("still here", "still here");
-      } catch (e) {
+      } catch (e: any) {
         assert.equal(e.message, "should not be an exception");
       }
     });
@@ -118,7 +118,7 @@ describe("cli/validations", () => {
           outputType: "dot",
         } as INormalizedOptions);
         assert.equal("still here", "still here");
-      } catch (e) {
+      } catch (e: any) {
         assert.equal(e.message, "should not be an exception");
       }
     });
@@ -214,7 +214,7 @@ describe("cli/validations", () => {
 
       try {
         val.validPuppeteerOptions(lFixture);
-      } catch (e) {
+      } catch (e: any) {
         lFoundError = e.message;
       }
       expect(lFoundError).to.contain(
@@ -228,7 +228,7 @@ describe("cli/validations", () => {
 
       try {
         val.validPuppeteerOptions(lFixture);
-      } catch (e) {
+      } catch (e: any) {
         lFoundError = e.message;
       }
       expect(lFoundError).to.contain(
@@ -246,7 +246,7 @@ describe("cli/validations", () => {
 
       try {
         val.validPuppeteerOptions(lFixture);
-      } catch (e) {
+      } catch (e: any) {
         lFoundError = e.message;
       }
       expect(lFoundError).to.contain(`error: '${lFixture}' does not contain`);

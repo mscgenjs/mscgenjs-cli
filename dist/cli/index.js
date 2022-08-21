@@ -1,7 +1,7 @@
-/* tslint no-var-requires:0 */
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const program = require("commander");
+/* tslint no-var-requires:0 */
+const commander_1 = require("commander");
 const semver = require("semver");
 const actions = require("../actions");
 const formatError = require("../actions/formatError");
@@ -22,7 +22,7 @@ if (!semver.satisfies(process.versions.node, $package.engines.node)) {
     process.exit(1);
 }
 try {
-    program
+    commander_1.program
         .option("-T --output-type <type>", validations.validOutputTypeRE, (pOutputType) => validations.validOutputType(pOutputType))
         .option("-I --input-type <type>", validations.validInputTypeRE, validations.validInputType)
         .option("-i --input-from <file>", "File to read from. use - for stdin.")
@@ -45,10 +45,23 @@ try {
         .arguments("[infile]")
         .parse(process.argv);
     validations
-        .validateArguments(normalize_1.default(program.args[0], program.opts()))
+        .validateArguments((0, normalize_1.default)(commander_1.program.args[0], commander_1.program.opts()))
         .then(actions.transform)
         .catch(presentError);
 }
 catch (pError) {
     presentError(pError);
 }
+/*
+    This file is part of mscgenjs-cli.
+    mscgenjs-cli is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    mscgen_js is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with mscgenjs-cli.  If not, see <http://www.gnu.org/licenses/>.
+*/

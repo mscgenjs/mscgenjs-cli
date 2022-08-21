@@ -27,7 +27,7 @@ function fileExists(pFilename: string): boolean {
       fs.accessSync(pFilename, fs.constants.R_OK);
     }
     return true;
-  } catch (e) {
+  } catch (e: any) {
     return false;
   }
 }

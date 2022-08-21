@@ -1,9 +1,9 @@
 "use strict";
 
-import { CommanderStatic } from "commander";
 import * as path from "path";
 import { INormalizedOptions, OutputType } from "../types";
 import { InputType } from "mscgenjs";
+import { CommandOptions } from "commander";
 
 const INPUT_EXTENSIONS = Object.freeze({
   ast: "json",
@@ -159,16 +159,16 @@ function ejectNonCLIOptions(pOptions: any): INormalizedOptions {
  *
  * - guesses the input type when not given
  * - guesses the output type when not given
- * - gueses the filename to output to when not given
+ * - guesses the filename to output to when not given
  * - translates parserOutput to a regular output type
  *
  * @param  {string} pArgument an argument (containing the filename to parse)
- * @param  {object} pOptions a commander options object
- * @return {object} a commander options object with options 'normalized'
+ * @param  {any} pOptions a commander options object
+ * @return {any} a commander options object with options 'normalized'
  */
 export default function normalize(
   pArgument: string,
-  pOptions: any // CommanderStatic
+  pOptions: any
 ): INormalizedOptions {
   const lReturnValue = ejectNonCLIOptions(pOptions);
 

@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { CommanderStatic } from "commander";
+import { CommandOptions } from "commander";
 import normalize from "../../src/cli/normalize";
 
 const TESTPAIRS = [
@@ -206,7 +206,7 @@ describe("cli/normalize", () => {
       it(pPair.title, () => {
         const lNormalizedOptions = normalize(
           pPair.input.argument as string,
-          pPair.input.options as CommanderStatic
+          pPair.input.options as CommandOptions
         );
 
         expect(lNormalizedOptions).to.deep.equal(pPair.expected.options);

@@ -122,15 +122,14 @@ function ejectNonCLIOptions(pOptions) {
  *
  * - guesses the input type when not given
  * - guesses the output type when not given
- * - gueses the filename to output to when not given
+ * - guesses the filename to output to when not given
  * - translates parserOutput to a regular output type
  *
  * @param  {string} pArgument an argument (containing the filename to parse)
- * @param  {object} pOptions a commander options object
- * @return {object} a commander options object with options 'normalized'
+ * @param  {any} pOptions a commander options object
+ * @return {any} a commander options object with options 'normalized'
  */
-function normalize(pArgument, pOptions // CommanderStatic
-) {
+function normalize(pArgument, pOptions) {
     const lReturnValue = ejectNonCLIOptions(pOptions);
     lReturnValue.inputFrom = Boolean(pArgument)
         ? pArgument

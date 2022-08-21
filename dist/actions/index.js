@@ -11,33 +11,33 @@ function isGraphicsOutput(pOutputType) {
     return GRAPHICSFORMATS.includes(pOutputType);
 }
 function getAST(pInput, pOptions) {
-    return mscgenjs_1.translateMsc(pInput, {
+    return (0, mscgenjs_1.translateMsc)(pInput, {
         inputType: pOptions.inputType,
         outputType: "ast",
     });
 }
 function removeAutoWidth(pAST, pOutputType) {
     if ((pOutputType === "png" || pOutputType === "jpeg") &&
-        lodash_1.get(pAST, "options.width", "not-auto") === "auto") {
+        (0, lodash_1.get)(pAST, "options.width", "not-auto") === "auto") {
         delete pAST.options.width;
     }
     return pAST;
 }
 exports.removeAutoWidth = removeAutoWidth;
 function render(pOptions) {
-    return getStream(fileNameToStream_1.getInStream(pOptions.inputFrom))
+    return getStream((0, fileNameToStream_1.getInStream)(pOptions.inputFrom))
         .then((pInput) => getAST(pInput, pOptions))
-        .then((pAST) => render_1.renderWithChromeHeadless(removeAutoWidth(pAST, pOptions.outputType), pOptions));
+        .then((pAST) => (0, render_1.renderWithChromeHeadless)(removeAutoWidth(pAST, pOptions.outputType), pOptions));
 }
 function transpile(pOptions) {
-    return getStream(fileNameToStream_1.getInStream(pOptions.inputFrom)).then((pInput) => mscgenjs_1.translateMsc(pInput, pOptions));
+    return getStream((0, fileNameToStream_1.getInStream)(pOptions.inputFrom)).then((pInput) => (0, mscgenjs_1.translateMsc)(pInput, pOptions));
 }
 function transform(pOptions) {
     if (isGraphicsOutput(pOptions.outputType)) {
-        return render(pOptions).then((pResult) => fileNameToStream_1.getOutStream(pOptions.outputTo).write(pResult));
+        return render(pOptions).then((pResult) => (0, fileNameToStream_1.getOutStream)(pOptions.outputTo).write(pResult));
     }
     else {
-        return transpile(pOptions).then((pResult) => fileNameToStream_1.getOutStream(pOptions.outputTo).write(pResult, "utf8"));
+        return transpile(pOptions).then((pResult) => (0, fileNameToStream_1.getOutStream)(pOptions.outputTo).write(pResult, "utf8"));
     }
 }
 exports.transform = transform;
