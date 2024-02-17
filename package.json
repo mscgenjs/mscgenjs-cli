@@ -19,7 +19,7 @@
   "homepage": "https://github.com/mscgenjs/mscgenjs-cli",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mscgenjs/mscgenjs-cli"
+    "url": "git+https://github.com/mscgenjs/mscgenjs-cli.git"
   },
   "bin": {
     "mscgen_js": "bin/mscgen_js",
