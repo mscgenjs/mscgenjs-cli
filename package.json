@@ -11,7 +11,7 @@
   ],
   "license": "GPL-3.0",
   "engines": {
-    "node": "^18.20||^20.15||^22.4"
+    "node": "^20.15||^22.4||>=24"
   },
   "bugs": {
     "url": "https://github.com/mscgenjs/mscgenjs-cli/issues"
@@ -42,33 +42,45 @@
     "msgenny"
   ],
   "dependencies": {
-    "ajv": "8.11.0",
-    "commander": "9.4.0",
+    "ajv": "8.18.0",
+    "commander": "14.0.3",
     "get-stream": "6.0.1",
-    "lodash": "4.17.21",
-    "mscgenjs": "6.0.2",
-    "mscgenjs-inpage": "4.0.5",
-    "puppeteer": "16.2.0",
-    "semver": "7.3.7"
+    "lodash": "4.18.1",
+    "mscgenjs": "8.0.0",
+    "mscgenjs-inpage": "6.0.0",
+    "puppeteer": "24.40.0",
+    "semver": "7.7.4"
   },
   "devDependencies": {
     "@types/chai": "4.3.3",
     "@types/chai-as-promised": "7.1.5",
-    "@types/lodash": "4.14.184",
+    "@types/lodash": "4.17.24",
     "@types/mocha": "9.1.1",
-    "@types/node": "18.7.8",
+    "@types/node": "25.5.2",
     "@types/puppeteer": "5.4.6",
     "@types/semver": "7.3.12",
-    "c8": "10.1.2",
-    "chai": "^4.3.6",
-    "chai-as-promised": "7.1.1",
-    "dependency-cruiser": "11.15.0",
-    "mocha": "10.0.0",
-    "npm-run-all": "4.1.5",
-    "prettier": "2.7.1",
-    "ts-node": "10.9.1",
-    "typescript": "4.7.4",
-    "upem": "7.3.0"
+    "c8": "11.0.0",
+    "chai": "^4.5.0",
+    "chai-as-promised": "7.1.2",
+    "dependency-cruiser": "17.3.10",
+    "mocha": "11.7.5",
+    "npm-run-all2": "8.0.4",
+    "prettier": "3.8.1",
+    "ts-node": "10.9.2",
+    "typescript": "5.9.3",
+    "upem": "10.0.4"
+  },
+  "overrides": {
+    "c8": {
+      "glob": "^13.0.3",
+      "yargs": "^18.0.0"
+    },
+    "mocha": {
+      "diff": "^8.0.3",
+      "glob": "^13.0.3",
+      "minimatch": "^10.2.4",
+      "serialize-javascript": "^7.0.3"
+    }
   },
   "upem": {
     "policies": [

@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getInStream = exports.getOutStream = void 0;
+exports.getOutStream = getOutStream;
+exports.getInStream = getInStream;
 const fs_1 = require("fs");
 function getOutStream(pOutputTo) {
     if ("-" === pOutputTo) {
@@ -8,14 +9,12 @@ function getOutStream(pOutputTo) {
     }
     return (0, fs_1.createWriteStream)(pOutputTo);
 }
-exports.getOutStream = getOutStream;
 function getInStream(pInputFrom) {
     if ("-" === pInputFrom) {
         return process.stdin;
     }
     return (0, fs_1.createReadStream)(pInputFrom);
 }
-exports.getInStream = getInStream;
 /*
     This file is part of mscgenjs-cli.
     mscgenjs-cli is free software: you can redistribute it and/or modify

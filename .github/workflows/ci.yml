@@ -19,9 +19,8 @@ jobs:
       fail-fast: true
       matrix:
         node-version:
-          - 14.x
-          - 16.x
-          - 18.x
+          - 20.x
+          - 25.x
         platform:
           - ubuntu-latest
 
@@ -55,8 +54,3 @@ jobs:
         run: |
           node --version
           npm run test:cover
-      - name: report coverage to code climate (runs on one platform only)
-        if: matrix.node-version == '18.x'
-        uses: paambaati/codeclimate-action@v3.0.0
-        env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE_TEST_COVERAGE_ID }}

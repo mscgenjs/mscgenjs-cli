@@ -1,4 +1,4 @@
-import { expect } from "chai";
+import { deepEqual } from "node:assert/strict";
 import { CommandOptions } from "commander";
 import normalize from "../../src/cli/normalize";
 
@@ -209,7 +209,7 @@ describe("cli/normalize", () => {
           pPair.input.options as CommandOptions
         );
 
-        expect(lNormalizedOptions).to.deep.equal(pPair.expected.options);
+        deepEqual(lNormalizedOptions, pPair.expected.options);
       });
     });
   });

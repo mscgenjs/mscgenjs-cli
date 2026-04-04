@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = normalize;
 const path = require("path");
 const INPUT_EXTENSIONS = Object.freeze({
     ast: "json",
@@ -141,4 +142,3 @@ function normalize(pArgument, pOptions) {
         pOptions.verticalAlignment || "middle";
     return lReturnValue;
 }
-exports.default = normalize;

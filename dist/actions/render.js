@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.renderWithChromeHeadless = void 0;
+exports.renderWithChromeHeadless = renderWithChromeHeadless;
 const puppeteer = require("puppeteer");
 function cookEvalFunction(pAST, pOptions) {
     return `const lReplaceMe = document.getElementById('replaceme');
@@ -73,7 +73,6 @@ async function renderWithChromeHeadless(pAST, pOptions) {
         }
     }
 }
-exports.renderWithChromeHeadless = renderWithChromeHeadless;
 /*
     This file is part of mscgenjs-cli.
     mscgenjs-cli is free software: you can redistribute it and/or modify

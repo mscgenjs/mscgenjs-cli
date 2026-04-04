@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.transform = exports.removeAutoWidth = void 0;
+exports.removeAutoWidth = removeAutoWidth;
+exports.transform = transform;
 const getStream = require("get-stream");
 const lodash_1 = require("lodash");
 const mscgenjs_1 = require("mscgenjs");
@@ -23,7 +24,6 @@ function removeAutoWidth(pAST, pOutputType) {
     }
     return pAST;
 }
-exports.removeAutoWidth = removeAutoWidth;
 function render(pOptions) {
     return getStream((0, fileNameToStream_1.getInStream)(pOptions.inputFrom))
         .then((pInput) => getAST(pInput, pOptions))
@@ -40,7 +40,6 @@ function transform(pOptions) {
         return transpile(pOptions).then((pResult) => (0, fileNameToStream_1.getOutStream)(pOptions.outputTo).write(pResult, "utf8"));
     }
 }
-exports.transform = transform;
 /*
     This file is part of mscgenjs-cli.
     mscgenjs-cli is free software: you can redistribute it and/or modify

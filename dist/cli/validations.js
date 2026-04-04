@@ -1,6 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validVerticalAlignmentRE = exports.validNamedStyleRE = exports.validInputTypeRE = exports.validOutputTypeRE = exports.validPuppeteerOptions = exports.validateArguments = exports.validVerticalAlignment = exports.validNamedStyle = exports.validInputType = exports.validOutputType = void 0;
+exports.validVerticalAlignmentRE = exports.validNamedStyleRE = exports.validInputTypeRE = exports.validOutputTypeRE = void 0;
+exports.validOutputType = validOutputType;
+exports.validInputType = validInputType;
+exports.validNamedStyle = validNamedStyle;
+exports.validVerticalAlignment = validVerticalAlignment;
+exports.validateArguments = validateArguments;
+exports.validPuppeteerOptions = validPuppeteerOptions;
 const ajv_1 = require("ajv");
 const fs = require("fs");
 const mscgenjs = require("mscgenjs");
@@ -40,7 +46,6 @@ function validOutputType(pType) {
         `\n          - the grapics formats svg, jpeg and png` +
         `\n          - the text formats dot, doxygen, mscgen, msgenny, xu and json.\n\n`);
 }
-exports.validOutputType = validOutputType;
 function validInputType(pType) {
     if (isValidValue("inputType", pType)) {
         return pType;
@@ -48,7 +53,6 @@ function validInputType(pType) {
     throw Error(`\n  error: '${pType}' is not a valid input type.` +
         `\n         mscgen_js can read ${getValidValues("inputType")}\n\n`);
 }
-exports.validInputType = validInputType;
 function validNamedStyle(pStyle) {
     if (isValidValue("namedStyle", pStyle)) {
         return pStyle;
@@ -56,7 +60,6 @@ function validNamedStyle(pStyle) {
     throw Error(`\n  error: '${pStyle}' is not a recognized named style.` +
         `\n         You can use one of these: ${getValidValues("namedStyle")}\n\n`);
 }
-exports.validNamedStyle = validNamedStyle;
 function validVerticalAlignment(pAlignment) {
     if (isValidValue("regularArcTextVerticalAlignment", pAlignment)) {
         return pAlignment;
@@ -64,7 +67,6 @@ function validVerticalAlignment(pAlignment) {
     throw Error(`\n  error: '${pAlignment}' is not a recognized vertical alignment.` +
         `\n         You can use one of these: ${getValidValues("regularArcTextVerticalAlignment")}\n\n`);
 }
-exports.validVerticalAlignment = validVerticalAlignment;
 function validateArguments(pOptions) {
     return new Promise((pResolve, pReject) => {
         if (!pOptions.inputFrom) {
@@ -79,7 +81,6 @@ function validateArguments(pOptions) {
         pResolve(pOptions);
     });
 }
-exports.validateArguments = validateArguments;
 function validPuppeteerOptions(pPuppeteerConfigFileName) {
     let lPuppeteerConfigFileContents = "";
     let lPuppeteerConfigObject = {};
@@ -109,7 +110,6 @@ function validPuppeteerOptions(pPuppeteerConfigFileName) {
     }
     return lPuppeteerConfigObject;
 }
-exports.validPuppeteerOptions = validPuppeteerOptions;
 exports.validOutputTypeRE = VALID_OUTPUT_TYPES.join("|");
 exports.validInputTypeRE = mscgenjs
     .getAllowedValues()
