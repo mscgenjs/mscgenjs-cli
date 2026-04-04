@@ -19,10 +19,10 @@ function presentError(e: Error) {
 /* istanbul ignore if  */
 if (!semver.satisfies(process.versions.node, $package.engines.node)) {
   process.stderr.write(
-    `\nERROR: your node version (${process.versions.node}) is not recent enough.\n`
+    `\nERROR: your node version (${process.versions.node}) is not recent enough.\n`,
   );
   process.stderr.write(
-    `       ${$package.name} needs a version of node ${$package.engines.node}\n\n`
+    `       ${$package.name} needs a version of node ${$package.engines.node}\n\n`,
   );
 
   /* eslint no-process-exit: 0 */
@@ -35,12 +35,12 @@ try {
       "-T --output-type <type>",
       validations.validOutputTypeRE,
       (pOutputType) =>
-        validations.validOutputType(pOutputType as OutputType) as string
+        validations.validOutputType(pOutputType as OutputType) as string,
     )
     .option(
       "-I --input-type <type>",
       validations.validInputTypeRE,
-      validations.validInputType
+      validations.validInputType,
     )
     .option("-i --input-from <file>", "File to read from. use - for stdin.")
     .option("-o --output-to <file>", "File to write to. use - for stdout.")
@@ -50,12 +50,12 @@ try {
       "-n --named-style <style>",
       validations.validNamedStyleRE,
       (pNamedStyle) =>
-        validations.validNamedStyle(pNamedStyle as NamedStyleType) as string
+        validations.validNamedStyle(pNamedStyle as NamedStyleType) as string,
     )
     .option(
       "-m --mirror-entities",
       `Repeat the entities on the chart's
-                                 bottom`
+                                 bottom`,
     )
     .option(
       "-v --vertical-alignment <align>",
@@ -63,13 +63,13 @@ try {
                                  arcs. Experimental
                                  ${validations.validVerticalAlignmentRE}`,
       validations.validVerticalAlignment,
-      "middle"
+      "middle",
     )
     .option(
       "--puppeteer-options <file>",
       `(advanced) pass puppeteer launch options
                                  see README.md for details`,
-      validations.validPuppeteerOptions
+      validations.validPuppeteerOptions,
     )
     .option("-l --license", "Display license and exit", () => {
       process.stdout.write(showLicense());

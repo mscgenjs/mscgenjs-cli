@@ -1,13 +1,13 @@
-import { expect } from "chai";
+import { match } from "node:assert/strict";
 import showLicense from "../../src/actions/showLicense";
 
 describe("showLicense()", () => {
   it("returns the license", () => {
-    expect(showLicense()).to.contain("GNU General Public License");
+    match(showLicense(), /GNU General Public License/);
   });
 
   it("has the current year in it", () => {
-    expect(showLicense()).to.contain(`-${new Date().getUTCFullYear()}`);
+    match(showLicense(), new RegExp(`-${new Date().getUTCFullYear()}`));
   });
 });
 

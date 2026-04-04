@@ -50,7 +50,7 @@ const OUTPUT_EXTENSIONS = Object.freeze({
 function classifyExtension(
   pString: string | undefined,
   pExtensionMap: any,
-  pDefault: string
+  pDefault: string,
 ): string {
   if (!pString) {
     return pDefault;
@@ -71,7 +71,7 @@ function classifyExtension(
 
 function deriveOutputFromInput(
   pInputFrom: string,
-  pOutputType: OutputType
+  pOutputType: OutputType,
 ): string {
   if (!pInputFrom || "-" === pInputFrom) {
     return "-";
@@ -79,7 +79,7 @@ function deriveOutputFromInput(
   return path
     .join(
       path.dirname(pInputFrom),
-      path.basename(pInputFrom, path.extname(pInputFrom))
+      path.basename(pInputFrom, path.extname(pInputFrom)),
     )
     .concat(".")
     .concat(pOutputType);
@@ -88,7 +88,7 @@ function deriveOutputFromInput(
 function determineOutputTo(
   pOutputTo: string | undefined,
   pInputFrom: string,
-  pOutputType: OutputType
+  pOutputType: OutputType,
 ): string {
   return Boolean(pOutputTo)
     ? (pOutputTo as string)
@@ -97,7 +97,7 @@ function determineOutputTo(
 
 function determineInputType(
   pInputType: string | undefined,
-  pInputFrom: string
+  pInputFrom: string,
 ): InputType {
   if (pInputType) {
     return (pInputType === "ast" ? "json" : pInputType) as InputType;
@@ -108,7 +108,7 @@ function determineInputType(
 function determineOutputType(
   pOutputType: string | undefined,
   pOutputTo: string | undefined,
-  pParserOutput: string
+  pParserOutput: string,
 ): OutputType {
   if (Boolean(pParserOutput)) {
     return "json";
@@ -168,7 +168,7 @@ function ejectNonCLIOptions(pOptions: any): INormalizedOptions {
  */
 export default function normalize(
   pArgument: string,
-  pOptions: any
+  pOptions: any,
 ): INormalizedOptions {
   const lReturnValue = ejectNonCLIOptions(pOptions);
 
@@ -177,17 +177,17 @@ export default function normalize(
     : lReturnValue.inputFrom;
   lReturnValue.inputType = determineInputType(
     lReturnValue.inputType,
-    lReturnValue.inputFrom
+    lReturnValue.inputFrom,
   );
   lReturnValue.outputType = determineOutputType(
     lReturnValue.outputType,
     lReturnValue.outputTo,
-    pOptions.parserOutput
+    pOptions.parserOutput,
   );
   lReturnValue.outputTo = determineOutputTo(
     lReturnValue.outputTo,
     lReturnValue.inputFrom,
-    lReturnValue.outputType
+    lReturnValue.outputType,
   );
   lReturnValue.regularArcTextVerticalAlignment =
     pOptions.verticalAlignment || "middle";

@@ -1,5 +1,4 @@
 "use strict";
-import { expect } from "chai";
 import { deepEqual, equal, match } from "node:assert/strict";
 import * as path from "node:path";
 import * as val from "../../src/cli/validations";
@@ -19,8 +18,9 @@ describe("cli/validations", () => {
       } catch (e: any) {
         lFoundError = e.message;
       }
-      expect(lFoundError).to.contain(
-        "error: 'notavalidOutputType' is not a valid output type."
+      match(
+        lFoundError,
+        /error: 'notavalidOutputType' is not a valid output type[.]/,
       );
     });
 
@@ -38,7 +38,7 @@ describe("cli/validations", () => {
       } catch (e: any) {
         lFoundError = e.message;
       }
-      expect(lFoundError).to.contain("error: 'dot' is not a valid input type");
+      match(lFoundError, /error: 'dot' is not a valid input type/);
     });
 
     it("'ast' is a valid type", () => {
@@ -55,8 +55,9 @@ describe("cli/validations", () => {
       } catch (e: any) {
         lFoundError = e.message;
       }
-      expect(lFoundError).to.contain(
-        "error: 'unrecognized' is not a recognized named style"
+      match(
+        lFoundError,
+        /error: 'unrecognized' is not a recognized named style/,
       );
     });
 
@@ -74,8 +75,9 @@ describe("cli/validations", () => {
       } catch (e: any) {
         lFoundError = e.message;
       }
-      expect(lFoundError).to.contain(
-        "error: 'untoward' is not a recognized vertical alignment"
+      match(
+        lFoundError,
+        /error: 'untoward' is not a recognized vertical alignment/,
       );
     });
 
@@ -137,7 +139,7 @@ describe("cli/validations", () => {
         .catch((e) => {
           equal(
             e.message,
-            "\n  error: Failed to open input file 'input-doesnot-exist'\n\n"
+            "\n  error: Failed to open input file 'input-doesnot-exist'\n\n",
           );
         });
     });
@@ -155,7 +157,7 @@ describe("cli/validations", () => {
         .catch((e) => {
           equal(
             e.message,
-            "\n  error: Failed to open input file 'input-doesnot-exist'\n\n"
+            "\n  error: Failed to open input file 'input-doesnot-exist'\n\n",
           );
         });
     });
@@ -170,10 +172,7 @@ describe("cli/validations", () => {
           equal("still here?", "should not be here!");
         })
         .catch((e) => {
-          equal(
-            e.message,
-            "\n  error: Please specify an output file.\n\n"
-          );
+          equal(e.message, "\n  error: Please specify an output file.\n\n");
         });
     });
 
@@ -186,10 +185,7 @@ describe("cli/validations", () => {
           equal("still here?", "should not be here!");
         })
         .catch((e) => {
-          equal(
-            e.message,
-            "\n  error: Please specify an output file.\n\n"
-          );
+          equal(e.message, "\n  error: Please specify an output file.\n\n");
         });
     });
 
@@ -200,10 +196,7 @@ describe("cli/validations", () => {
           equal("still here?", "should not be here!");
         })
         .catch((e) => {
-          equal(
-            e.message,
-            "\n  error: Please specify an input file.\n\n"
-          );
+          equal(e.message, "\n  error: Please specify an input file.\n\n");
         });
     });
   });
@@ -218,8 +211,11 @@ describe("cli/validations", () => {
       } catch (e: any) {
         lFoundError = e.message;
       }
-      expect(lFoundError).to.contain(
-        `error: Failed to open puppeteer options configuration file '${lFixture}'`
+      match(
+        lFoundError,
+        new RegExp(
+          `error: Failed to open puppeteer options configuration file '${lFixture}'`,
+        ),
       );
     });
 
@@ -232,8 +228,9 @@ describe("cli/validations", () => {
       } catch (e: any) {
         lFoundError = e.message;
       }
-      expect(lFoundError).to.contain(
-        `error: '${lFixture}' does not contain valid JSON`
+      match(
+        lFoundError,
+        new RegExp(`error: '${lFixture}' does not contain valid JSON`),
       );
     });
 
@@ -242,7 +239,7 @@ describe("cli/validations", () => {
       const lFixture = path.join(
         __dirname,
         "fixtures",
-        "invalid-puppeteer-config.json"
+        "invalid-puppeteer-config.json",
       );
 
       try {
@@ -250,14 +247,14 @@ describe("cli/validations", () => {
       } catch (e: any) {
         lFoundError = e.message;
       }
-      expect(lFoundError).to.contain(`error: '${lFixture}' does not contain`);
+      match(lFoundError, new RegExp(`error: '${lFixture}' does not contain`));
     });
 
     it("returns the parsed json if passed file is valid json", () => {
       const lFixture = path.join(
         __dirname,
         "fixtures",
-        "valid-puppeteer-config.json"
+        "valid-puppeteer-config.json",
       );
       deepEqual(val.validPuppeteerOptions(lFixture), {
         args: ["--no-sandbox", "--disable-setuid-sandbox"],

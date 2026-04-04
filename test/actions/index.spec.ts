@@ -1,46 +1,41 @@
-import { expect, use } from "chai";
-import * as chaiAsPromised from "chai-as-promised";
+import {deepEqual, equal, rejects } from "node:assert/strict";
 import * as index from "../../src/actions/index";
-import { INormalizedOptions } from "../../src/types";
+import type { INormalizedOptions } from "../../src/types";
 import { resetOutputDir } from "./utl";
 
-use(chaiAsPromised);
-
-// tslint:disable no-unused-expression
 describe("index()", () => {
   before("set up", resetOutputDir("integration-output"));
 
   after("tear down", resetOutputDir("integration-output"));
 
-  it("transpiles the rainbow", () => {
-    expect(
-      index.transform({
-        inputFrom: `${__dirname}/fixtures/rainbow.mscin`,
-        inputType: "mscgen",
-        outputTo: `${__dirname}/integration-output/rainbow.json`,
-        outputType: "json",
-      } as INormalizedOptions)
-    ).to.eventually.equal(true);
+  it("transpiles the rainbow", async () => {
+    const lResult = await index.transform({
+      inputFrom: `${__dirname}/fixtures/rainbow.mscin`,
+      inputType: "mscgen",
+      outputTo: `${__dirname}/integration-output/rainbow.json`,
+      outputType: "json",
+    } as INormalizedOptions);
+    equal(lResult, true);
   });
-  it("when transpiling something non-existing - promise rejects", () => {
-    expect(
+  it("when transpiling something non-existing - promise rejects", async () => {
+    await rejects(
       index.transform({
         inputFrom: `${__dirname}/fixtures/doesnotexist`,
         inputType: "json",
         outputTo: `${__dirname}/integration-output/notanast.json`,
         outputType: "json",
-      } as INormalizedOptions)
-    ).to.eventually.be.rejected;
+      } as INormalizedOptions),
+    );
   });
-  it("when transpiling something non-existing - promise rejects", () => {
-    expect(
+  it("when transpiling something non-existing - promise rejects", async () => {
+    await rejects(
       index.transform({
         inputFrom: `${__dirname}/fixtures/invalid-mscgen.mscin`,
         inputType: "mscgen",
         outputTo: `${__dirname}/integration-output/notanast.json`,
         outputType: "json",
-      } as INormalizedOptions)
-    ).to.eventually.be.rejected;
+      } as INormalizedOptions),
+    );
   });
 });
 
@@ -90,37 +85,42 @@ describe("removeAutoWidth", () => {
   };
 
   it("removes the auto-width element if outputType === png", () => {
-    expect(
-      index.removeAutoWidth(AST_WITH_WIDTH_EQUALS_AUTO, "png")
-    ).to.deep.equal(AST_WITHOUT_WIDTH_EQUALS_AUTO);
+    deepEqual(
+      index.removeAutoWidth(AST_WITH_WIDTH_EQUALS_AUTO, "png"),
+      AST_WITHOUT_WIDTH_EQUALS_AUTO,
+    );
   });
   it("removes the auto-width element if outputType === jpeg", () => {
-    expect(
-      index.removeAutoWidth(AST_WITH_WIDTH_EQUALS_AUTO, "jpeg")
-    ).to.deep.equal(AST_WITHOUT_WIDTH_EQUALS_AUTO);
+    deepEqual(
+      index.removeAutoWidth(AST_WITH_WIDTH_EQUALS_AUTO, "jpeg"),
+      AST_WITHOUT_WIDTH_EQUALS_AUTO,
+    );
   });
   it("leaves the auto-width element alone outputType === svg", () => {
-    expect(
-      index.removeAutoWidth(AST_WITH_WIDTH_EQUALS_AUTO, "svg")
-    ).to.deep.equal(AST_WITH_WIDTH_EQUALS_AUTO);
+    deepEqual(
+      index.removeAutoWidth(AST_WITH_WIDTH_EQUALS_AUTO, "svg"),
+      AST_WITH_WIDTH_EQUALS_AUTO,
+    );
   });
   it("leaves the width element if outputType === png and width is a number", () => {
-    expect(index.removeAutoWidth(AST_WITH_WIDTH_NUMBER, "png")).to.deep.equal(
-      AST_WITH_WIDTH_NUMBER
+    deepEqual(
+      index.removeAutoWidth(AST_WITH_WIDTH_NUMBER, "png"),
+      AST_WITH_WIDTH_NUMBER,
     );
   });
   it("leaves the width element if outputType === jpeg and width is a number", () => {
-    expect(index.removeAutoWidth(AST_WITH_WIDTH_NUMBER, "jpeg")).to.deep.equal(
-      AST_WITH_WIDTH_NUMBER
+    deepEqual(
+      index.removeAutoWidth(AST_WITH_WIDTH_NUMBER, "jpeg"),
+      AST_WITH_WIDTH_NUMBER,
     );
   });
   it("leaves the width element if outputType === svg and width is a number", () => {
-    expect(index.removeAutoWidth(AST_WITH_WIDTH_NUMBER, "svg")).to.deep.equal(
-      AST_WITH_WIDTH_NUMBER
+    deepEqual(
+      index.removeAutoWidth(AST_WITH_WIDTH_NUMBER, "svg"),
+      AST_WITH_WIDTH_NUMBER,
     );
   });
 });
-// tslint:enable no-unused-expression
 
 /*
     This file is part of mscgenjs-cli.

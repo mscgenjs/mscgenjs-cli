@@ -20,7 +20,7 @@ function getPuppeteerLaunchOptions(pPuppeteerLaunchOptions: IPuppeteerOptions) {
     {
       headless: true,
     },
-    pPuppeteerLaunchOptions || {}
+    pPuppeteerLaunchOptions || {},
   );
 }
 
@@ -43,7 +43,7 @@ async function renderSVG(page: puppeteer.Page) {
 
 async function renderBitmap(
   page: puppeteer.Page,
-  pOptions: INormalizedOptions
+  pOptions: INormalizedOptions,
 ) {
   await page.setViewport({
     deviceScaleFactor: 2,
@@ -60,13 +60,13 @@ async function renderBitmap(
 
 export async function renderWithChromeHeadless(
   pAST: any,
-  pOptions: INormalizedOptions
+  pOptions: INormalizedOptions,
 ) {
   let browser: puppeteer.Browser = {} as puppeteer.Browser;
 
   try {
     browser = await puppeteer.launch(
-      getPuppeteerLaunchOptions(pOptions.puppeteerOptions)
+      getPuppeteerLaunchOptions(pOptions.puppeteerOptions),
     );
 
     const page = await browser.newPage();

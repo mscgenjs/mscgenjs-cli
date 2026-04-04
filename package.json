@@ -52,16 +52,12 @@
     "semver": "7.7.4"
   },
   "devDependencies": {
-    "@types/chai": "4.3.3",
-    "@types/chai-as-promised": "7.1.5",
     "@types/lodash": "4.17.24",
     "@types/mocha": "9.1.1",
     "@types/node": "25.5.2",
     "@types/puppeteer": "5.4.6",
     "@types/semver": "7.3.12",
     "c8": "11.0.0",
-    "chai": "^4.5.0",
-    "chai-as-promised": "7.1.2",
     "dependency-cruiser": "17.3.10",
     "mocha": "11.7.5",
     "npm-run-all2": "8.0.4",
@@ -82,15 +78,6 @@
       "serialize-javascript": "^7.0.3"
     }
   },
-  "upem": {
-    "policies": [
-      {
-        "package": "chai",
-        "policy": "wanted",
-        "because": "chai >=5 are ESM only, and we're not on ESM yet"
-      }
-    ]
-  },
   "scripts": {
     "build": "npm-run-all build:clean build:compile build:copy",
     "build:clean": "rm -rf dist/*",
@@ -103,8 +90,8 @@
     "depcruise:graph": "npm-run-all --parallel depcruise:graph:*",
     "depcruise:graph:html": "depcruise --output-type dot --validate -- src | dot -T svg | depcruise-wrap-stream-in-html > docs/dependencygraph.html",
     "depcruise:graph:png": "depcruise --output-type dot --validate -- src | dot -Gdpi=192 -T png | pngquant - > docs/dependencygraph.png",
-    "lint:fix": "npm-run-all lint:prettier",
-    "lint:prettier": "prettier --write {src,test}/**/*.ts src/**/*.{json,html}",
+    "format": "prettier --write {src,test}/**/*.ts src/**/*.{json,html}",
+    "lint:fix": "npm-run-all format",
     "scm:push": "run-p --aggregate-output scm:push:*",
     "scm:push:github": "run-p --aggregate-output scm:push:github:*",
     "scm:push:github:commits": "git push",

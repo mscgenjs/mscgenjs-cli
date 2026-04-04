@@ -1,6 +1,6 @@
 "use strict";
 import Ajv from "ajv";
-import * as fs from "fs";
+import * as fs from "node:fs";
 import * as mscgenjs from "mscgenjs";
 import {
   INormalizedOptions,
@@ -13,7 +13,7 @@ const puppeteerOptionsSchema = require("./puppeteer-options.schema.json");
 
 const VALID_GRAPHICS_TYPES = Object.freeze(["svg", "png", "jpeg"]);
 const VALID_OUTPUT_TYPES = VALID_GRAPHICS_TYPES.concat(
-  mscgenjs.getAllowedValues().outputType.map((pValue) => pValue.name)
+  mscgenjs.getAllowedValues().outputType.map((pValue) => pValue.name),
 );
 const ajv = new Ajv();
 
@@ -41,7 +41,7 @@ function getValidValues(pAttribute: string): string {
 
 function isValidValue(pAttribute: string, pCandidateValue: string): boolean {
   return (mscgenjs.getAllowedValues() as any)[pAttribute].some(
-    (pValue: mscgenjs.IValueDetails) => pValue.name === pCandidateValue
+    (pValue: mscgenjs.IValueDetails) => pValue.name === pCandidateValue,
   );
 }
 
@@ -53,7 +53,7 @@ export function validOutputType(pType: OutputType): OutputType {
   throw Error(
     `\n  error: '${pType}' is not a valid output type. mscgen_js can emit:` +
       `\n          - the grapics formats svg, jpeg and png` +
-      `\n          - the text formats dot, doxygen, mscgen, msgenny, xu and json.\n\n`
+      `\n          - the text formats dot, doxygen, mscgen, msgenny, xu and json.\n\n`,
   );
 }
 
@@ -64,7 +64,7 @@ export function validInputType(pType: string): string {
 
   throw Error(
     `\n  error: '${pType}' is not a valid input type.` +
-      `\n         mscgen_js can read ${getValidValues("inputType")}\n\n`
+      `\n         mscgen_js can read ${getValidValues("inputType")}\n\n`,
   );
 }
 
@@ -75,12 +75,12 @@ export function validNamedStyle(pStyle: NamedStyleType): NamedStyleType {
 
   throw Error(
     `\n  error: '${pStyle}' is not a recognized named style.` +
-      `\n         You can use one of these: ${getValidValues("namedStyle")}\n\n`
+      `\n         You can use one of these: ${getValidValues("namedStyle")}\n\n`,
   );
 }
 
 export function validVerticalAlignment(
-  pAlignment: string
+  pAlignment: string,
 ): mscgenjs.RegularArcTextVerticalAlignmentType {
   if (isValidValue("regularArcTextVerticalAlignment", pAlignment)) {
     return pAlignment as mscgenjs.RegularArcTextVerticalAlignmentType;
@@ -89,13 +89,13 @@ export function validVerticalAlignment(
   throw Error(
     `\n  error: '${pAlignment}' is not a recognized vertical alignment.` +
       `\n         You can use one of these: ${getValidValues(
-        "regularArcTextVerticalAlignment"
-      )}\n\n`
+        "regularArcTextVerticalAlignment",
+      )}\n\n`,
   );
 }
 
 export function validateArguments(
-  pOptions: INormalizedOptions
+  pOptions: INormalizedOptions,
 ): Promise<INormalizedOptions> {
   return new Promise((pResolve, pReject) => {
     if (!pOptions.inputFrom) {
@@ -109,8 +109,8 @@ export function validateArguments(
     if (!fileExists(pOptions.inputFrom)) {
       pReject(
         Error(
-          `\n  error: Failed to open input file '${pOptions.inputFrom}'\n\n`
-        )
+          `\n  error: Failed to open input file '${pOptions.inputFrom}'\n\n`,
+        ),
       );
     }
 
@@ -119,7 +119,7 @@ export function validateArguments(
 }
 
 export function validPuppeteerOptions(
-  pPuppeteerConfigFileName: string
+  pPuppeteerConfigFileName: string,
 ): IPuppeteerOptions {
   let lPuppeteerConfigFileContents = "";
   let lPuppeteerConfigObject = {};
@@ -127,11 +127,11 @@ export function validPuppeteerOptions(
   try {
     lPuppeteerConfigFileContents = fs.readFileSync(
       pPuppeteerConfigFileName,
-      "utf8"
+      "utf8",
     );
   } catch (pException) {
     throw Error(
-      `\n  error: Failed to open puppeteer options configuration file '${pPuppeteerConfigFileName}'\n\n`
+      `\n  error: Failed to open puppeteer options configuration file '${pPuppeteerConfigFileName}'\n\n`,
     );
   }
 
@@ -139,7 +139,7 @@ export function validPuppeteerOptions(
     lPuppeteerConfigObject = JSON.parse(lPuppeteerConfigFileContents);
   } catch (pException) {
     throw Error(
-      `\n  error: '${pPuppeteerConfigFileName}' does not contain valid JSON\n\n`
+      `\n  error: '${pPuppeteerConfigFileName}' does not contain valid JSON\n\n`,
     );
   }
 
@@ -169,7 +169,7 @@ export const validInputTypeRE = mscgenjs
 export const validNamedStyleRE = mscgenjs
   .getAllowedValues()
   .namedStyle.filter(
-    (pValue) => pValue.experimental === false && pValue.deprecated === false
+    (pValue) => pValue.experimental === false && pValue.deprecated === false,
   )
   .map((pValue) => pValue.name)
   .join("|");

@@ -1,9 +1,9 @@
-import { expect } from "chai";
+import { equal } from "node:assert/strict";
 import formatError from "../../src/actions/formatError";
 
 describe("formatError()", () => {
   it("returns the message of non-syntax errors", () => {
-    expect(formatError(new Error("hatsikidee!"))).to.equal("hatsikidee!");
+    equal(formatError(new Error("hatsikidee!")), "hatsikidee!");
   });
 
   it("returns man and horse of syntax errors", () => {
@@ -16,8 +16,9 @@ describe("formatError()", () => {
       },
     };
 
-    expect(formatError(lErr)).to.equal(
-      `\n  syntax error on line 481, column 69:\n  Make my day!\n\n`
+    equal(
+      formatError(lErr),
+      `\n  syntax error on line 481, column 69:\n  Make my day!\n\n`,
     );
   });
 });

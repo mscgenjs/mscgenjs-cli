@@ -33,25 +33,25 @@ function render(pOptions: INormalizedOptions): Promise<any> {
     .then((pAST) =>
       renderWithChromeHeadless(
         removeAutoWidth(pAST, pOptions.outputType),
-        pOptions
-      )
+        pOptions,
+      ),
     );
 }
 
 function transpile(pOptions: INormalizedOptions): Promise<string> {
   return getStream(getInStream(pOptions.inputFrom)).then((pInput) =>
-    translateMsc(pInput, pOptions as ITranslateOptions)
+    translateMsc(pInput, pOptions as ITranslateOptions),
   );
 }
 
 export function transform(pOptions: INormalizedOptions): Promise<boolean> {
   if (isGraphicsOutput(pOptions.outputType)) {
     return render(pOptions).then((pResult) =>
-      getOutStream(pOptions.outputTo).write(pResult)
+      getOutStream(pOptions.outputTo).write(pResult),
     );
   } else {
     return transpile(pOptions).then((pResult) =>
-      getOutStream(pOptions.outputTo).write(pResult, "utf8")
+      getOutStream(pOptions.outputTo).write(pResult, "utf8"),
     );
   }
 }

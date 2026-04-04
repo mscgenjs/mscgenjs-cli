@@ -1,48 +1,39 @@
-import { should, use } from "chai";
-import * as chaiAsPromised from "chai-as-promised";
+import {rejects, ok}from "node:assert/strict";
 import * as render from "../../src/actions/render";
 import { INormalizedOptions } from "../../src/types";
-
-use(chaiAsPromised);
 
 // tslint:disable-next-line: no-var-requires
 const lAST = require("./fixtures/simplest.json");
 
-should();
-
 describe("render()", () => {
-  it("should fail when passed a non-executable executablePath", (pDone) => {
-    render
-      .renderWithChromeHeadless(lAST, {
+  it("should fail when passed a non-executable executablePath", async () => {
+    await rejects(
+      render.renderWithChromeHeadless(lAST, {
         outputType: "png",
         puppeteerOptions: {
           executablePath: "non/existing/path/to/chromium",
         },
-      } as INormalizedOptions)
-      .should.be.rejected.and.notify(pDone);
+      } as INormalizedOptions),
+    );
   });
 
-  it("coughs up something when passed an ast asked to output svg", (pDone) => {
-    render
-      .renderWithChromeHeadless(lAST, {
-        outputType: "svg",
-        puppeteerOptions: {
-          args: ["--no-sandbox", "--disable-setuid-sandbox"], // ci server's docker/ linux does not support sandboxing yet
-        },
-      } as INormalizedOptions)
-      .should.eventually.contain('<!DOCTYPE svg [<!ENTITY nbsp "&#160;">]>')
-      .and.notify(pDone);
+  it("coughs up something when passed an ast asked to output svg", async () => {
+    const lResult = (await render.renderWithChromeHeadless(lAST, {
+      outputType: "svg",
+      puppeteerOptions: {
+        args: ["--no-sandbox", "--disable-setuid-sandbox"], // ci server's docker/ linux does not support sandboxing yet
+      },
+    } as INormalizedOptions)) as string;
+    ok(lResult.includes('<!DOCTYPE svg [<!ENTITY nbsp "&#160;">]>'));
   });
 
-  it("coughs something when passed an ast asked to output png", (pDone) => {
-    render
-      .renderWithChromeHeadless(lAST, {
-        outputType: "png",
-        puppeteerOptions: {
-          args: ["--no-sandbox", "--disable-setuid-sandbox"], // ci server's docker/ linux does not support sandboxing yet
-        },
-      } as INormalizedOptions)
-      .should.be.fulfilled.and.notify(pDone);
+  it("coughs something when passed an ast asked to output png", async () => {
+    await render.renderWithChromeHeadless(lAST, {
+      outputType: "png",
+      puppeteerOptions: {
+        args: ["--no-sandbox", "--disable-setuid-sandbox"], // ci server's docker/ linux does not support sandboxing yet
+      },
+    } as INormalizedOptions);
   });
 });
 

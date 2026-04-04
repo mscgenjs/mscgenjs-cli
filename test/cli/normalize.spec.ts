@@ -206,7 +206,7 @@ describe("cli/normalize", () => {
       it(pPair.title, () => {
         const lNormalizedOptions = normalize(
           pPair.input.argument as string,
-          pPair.input.options as CommandOptions
+          pPair.input.options as CommandOptions,
         );
 
         deepEqual(lNormalizedOptions, pPair.expected.options);

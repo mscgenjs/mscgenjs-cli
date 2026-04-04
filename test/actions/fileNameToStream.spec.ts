@@ -1,9 +1,10 @@
-import { expect } from "chai";
+import { equal } from "node:assert/strict";
 import * as fs from "fs";
 import * as path from "path";
 import * as stream from "stream";
 import { getInStream, getOutStream } from "../../src/actions/fileNameToStream";
 import { resetOutputDir } from "./utl";
+import { notEqual } from "node:assert";
 
 const OUTDIR = "output";
 const OUTFILE = path.join(__dirname, OUTDIR, "tmp_hello.json");
@@ -14,41 +15,41 @@ describe("fileNameToStream", () => {
   after("tear down", resetOutputDir(OUTDIR));
 
   it("getOutStream('-') is a writable stream", () => {
-    expect(getOutStream("-") instanceof stream.Writable).to.be.true;
+    equal(getOutStream("-") instanceof stream.Writable, true);
   });
   it("getOutStream('-') yields stdout", () => {
-    expect(getOutStream("-")).to.equal(process.stdout);
+    equal(getOutStream("-"), process.stdout);
   });
   it("getOutStream('-') yields does not yield a file stream", () => {
-    expect(getOutStream("-") instanceof fs.WriteStream).to.be.false;
+    equal(getOutStream("-") instanceof fs.WriteStream, false);
   });
   it("getOutStream(OUTFILE) yields a writable stream", () => {
-    expect(getOutStream(OUTFILE) instanceof stream.Writable).to.be.true;
+    equal(getOutStream(OUTFILE) instanceof stream.Writable, true);
   });
   it("getOutStream(OUTFILE) yields a writable file stream", () => {
-    expect(getOutStream(OUTFILE) instanceof fs.WriteStream).to.be.true;
+    equal(getOutStream(OUTFILE) instanceof fs.WriteStream, true);
   });
   it("getOutStream(OUTFILE) does not yields stdout", () => {
-    expect(getOutStream(OUTFILE)).to.not.equal(process.stdout);
+    notEqual(getOutStream(OUTFILE), process.stdout);
   });
 
   it("getInStream('-') is a readable stream", () => {
-    expect(getInStream("-") instanceof stream.Readable).to.be.true;
+    equal(getInStream("-") instanceof stream.Readable, true);
   });
   it("getInStream('-') yields stdin", () => {
-    expect(getInStream("-")).to.equal(process.stdin);
+    equal(getInStream("-"), process.stdin);
   });
   it("getInStream('-') does not yield a file stream", () => {
-    expect(getInStream("-") instanceof fs.ReadStream).to.be.false;
+    equal(getInStream("-") instanceof fs.ReadStream, false);
   });
   it("getInStream(OUTFILE) yields a writable stream", () => {
-    expect(getInStream(OUTFILE) instanceof stream.Readable).to.be.true;
+    equal(getInStream(OUTFILE) instanceof stream.Readable, true);
   });
   it("getInStream(OUTFILE) yields a readable file stream", () => {
-    expect(getInStream(OUTFILE) instanceof fs.ReadStream).to.be.true;
+    equal(getInStream(OUTFILE) instanceof fs.ReadStream, true);
   });
   it("getInStream(OUTFILE) does not yields stdin", () => {
-    expect(getInStream(OUTFILE)).to.not.equal(process.stdin);
+    notEqual(getInStream(OUTFILE), process.stdin);
   });
 });
 // tslint:enable no-unused-expression

@@ -8,7 +8,7 @@ exports.validVerticalAlignment = validVerticalAlignment;
 exports.validateArguments = validateArguments;
 exports.validPuppeteerOptions = validPuppeteerOptions;
 const ajv_1 = require("ajv");
-const fs = require("fs");
+const fs = require("node:fs");
 const mscgenjs = require("mscgenjs");
 /* tslint:disable-next-line */
 const puppeteerOptionsSchema = require("./puppeteer-options.schema.json");
