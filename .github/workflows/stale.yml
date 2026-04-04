@@ -7,7 +7,7 @@ jobs:
   stale:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/stale@v3
+      - uses: actions/stale@db5d06a4c82d5e94513c09c406638111df61f63e
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           days-before-stale: 14

@@ -16,7 +16,7 @@ defaults:
 jobs:
   check:
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         node-version:
           - 20.x
@@ -28,16 +28,16 @@ jobs:
 
     steps:
       - name: checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
       - name: cache node modules for ${{matrix.node-version}}@${{matrix.platform}}
-        uses: actions/cache@v3
+        uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7
         with:
           path: node_modules
           key: ${{matrix.node-version}}@${{matrix.platform}}-build-${{hashFiles('package.json')}}
           restore-keys: |
             ${{matrix.node-version}}@${{matrix.platform}}-build-
       - name: set up node ${{matrix.node-version}}@${{matrix.platform}}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f
         with:
           node-version: ${{matrix.node-version}}
       - name: install & build
@@ -53,4 +53,4 @@ jobs:
       - name: test coverage
         run: |
           node --version
-          npm run test:cover
+          /home/runner/.cache/puppeteer npm run test:cover
