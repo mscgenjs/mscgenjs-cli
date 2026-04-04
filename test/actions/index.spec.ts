@@ -1,4 +1,4 @@
-import {deepEqual, equal, rejects } from "node:assert/strict";
+import { deepEqual, equal, rejects } from "node:assert/strict";
 import * as index from "../../src/actions/index";
 import type { INormalizedOptions } from "../../src/types";
 import { resetOutputDir } from "./utl";

@@ -1,4 +1,4 @@
-import {rejects, ok}from "node:assert/strict";
+import { rejects, ok } from "node:assert/strict";
 import * as render from "../../src/actions/render";
 import { INormalizedOptions } from "../../src/types";
 

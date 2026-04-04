@@ -45,14 +45,12 @@
     "ajv": "8.18.0",
     "commander": "14.0.3",
     "get-stream": "6.0.1",
-    "lodash": "4.18.1",
     "mscgenjs": "8.0.0",
     "mscgenjs-inpage": "6.0.0",
     "puppeteer": "24.40.0",
     "semver": "7.7.4"
   },
   "devDependencies": {
-    "@types/lodash": "4.17.24",
     "@types/mocha": "9.1.1",
     "@types/node": "25.5.2",
     "@types/puppeteer": "5.4.6",
