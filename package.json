@@ -65,14 +65,8 @@
     "upem": "10.0.4"
   },
   "overrides": {
-    "c8": {
-      "glob": "^13.0.3",
-      "yargs": "^18.0.0"
-    },
     "mocha": {
       "diff": "^8.0.3",
-      "glob": "^13.0.3",
-      "minimatch": "^10.2.4",
       "serialize-javascript": "^7.0.3"
     }
   },
