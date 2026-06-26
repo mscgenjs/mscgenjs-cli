@@ -1,9 +1,0 @@
-{
-  "checkCoverage": true,
-  "statements": 96,
-  "branches": 95,
-  "functions": 93,
-  "lines": 95,
-  "exclude": ["dist", "doc", "docs", "coverage", "test"],
-  "reporter": ["text-summary", "html", "json-summary"]
-}

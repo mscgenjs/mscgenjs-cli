@@ -1,5 +1,6 @@
 import { match } from "node:assert/strict";
-import showLicense from "../../src/actions/showLicense";
+import { describe, it } from "node:test"
+import showLicense from "../../src/actions/showLicense.js";
 
 describe("showLicense()", () => {
   it("returns the license", () => {

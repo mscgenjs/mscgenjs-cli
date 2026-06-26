@@ -1,12 +1,47 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const node_util_1 = require("node:util");
-const actions = require("../actions");
-const formatError_1 = require("../actions/formatError");
-const showLicense_1 = require("../actions/showLicense");
-const normalize_1 = require("./normalize");
-const validations = require("./validations");
-// tslint:disable-next-line:no-var-requires
+const actions = __importStar(require("../actions/index.js"));
+const formatError_js_1 = __importDefault(require("../actions/formatError.js"));
+const showLicense_js_1 = __importDefault(require("../actions/showLicense.js"));
+const normalize_js_1 = __importDefault(require("./normalize.js"));
+const validations = __importStar(require("./validations.js"));
 const $package = require("../../package.json");
 // Hardcoded help text matching the documented CLI interface exactly.
 // Kept as a constant rather than generated dynamically so the output
@@ -33,7 +68,7 @@ Options:
   -h, --help                       display help for command
 `;
 function presentError(e) {
-    process.stderr.write((0, formatError_1.default)(e) + "\n");
+    process.stderr.write((0, formatError_js_1.default)(e) + "\n");
     process.exit(1);
 }
 try {
@@ -68,7 +103,7 @@ try {
         process.exit(0);
     }
     if (values.license) {
-        process.stdout.write((0, showLicense_1.default)());
+        process.stdout.write((0, showLicense_js_1.default)());
         process.exit(0);
     }
     // Validate option values; each function throws a descriptive Error on
@@ -106,7 +141,7 @@ try {
         css: values["css"],
     };
     validations
-        .validateArguments((0, normalize_1.default)(positionals[0], lOptions))
+        .validateArguments((0, normalize_js_1.default)(positionals[0], lOptions))
         .then(actions.transform)
         .catch(presentError);
 }

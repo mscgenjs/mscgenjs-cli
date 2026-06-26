@@ -1,8 +1,8 @@
 import { rejects, ok } from "node:assert/strict";
-import * as render from "../../src/actions/render";
-import { INormalizedOptions } from "../../src/types";
+import { describe, it } from "node:test"
+import * as render from "../../src/actions/render.js";
+import { INormalizedOptions } from "../../src/types.js";
 
-// tslint:disable-next-line: no-var-requires
 const lAST = require("./fixtures/simplest.json");
 
 describe("render()", () => {

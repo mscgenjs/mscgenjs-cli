@@ -25,11 +25,11 @@ Boundaries: code/commits/PRs written normal.
 # Build (compile TypeScript from src/ → dist/, copy static assets)
 npm run build
 
-# Run all tests (TypeScript via ts-node, no pre-build needed)
+# Run all tests (TypeScript via tsx, no pre-build needed)
 npm test
 
 # Run a single test file
-npx mocha --require ts-node/register --timeout 10000 test/cli/normalize.spec.ts
+npx tsx --test test/cli/normalize.spec.ts
 
 # Run tests with coverage
 npm run test:cover
@@ -44,7 +44,7 @@ npm run depcruise
 npm run check
 ```
 
-TypeScript source lives in `src/`, compiled output goes to `dist/`. Tests run directly from TypeScript using `ts-node` — **do not edit files in `dist/`**.
+TypeScript source lives in `src/`, compiled output goes to `dist/`. Tests run directly from TypeScript using `tsx` — **do not edit files in `dist/`**.
 
 ## Architecture
 

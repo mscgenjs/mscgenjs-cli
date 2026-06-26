@@ -1,18 +1,19 @@
 import { equal } from "node:assert/strict";
-import * as fs from "fs";
-import * as path from "path";
-import * as stream from "stream";
-import { getInStream, getOutStream } from "../../src/actions/fileNameToStream";
-import { resetOutputDir } from "./utl";
+import * as fs from "node:fs";
+import * as path from "node:path";
+import * as stream from "node:stream";
 import { notEqual } from "node:assert";
+import { describe, it, before, after } from "node:test"
+import { getInStream, getOutStream } from "../../src/actions/fileNameToStream.js";
+import { resetOutputDir } from "./utl.js";
 
 const OUTDIR = "output";
 const OUTFILE = path.join(__dirname, OUTDIR, "tmp_hello.json");
 
 describe("fileNameToStream", () => {
-  before("set up", resetOutputDir(OUTDIR));
+  before(resetOutputDir(OUTDIR));
 
-  after("tear down", resetOutputDir(OUTDIR));
+  after(resetOutputDir(OUTDIR));
 
   it("getOutStream('-') is a writable stream", () => {
     equal(getOutStream("-") instanceof stream.Writable, true);
@@ -52,8 +53,7 @@ describe("fileNameToStream", () => {
     notEqual(getInStream(OUTFILE), process.stdin);
   });
 });
-// tslint:enable no-unused-expression
-
+ 
 /*
     This file is part of mscgenjs-cli.
     mscgenjs-cli is free software: you can redistribute it and/or modify

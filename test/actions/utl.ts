@@ -1,5 +1,5 @@
-import { readdirSync, unlinkSync } from "fs";
-import { join } from "path";
+import { readdirSync, unlinkSync } from "node:fs";
+import { join } from "node:path";
 
 export function resetOutputDir(pDirName = "output") {
   return () => {

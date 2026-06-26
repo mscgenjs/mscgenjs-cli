@@ -1,8 +1,8 @@
 "use strict";
 
-import * as path from "path";
-import { INormalizedOptions, OutputType } from "../types";
-import { InputType } from "mscgenjs";
+import * as path from "node:path";
+import type { INormalizedOptions, OutputType } from "../types.js";
+import type { InputType } from "mscgenjs";
 
 const INPUT_EXTENSIONS = Object.freeze({
   ast: "json",

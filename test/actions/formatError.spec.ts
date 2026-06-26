@@ -1,5 +1,6 @@
 import { equal } from "node:assert/strict";
-import formatError from "../../src/actions/formatError";
+import { describe, it } from "node:test";
+import formatError from "../../src/actions/formatError.js";
 
 describe("formatError()", () => {
   it("returns the message of non-syntax errors", () => {

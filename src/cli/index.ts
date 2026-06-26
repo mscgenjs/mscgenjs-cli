@@ -1,12 +1,11 @@
 import { parseArgs } from "node:util";
-import * as actions from "../actions";
-import formatError from "../actions/formatError";
-import showLicense from "../actions/showLicense";
-import normalize from "./normalize";
-import * as validations from "./validations";
-import { OutputType, NamedStyleType } from "../types";
+import * as actions from "../actions/index.js";
+import formatError from "../actions/formatError.js";
+import showLicense from "../actions/showLicense.js";
+import normalize from "./normalize.js";
+import * as validations from "./validations.js";
+import type { OutputType, NamedStyleType } from "../types.js";
 
-// tslint:disable-next-line:no-var-requires
 const $package = require("../../package.json");
 
 // Hardcoded help text matching the documented CLI interface exactly.

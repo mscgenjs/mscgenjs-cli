@@ -1,8 +1,8 @@
-import * as getStream from "get-stream";
-import { ITranslateOptions, translateMsc } from "mscgenjs";
-import { INormalizedOptions, OutputType } from "../types";
-import { getInStream, getOutStream } from "./fileNameToStream";
-import { renderWithChromeHeadless } from "./render";
+import getStream from "get-stream";
+import { type ITranslateOptions, translateMsc } from "mscgenjs";
+import type { INormalizedOptions, OutputType } from "../types.js";
+import { getInStream, getOutStream } from "./fileNameToStream.js";
+import { renderWithChromeHeadless } from "./render.js";
 
 function isGraphicsOutput(pOutputType: OutputType) {
   const GRAPHICSFORMATS = ["svg", "png", "jpeg"];

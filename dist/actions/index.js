@@ -1,11 +1,14 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.removeAutoWidth = removeAutoWidth;
 exports.transform = transform;
-const getStream = require("get-stream");
+const get_stream_1 = __importDefault(require("get-stream"));
 const mscgenjs_1 = require("mscgenjs");
-const fileNameToStream_1 = require("./fileNameToStream");
-const render_1 = require("./render");
+const fileNameToStream_js_1 = require("./fileNameToStream.js");
+const render_js_1 = require("./render.js");
 function isGraphicsOutput(pOutputType) {
     const GRAPHICSFORMATS = ["svg", "png", "jpeg"];
     return GRAPHICSFORMATS.includes(pOutputType);
@@ -24,19 +27,19 @@ function removeAutoWidth(pAST, pOutputType) {
     return pAST;
 }
 function render(pOptions) {
-    return getStream((0, fileNameToStream_1.getInStream)(pOptions.inputFrom))
+    return (0, get_stream_1.default)((0, fileNameToStream_js_1.getInStream)(pOptions.inputFrom))
         .then((pInput) => getAST(pInput, pOptions))
-        .then((pAST) => (0, render_1.renderWithChromeHeadless)(removeAutoWidth(pAST, pOptions.outputType), pOptions));
+        .then((pAST) => (0, render_js_1.renderWithChromeHeadless)(removeAutoWidth(pAST, pOptions.outputType), pOptions));
 }
 function transpile(pOptions) {
-    return getStream((0, fileNameToStream_1.getInStream)(pOptions.inputFrom)).then((pInput) => (0, mscgenjs_1.translateMsc)(pInput, pOptions));
+    return (0, get_stream_1.default)((0, fileNameToStream_js_1.getInStream)(pOptions.inputFrom)).then((pInput) => (0, mscgenjs_1.translateMsc)(pInput, pOptions));
 }
 function transform(pOptions) {
     if (isGraphicsOutput(pOptions.outputType)) {
-        return render(pOptions).then((pResult) => (0, fileNameToStream_1.getOutStream)(pOptions.outputTo).write(pResult));
+        return render(pOptions).then((pResult) => (0, fileNameToStream_js_1.getOutStream)(pOptions.outputTo).write(pResult));
     }
     else {
-        return transpile(pOptions).then((pResult) => (0, fileNameToStream_1.getOutStream)(pOptions.outputTo).write(pResult, "utf8"));
+        return transpile(pOptions).then((pResult) => (0, fileNameToStream_js_1.getOutStream)(pOptions.outputTo).write(pResult, "utf8"));
     }
 }
 /*

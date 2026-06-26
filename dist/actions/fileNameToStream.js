@@ -2,18 +2,18 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getOutStream = getOutStream;
 exports.getInStream = getInStream;
-const fs_1 = require("fs");
+const node_fs_1 = require("node:fs");
 function getOutStream(pOutputTo) {
     if ("-" === pOutputTo) {
         return process.stdout;
     }
-    return (0, fs_1.createWriteStream)(pOutputTo);
+    return (0, node_fs_1.createWriteStream)(pOutputTo);
 }
 function getInStream(pInputFrom) {
     if ("-" === pInputFrom) {
         return process.stdin;
     }
-    return (0, fs_1.createReadStream)(pInputFrom);
+    return (0, node_fs_1.createReadStream)(pInputFrom);
 }
 /*
     This file is part of mscgenjs-cli.

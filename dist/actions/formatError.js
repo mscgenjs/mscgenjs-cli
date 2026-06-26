@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = (pError) => {
     if (Boolean(pError.location)) {
-        /* tslint:disable-next-line */
         return `\n  syntax error on line ${pError.location.start.line}, column ${pError.location.start.column}:\n  ${pError.message}\n\n`;
     }
     else {

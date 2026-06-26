@@ -42,63 +42,48 @@
     "msgenny"
   ],
   "dependencies": {
-    "ajv": "8.18.0",
+    "ajv": "8.20.0",
     "get-stream": "6.0.1",
     "mscgenjs": "8.0.0",
     "mscgenjs-inpage": "6.0.0",
-    "puppeteer": "24.40.0"
+    "puppeteer": "25.2.1"
   },
   "devDependencies": {
-    "@types/mocha": "9.1.1",
-    "@types/node": "25.5.2",
+    "@types/node": "26.0.1",
     "@types/puppeteer": "5.4.6",
-    "c8": "11.0.0",
-    "dependency-cruiser": "17.3.10",
-    "mocha": "11.7.5",
-    "npm-run-all2": "8.0.4",
-    "prettier": "3.8.1",
-    "ts-node": "10.9.2",
-    "typescript": "5.9.3",
-    "upem": "10.0.4"
-  },
-  "overrides": {
-    "mocha": {
-      "diff": "^8.0.3",
-      "serialize-javascript": "^7.0.3"
-    }
+    "dependency-cruiser": "18.0.0",
+    "npm-run-all2": "9.0.2",
+    "prettier": "3.8.5",
+    "tsx": "4.22.4",
+    "typescript": "6.0.3",
+    "upem": "11.0.0"
   },
   "scripts": {
-    "build": "npm-run-all build:clean build:compile build:copy",
+    "build": "npm-run-all --node-run build:clean build:compile build:copy",
     "build:clean": "rm -rf dist/*",
     "build:compile": "tsc --project src/tsconfig.json",
-    "build:copy": "npm-run-all build:copy-template build:copy-schema",
+    "build:copy": "npm-run-all --node-run build:copy-template build:copy-schema",
     "build:copy-template": "cp src/actions/template.html dist/actions/template.html",
     "build:copy-schema": "cp src/cli/puppeteer-options.schema.json dist/cli/.",
-    "check": "npm-run-all build depcruise test:cover",
+    "check": "npm-run-all --node-run build depcruise test:cover",
     "depcruise": "depcruise --validate -- src test",
-    "depcruise:graph": "npm-run-all --parallel depcruise:graph:*",
+    "depcruise:graph": "npm-run-all --parallel --node-run depcruise:graph:*",
     "depcruise:graph:html": "depcruise --output-type dot --validate -- src | dot -T svg | depcruise-wrap-stream-in-html > docs/dependencygraph.html",
     "depcruise:graph:png": "depcruise --output-type dot --validate -- src | dot -Gdpi=192 -T png | pngquant - > docs/dependencygraph.png",
     "format": "prettier --write {src,test}/**/*.ts src/**/*.{json,html}",
-    "lint:fix": "npm-run-all format",
-    "scm:push": "run-p --aggregate-output scm:push:*",
-    "scm:push:github": "run-p --aggregate-output scm:push:github:*",
+    "lint:fix": "npm-run-all --node-run format",
+    "scm:push": "npm-run-all --node-run --parallel --aggregate-output scm:push:*",
+    "scm:push:github": "npm-run-all --node-run --parallel --aggregate-output scm:push:github:*",
     "scm:push:github:commits": "git push",
     "scm:push:github:tags": "git push --tags",
-    "scm:push:gitlab-mirror": "run-p --aggregate-output scm:push:gitlab-mirror:*",
-    "scm:push:gitlab-mirror:commits": "git push gitlab-mirror",
-    "scm:push:gitlab-mirror:tags": "git push --tags gitlab-mirror",
-    "scm:push:bitbucket-mirror": "run-p --aggregate-output scm:push:bitbucket-mirror:*",
-    "scm:push:bitbucket-mirror:commits": "git push bitbucket-mirror",
-    "scm:push:bitbucket-mirror:tags": "git push --tags bitbucket-mirror",
     "scm:stage": "git add .",
-    "test": "mocha --require ts-node/register --timeout 10000 --recursive test/**/*.ts",
-    "test:cover": "c8 npm test",
-    "update-dependencies": "npm-run-all upem:update upem:install lint:fix depcruise build test",
+    "test": "npx tsx --test test/**/*.spec.ts",
+    "test:cover": "npx tsx --test --experimental-test-coverage test/**/*.spec.ts",
+    "update-dependencies": "npm-run-all --node-run upem:update upem:install lint:fix depcruise build test",
     "upem-outdated": "npm outdated --json --long | upem --dry-run",
     "upem:update": "npm outdated --json --long | upem | pbcopy && pbpaste",
     "upem:install": "npm install",
-    "version": "run-s build depcruise:graph scm:stage",
+    "version": "npm-run-all --node-run build depcruise:graph scm:stage",
     "watch": "tsc --project src/tsconfig.json --watch"
   }
 }

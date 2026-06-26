@@ -2,13 +2,12 @@
 import Ajv from "ajv";
 import * as fs from "node:fs";
 import * as mscgenjs from "mscgenjs";
-import {
+import type {
   INormalizedOptions,
   IPuppeteerOptions,
   NamedStyleType,
   OutputType,
-} from "../types";
-/* tslint:disable-next-line */
+} from "../types.js";
 const puppeteerOptionsSchema = require("./puppeteer-options.schema.json");
 
 const VALID_GRAPHICS_TYPES = Object.freeze(["svg", "png", "jpeg"]);

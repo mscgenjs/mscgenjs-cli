@@ -1,4 +1,4 @@
-import { createReadStream, createWriteStream } from "fs";
+import { createReadStream, createWriteStream } from "node:fs";
 
 export function getOutStream(pOutputTo: string): NodeJS.WritableStream {
   if ("-" === pOutputTo) {

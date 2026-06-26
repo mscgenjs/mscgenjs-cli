@@ -1,12 +1,13 @@
 import { deepEqual, equal, rejects } from "node:assert/strict";
-import * as index from "../../src/actions/index";
-import type { INormalizedOptions } from "../../src/types";
-import { resetOutputDir } from "./utl";
+import { describe, it, before, after } from "node:test";
+import * as index from "../../src/actions/index.js";
+import type { INormalizedOptions } from "../../src/types.js";
+import { resetOutputDir } from "./utl.js";
 
 describe("index()", () => {
-  before("set up", resetOutputDir("integration-output"));
+  before(resetOutputDir("integration-output"));
 
-  after("tear down", resetOutputDir("integration-output"));
+  after(resetOutputDir("integration-output"));
 
   it("transpiles the rainbow", async () => {
     const lResult = await index.transform({

@@ -1,12 +1,13 @@
 "use strict";
 import { deepEqual, equal, match } from "node:assert/strict";
+import { describe, it } from "node:test"
 import * as path from "node:path";
-import * as val from "../../src/cli/validations";
-import {
+import * as val from "../../src/cli/validations.js";
+import type {
   INormalizedOptions,
   NamedStyleType,
   OutputType,
-} from "../../src/types";
+} from "../../src/types.js";
 
 describe("cli/validations", () => {
   describe("#validOutputType() - ", () => {
