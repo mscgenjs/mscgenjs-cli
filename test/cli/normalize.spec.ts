@@ -1,5 +1,4 @@
 import { deepEqual } from "node:assert/strict";
-import { CommandOptions } from "commander";
 import normalize from "../../src/cli/normalize";
 
 const TESTPAIRS = [
@@ -206,7 +205,7 @@ describe("cli/normalize", () => {
       it(pPair.title, () => {
         const lNormalizedOptions = normalize(
           pPair.input.argument as string,
-          pPair.input.options as CommandOptions,
+          pPair.input.options as Record<string, unknown>,
         );
 
         deepEqual(lNormalizedOptions, pPair.expected.options);

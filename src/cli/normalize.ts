@@ -3,7 +3,6 @@
 import * as path from "path";
 import { INormalizedOptions, OutputType } from "../types";
 import { InputType } from "mscgenjs";
-import { CommandOptions } from "commander";
 
 const INPUT_EXTENSIONS = Object.freeze({
   ast: "json",

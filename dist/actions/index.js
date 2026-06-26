@@ -18,8 +18,7 @@ function getAST(pInput, pOptions) {
 }
 function removeAutoWidth(pAST, pOutputType) {
     if ((pOutputType === "png" || pOutputType === "jpeg") &&
-        // _get(pAST, "options.width", "not-auto") === "auto"
-        ((pAST?.options?.width ?? "not-auto") == "auto")) {
+        (pAST?.options?.width ?? "not-auto") === "auto") {
         delete pAST.options.width;
     }
     return pAST;

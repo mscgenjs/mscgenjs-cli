@@ -4,6 +4,7 @@
   "extends": "./src/tsconfig.json",
   "compilerOptions": {
     "noEmit": false,
-    "outDir": "."
+    "outDir": ".",
+    "types": ["node", "mocha"],
   }
 }
