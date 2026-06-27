@@ -1,4 +1,4 @@
-name: linting & test coverage - linux
+name: ci
 
 on:
   push:
@@ -19,8 +19,8 @@ jobs:
       fail-fast: false
       matrix:
         node-version:
-          - 20.x
-          - 25.x
+          - 22.x
+          - 26.x
         platform:
           - ubuntu-latest
 
@@ -29,13 +29,13 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
-      - name: cache node modules for ${{matrix.node-version}}@${{matrix.platform}}
-        uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7
-        with:
-          path: node_modules
-          key: ${{matrix.node-version}}@${{matrix.platform}}-build-${{hashFiles('package.json')}}
-          restore-keys: |
-            ${{matrix.node-version}}@${{matrix.platform}}-build-
+      # - name: cache node modules for ${{matrix.node-version}}@${{matrix.platform}}
+      #   uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7
+      #   with:
+      #     path: node_modules
+      #     key: ${{matrix.node-version}}@${{matrix.platform}}-build-${{hashFiles('package.json')}}
+      #     restore-keys: |
+      #       ${{matrix.node-version}}@${{matrix.platform}}-build-
       - name: set up node ${{matrix.node-version}}@${{matrix.platform}}
         uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f
         with:
@@ -44,13 +44,13 @@ jobs:
         run: |
           node --version
           npm install
-          npm run build
+          node --run=build
       - name: lint & forbidden dependency check (runs on one platform only)
         run: |
           node --version
-          npm run depcruise
+          node --run=depcruise
         if: matrix.platform == 'ubuntu-latest' && matrix.node-version == '18.x'
       - name: test coverage
         run: |
           node --version
-          /home/runner/.cache/puppeteer npm run test:cover
+          node --run=test:cover

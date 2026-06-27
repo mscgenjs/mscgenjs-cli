@@ -11,7 +11,7 @@
   ],
   "license": "GPL-3.0",
   "engines": {
-    "node": "^20.15||^22.4||>=24"
+    "node": "^22.4||^24||>=26"
   },
   "bugs": {
     "url": "https://github.com/mscgenjs/mscgenjs-cli/issues"
@@ -77,8 +77,8 @@
     "scm:push:github:commits": "git push",
     "scm:push:github:tags": "git push --tags",
     "scm:stage": "git add .",
-    "test": "npx tsx --test test/**/*.spec.ts",
-    "test:cover": "npx tsx --test --experimental-test-coverage test/**/*.spec.ts",
+    "test": "npx tsx --test-reporter spec --test test/**/*.spec.ts",
+    "test:cover": "npx tsx --test --experimental-test-coverage --test-reporter spec test/**/*.spec.ts",
     "update-dependencies": "npm-run-all --node-run upem:update upem:install lint:fix depcruise build test",
     "upem-outdated": "npm outdated --json --long | upem --dry-run",
     "upem:update": "npm outdated --json --long | upem | pbcopy && pbpaste",
