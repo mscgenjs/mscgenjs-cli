@@ -1,14 +1,17 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.removeAutoWidth = removeAutoWidth;
 exports.transform = transform;
-const get_stream_1 = __importDefault(require("get-stream"));
 const mscgenjs_1 = require("mscgenjs");
 const fileNameToStream_js_1 = require("./fileNameToStream.js");
 const render_js_1 = require("./render.js");
+async function streamToString(pStream) {
+    const lChunks = [];
+    for await (const lChunk of pStream) {
+        lChunks.push(Buffer.from(lChunk));
+    }
+    return Buffer.concat(lChunks).toString("utf-8");
+}
 function isGraphicsOutput(pOutputType) {
     const GRAPHICSFORMATS = ["svg", "png", "jpeg"];
     return GRAPHICSFORMATS.includes(pOutputType);
@@ -27,12 +30,12 @@ function removeAutoWidth(pAST, pOutputType) {
     return pAST;
 }
 function render(pOptions) {
-    return (0, get_stream_1.default)((0, fileNameToStream_js_1.getInStream)(pOptions.inputFrom))
+    return streamToString((0, fileNameToStream_js_1.getInStream)(pOptions.inputFrom))
         .then((pInput) => getAST(pInput, pOptions))
         .then((pAST) => (0, render_js_1.renderWithChromeHeadless)(removeAutoWidth(pAST, pOptions.outputType), pOptions));
 }
 function transpile(pOptions) {
-    return (0, get_stream_1.default)((0, fileNameToStream_js_1.getInStream)(pOptions.inputFrom)).then((pInput) => (0, mscgenjs_1.translateMsc)(pInput, pOptions));
+    return streamToString((0, fileNameToStream_js_1.getInStream)(pOptions.inputFrom)).then((pInput) => (0, mscgenjs_1.translateMsc)(pInput, pOptions));
 }
 function transform(pOptions) {
     if (isGraphicsOutput(pOptions.outputType)) {

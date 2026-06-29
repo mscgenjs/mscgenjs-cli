@@ -1,8 +1,15 @@
-import getStream from "get-stream";
 import { type ITranslateOptions, translateMsc } from "mscgenjs";
 import type { INormalizedOptions, OutputType } from "../types.js";
 import { getInStream, getOutStream } from "./fileNameToStream.js";
 import { renderWithChromeHeadless } from "./render.js";
+
+async function streamToString(pStream: NodeJS.ReadableStream): Promise<string> {
+  const lChunks: Buffer[] = [];
+  for await (const lChunk of pStream) {
+    lChunks.push(Buffer.from(lChunk as Buffer));
+  }
+  return Buffer.concat(lChunks).toString("utf-8");
+}
 
 function isGraphicsOutput(pOutputType: OutputType) {
   const GRAPHICSFORMATS = ["svg", "png", "jpeg"];
@@ -27,7 +34,7 @@ export function removeAutoWidth(pAST: any, pOutputType: OutputType) {
 }
 
 function render(pOptions: INormalizedOptions): Promise<any> {
-  return getStream(getInStream(pOptions.inputFrom))
+  return streamToString(getInStream(pOptions.inputFrom))
     .then((pInput) => getAST(pInput, pOptions))
     .then((pAST) =>
       renderWithChromeHeadless(
@@ -38,7 +45,7 @@ function render(pOptions: INormalizedOptions): Promise<any> {
 }
 
 function transpile(pOptions: INormalizedOptions): Promise<string> {
-  return getStream(getInStream(pOptions.inputFrom)).then((pInput) =>
+  return streamToString(getInStream(pOptions.inputFrom)).then((pInput) =>
     translateMsc(pInput, pOptions as ITranslateOptions),
   );
 }
