@@ -1,38 +1,52 @@
 <!--- Provide a general summary of your changes in the Title above -->
 
-> Plan to do something drastic?     
-> Leave an [issue](https://github.com/mscgenjs/mscgenjs-cli/issues/new) with a
+> Plan to do something drastic?  
+> Leave an [issue](https://github.com/mscgenjs/mscgenjs-cli/issues/new/choose) with a
 > summary of the changes you propose + some context on why you'd want to
-> do that.
+> do that, so we can have a conversation before you start. This will save you time!
 
 ## Description
+
 <!--- Describe your changes in detail -->
 
 ## Motivation and Context
+
 <!--- Why is this change required? What problem does it solve? -->
 <!--- If it fixes an open issue, please link to the issue here. -->
 
 ## How Has This Been Tested?
+
 <!--- Please describe in detail how you tested your changes. -->
 <!--- Include details of your testing environment, and the tests you ran to -->
 <!--- see how your change affects other areas of the code, etc. -->
 
-## Screenshots (if appropriate):
+- [ ] green ci
+- [ ] ...
+
+## Screenshots
+
+<!-- Only if appropriate - feel free to delete this section if it's not applicable -->
 
 ## Types of changes
+
 <!--- What types of changes does your code introduce? Put an `x` in all the boxes that apply: -->
+
 - [ ] Bug fix (non-breaking change which fixes an issue)
+- [ ] Documentation only change
+- [ ] Refactor (non-breaking change which fixes an issue without changing functionality)
 - [ ] New feature (non-breaking change which adds functionality)
 - [ ] Breaking change (fix or feature that would cause existing functionality to change)
 
-## Checklist:
+## Checklist
+
 <!--- Go over all the following points, and put an `x` in all the boxes that apply. -->
 <!--- If you're unsure about any of these, don't hesitate to ask. We're here to help! -->
-- [ ] The code I add will be subject to [The GNU General Public License v3](../LICENSE.md) ([text](../COPYING)), and I'm OK with that.
-- [ ] The code I've added is my own original work.
-- [ ] My code follows the code style of this project.
-- [ ] My change requires a change to the documentation.
-- [ ] I have updated the documentation accordingly.
-- [ ] I have read the [**CONTRIBUTING**](./CONTRIBUTING.md) document.
-- [ ] I have added tests to cover my changes.
-- [ ] All new and existing tests passed.
+
+- [ ] :book:
+  - My change doesn't require a documentation update, or ...
+  - it _does_ and I have updated it
+
+- [ ] :balance_scale:
+  - The contribution will be subject to [The MIT license](https://github.com/mscgenjs/mscgenjs-cli/blob/main/LICENSE), and I'm OK with that.
+  - The contribution is my own original work.
+  - I am ok with the stuff in [**CONTRIBUTING.md**](https://github.com/mscgenjs/mscgenjs-cli/blob/main/.github/CONTRIBUTING.md).
