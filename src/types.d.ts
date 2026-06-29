@@ -1,4 +1,4 @@
-import { InputType, RegularArcTextVerticalAlignmentType } from "mscgenjs";
+import type { InputType, RegularArcTextVerticalAlignmentType } from "mscgenjs";
 
 export type NamedStyleType = "basic" | "lazy" | "classic" | "fountainpen";
 

@@ -1,5 +1,5 @@
 import { rejects, ok } from "node:assert/strict";
-import { describe, it } from "node:test"
+import { describe, it } from "node:test";
 import * as render from "../../src/actions/render.js";
 import { INormalizedOptions } from "../../src/types.js";
 

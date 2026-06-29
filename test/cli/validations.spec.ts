@@ -1,6 +1,6 @@
 "use strict";
 import { deepEqual, equal, match } from "node:assert/strict";
-import { describe, it } from "node:test"
+import { describe, it } from "node:test";
 import * as path from "node:path";
 import * as val from "../../src/cli/validations.js";
 import type {

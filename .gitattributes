@@ -1,5 +1,8 @@
 * text eol=lf
 
+*.ts linguist-language=TypeScript
+dist/** linguist-generated
+
 *.jpg binary
 *.kra binary
 *.png binary

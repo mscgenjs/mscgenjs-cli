@@ -50,14 +50,14 @@ try {
       "input-from": { type: "string", short: "i" },
       "output-to": { type: "string", short: "o" },
       "parser-output": { type: "boolean", short: "p" },
-      "css": { type: "string", short: "s" },
+      css: { type: "string", short: "s" },
       "named-style": { type: "string", short: "n" },
       "mirror-entities": { type: "boolean", short: "m" },
       "vertical-alignment": { type: "string", short: "v" },
       "puppeteer-options": { type: "string" },
-      "license": { type: "boolean", short: "l" },
-      "version": { type: "boolean", short: "V" },
-      "help": { type: "boolean", short: "h" },
+      license: { type: "boolean", short: "l" },
+      version: { type: "boolean", short: "V" },
+      help: { type: "boolean", short: "h" },
     },
   });
 

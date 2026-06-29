@@ -1,5 +1,5 @@
 import { match } from "node:assert/strict";
-import { describe, it } from "node:test"
+import { describe, it } from "node:test";
 import showLicense from "../../src/actions/showLicense.js";
 
 describe("showLicense()", () => {

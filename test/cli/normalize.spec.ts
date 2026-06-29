@@ -1,5 +1,5 @@
 import { deepEqual } from "node:assert/strict";
-import { describe, it } from "node:test"
+import { describe, it } from "node:test";
 import normalize from "../../src/cli/normalize.js";
 
 const TESTPAIRS = [
