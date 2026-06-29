@@ -32,9 +32,6 @@ var __importStar = (this && this.__importStar) || (function () {
         return result;
     };
 })();
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.validVerticalAlignmentRE = exports.validNamedStyleRE = exports.validInputTypeRE = exports.validOutputTypeRE = void 0;
 exports.validOutputType = validOutputType;
@@ -43,13 +40,27 @@ exports.validNamedStyle = validNamedStyle;
 exports.validVerticalAlignment = validVerticalAlignment;
 exports.validateArguments = validateArguments;
 exports.validPuppeteerOptions = validPuppeteerOptions;
-const ajv_1 = __importDefault(require("ajv"));
 const fs = __importStar(require("node:fs"));
 const mscgenjs = __importStar(require("mscgenjs"));
-const puppeteerOptionsSchema = require("./puppeteer-options.schema.json");
 const VALID_GRAPHICS_TYPES = Object.freeze(["svg", "png", "jpeg"]);
 const VALID_OUTPUT_TYPES = VALID_GRAPHICS_TYPES.concat(mscgenjs.getAllowedValues().outputType.map((pValue) => pValue.name));
-const ajv = new ajv_1.default();
+const PUPPETEER_OPTION_VALIDATORS = {
+    args: (v) => Array.isArray(v) && v.every((item) => typeof item === "string"),
+    devtools: (v) => typeof v === "boolean",
+    executablePath: (v) => typeof v === "string",
+    headless: (v) => typeof v === "boolean",
+    slowMo: (v) => typeof v === "number",
+    timeout: (v) => typeof v === "number",
+};
+function isValidPuppeteerConfig(pObject) {
+    if (typeof pObject !== "object" ||
+        pObject === null ||
+        Array.isArray(pObject)) {
+        return false;
+    }
+    return Object.entries(pObject).every(([lKey, lValue]) => Object.hasOwn(PUPPETEER_OPTION_VALIDATORS, lKey) &&
+        PUPPETEER_OPTION_VALIDATORS[lKey](lValue));
+}
 function isStdout(pFilename) {
     return "-" === pFilename;
 }
@@ -131,7 +142,7 @@ function validPuppeteerOptions(pPuppeteerConfigFileName) {
     catch (pException) {
         throw Error(`\n  error: '${pPuppeteerConfigFileName}' does not contain valid JSON\n\n`);
     }
-    if (!ajv.validate(puppeteerOptionsSchema, lPuppeteerConfigObject)) {
+    if (!isValidPuppeteerConfig(lPuppeteerConfigObject)) {
         throw Error(`\n  error: '${pPuppeteerConfigFileName}' does not contain
          puppeteer options that are valid for use in mscgenjs-cli.
 

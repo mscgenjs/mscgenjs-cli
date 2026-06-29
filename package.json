@@ -42,7 +42,6 @@
     "msgenny"
   ],
   "dependencies": {
-    "ajv": "8.20.0",
     "mscgenjs": "8.0.0",
     "mscgenjs-inpage": "6.0.0",
     "puppeteer": "25.2.1"
@@ -61,9 +60,7 @@
     "build": "npm-run-all --node-run build:clean build:compile build:copy",
     "build:clean": "rm -rf dist/*",
     "build:compile": "tsc --project src/tsconfig.json",
-    "build:copy": "npm-run-all --node-run build:copy-template build:copy-schema",
-    "build:copy-template": "cp src/actions/template.html dist/actions/template.html",
-    "build:copy-schema": "cp src/cli/puppeteer-options.schema.json dist/cli/.",
+    "build:copy": "cp src/actions/template.html dist/actions/template.html",
     "check": "npm-run-all --node-run build depcruise test:cover",
     "depcruise": "depcruise --validate -- src test",
     "depcruise:graph": "npm-run-all --parallel --node-run depcruise:graph:*",

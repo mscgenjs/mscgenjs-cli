@@ -1,5 +1,4 @@
 "use strict";
-import Ajv from "ajv";
 import * as fs from "node:fs";
 import * as mscgenjs from "mscgenjs";
 import type {
@@ -8,13 +7,35 @@ import type {
   NamedStyleType,
   OutputType,
 } from "../types.js";
-const puppeteerOptionsSchema = require("./puppeteer-options.schema.json");
 
 const VALID_GRAPHICS_TYPES = Object.freeze(["svg", "png", "jpeg"]);
 const VALID_OUTPUT_TYPES = VALID_GRAPHICS_TYPES.concat(
   mscgenjs.getAllowedValues().outputType.map((pValue) => pValue.name),
 );
-const ajv = new Ajv();
+
+const PUPPETEER_OPTION_VALIDATORS: Record<string, (v: unknown) => boolean> = {
+  args: (v) => Array.isArray(v) && v.every((item) => typeof item === "string"),
+  devtools: (v) => typeof v === "boolean",
+  executablePath: (v) => typeof v === "string",
+  headless: (v) => typeof v === "boolean",
+  slowMo: (v) => typeof v === "number",
+  timeout: (v) => typeof v === "number",
+};
+
+function isValidPuppeteerConfig(pObject: unknown): pObject is IPuppeteerOptions {
+  if (
+    typeof pObject !== "object" ||
+    pObject === null ||
+    Array.isArray(pObject)
+  ) {
+    return false;
+  }
+  return Object.entries(pObject as Record<string, unknown>).every(
+    ([lKey, lValue]) =>
+      Object.hasOwn(PUPPETEER_OPTION_VALIDATORS, lKey) &&
+      PUPPETEER_OPTION_VALIDATORS[lKey](lValue),
+  );
+}
 
 function isStdout(pFilename: string): boolean {
   return "-" === pFilename;
@@ -142,7 +163,7 @@ export function validPuppeteerOptions(
     );
   }
 
-  if (!ajv.validate(puppeteerOptionsSchema, lPuppeteerConfigObject)) {
+  if (!isValidPuppeteerConfig(lPuppeteerConfigObject)) {
     throw Error(`\n  error: '${pPuppeteerConfigFileName}' does not contain
          puppeteer options that are valid for use in mscgenjs-cli.
 
@@ -155,7 +176,7 @@ export function validPuppeteerOptions(
          - timeout (in ms)\n\n`);
   }
 
-  return lPuppeteerConfigObject as IPuppeteerOptions;
+  return lPuppeteerConfigObject;
 }
 
 export const validOutputTypeRE = VALID_OUTPUT_TYPES.join("|");

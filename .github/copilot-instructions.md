@@ -54,7 +54,7 @@ The CLI is a thin Node.js wrapper around the `mscgenjs` library that renders seq
 bin/mscgen_js          → entry point (requires dist/cli)
 src/cli/index.ts       → arg parsing (node:util parseArgs), validation, orchestration
 src/cli/normalize.ts   → maps raw CLI args → INormalizedOptions (guesses types from extensions)
-src/cli/validations.ts → throws on invalid args; schema-validates puppeteer options via AJV
+src/cli/validations.ts → throws on invalid args; schema-validates puppeteer options
 src/actions/index.ts   → routes: graphics output → render pipeline, text output → transpile
 src/actions/render.ts  → launches headless Chromium via puppeteer to render SVG/PNG/JPEG
 src/types.d.ts         → shared TypeScript interfaces (IOptions, INormalizedOptions, etc.)
@@ -64,7 +64,7 @@ src/types.d.ts         → shared TypeScript interfaces (IOptions, INormalizedOp
 
 **Text transpile pipeline** (all other output types): reads input → `mscgenjs.translateMsc` with target format → writes string to output stream.
 
-The `template.html` and `puppeteer-options.schema.json` are non-TypeScript assets that must be **copied** from `src/` to `dist/` as part of the build (`build:copy-*` scripts).
+The `template.html` is a non-TypeScript assets that must be **copied** from `src/` to `dist/` as part of the build (`build:copy-*` scripts).
 
 ## Key Conventions
 
